@@ -2,8 +2,11 @@
 <v-app  class="bg-main">
     <Core-Loading></Core-Loading>
      <UserMenu-MainMenu></UserMenu-MainMenu>
-     <v-main>
-          <Nuxt />
+     <v-main >
+         <div class="md:p-10">
+              <Nuxt />
+         </div>
+         
      </v-main>
    
   

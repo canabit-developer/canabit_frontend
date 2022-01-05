@@ -1,5 +1,6 @@
 <template>
 <div>
+    <Dashboard-Slide></Dashboard-Slide>
 </div>
 </template>
 

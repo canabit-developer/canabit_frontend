@@ -28,13 +28,12 @@
 
     <v-navigation-drawer app floating width="260" class="app-navigation-menu bg-main" :right="$vuetify.rtl" v-model="isDrawerOpen">
         <div class="vertical-nav-header d-flex items-center ps-6 pe-5 pt-5 pb-2">
-            <router-link to="/" class="d-flex align-center text-decoration-none">
-                <v-img :src="require('@/static/images/logos/logo.svg')" max-height="30px" max-width="30px" alt="logo" contain eager class="app-logo me-3"></v-img>
-                <v-slide-x-transition>
-                    <h2 class="app-title text--primary">
-                        CANABIT
-                    </h2>
-                </v-slide-x-transition>
+            <router-link to="/" class="d-flex align-center text-decoration-none w-full">
+                <center>
+                    <v-slide-x-transition>
+                        <img class="h-14" src="~/static/images/logos/canabit_vector.svg" alt=""> 
+                    </v-slide-x-transition>
+                </center>
             </router-link>
         </div>
 
@@ -63,10 +62,10 @@ export default {
 </script>
 
 <style>
- .upgrade-banner {
-        position: absolute;
-        bottom: 13px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+.upgrade-banner {
+    position: absolute;
+    bottom: 13px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 </style>
