@@ -1,0 +1,15 @@
+<template>
+<div>
+    Register Page
+</div>
+</template>
+
+<script>
+export default {
+    layout: 'root'
+}
+</script>
+
+<style>
+
+</style>

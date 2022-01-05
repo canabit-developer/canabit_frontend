@@ -1,0 +1,12 @@
+ .bg-main {
+     background: #f4f4f4!important;
+ }
+ 
+ .light-text {
+     color: rgba(94, 86, 105, 0.68) !important;
+ }
+ 
+ .navbar-active {
+     background: rgb(196, 142, 255)!important;
+     background: linear-gradient(90deg, rgba(196, 142, 255, 1) 0%, rgba(171, 128, 217, 1) 100%)!important;
+ }
