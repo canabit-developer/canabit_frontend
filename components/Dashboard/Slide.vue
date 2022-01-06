@@ -1,13 +1,9 @@
 <template>
-<v-carousel cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl" >
+<v-carousel cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl" >
     <v-carousel-item v-for="(slide, i) in slides" :key="i" >
-        <v-sheet :color="colors[i]"   class="h-full w-full" >
-            <v-row class="fill-height" align="center" justify="center">
-                <div class="text-h2">
-                    {{ slide.title }} Slide
-                </div>
-            </v-row>
-        </v-sheet>
+      
+        <v-img src="https://media.istockphoto.com/photos/empty-pink-shopping-bag-in-the-studio-lighting-design-concept-for-picture-id1094274086?k=20&m=1094274086&s=170667a&w=0&h=VCabJ0J4sZCoK6mynyVQGu5IYDdrjN67hZK3hGZGcVE="></v-img>
+ 
     </v-carousel-item>
 </v-carousel>
 </template>

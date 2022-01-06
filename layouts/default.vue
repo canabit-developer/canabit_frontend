@@ -3,7 +3,7 @@
     <Core-Loading></Core-Loading>
      <UserMenu-MainMenu></UserMenu-MainMenu>
      <v-main >
-         <div class="md:p-10">
+         <div class=" md:ml-28 md:mr-28">
               <Nuxt />
          </div>
          

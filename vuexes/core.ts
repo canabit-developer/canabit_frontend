@@ -6,7 +6,7 @@ import { Web } from './web'
 
 @Module({ generateMutationSetters: true })
 class CoreModule extends VuexModule {
-  //state
+ 
   private token: string | null = null;
   
   public url:any = axios.defaults.baseURL

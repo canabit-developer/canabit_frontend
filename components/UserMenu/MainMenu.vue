@@ -5,23 +5,10 @@
             <div class="d-flex align-center mx-6">
                 <!-- Left Content -->
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
-                <v-text-field rounded dense outlined prepend-inner-icon="mdi-magnify" class="app-bar-search flex-grow-0" hide-details></v-text-field>
 
                 <v-spacer></v-spacer>
-
-                <!-- Right Content -->
-                <a href="https://github.com/themeselection/materio-vuetify-vuejs-admin-template-free" target="_blank" rel="nofollow">
-                    <v-icon class="ms-6 me-4">
-
-                    </v-icon>
-                </a>
-
-                <v-btn icon small class="ms-3">
-                    <v-icon>
-
-                    </v-icon>
-                </v-btn>
-                <user-menu></user-menu>
+                <v-btn dark rounded color="blue" class="my-point"><v-icon style="color:white;"  >mdi-bitcoin</v-icon> Point : 8000</v-btn>
+                  
             </div>
         </div>
     </v-app-bar>
@@ -31,21 +18,36 @@
             <router-link to="/" class="d-flex align-center text-decoration-none w-full">
                 <center>
                     <v-slide-x-transition>
-                        <img class="h-14" src="~/static/images/logos/canabit_vector.svg" alt=""> 
+                        <img class="h-14" src="~/static/images/logos/canabit_vector.svg" alt="">
                     </v-slide-x-transition>
                 </center>
             </router-link>
         </div>
 
+        <div class="p-6 flex flex-col items-center">
+            <v-badge color="bg-yellow-500" content="Gold" overlap>
+                <v-img class="shadow-2xl rounded-full h-36 w-36" src="https://i.pinimg.com/originals/4a/6a/cb/4a6acb8ab84a58ca85ef817b02de7067.jpg"> </v-img>
+
+            </v-badge>
+
+            <h2 class="text-2xl font-semibold">Adam Lime</h2>
+            <h2>adam@gmail.com</h2>
+        </div>
+
         <v-list expand shaped class="vertical-nav-menu-items pr-5">
-            <UserMenu-NavbarLink path="/" title="Dashboard" icon="mdi-home-outline"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/" title="Portal" icon="mdi-home-outline"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="mdi-bank-transfer"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/partner" title="Partner" icon="mdi-handshake-outline"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog"></UserMenu-NavbarLink>
         </v-list>
-        <a href="https://themeselection.com/products/materio-vuetify-vuejs-admin-template" target="_blank" rel="nofollow">
-            <v-img :src="require(`@/static/images/pro/upgrade-banner-light2.png`)" alt="upgrade-banner" transition="scale-transition" class="upgrade-banner mx-auto" max-width="230"></v-img>
-        </a>
+
+        <template v-slot:append>
+            <div>
+                <UserMenu-NavbarLink path="/account" title="Logout" icon="mdi-logout"></UserMenu-NavbarLink>
+
+            </div>
+        </template>
+
     </v-navigation-drawer>
 
 </div>

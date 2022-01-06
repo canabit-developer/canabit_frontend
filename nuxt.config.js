@@ -1,6 +1,21 @@
 import colors from 'vuetify/es5/util/colors'
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
+
+
+    ssr: false,
+    // generate: {
+    //   fallback: true
+    // },
+    target: "static",
+
+    router: {
+        mode: 'hash',
+        base: "/canabit_frontend/"
+    },
+    // Glob
+
+
     head: {
         titleTemplate: '%s - canabit_frontend',
         title: 'canabit_frontend',
@@ -27,7 +42,9 @@ export default {
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
         '@assets/main.css',
-        '@plugins/vuetify/preset/overrides.scss'
+        '@plugins/vuetify/preset/overrides.scss',
+        '@assets/components.css',
+        '@assets/styles.scss'
     ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -88,5 +105,9 @@ export default {
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {}
+    build: {},
+    "routes": [
+        { "src": "/_nuxt/.+", "headers": { "cache-control": "s-maxage=31536000" } },
+        { "src": "/(.*)", "dest": "/" }
+    ]
 }
