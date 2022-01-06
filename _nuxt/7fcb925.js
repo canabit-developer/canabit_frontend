@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[16],{488:function(e,n,t){"use strict";t.r(n);var r={layout:"root"},l=t(53),component=Object(l.a)(r,(function(){var e=this,n=e.$createElement;return(e._self._c||n)("div",[e._v("\r\n    Register Page\r\n")])}),[],!1,null,null,null);n.default=component.exports}}]);
