@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"canabit_frontend\u002F_nuxt\u002Fstatic\u002F1641464621",layout:"default",error:a,serverRendered:true,routePath:"\u002F",config:{_app:{basePath:"canabit_frontend\u002F",assetsPath:"canabit_frontend\u002F_nuxt\u002F",cdnURL:a}}}}(null));
