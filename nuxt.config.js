@@ -7,12 +7,12 @@ export default {
     // generate: {
     //   fallback: true
     // },
-    target: "static",
+    // target: "static",
 
-    router: {
-        mode: 'hash',
-        base: "/canabit_frontend/"
-    },
+    // router: {
+    //     mode: 'hash',
+    //     base: "/canabit_frontend/"
+    // },
     // Glob
 
 
@@ -43,6 +43,7 @@ export default {
     css: [
         '@assets/main.css',
         '@plugins/vuetify/preset/overrides.scss',
+
         '@assets/components.css',
         '@assets/styles.scss'
     ],
@@ -83,7 +84,7 @@ export default {
             dark: false,
             themes: {
                 light: {
-                    primary: '#9155FD',
+                    primary: '#1698f9',
                     accent: '#0d6efd',
                     secondary: '#8A8D93',
                     success: '#56CA00',
@@ -92,7 +93,7 @@ export default {
                     error: '#FF4C51',
                 },
                 dark: {
-                    primary: '#9155FD',
+                    primary: '#1698f9',
                     accent: '#0d6efd',
                     secondary: '#8A8D93',
                     success: '#56CA00',
@@ -106,8 +107,8 @@ export default {
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
-    "routes": [
-        { "src": "/_nuxt/.+", "headers": { "cache-control": "s-maxage=31536000" } },
-        { "src": "/(.*)", "dest": "/" }
-    ]
+    // "routes": [
+    //     { "src": "/_nuxt/.+", "headers": { "cache-control": "s-maxage=31536000" } },
+    //     { "src": "/(.*)", "dest": "/" }
+    // ]
 }

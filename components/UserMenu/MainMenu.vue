@@ -7,8 +7,10 @@
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
 
                 <v-spacer></v-spacer>
-                <v-btn dark rounded color="blue" class="my-point"><v-icon style="color:white;"  >mdi-bitcoin</v-icon> Point : 8000</v-btn>
-                  
+                <v-btn dark rounded color="blue" class="my-point">
+                    <v-icon style="color:white;">mdi-bitcoin</v-icon> Point : 8000
+                </v-btn>
+
             </div>
         </div>
     </v-app-bar>

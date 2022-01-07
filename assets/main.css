@@ -1,3 +1,17 @@
+ /* .v-input .v-label--active {
+     transform: translateX(-12%) translateX(-7.5px) translateY(-28px) scale(0.75) !important;
+ }
+ 
+ .v-input--dense .v-label--active {
+     transform: translateX(-12%) translateX(-7.5px) translateY(-21px) scale(0.75) !important;
+ }
+  */
+ 
+ .bg-primary-g {
+     background: rgb(39, 158, 246);
+     background: linear-gradient(90deg, rgba(39, 158, 246, 1) 0%, rgba(0, 241, 205, 1) 100%);
+ }
+ 
  .bg-main {
      background: #f4f4f4!important;
  }
