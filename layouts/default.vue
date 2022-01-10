@@ -40,7 +40,7 @@ export default {
         async checkUser() {
             let user = await Auth.getUser();
             if (!user.id) {
-                await this.$router.replace(`/auth/login`)
+              await this.$router.replace(`/auth/login`)
             }
         }
     }

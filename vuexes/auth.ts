@@ -24,6 +24,14 @@ class AuthModule extends VuexModule {
     return user 
   }
 
+  public async register(form:any){
+    await this.reToken();
+    let user = await Core.postHttp(`/api/auth/v2/register/`, form)
+    return user 
+  }
+
+
+
   public async reToken(){
     axios.defaults.headers.common['Authorization'] = '';
   }

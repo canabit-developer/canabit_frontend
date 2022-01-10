@@ -49,7 +49,7 @@
         <template v-slot:append>
             <div>
                 <div @click="logout()">
-                    <UserMenu-NavbarLink title="Logout" icon="mdi-logout"></UserMenu-NavbarLink>
+                    <UserMenu-NavbarLink path="/logout" title="Logout" icon="mdi-logout"></UserMenu-NavbarLink>
                 </div>
 
             </div>
