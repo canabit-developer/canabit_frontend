@@ -8,6 +8,22 @@ import Swal from 'sweetalert2'
 class WebModule extends VuexModule {
   public loading: boolean = false;
   public loadTxt: any = 'Loading..'
+
+  public snackTxt:any = ''
+  public snacking: boolean = false;
+  public snackColor: any = 'success';
+
+  public async onSnack(txt:string,color:string = 'success'){
+    await this.offSnack()
+    this.snacking = true
+    this.snackTxt = txt
+    this.snackColor = color
+  }
+  public async offSnack(){
+    this.snacking = false
+  }
+
+
   public async switchLoad(load: boolean) {
     //  this.loadTxt = 'กำลังโหลด'
     this.loading = load

@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-app>
+      <Core-Notification />
             <Nuxt />
     </v-app>
 

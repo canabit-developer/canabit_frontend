@@ -1,24 +1,47 @@
 <template>
-<v-app  class="bg-main">
+<v-app class="bg-main" v-if="response">
     <Core-Loading></Core-Loading>
-     <UserMenu-MainMenu></UserMenu-MainMenu>
-     <v-main >
-         <div class=" md:ml-28 md:mr-28">
-              <Nuxt />
-         </div>
-         
-     </v-main>
-   
-  
+    <UserMenu-MainMenu></UserMenu-MainMenu>
+
+    <v-main >
+        <Core-Notification />
+        <div class=" md:ml-28 md:mr-28">
+            <Nuxt />
+        </div>
+
+    </v-main>
+
 </v-app>
 </template>
 
 <script>
+import {
+    Auth
+} from '@/vuexes/auth'
 export default {
     name: 'DefaultLayout',
     data() {
         return {
-         isDrawerOpen:false
+            isDrawerOpen: false,
+            user: {},
+            response: false
+        }
+    },
+    async created() {
+        await this.initial()
+    },
+    methods: {
+        async initial() {
+            await Auth.checkToken();
+            this.user = await Auth.setUser();
+            await this.checkUser();
+            this.response = (this.user.id) ? true : false; 
+        },
+        async checkUser() {
+            let user = await Auth.getUser();
+            if (!user.id) {
+                await this.$router.replace(`/auth/login`)
+            }
         }
     }
 }

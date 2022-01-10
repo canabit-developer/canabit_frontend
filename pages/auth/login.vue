@@ -22,10 +22,10 @@
 
                 <!-- login form -->
                 <v-card-text>
-                    <v-form>
-                        <v-text-field color="primary" outlined label="Email" placeholder="john@example.com" hide-details class="mb-3"></v-text-field>
+                    <form @submit.prevent="login">
+                        <v-text-field v-model="form.login" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
                         <br>
-                        <v-text-field color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <v-text-field v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
 
                         <div class="d-flex align-center justify-space-between flex-wrap">
                             <v-spacer></v-spacer>
@@ -35,10 +35,10 @@
                             </router-link>
                         </div>
 
-                        <v-btn x-large dark block class="bg-primary-g mt-6">
+                        <v-btn type="submit" x-large dark block class="bg-primary-g mt-6">
                             Login
                         </v-btn>
-                    </v-form>
+                    </form>
                 </v-card-text>
 
                 <!-- create new account  -->
@@ -60,7 +60,8 @@
 
                 <!-- social links -->
                 <v-card-actions class="d-flex justify-center">
-                    <v-icon>mdi-facebook</v-icon>
+                   <Auth-Facebook></Auth-Facebook>
+                   <Auth-Google></Auth-Google>
                 </v-card-actions>
             </v-card>
         </div>
@@ -78,12 +79,31 @@
 </template>
 
 <script>
+import {Core} from '~/vuexes/core'
+import { Web } from '~/vuexes/web'
+import { Auth } from '~/vuexes/auth'
 export default {
     layout: 'root',
     data: () => {
         return ({
             isPasswordVisible: false,
+            form:{},
         })
+    },
+    async created(){
+
+    },
+    methods:{
+        async login(){
+             let signin = await Auth.login(this.form)
+             if(signin.token){
+                await Auth.storeToken(signin.token)
+                await Auth.storeTokenToStorage(signin.token) 
+                await this.$router.replace(`/`)
+             }else{
+                await Web.onSnack(signin.detail,'red accent-2') 
+             }  
+        }
     }
 }
 </script>

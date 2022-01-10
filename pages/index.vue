@@ -40,7 +40,7 @@
             <h2 class="text-2xl font-semibold">You Favorite</h2>
         </v-toolbar>
         <div>
-            <v-slide-group v-model="model" class="pa-4" active-class="success" show-arrows>
+            <v-slide-group  class="pa-4" active-class="success" show-arrows>
                 <v-slide-item v-for="n in 15" :key="n" v-slot="{ active, toggle }">
                     <v-card elevation="4" :color="active ? undefined : 'white lighten-1'" class="ma-4" height="200" width="350" @click="toggle">
                         <v-row class="fill-height" align="center" justify="center">
@@ -59,7 +59,7 @@
             <h2 class="text-2xl font-semibold">Special for you</h2>
         </v-toolbar>
         <div>
-            <v-slide-group v-model="model" class="pa-4" active-class="success" show-arrows>
+            <v-slide-group  class="pa-4" active-class="success" show-arrows>
                 <v-slide-item v-for="n in 15" :key="n" v-slot="{ active, toggle }">
                     <v-card elevation="4" :color="active ? undefined : 'white lighten-1'" class="ma-4" height="200" width="350" @click="toggle">
                         <v-row class="fill-height" align="center" justify="center">
