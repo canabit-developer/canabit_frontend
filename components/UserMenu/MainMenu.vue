@@ -14,6 +14,7 @@
             </div>
         </div>
     </v-app-bar>
+  
 
     <v-navigation-drawer app floating width="260" class="app-navigation-menu bg-main" :right="$vuetify.rtl" v-model="isDrawerOpen">
         <div class="vertical-nav-header d-flex items-center ps-6 pe-5 pt-5 pb-2">
@@ -23,17 +24,19 @@
                         <img class="h-14" src="~/static/images/logos/canabit_vector.svg" alt="">
                     </v-slide-x-transition>
                 </center>
-            </router-link>
+            </router-link>  
         </div>
 
         <div class="p-6 flex flex-col items-center">
-            <v-badge color="bg-yellow-500" content="Gold" overlap>
-                <v-img class="shadow-2xl rounded-full h-36 w-36" src="https://i.pinimg.com/originals/4a/6a/cb/4a6acb8ab84a58ca85ef817b02de7067.jpg"> </v-img>
+            <v-badge color="bg-yellow-500" :content="user.tier" overlap>
+                <v-img v-if="user.image_profile" class="shadow-2xl rounded-full h-36 w-36" :src="user.image_profile"> </v-img>
+                <v-img v-else class="shadow-2xl rounded-full h-36 w-36" src="https://i.pinimg.com/originals/4a/6a/cb/4a6acb8ab84a58ca85ef817b02de7067.jpg"> </v-img>
 
             </v-badge>
 
-            <h2 class="text-2xl font-semibold">Adam Lime</h2>
-            <h2>adam@gmail.com</h2>
+            <h2 v-if="user.display_name" class="text-2xl font-semibold">{{user.display_name}}</h2>
+            <h2 v-else class="text-2xl font-semibold">{{user.first_name}}</h2>
+            <h2>{{user.email}}</h2>
         </div>
 
         <v-list expand shaped class="vertical-nav-menu-items pr-5">
@@ -45,7 +48,9 @@
 
         <template v-slot:append>
             <div>
-                <UserMenu-NavbarLink path="/account" title="Logout" icon="mdi-logout"></UserMenu-NavbarLink>
+                <div @click="logout()">
+                    <UserMenu-NavbarLink title="Logout" icon="mdi-logout"></UserMenu-NavbarLink>
+                </div>
 
             </div>
         </template>
@@ -56,10 +61,24 @@
 </template>
 
 <script>
+import {
+    Auth
+} from '@/vuexes/auth'
 export default {
     data() {
         return {
             isDrawerOpen: true
+        }
+    },
+    methods: {
+        async logout() {
+            await Auth.logout();
+            await location.reload();
+        }
+    },
+    computed:{
+        user(){
+            return Auth.user
         }
     }
 }
