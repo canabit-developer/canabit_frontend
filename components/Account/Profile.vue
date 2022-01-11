@@ -1,7 +1,9 @@
 <template>
 <div>
+         <img src="" ref="ximg" class="w-full" alt="">
     <v-card flat class="pa-3 mt-2">
         <v-card-text class="d-flex">
+       
             <v-avatar rounded size="120" class="me-6">
                 <img v-if="!imageProfile" src="~/static/images/avatars/1.png">
                 <v-img v-else :src="imageProfile" alt="" ></v-img>
@@ -115,6 +117,9 @@ export default {
             let update = await Core.putImageHttpAlert(`/api/account/userprofile/${this.user.id}/`, formData) 
             await Auth.setUser();
             await this.initial()
+
+            // let cover = await Core.setWaterMark(image) 
+            // this.$refs.ximg.src = cover.src
  
         }
     }

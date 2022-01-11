@@ -102,7 +102,7 @@ public fillData(arr: any, key: string, val: any) {
   async setWaterMark(file:any){
     const watermark = require('watermarkjs');
     return watermark([file])
-    .image(watermark.text.center("For Canabit Website", "90px Josefin Slab", "black", 0.5))
+    .image(watermark.text.center("สำหรับสมัครสมาชิก canabit  เท่านั้น", "40px Josefin Slab", "black", 0.5))
     .then((img:any) =>{
         return img
     });
