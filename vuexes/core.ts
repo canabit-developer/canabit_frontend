@@ -1,6 +1,7 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-class-modules";
 import axios from '@/plugins/axios'
 import _ from "lodash" 
+ 
 import { Web } from './web'
 
 
@@ -63,6 +64,24 @@ class CoreModule extends VuexModule {
     }
   }
 
+
+  async putImageHttpAlert(url: string, form: any): Promise<any> {
+    let check = await Web.confirm("Are you sure you want to edit the information?")
+    if (check) {
+      return await axios.put(url, form,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    }).then((r) => {
+        Web.alert('Successfully edited')
+        return r.data
+      }).catch((e) => {
+        Web.alert('Failed to edit data', 'error')
+        return e.response.data
+      })
+    }
+  }
+
 public fillData(arr: any, key: string, val: any) {
     return _.find(arr, (r) => { return r[key] == val })
   }
@@ -80,7 +99,14 @@ public fillData(arr: any, key: string, val: any) {
     });
   }
 
-
+  async setWaterMark(file:any){
+    const watermark = require('watermarkjs');
+    return watermark([file])
+    .image(watermark.text.center("For Canabit Website", "90px Josefin Slab", "black", 0.5))
+    .then((img:any) =>{
+        return img
+    });
+  }
 
 }
 

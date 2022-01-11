@@ -97,6 +97,7 @@ import {
 import {
     Auth
 } from '~/vuexes/auth'
+
 export default {
     layout: 'root',
     data: () => {

@@ -10,9 +10,11 @@ class AuthModule extends VuexModule {
   public async setUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
     this.user = user;
+    this.user.fuck = "sdsdsd"
     return user;
   }
 
+ 
   public async getUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
     return user;
