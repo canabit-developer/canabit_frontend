@@ -30,4 +30,8 @@ export default {
 
 <style lang="scss">
 @import '@/plugins/vuetify/preset/pages/auth.scss';
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+*{
+    font-family: 'Kanit', sans-serif!important;
+}
 </style>

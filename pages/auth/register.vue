@@ -21,21 +21,23 @@
 
         <!-- login form -->
         <v-card-text>
-            <v-form>
+            <form @submit.prevent="register()"> 
+                <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-email-outline" outlined label="Username" hide-details></v-text-field>
+                <v-text-field v-model="form.email"  class="mt-4" prepend-inner-icon="mdi-email-outline" outlined label="Email" hide-details></v-text-field>
 
-                <v-text-field prepend-inner-icon="mdi-account-outline" outlined label=" Frist Name" hide-details></v-text-field>
-                <v-text-field class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Last Name" hide-details></v-text-field>
-                <v-text-field class="mt-4" prepend-inner-icon="mdi-email-outline" outlined label="Email" hide-details></v-text-field>
-                <v-text-field class="mt-4" type="number" outlined prepend-inner-icon="mdi-cellphone" label="Number" hide-details></v-text-field>
-                <v-text-field class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Password" hide-details></v-text-field>
+                <v-text-field v-model="form.first_name" class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Frist Name" hide-details></v-text-field>
+                <v-text-field v-model="form.last_name"  class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Last Name" hide-details></v-text-field>
+                
+                <v-text-field v-model="form.phone_number"  class="mt-4" type="number" outlined prepend-inner-icon="mdi-cellphone" label="Number" hide-details></v-text-field>
+                <v-text-field v-model="form.password"  class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Password" hide-details></v-text-field>
 
-                <v-text-field class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Confirm Password" hide-details></v-text-field>
-                <v-text-field class="mt-4" prepend-inner-icon="mdi-lock-outline" outlined label="RefferalCode" hide-details></v-text-field>
+                <v-text-field v-model="form.password_confirm"  class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Confirm Password" hide-details></v-text-field>
+                <!-- <v-text-field class="mt-4" prepend-inner-icon="mdi-lock-outline" outlined label="RefferalCode" hide-details></v-text-field> -->
 
-                <v-btn x-large dark block class="bg-primary-g mt-6">
+                <v-btn type="submit" x-large dark block class="bg-primary-g mt-6">
                     Sign Up
                 </v-btn>
-            </v-form>
+            </form>
         </v-card-text>
 
         <!-- create new account  -->
@@ -54,8 +56,41 @@
 </template>
 
 <script>
-export default {
-    layout: 'root'
+import {
+    Core
+} from '~/vuexes/core'
+import {
+    Web
+} from '~/vuexes/web'
+import {
+    Auth
+} from '~/vuexes/auth'
+ export default {
+    layout: 'root',
+    data:()=>{
+        return ({
+            form:{},
+        })
+    },
+    async created(){
+
+    },
+    methods:{
+        async initial(){
+
+        },
+        async register(){
+            await Web.switchLoad(true)
+            let user = await Auth.register(this.form)
+             await Web.switchLoad(false)
+            if(user.id){ 
+                await Web.alert(`OK`,`success`,`Register is success`)
+                await this.$router.replace(`/auth/verify`)
+            }else{
+
+            }
+        }
+    }
 }
 </script>
 
