@@ -15,7 +15,7 @@
                 <v-icon size="20" class="me-3">mdi-lock-open-outline</v-icon> Security
             </v-tab>
             <v-tab-item>
-
+  <Account-ResetPassword></Account-ResetPassword>
             </v-tab-item>
             <v-tab>
                 <v-icon size="20" class="me-3">mdi-information </v-icon> KYC
