@@ -20,10 +20,31 @@
 
         <!-- login form -->
         <v-card-text>
+            <div v-if="error.detail">
+                <v-alert dense outlined text type="error" :value="true">
+                    {{error.detail}}
+                </v-alert>
+            </div>
+            <div v-if="errorRegister.email">
+                <v-alert dense outlined text v-for="(message,i) in errorRegister.email" :key="i" type="error" :value="true">
+                    {{message}}
+                </v-alert>
+            </div>
+            <div v-if="errorRegister.password">
+                <v-alert dense outlined text v-for="(message,i) in errorRegister.password" :key="i" type="error" :value="true">
+                    {{message}}
+                </v-alert>
+            </div>
+
+            <div v-if="errorRegister.phone_number">
+                <v-alert dense outlined text v-for="(message,i) in errorRegister.phone_number" :key="i" type="error" :value="true">
+                    {{message}}
+                </v-alert>
+            </div>
             <form @submit.prevent="login">
-                <v-text-field v-model="form.login" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
+                <v-text-field prepend-inner-icon="mdi-card-account-details" v-model="form.login" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
                 <br>
-                <v-text-field v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                <v-text-field prepend-inner-icon="mdi-form-textbox-password" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
 
                 <div class="d-flex align-center justify-space-between flex-wrap">
                     <v-spacer></v-spacer>
@@ -59,7 +80,7 @@
         <!-- social links -->
         <v-card-actions class="flex flex-col w-full">
             <Auth-SocialLogin @callback="callback"></Auth-SocialLogin> <br>
-      
+
         </v-card-actions>
     </v-card>
 
@@ -81,11 +102,16 @@ export default {
     data: () => {
         return ({
             isPasswordVisible: false,
-            form: {},
+            form: {
+                login: '',
+                password: ''
+            },
+            error: {},
+            errorRegister: {}
         })
     },
     async created() {
-     
+
     },
     methods: {
         async login(alert = true) {
@@ -97,21 +123,29 @@ export default {
                 return true
             } else {
                 if (alert) {
-                    await Web.onSnack(signin.detail, 'red accent-2')
+                    this.error = signin
                 }
                 return false
             }
         },
-        async callback(user) { 
-            this.form = user.login
+        async callback(user) {
+            this.form = user.login 
             let logined = await this.login(false)
             if (!logined) {
                 await Web.switchLoad(true)
                 let registerUser = await Auth.register(user.register)
-                await Web.switchLoad(false)
-                await this.$router.replace(`/auth/verify`)
-                console.log(registerUser);
+                if (registerUser.id) {
+                    await Web.switchLoad(false)
+                    await this.$router.replace(`/auth/verify`)
+                    console.log(registerUser)
+                }else {
+                    this.errorRegister = registerUser
+                    await Web.switchLoad(false)
+                } 
+            }else{
+                this.error = logined
             }
+            await Web.switchLoad(false)
             console.log(user);
         }
     }

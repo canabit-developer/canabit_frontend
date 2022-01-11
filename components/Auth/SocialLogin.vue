@@ -35,40 +35,42 @@ export default {
             const auth = Firebase.Auth
             let user = await Firebase.getRedirectResult(auth)
                 .then(async (result) => {
-                       
-                       console.log(result.providerId);
+                    await Web.switchLoad(true)
+                    console.log(result.providerId);
                     if (result.providerId == 'facebook.com') {
                         const credential = Firebase.FacebookAuthProvider.credentialFromResult(result);
-                      const user = result.user;
-                       const token = credential.accessToken; 
+                        const user = result.user;
+                        const token = credential.accessToken;
                         const userFacebook = await this.getProfile(token)
-                        const userReg = await this.getRegisterForm(userFacebook, user.uid,'Facebook')
+                        const userReg = await this.getRegisterForm(userFacebook, user.uid, 'Facebook')
                         const userLogin = await this.getLoginForm(userFacebook, user.uid)
                         console.log('facebook callback')
+                        await Web.switchLoad(false)
                         this.$emit('callback', {
                             login: userLogin,
                             register: userReg
                         })
-                    } else if (result.providerId == 'google.com'){
-                        const credential = Firebase.GoogleAuthProvider.credentialFromResult(result); 
-                        let userGoogle = result.user; 
-                       const token = credential.accessToken;  
-                        let fullname = userGoogle.displayName.split(` `) 
-                            userGoogle.first_name = fullname[0]
-                            userGoogle.last_name = fullname[1]
-                            userGoogle.name = userGoogle.displayName
-                            userGoogle.id = userGoogle.uid 
-                        const userReg = await this.getRegisterForm(userGoogle, userGoogle.uid,'Google')
+                    } else if (result.providerId == 'google.com') {
+                        const credential = Firebase.GoogleAuthProvider.credentialFromResult(result);
+                        let userGoogle = result.user;
+                        const token = credential.accessToken;
+                        let fullname = userGoogle.displayName.split(` `)
+                        userGoogle.first_name = fullname[0]
+                        userGoogle.last_name = fullname[1]
+                        userGoogle.name = userGoogle.displayName
+                        userGoogle.id = userGoogle.uid
+                        const userReg = await this.getRegisterForm(userGoogle, userGoogle.uid, 'Google')
                         const userLogin = await this.getLoginForm(userGoogle, userGoogle.uid)
                         console.log('Google callback')
+                        await Web.switchLoad(false)
                         this.$emit('callback', {
                             login: userLogin,
                             register: userReg
                         })
                     }
 
-                }).catch((error) => {
-                    this.LOADING = false
+                }).catch(async (error) => {
+                    await Web.switchLoad(false)
                     // Handle Errors here.
                     const errorCode = error.code;
                     const errorMessage = error.message;
@@ -85,7 +87,7 @@ export default {
             return user
         },
 
-        async getRegisterForm(user, uid,type) {
+        async getRegisterForm(user, uid, type) {
             return {
                 "username": user.id,
                 "first_name": user.first_name,
