@@ -104,7 +104,7 @@ export default {
 
         async getLoginForm(user, uid) {
             return {
-                "login": user.id,
+                "username": user.id,
                 "password_confirm": btoa(`Canabit@${user.id}`) + `Canabit` + uid,
                 "password": btoa(`Canabit@${user.id}`) + `Canabit` + uid,
             }

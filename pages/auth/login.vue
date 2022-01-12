@@ -42,7 +42,7 @@
                 </v-alert>
             </div>
             <form @submit.prevent="login">
-                <v-text-field prepend-inner-icon="mdi-card-account-details" v-model="form.login" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
+                <v-text-field prepend-inner-icon="mdi-card-account-details" v-model="form.username" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
                 <br>
                 <v-text-field prepend-inner-icon="mdi-form-textbox-password" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
 
@@ -116,21 +116,25 @@ export default {
     },
     methods: {
         async login(alert = true) {
-            let signin = await Auth.login(this.form)
-            if (signin.token) {
-                await Auth.storeToken(signin.token)
-                await Auth.storeTokenToStorage(signin.token)
-                await this.$router.replace(`/`)
-                return true
-            } else {
-                if (alert) {
-                    this.error = signin
+            let user = await Core.postHttp(`/api/auth/v2/check/`, this.form)
+            if (user.username) {
+                this.form.username = user.username
+                let signin = await Auth.login(this.form)
+                if (signin.key) {
+                    await Auth.storeToken(signin.key)
+                    await Auth.storeTokenToStorage(signin.key)
+                    await this.$router.replace(`/`)
+                    return true
+                } else {
+                    if (alert) {
+                        this.error = signin
+                    }
+                    return false
                 }
-                return false
-            }
+            } 
         },
         async callback(user) {
-            this.form = user.login 
+            this.form = user.login
             let logined = await this.login(false)
             if (!logined) {
                 await Web.switchLoad(true)
@@ -139,11 +143,11 @@ export default {
                     await Web.switchLoad(false)
                     await this.$router.replace(`/auth/verify`)
                     console.log(registerUser)
-                }else {
+                } else {
                     this.errorRegister = registerUser
                     await Web.switchLoad(false)
-                } 
-            }else{
+                }
+            } else {
                 this.error = logined
             }
             await Web.switchLoad(false)

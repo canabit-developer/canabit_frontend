@@ -22,7 +22,7 @@ class AuthModule extends VuexModule {
 
   public async login(form:any){
     await this.reToken();
-    let user = await Core.postHttp(`/api/auth/v2/login/`, form)
+    let user = await Core.postHttp(`/api/auth/v1/login/`, form)
     return user 
   }
 
