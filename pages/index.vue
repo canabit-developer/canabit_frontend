@@ -35,43 +35,9 @@
         </div>
     </section>
 
-    <section class="mt-6">
-        <v-toolbar color="transparent" flat>
-            <h2 class="text-2xl font-semibold">You Favorite</h2>
-        </v-toolbar>
-        <div>
-            <v-slide-group  class="pa-4" active-class="success" show-arrows>
-                <v-slide-item v-for="n in 15" :key="n" v-slot="{ active, toggle }">
-                    <v-card elevation="4" :color="active ? undefined : 'white lighten-1'" class="ma-4" height="200" width="350" @click="toggle">
-                        <v-row class="fill-height" align="center" justify="center">
-                            <v-scale-transition>
-                                <v-icon v-if="active" color="white" size="48" v-text="'mdi-close-circle-outline'"></v-icon>
-                            </v-scale-transition>
-                        </v-row>
-                    </v-card>
-                </v-slide-item>
-            </v-slide-group>
-        </div>
-    </section>
-
-    <section class="mt-8">
-        <v-toolbar color="transparent" flat>
-            <h2 class="text-2xl font-semibold">Special for you</h2>
-        </v-toolbar>
-        <div>
-            <v-slide-group  class="pa-4" active-class="success" show-arrows>
-                <v-slide-item v-for="n in 15" :key="n" v-slot="{ active, toggle }">
-                    <v-card elevation="4" :color="active ? undefined : 'white lighten-1'" class="ma-4" height="200" width="350" @click="toggle">
-                        <v-row class="fill-height" align="center" justify="center">
-                            <v-scale-transition>
-                                <v-icon v-if="active" color="white" size="48" v-text="'mdi-close-circle-outline'"></v-icon>
-                            </v-scale-transition>
-                        </v-row>
-                    </v-card>
-                </v-slide-item>
-            </v-slide-group>
-        </div>
-    </section>
+   <Dashboard-Favorite />
+   <Dashboard-Special />
+   
 
     <section class="mt-8">
         <v-toolbar color="transparent" flat>

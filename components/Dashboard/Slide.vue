@@ -1,14 +1,20 @@
 <template>
-<v-carousel cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl" >
+<v-carousel cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl" v-if="response" >
     <v-carousel-item v-for="(slide, i) in slides" :key="i" >
       
-        <v-img src="https://media.istockphoto.com/photos/empty-pink-shopping-bag-in-the-studio-lighting-design-concept-for-picture-id1094274086?k=20&m=1094274086&s=170667a&w=0&h=VCabJ0J4sZCoK6mynyVQGu5IYDdrjN67hZK3hGZGcVE="></v-img>
+        <v-img :src="slide.image"></v-img>
  
     </v-carousel-item>
+ 
 </v-carousel>
 </template>
 
 <script>
+import { initial } from 'lodash'
+import {
+    Core
+} from '~/vuexes/core'
+import _ from 'lodash'
 export default {
     data: () => {
         return ({
@@ -35,8 +41,20 @@ export default {
                 'error',
                 'warning',
                 'info',
-            ]
+            ],
+            response:false
         })
+    },
+
+    async created(){
+        await this.initial();
+    },
+    methods:{
+        async initial(){
+            this.slides = await Core.getHttp(`/api/webconfig/slide/?is_active=true`)
+            console.log(this.slides)
+            this.response = true
+        }
     }
 }
 </script>
