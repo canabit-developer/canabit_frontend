@@ -3,23 +3,23 @@
     <v-row class="ma-0 pa-0">
       <v-col cols="8">
         <v-card-title class="text-no-wrap pt-1 ps-2">
-          Reward Voting  🥳
+          Cash out  🥳
         </v-card-title>
         <v-card-subtitle class="text-no-wrap ps-2">
-          Vote for your dream reward
+          Redeem your point to Fiat Currency.
         </v-card-subtitle>
         <v-card-text class="d-flex align-center mt-2 pb-2 ps-2">
           <div>
             <p class="text-xl font-weight-semibold primary--text mb-2">
-              Voting
+              Fiat Currency
             </p>
 
             <v-btn
               small
               color="primary"
-               @click="$router.push('reward')"
+              
             >
-              View Sales
+              View Web Brand
             </v-btn>
           </div>
         </v-card-text>
@@ -38,7 +38,7 @@
           height="108"
           max-width="83"
           class="greeting-card-trophy"
-          src="../assets/misc/trophy.png"
+          src="@/assets/misc/trophy.png"
         ></v-img>
       </v-col>
     </v-row>

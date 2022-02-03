@@ -1,11 +1,13 @@
 <template>
   <div>
-      <Ecommerce-Brand></Ecommerce-Brand>
+      <HistoryAccount-ListHistory />
   </div>
 </template>
 
 <script>
 export default {
+  watch: {
+  },
 
 }
 </script>

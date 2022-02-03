@@ -1,21 +1,22 @@
 <template>
-<row>
+<v-row>
     <v-col cols="12">
         <Transaction-Loyalty />
     </v-col>
     <v-col cols="12" md="4">
-       <ButtonRebate-Cashout />
+        <ButtonRebate-Cashout />
     </v-col>
-     <v-col cols="12" md="4">
-       <ButtonRebate-Redeem />
+    <v-col cols="12" md="4">
+        <ButtonRebate-Redeem />
     </v-col>
-     <v-col cols="12" md="4">
-       <ButtonRebate-Cashout />
+    <v-col cols="12" md="4">
+        <ButtonRebate-Reward />
     </v-col>
     <v-col cols="12">
         <Transaction-History />
     </v-col>
-</row>
+    
+</v-row>
 </template>
 
 <script>

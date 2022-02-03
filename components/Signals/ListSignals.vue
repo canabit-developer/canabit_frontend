@@ -1,6 +1,6 @@
 <template>
   <div>
-      <Ecommerce-Brand></Ecommerce-Brand>
+      signals
   </div>
 </template>
 

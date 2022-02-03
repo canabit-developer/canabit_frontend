@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <Ecommerce-Brand></Ecommerce-Brand>
-  </div>
+    <div>
+        <SemiAuto-ListSemiAuto></SemiAuto-ListSemiAuto>
+    </div>
 </template>
 
 <script>

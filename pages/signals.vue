@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <Ecommerce-Brand></Ecommerce-Brand>
-  </div>
+    <div>
+        <Signals-ListSignals></Signals-ListSignals>
+    </div>
 </template>
 
 <script>

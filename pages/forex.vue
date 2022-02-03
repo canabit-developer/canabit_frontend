@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <Ecommerce-Brand></Ecommerce-Brand>
-  </div>
+    <div>
+        <Forex-ListBorcker></Forex-ListBorcker>
+    </div>
 </template>
 
 <script>

@@ -28,24 +28,29 @@
         </div>
 
         <div class="p-6 flex flex-col items-center">
-            <v-badge color="bg-yellow-500" :content="user.tier" overlap>
+            <!-- <v-badge color="bg-yellow-500" :content="user.tier" overlap>
                 <v-img v-if="user.image_profile" class="shadow-2xl rounded-full h-36 w-36" :src="user.image_profile"> </v-img>
                 <v-img v-else class="shadow-2xl rounded-full h-36 w-36" src="https://i.pinimg.com/originals/4a/6a/cb/4a6acb8ab84a58ca85ef817b02de7067.jpg"> </v-img>
 
-            </v-badge>
+            </v-badge> -->
 
-            <h2 v-if="user.display_name" class="text-2xl font-semibold">{{user.display_name}}</h2>
+            <!-- <h2 v-if="user.display_name" class="text-2xl font-semibold">{{user.display_name}}</h2>
             <h2 v-else class="text-2xl font-semibold">{{user.first_name}}</h2>
-            <h2>{{user.email}}</h2>
+            <h2>{{user.email}}</h2> -->
         </div>
 
         <v-list expand shaped class="vertical-nav-menu-items pr-5">
             <UserMenu-NavbarLink path="/" title="Portal" icon="mdi-home-outline"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="mdi-bank-transfer"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/partner" title="Partner" icon="mdi-handshake-outline"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/forex" title="Forex" icon="mdi-finance"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/historyaccount" title="History Account" icon="mdi-history"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/semiauto" title="Semiauto" icon="mdi-animation"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink>
+            
+            
         </v-list>
-
+            
         <template v-slot:append>
             <div>
                 <div @click="logout()">
