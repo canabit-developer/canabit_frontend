@@ -14,13 +14,14 @@
               Rewards
             </p>
 
-            <v-btn
+            <vs-button
               small
-              color="primary"
+              color="#884CF7"
+              dark
                @click="$router.push('redeem')"
             >
-              View Sales
-            </v-btn>
+              View Redeem
+            </vs-button>
           </div>
         </v-card-text>
       </v-col>

@@ -14,13 +14,14 @@
               Fiat Currency
             </p>
 
-            <v-btn
+            <vs-button
               small
-              color="primary"
+              color="#884CF7"
+              dark
               @click="$router.push('cashout')"
             >
               View Cash out
-            </v-btn>
+            </vs-button>
           </div>
         </v-card-text>
       </v-col>

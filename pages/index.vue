@@ -10,7 +10,7 @@
         <div class="flex flex-col md:flex-row md:h-60   mt-4">
             <div class="w-full md:w-1/2 p-3">
                 <v-card elevation="4" class="w-full h-full">
-                   
+
                 </v-card>
             </div>
             <div class="w-full md:w-1/2 p-3">
@@ -36,10 +36,10 @@
     <Dashboard-Favorite />
     <Dashboard-Special />
 
-    <section class="mt-8">
+    <section>
         <v-toolbar color="transparent" flat>
             <v-spacer></v-spacer>
-            <v-btn rounded color="primary" outlined>View All</v-btn>
+
         </v-toolbar>
         <v-card color="basil">
             <v-card-title class="text-center justify-center py-6">
@@ -53,19 +53,18 @@
                     {{ item }}
                 </v-tab>
             </v-tabs>
-
             <v-tabs-items v-model="tab">
                 <v-tab-item v-for="item in items" :key="item">
                     <vs-row w="12">
-                        <vs-col w="3" v-for="n in 8" :key="n">
+                        <vs-col w="3" v-for="n in 8" :key="n" class="p-1 mt-2">
                             <vs-md w="4">
                                 <vs-card type="2">
                                     <template #img>
                                         <img src="https://liveatpccoma3c1a.zapwp.com/q:i/r:0/wp:1/w:1/u:https://liveatpc.com/wp-content/uploads/2020/07/Photo-2-Lazada-Logo.jpg" alt="">
                                     </template>
                                     <template #interactions>
-                                        <vs-button danger icon>
-                                            <i class='bx bx-heart'></i>
+                                        <vs-button class="btn-chat" shadow primary>
+                                            <v-icon x-small color="pink">mdi-cards-heart</v-icon>
                                         </vs-button>
                                     </template>
                                 </vs-card>

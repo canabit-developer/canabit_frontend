@@ -8,8 +8,7 @@
     <v-list-item-title :class="activateTxt" >
         {{ title }}
     </v-list-item-title>
- 
- 
+    
 </v-list-item>
 </template>
 

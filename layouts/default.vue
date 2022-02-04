@@ -16,8 +16,7 @@
 
 <script>
 import {
-    Auth
-} from '@/vuexes/auth'
+    Auth} from '@/vuexes/auth'
 export default {
     name: 'DefaultLayout',
     data() {

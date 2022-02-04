@@ -6,7 +6,7 @@
                 <v-col v-for="n in 20" :key="n" sm="2">
                     <v-item v-slot="{ }">
                         <v-hover v-slot="{ hover }">
-                            <v-card class="mx-auto " max-width="450" max-height="400">
+                            <v-card class="mx-auto rounded-lg" max-width="450" max-height="400">
                                 <v-img :aspect-ratio="18/9" src="https://cdn.vuetifyjs.com/images/cards/kitchen.png">
                                     <v-expand-transition>
                                         <div v-if="hover" class="d-flex   bg-green-400  text-h6   v-card--reveal text-center white--text" style="height:100%;">
