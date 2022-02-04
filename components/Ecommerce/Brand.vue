@@ -3,11 +3,11 @@
     <h2 class="text-center">E-commerce Partner </h2>
     <v-item-group>
         <v-container>
-            <v-row>
+            <vs-row>
                 <v-col v-for="n in 40" :key="n" sm="2">
                     <v-item v-slot="{ }">
                         <v-hover v-slot="{ hover }">
-                            <v-card class="mx-auto mt-10" max-width="400" max-height="400">
+                            <v-card class="mx-auto mt-10 rounded-lg" max-width="400" max-height="400" >
                                 <v-img :aspect-ratio="18/9" src="https://cdn.vuetifyjs.com/images/cards/kitchen.png">
                                     <v-expand-transition>
                                         <div v-if="hover" class="d-flex   primary  text-h6   v-card--reveal text-center white--text" style="height:100%;">
@@ -29,7 +29,7 @@
                         </v-hover>
                     </v-item>
                 </v-col>
-            </v-row>
+            </vs-row>
         </v-container>
     </v-item-group>
 </div>

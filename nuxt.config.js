@@ -4,15 +4,15 @@ export default {
 
 
     ssr: false,
-    // generate: {
-    //   fallback: true
-    // },
-    // target: "static",
+    generate: {
+      fallback: true
+    },
+    target: "static",
 
-    // router: {
-    //     mode: 'hash',
-    //     base: "/canabit_frontend/"
-    // },
+    router: {
+       
+        base: "/canabit_frontend/"
+    },
     // Glob
 
 

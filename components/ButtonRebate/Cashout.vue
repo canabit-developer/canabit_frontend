@@ -30,6 +30,7 @@
           contain
           height="180"
           width="159"
+          :src="require(`@/assets/misc/triangle-light.png`)"
           class="greeting-card-bg"
         ></v-img>
         <v-img

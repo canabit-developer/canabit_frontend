@@ -1,23 +1,31 @@
 <template>
    <section class="mt-6">
-        <v-toolbar color="transparent" flat>
-            <h2 class="text-2xl font-semibold">Special for you</h2>
-        </v-toolbar>
-        <div>
-            <v-slide-group  class="pa-4" active-class="success" show-arrows>
-                <v-slide-item v-for="list,index in lists" :key="index" v-slot="{ active, toggle }">
-                    <v-card elevation="4" :color="active ? undefined : 'white lighten-1'" class="ma-4" height="200" width="350" @click="toggle">
-                        <v-img class="w-full h-full" :src="list.image"></v-img>
-                        <v-row class="fill-height" align="center" justify="center">
-                            <v-scale-transition>
-                                <v-icon v-if="active" color="white" size="48" v-text="'mdi-close-circle-outline'"></v-icon>
-                            </v-scale-transition>
-                        </v-row>
-                    </v-card>
-                </v-slide-item>
-            </v-slide-group>
-        </div>
-    </section>
+    <v-toolbar color="transparent" flat>
+        <h2 class="text-2xl font-semibold">You Favorite</h2>
+    </v-toolbar>
+    <div>
+        <vs-card-group>
+            <vs-card v-for="card in 6">
+                <template #title>
+                    <h3>Pot with a plant</h3>
+                </template>
+                <template #img>
+                     <img :src="`/foto${card}.png`" alt="">
+                </template>
+                <template #text>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    </p>
+                </template>
+                <template #interactions>
+                    <vs-button class="btn-chat" shadow primary>
+                        <v-icon x-small color="pink">mdi-cards-heart</v-icon>
+                    </vs-button>
+                </template>
+            </vs-card>
+        </vs-card-group>
+    </div>
+</section>
 </template>
 
 <script>

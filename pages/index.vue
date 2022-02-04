@@ -1,7 +1,7 @@
 <template>
 <div>
-    <section> 
-          <v-toolbar color="transparent" flat>
+    <section>
+        <v-toolbar color="transparent" flat>
             <h2 class="text-2xl font-semibold">Promotions</h2>
         </v-toolbar>
         <div class="p-3">
@@ -10,9 +10,7 @@
         <div class="flex flex-col md:flex-row md:h-60   mt-4">
             <div class="w-full md:w-1/2 p-3">
                 <v-card elevation="4" class="w-full h-full">
-                    <v-card-text>
-
-                    </v-card-text>
+                   
                 </v-card>
             </div>
             <div class="w-full md:w-1/2 p-3">
@@ -35,36 +33,49 @@
         </div>
     </section>
 
-   <Dashboard-Favorite />
-   <Dashboard-Special />
-   
+    <Dashboard-Favorite />
+    <Dashboard-Special />
 
     <section class="mt-8">
         <v-toolbar color="transparent" flat>
-            <h2 class="text-2xl font-semibold">Canabit Partner</h2>
             <v-spacer></v-spacer>
             <v-btn rounded color="primary" outlined>View All</v-btn>
         </v-toolbar>
-        <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-            <v-tab v-for="item in items" :key="item">
-                <div>
-                    <v-icon>mdi-shopping</v-icon>
-                    <h2>{{ item }}</h2>
-                </div>
+        <v-card color="basil">
+            <v-card-title class="text-center justify-center py-6">
+                <h1 class="font-weight-bold text-h4 basil--text">
+                    Canabit Partner
+                </h1>
+            </v-card-title>
 
-            </v-tab>
-        </v-tabs>
+            <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+                <v-tab v-for="item in items" :key="item">
+                    {{ item }}
+                </v-tab>
+            </v-tabs>
 
-        <v-tabs-items v-model="tab">
-            <v-tab-item v-for="item in items" :key="item">
-                <v-card color="basil" flat>
-                    <v-card-text>{{ text }}</v-card-text>
-                </v-card>
-            </v-tab-item>
-        </v-tabs-items>
-
+            <v-tabs-items v-model="tab">
+                <v-tab-item v-for="item in items" :key="item">
+                    <vs-row w="12">
+                        <vs-col w="3" v-for="n in 8" :key="n">
+                            <vs-md w="4">
+                                <vs-card type="2">
+                                    <template #img>
+                                        <img src="https://liveatpccoma3c1a.zapwp.com/q:i/r:0/wp:1/w:1/u:https://liveatpc.com/wp-content/uploads/2020/07/Photo-2-Lazada-Logo.jpg" alt="">
+                                    </template>
+                                    <template #interactions>
+                                        <vs-button danger icon>
+                                            <i class='bx bx-heart'></i>
+                                        </vs-button>
+                                    </template>
+                                </vs-card>
+                            </vs-md>
+                        </vs-col>
+                    </vs-row>
+                </v-tab-item>
+            </v-tabs-items>
+        </v-card>
     </section>
-
 </div>
 </template>
 
