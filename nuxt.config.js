@@ -5,12 +5,12 @@ export default {
 
     ssr: false,
     generate: {
-      fallback: true
+        fallback: true
     },
     target: "static",
 
     router: {
-       
+
         base: "/canabit_frontend/"
     },
     // Glob
@@ -33,6 +33,9 @@ export default {
             { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css' },
             { rel: 'stylesheet', href: 'https://emoji-css.afeld.me/emoji.css' },
             { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap' },
+            { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap' },
+
         ],
         script: [
             { src: 'https://cdn.tailwindcss.com' }
@@ -42,8 +45,6 @@ export default {
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
         '@assets/main.css',
-        '@plugins/vuetify/preset/overrides.scss',
-
         '@assets/components.css',
         '@assets/styles.scss'
     ],
