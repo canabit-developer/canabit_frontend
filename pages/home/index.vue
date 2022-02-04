@@ -1,5 +1,6 @@
 <template>
 <div>
+  <Core-Bg  ></Core-Bg>
     <div class="antialiased bg-body text-body font-body">
         <div class=""> 
             <div>
@@ -9,7 +10,7 @@
                         <div class="container px-4 mx-auto">
                             <div class="flex flex-wrap items-center -mx-4 pt-16 pb-20">
                                 <div class="w-full lg:w-1/2 px-4 mb-24 lg:mb-0">
-                                    <span class="block mb-9 font-medium tracking-widest uppercase text-sm text-gray-300">“Welcome to the world of rewards that you can choose!”</span>
+                                    <span class="block mb-9 font-medium tracking-widest uppercase text-sm ">“Welcome to the world of rewards that you can choose!”</span>
                                     <h1 class="max-w-xl mb-16 font-heading font-medium text-9xl md:text-10xl xl:text-13xl leading-none">
                                         <span>Canabit</span>
 

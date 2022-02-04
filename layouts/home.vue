@@ -2,7 +2,7 @@
 <div>
 
     <v-app>
-        <Home-Navbar></Home-Navbar>
+        <Home-Navbar></Home-Navbar>  
         <Nuxt />
         <Home-Footer></Home-Footer>
     </v-app>
