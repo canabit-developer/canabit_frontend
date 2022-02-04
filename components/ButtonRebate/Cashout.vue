@@ -19,7 +19,6 @@
               color="primary"
               @click="$router.push('cashout')"
             >
-            11111
               View Cash out
             </v-btn>
           </div>
@@ -39,7 +38,7 @@
           height="108"
           max-width="83"
           class="greeting-card-trophy"
-          src="@/assets/misc/trophy.png"
+          :src="require(`@/assets/misc/trophy.png`)"
         ></v-img>
       </v-col>
     </v-row>

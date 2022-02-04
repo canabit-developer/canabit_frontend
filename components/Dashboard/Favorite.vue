@@ -5,7 +5,7 @@
     </v-toolbar>
     <div>
         <vs-card-group >
-            <vs-card v-for="card in 5">
+            <vs-card v-for="card in 5" :key="card">
                 <template #title>
                     <h3>Pot with a plant</h3>
                 </template>
