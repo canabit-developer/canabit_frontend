@@ -112,7 +112,7 @@ export default {
         })
     },
     async created() {
-
+        await Auth.checkUser();
     },
     methods: {
         async login(alert = true) {

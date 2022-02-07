@@ -9,6 +9,7 @@
     <v-col
       cols="12"
       md="8"
+      class="mt-1"
     >
     <Profilebrand-CardCondition></Profilebrand-CardCondition>
     </v-col>

@@ -13,7 +13,6 @@
             <p class="text-xl font-weight-semibold primary--text mb-2">
               Fiat Currency
             </p>
-
             <vs-button
               small
               color="#884CF7"
@@ -43,8 +42,12 @@
         ></v-img>
       </v-col>
     </v-row>
-  </v-card>
+    
+  </v-card>  
+
 </template>
+
+
 
 <style lang="scss" scoped>
 .greeting-card {

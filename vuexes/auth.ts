@@ -54,6 +54,16 @@ class AuthModule extends VuexModule {
   }
 
   public async checkUser(){
+    let user = await this.getUser(); 
+    if(this.token){
+      if(!user.id){
+        alert('Session หมดอายุ')
+        await this.reToken();
+        await this.logout(); 
+        location.reload();
+      }
+    }
+  
     // if(!this.user.id){
     //   await window.location.replace("/auth/login");
     // }

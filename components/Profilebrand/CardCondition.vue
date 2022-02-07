@@ -1,59 +1,20 @@
 <template>
-  <v-card>
-    <v-card-title class="align-start">
-      <span class="font-weight-semibold">Statistics Card</span>
-      <v-spacer></v-spacer>
-      <v-btn
-        icon
-        small
-        class="me-n3 mt-n2"
-      >
-        <v-icon>
-          
-        </v-icon>
-      </v-btn>
-    </v-card-title>
-
-    <v-card-subtitle class="mb-8 mt-n5">
-      <span class="font-weight-semibold text--primary me-1">Total 48.5% Growth</span>
-      <span>😎 this month</span>
-    </v-card-subtitle>
-
-    <v-card-text>
-      <v-row>
-        <v-col
-          
-          
-          cols="6"
-          md="3"
-          class="d-flex align-center" 
-        >
-          <v-avatar
-            size="44"
-            
-            rounded
-            class="elevation-1"
-          >
-            <v-icon
-              dark
-              color="white"
-              size="30"
-            >
-              
-            </v-icon>
-          </v-avatar>
-          <div class="ms-3">
-            <p class="text-xs mb-0">
-              
-            </p>
-            <h3 class="text-xl font-weight-semibold">
-              
-            </h3>
-          </div>
-        </v-col>
-      </v-row>
-    </v-card-text>
-  </v-card>
+  <vs-alert shadow   color="#7d33ff">
+      <template #icon>
+        <i class='bx bxs-chat'></i>
+      </template>
+      <template #title>
+        Vuesax Alert Icon
+      </template>
+      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
+      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
+      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
+      developed from the frontend lover to the backend that wants to easily create
+      your visual approach to the end user
+      Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
+      created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
+      Unique and pleasant style, Vuesax is created from scratch and designed for all types of
+    </vs-alert>
 </template>
 
 <script>
@@ -61,8 +22,8 @@
 
 export default {
     data: () => {
-        return({
-            
+        return ({
+
         })
     }
 }

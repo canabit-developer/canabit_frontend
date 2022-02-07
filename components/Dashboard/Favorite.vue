@@ -4,13 +4,13 @@
         <h2 class="text-2xl font-semibold">You Favorite</h2>
     </v-toolbar>
     <div>
-        <vs-card-group >
+        <vs-card-group>
             <vs-card v-for="card in 5" :key="card">
                 <template #title>
                     <h3>Pot with a plant</h3>
                 </template>
                 <template #img>
-                     <img :src="`/foto${card}.png`" alt="">
+                    <img :src="`/foto${card}.png`" alt="">
                 </template>
                 <template #text>
                     <p>
@@ -20,6 +20,9 @@
                 <template #interactions>
                     <vs-button class="btn-chat" shadow primary>
                         <v-icon x-small color="pink">mdi-cards-heart</v-icon>
+                    </vs-button>
+                    <vs-button >
+                        Redeem
                     </vs-button>
                 </template>
             </vs-card>

@@ -1,105 +1,76 @@
 <template>
-  <div>
-      <v-col
-        cols="12"
-      >
+<div>
+    <v-col cols="12">
         <v-card class="overflow-hidden">
-          <v-row class="ma-0 h-full">
-            <v-col
-              cols="12"
-              sm="8"
-              md="12"
-              lg="8"
-              order="2"
-              order-lg="1"
-            >
-              <v-card-title>Lifetime Membership</v-card-title>
-              <v-card-text>
-                Here, I focus on a range of items and features that we use in life without giving them a second thought such as Coca Cola, body muscles and holding ones own breath. Though, most of these notes are not fundamentally necessary, they are such that you can use them for a good laugh, at a drinks party or for picking up women or men.
-              </v-card-text>
-              <v-card-text>
-                <v-divider></v-divider>
-              </v-card-text>
-              <v-card-actions class="d-flex justify-center mt-9">
-                <div class="me-auto pe-4">
-                  <p class="d-flex align-center mb-6">
-                    <v-icon color="primary">
-                      
-                    </v-icon>
-                    <span class="ms-3">Full Access</span>
-                  </p>
-                  <p class="d-flex align-center mb-0">
-                    <v-icon color="primary">
-                      
-                    </v-icon>
-                    <span class="ms-3">15 Members</span>
-                  </p>
-                </div>
+            <v-row class="ma-0 h-full">
+                <v-col cols="12" sm="8" md="12" lg="8" order="2" order-lg="1">
+                    <v-card-title>Lifetime Membership</v-card-title>
+                    <v-card-text>
+                        Here, I focus on a range of items and features that we use in life without giving them a second thought such as Coca Cola, body muscles and holding ones own breath. Though, most of these notes are not fundamentally necessary, they are such that you can use them for a good laugh, at a drinks party or for picking up women or men.
+                    </v-card-text>
+                    <v-card-text>
+                        <v-divider></v-divider>
+                    </v-card-text>
+                    <v-card-actions class="d-flex justify-center mt-9">
+                        <div class="me-auto pe-4">
+                            <p class="d-flex align-center mb-6">
+                                <v-icon color="primary">
+                                    mdi-lock-open-outline
+                                </v-icon>
+                                <span class="ms-3">Full Access</span>
+                            </p>
+                            <p class="d-flex align-center mb-0">
+                                <v-icon color="primary">
+                                    mdi-account-outline
+                                </v-icon>
+                                <span class="ms-3">15 Members</span>
+                            </p>
+                        </div>
 
-                <v-divider
-                  v-if="$vuetify.breakpoint.smAndUp"
-                  vertical
-                  inset
-                >
-                </v-divider>
+                        <v-divider v-if="$vuetify.breakpoint.smAndUp" vertical inset>
+                        </v-divider>
 
-                <div class="ms-auto ps-4">
-                  <p class="d-flex align-center mb-6">
-                    <v-icon color="primary">
-                      
-                    </v-icon>
-                    <span class="ms-3">Access all Features</span>
-                  </p>
-                  <p class="d-flex align-center mb-0">
-                    <v-icon color="primary">
-                      
-                    </v-icon>
-                    <span class="ms-3">Lifetime Free Update</span>
-                  </p>
-                </div>
-              </v-card-actions>
-            </v-col>
-            <v-col
-              cols="12"
-              sm="4"
-              md="12"
-              lg="4"
-              order="1"
-              order-lg="2"
-              class="memberpricing-bg"
-            >
-              <div class="membership-pricing">
-                <p class="mt-16 text--primary">
-                  <sub class="text-2xl">$</sub>
-                  <sup class="font-weight-semibold">899</sup>
-                  <sub class="text-xl">USD</sub>
-                </p>
-                <p class="my-6 text--secondary text-sm">
-                  5 Tips For Offshore Software Development
-                </p>
-                <v-btn
-                  color="primary"
-                  class="mt-6"
-                >
-                  Contact Now
-                </v-btn>
-              </div>
-            </v-col>
-          </v-row>
+                        <div class="ms-auto ps-4">
+                            <p class="d-flex align-center mb-6">
+                                <v-icon color="primary">
+                                    mdi-star-outline
+                                </v-icon>
+                                <span class="ms-3">Access all Features</span>
+                            </p>
+                            <p class="d-flex align-center mb-0">
+                                <v-icon color="primary">
+                                    mdi-trending-up
+                                </v-icon>
+                                <span class="ms-3">Lifetime Free Update</span>
+                            </p>
+                        </div>
+                    </v-card-actions>
+                </v-col>
+                <v-col cols="12" sm="4" md="12" lg="4" order="1" order-lg="2" class="memberpricing-bg">
+                    <vs-alert border>
+                        <template #title>
+                            Vuesax Framework
+                        </template>
+                        Vuesax (pronounced / vjusacksː /, as view sacks) is a <b>UI components framework</b>
+                        created with <a href="https://vuejs.org/">Vuejs</a> to make projects easily and with a
+                        Unique and pleasant style, Vuesax is created from scratch and designed for all types of
+                        developed from the frontend lover to the backend that wants to easily create
+                        your visual approach to the end user
+                    </vs-alert>
+                </v-col>
+            </v-row>
         </v-card>
-      </v-col>
-  </div>
+    </v-col>
+</div>
 </template>
 
 <script>
-
-
 export default {
-  data: () =>{
-      return ({
+    data: () => {
+        return ({
 
-      })
-  }
+        })
+    }
 }
 </script>
 

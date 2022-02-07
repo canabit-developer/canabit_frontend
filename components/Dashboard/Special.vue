@@ -21,6 +21,9 @@
                     <vs-button class="btn-chat" shadow primary>
                         <v-icon x-small color="pink">mdi-cards-heart</v-icon>
                     </vs-button>
+                    <vs-button >
+                        Redeem
+                    </vs-button>
                 </template>
             </vs-card>
         </vs-card-group>

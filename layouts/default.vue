@@ -27,7 +27,9 @@ export default {
         }
     },
     async created() {
+     
         await this.initial()
+            await Auth.checkUser();
     },
     methods: {
         async initial() {

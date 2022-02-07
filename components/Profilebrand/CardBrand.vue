@@ -8,19 +8,15 @@
         <v-card-subtitle class="text-no-wrap ps-2">
           Redeem your point to Fiat Currency.
         </v-card-subtitle>
-        <v-card-text class="d-flex align-center mt-2 pb-2 ps-2">
+        <v-card-text class="d-flex align-center -mt-1 pb-2 ps-2">
           <div>
             <p class="text-xl font-weight-semibold primary--text mb-2">
               Fiat Currency
             </p>
 
-            <v-btn
-              small
-              color="primary"
-              
-            >
+            <vs-button color="#884CF7" >
               View Web Brand
-            </v-btn>
+            </vs-button>
           </div>
         </v-card-text>
       </v-col>
@@ -30,7 +26,7 @@
           contain
           height="180"
           width="159"
-          
+         :src="require(`@/assets/misc/triangle-light.png`)"
           class="greeting-card-bg"
         ></v-img>
         <v-img
@@ -38,7 +34,7 @@
           height="108"
           max-width="83"
           class="greeting-card-trophy"
-          src="@/assets/misc/trophy.png"
+          :src="require(`@/assets/misc/trophy.png`)"
         ></v-img>
       </v-col>
     </v-row>
