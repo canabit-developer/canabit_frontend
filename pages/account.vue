@@ -18,7 +18,7 @@
                 <v-icon size="20" class="me-3">mdi-information </v-icon> KYC
             </v-tab>
             <v-tab-item>
-
+                <Account-Kyc></Account-Kyc>
             </v-tab-item>
         </v-tabs> 
     </v-card>
