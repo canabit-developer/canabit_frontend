@@ -43,12 +43,10 @@
             <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="mdi-bank-transfer"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/forex" title="Forex" icon="mdi-finance"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/historyaccount" title="History Account" icon="mdi-history"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/historyaccount" title="Account Status" icon="mdi-history"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/semiauto" title="Semiauto" icon="mdi-animation"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog-outline"></UserMenu-NavbarLink>
-            
-            
         </v-list>
         
             

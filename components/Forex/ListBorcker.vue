@@ -18,7 +18,7 @@
                                     </v-expand-transition>
                                 </v-img>
                                 <v-card-text class="pt-6" style="position: relative;">
-                                    <v-btn absolute color="primary" class="white--text" fab small right top>
+                                    <v-btn absolute color="primary" class="white--text" fab small right top  @click="$router.push('borckerprofile')">
 
                                         <v-icon>mdi-arrow-right</v-icon>
 

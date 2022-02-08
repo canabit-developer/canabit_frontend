@@ -4,7 +4,7 @@
     <v-item-group>
         <v-container>
             <vs-row>
-                <v-col v-for="n in 40" :key="n" sm="2">
+                <v-col v-for="n in 40" :key="n"  sm="4" lg="3" md="8" xl="2">
                     <v-item v-slot="{ }">
                         <v-hover v-slot="{ hover }">
                             <v-card class="mx-auto mt-10 rounded-lg" max-width="400" max-height="400" >

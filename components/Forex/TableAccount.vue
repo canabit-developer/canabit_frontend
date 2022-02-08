@@ -1,35 +1,42 @@
 <template>
-<v-card class="rounded-lg">
-    <vs-table>
-        <template #thead>
-            <vs-tr>
-                <vs-th>
-                    Name
-                </vs-th>
-                <vs-th>
-                    Email
-                </vs-th>
-                <vs-th>
-                    Id
-                </vs-th>
-            </vs-tr>
-        </template>
-        <template #tbody>
-            <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
-                <vs-td>
-                    {{ tr.name }}
-                </vs-td>
-                <vs-td>
-                    {{ tr.email }}
-                </vs-td>
-                <vs-td>
-                    {{ tr.id }}
-                </vs-td>
-            </vs-tr>
-        </template>
-    </vs-table>
-    
-</v-card> 
+<div>
+    <vs-row justify="center">
+        <div class="w-4/5 p-4 mb: -mt-12">
+            <div class="p-8 rounded-xl shadow-md bg-white"><span class="text-6xl"></span>
+                <vs-table>
+                    <template #thead>
+                        <vs-tr>
+                            <vs-th>
+                                Name
+                            </vs-th>
+                            <vs-th>
+                                Email
+                            </vs-th>
+                            <vs-th>
+                                Id
+                            </vs-th>
+                        </vs-tr>
+                    </template>
+                    <template #tbody>
+                        <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
+                            <vs-td>
+                                {{ tr.name }}
+                            </vs-td>
+                            <vs-td>
+                                {{ tr.email }}
+                            </vs-td>
+                            <vs-td>
+                                {{ tr.id }}
+                            </vs-td>
+                        </vs-tr>
+                    </template>
+                </vs-table>
+
+            </div>
+        </div>
+    </vs-row>
+
+</div>
 </template>
 
 <script>
