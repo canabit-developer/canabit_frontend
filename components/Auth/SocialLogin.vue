@@ -32,10 +32,11 @@ export default {
     },
     methods: {
         async initAuth() {
+              await Web.switchLoad(true)
             const auth = Firebase.Auth
             let user = await Firebase.getRedirectResult(auth)
                 .then(async (result) => {
-                    await Web.switchLoad(true)
+                    
                     console.log(result.providerId);
                     if (result.providerId == 'facebook.com') {
                         const credential = Firebase.FacebookAuthProvider.credentialFromResult(result);
@@ -89,11 +90,11 @@ export default {
 
         async getRegisterForm(user, uid, type) {
             return {
-                "username": user.id,
+                "username": user.email,
                 "first_name": user.first_name,
                 "last_name": user.last_name,
-                "password_confirm": btoa(`Canabit@${user.id}`) + `Canabit` + uid,
-                "password": btoa(`Canabit@${user.id}`) + `Canabit` + uid,
+                "password_confirm": btoa(`Canabit@${user.email}`) + `Canabit926d42`,
+                "password": btoa(`Canabit@${user.email}`) + `Canabit926d42`,
                 "email": user.email,
                 "display_name": user.name,
                 "register_by": type,
@@ -104,9 +105,9 @@ export default {
 
         async getLoginForm(user, uid) {
             return {
-                "username": user.id,
-                "password_confirm": btoa(`Canabit@${user.id}`) + `Canabit` + uid,
-                "password": btoa(`Canabit@${user.id}`) + `Canabit` + uid,
+                "username": user.email,
+               // "password_confirm": btoa(`Canabit@${user.id}`) + `Canabit` + uid,
+                "password": btoa(`Canabit@${user.email}`) + `Canabit926d42`,
             }
         },
 

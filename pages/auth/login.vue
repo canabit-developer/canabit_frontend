@@ -134,10 +134,11 @@ export default {
             } 
         },
         async callback(user) {
+             await Web.switchLoad(true)
             this.form = user.login
             let logined = await this.login(false)
             if (!logined) {
-                await Web.switchLoad(true)
+               
                 let registerUser = await Auth.register(user.register)
                 if (registerUser.id) {
                     await Web.switchLoad(false)
