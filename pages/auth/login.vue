@@ -142,6 +142,7 @@ export default {
                 let registerUser = await Auth.register(user.register)
                 if (registerUser.id) {
                     await Web.switchLoad(false)
+                    await this.generateKyc(registerUser.id);
                     await this.$router.replace(`/auth/verify`)
                     console.log(registerUser)
                 } else {
@@ -153,7 +154,22 @@ export default {
             }
             await Web.switchLoad(false)
             console.log(user);
-        }
+        },
+
+        async generateKyc(userId) {
+       let kyc = await Core.postHttp(`/api/account/kyc/`,{user:userId})
+       if(kyc.id){
+            this.$vs.notification({
+            color:'success', 
+            title: 'สร้างข้อมูล KYC สำเร็จแล้ว', 
+          })
+       }else{
+             this.$vs.notification({
+            color:'danger', 
+            title: 'สร้างข้อมูล KYC ไม่สำเร็จ', 
+          })
+       }
+    },
     }
 }
 </script>

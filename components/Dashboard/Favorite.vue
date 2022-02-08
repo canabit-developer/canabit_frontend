@@ -5,26 +5,19 @@
     </v-toolbar>
     <div>
         <vs-card-group>
-            <vs-card v-for="card in 5" :key="card">
+            <vs-card v-for="list,index in lists" :key="index" @click="$router.push(`/profilebrand?id=${list.brand.id}`)">
                 <template #title>
-                    <h3>Pot with a plant</h3>
+                    <h3 class="font-semibold">{{list.brand.name}}</h3>
                 </template>
                 <template #img>
-                    <img :src="`/foto${card}.png`" alt="">
+                    <v-img contain class="h-48 w-auto mx-auto" :src="`${$url}${list.brand.image}`" ></v-img> 
                 </template>
                 <template #text>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    <p class="text-orange-500 font-semibold">
+                       เงินคืนสูงสุด {{list.brand.point_back}} %
                     </p>
                 </template>
-                <template #interactions>
-                    <vs-button class="btn-chat" shadow primary>
-                        <v-icon x-small color="pink">mdi-cards-heart</v-icon>
-                    </vs-button>
-                    <vs-button >
-                        Redeem
-                    </vs-button>
-                </template>
+               
             </vs-card>
         </vs-card-group>
     </div>
@@ -55,7 +48,7 @@ export default {
         async initial() {
             this.lists = await Core.getHttp(`/api/connection/user/favourite/?user=${this.user.id}`)
             console.log(this.lists)
-            this.response = true
+            this.response = true 
         }
     }
 }

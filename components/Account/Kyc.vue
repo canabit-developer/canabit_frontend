@@ -1,55 +1,35 @@
 <template>
-<v-card flat class="mt-5">
-    <v-form>
+<v-card flat class="mt-5" v-if="response">
+  
+ 
         <div class="px-3 mt-15 mb-5">
             <v-card-text class="pt-5">
                 <v-row>
                     <v-col cols="12" sm="8" md="6">
+                        <h2>1. Verification of identity by uploading a picture of an ID card </h2>
+                             <input @input="" ref="imageProfile" type="file" accept=".jpeg,.png,.jpg,GIF" />
+                         <h2>2. Verify your identity by uploading a picture of your account number </h2>
+                             <input @input="" ref="imageProfile" type="file" accept=".jpeg,.png,.jpg,GIF" />
+                          <h2>3. Phone number OTP (one-time-password) </h2>
+                          <form>
+                              <v-text-field outlined
+                                  name="name"
+                                  label="label"
+                                  id="id"
+                              ></v-text-field>
+                          </form>
                         <!-- current password -->
-                        <v-expansion-panels inset>
-                            <v-expansion-panel>
-                                <v-expansion-panel-header>1. Verification of identity by uploading a picture of an ID card </v-expansion-panel-header>
-                                <v-expansion-panel-content>
-                                    Cupcake ipsum dolor sit amet. Candy canes cheesecake chocolate bar I love I love jujubes gummi bears ice cream.
-                                    Cheesecake tiramisu toffee cheesecake sugar plum candy canes bonbon candy.
-                                    <v-card-actions class="primary pa-0 mt-10">
-                                        <v-btn color="primary" block dark large>
-                                            upload picture
-                                        </v-btn>
-                                        <input ref="refInputEl" type="file" accept=".jpeg,.png,.jpg,GIF" :hidden="true" />
-                                    </v-card-actions>
-                                </v-expansion-panel-content>
-                            </v-expansion-panel>
-                            <v-expansion-panel>
-                                <v-expansion-panel-header>2. Verify your identity by uploading a picture of your account number </v-expansion-panel-header>
-                                <v-expansion-panel-content>
-                                    Cupcake ipsum dolor sit amet. Candy canes cheesecake chocolate bar I love I love jujubes gummi bears ice cream.
-                                    Cheesecake tiramisu toffee cheesecake sugar plum candy canes bonbon candy.
-                                    <v-card-actions class="primary pa-0 mt-10">
-                                        <v-btn color="primary" block dark large>
-                                            upload picture
-                                        </v-btn>
-                                        <input ref="refInputEl" type="file" accept=".jpeg,.png,.jpg,GIF" :hidden="true" />
-                                    </v-card-actions>
-                                </v-expansion-panel-content>
-                            </v-expansion-panel>
-                            <v-expansion-panel>
-                                <v-expansion-panel-header>3. Phone number OTP (one-time-password) </v-expansion-panel-header>
-                                <v-expansion-panel-content>
-                                    Cupcake ipsum dolor sit amet. Candy canes cheesecake chocolate bar I love I love jujubes gummi bears ice cream.
-                                    Cheesecake tiramisu toffee cheesecake sugar plum candy canes bonbon candy.
-                                </v-expansion-panel-content>
-                            </v-expansion-panel>
-                        </v-expansion-panels>
+                         
                     </v-col>
 
                     <v-col cols="12" sm="4" md="6" class="d-none d-sm-flex justify-center position-relative md-8">
                         <v-img contain height="250" max-width="300"  :src="require(`@/assets/misc/pose-m-1.png`)"></v-img>
+                        <pre>  {{kyc}}</pre>
                     </v-col>
                 </v-row>
             </v-card-text>
         </div>
-    </v-form>
+ 
     <v-divider></v-divider>
     <div class="pa-3">
         <v-card-title class="flex-nowrap">
@@ -79,10 +59,39 @@
 
 <script>
 // eslint-disable-next-line object-curly-newline
-
+import {
+    Auth
+} from '~/vuexes/auth'
+import {
+    Core
+} from '~/vuexes/core'
+import {
+    Web
+} from '~/vuexes/web'
+import watermark from 'watermarkjs'
 export default {
     data: () => {
+        return ({
+            user: Auth.user,
+            kyc:{},
+            response:false,
 
+        })
+    },
+    async created(){
+        await Web.switchLoad(true) 
+        await this.getMyKyc();
+         await Web.switchLoad(false)
+    },
+    methods:{
+        async getMyKyc(){
+            let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`)
+            if(kyc.length > 0){
+                this.kyc = kyc[kyc.length -1]
+                this.response = true
+            }
+            
+        }
     }
 }
 </script>

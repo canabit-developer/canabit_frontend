@@ -1,30 +1,24 @@
 <template>
-   <section class="mt-6">
+<section class="mt-6">
     <v-toolbar color="transparent" flat>
-        <h2 class="text-2xl font-semibold">You Favorite</h2>
+        <h2 class="text-2xl font-semibold">Special for you</h2>
     </v-toolbar>
     <div>
-        <vs-card-group>
-            <vs-card v-for="card in 6" :key="card">
+        <vs-card-group v-if="response">
+            <vs-card v-for="list,index in lists" :key="index" @click="$router.push(`/profilebrand?id=${list.id}`)">
                 <template #title>
-                    <h3>Pot with a plant</h3>
+                    <h3 class="font-semibold">{{list.name}}</h3>
                 </template>
                 <template #img>
-                     <img :src="`/foto${card}.png`" alt="">
+                    <v-img contain class="h-48 w-auto mx-auto" :src="`${$url}${list.image}`" ></v-img>
+              
                 </template>
                 <template #text>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    <p class="text-orange-500 font-semibold">
+                       เงินคืนสูงสุด {{list.point_back}} %
                     </p>
                 </template>
-                <template #interactions>
-                    <vs-button class="btn-chat" shadow primary>
-                        <v-icon x-small color="pink">mdi-cards-heart</v-icon>
-                    </vs-button>
-                    <vs-button >
-                        Redeem
-                    </vs-button>
-                </template>
+            
             </vs-card>
         </vs-card-group>
     </div>
@@ -32,27 +26,30 @@
 </template>
 
 <script>
-import { initial } from 'lodash'
 import {
     Core
 } from '~/vuexes/core'
+import {
+    Auth
+} from '~/vuexes/auth'
 import _ from 'lodash'
 export default {
     data: () => {
         return ({
-            lists:[],
-            response:false
+            lists: [],
+            user: Auth.user,
+            response: false
         })
     },
 
-    async created(){
+    async created() {
         await this.initial();
     },
-    methods:{
-        async initial(){
-            this.lists = await Core.getHttp(`/api/connection/brand/?is_active=true`)
+    methods: {
+        async initial() {
+            this.lists = await Core.getHttp(`/api/connection/brand/`)
             console.log(this.lists)
-            this.response = true
+            this.response = true 
         }
     }
 }
