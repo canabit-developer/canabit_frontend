@@ -20,8 +20,7 @@
                           </form>
                         <!-- current password -->
                          
-                    </v-col>
-
+                    </v-col> 
                     <v-col cols="12" sm="4" md="6" class="d-none d-sm-flex justify-center position-relative md-8">
                         <v-img contain height="250" max-width="300"  :src="require(`@/assets/misc/pose-m-1.png`)"></v-img>
                         <pre>  {{kyc}}</pre>
