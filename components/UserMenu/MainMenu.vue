@@ -39,9 +39,9 @@
         </div>
 
         <v-list expand shaped class="vertical-nav-menu-items pr-5">
-            <UserMenu-NavbarLink path="/" title="Portal" icon="mdi-home-outline"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/" title="Home" icon="mdi-home-outline"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="mdi-bank-transfer"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink>
+            <!-- <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink> -->
             <UserMenu-NavbarLink path="/forex" title="Forex" icon="mdi-finance"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/accountstatus" title="Account Status" icon="mdi-history"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>

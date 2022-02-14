@@ -1,18 +1,7 @@
 <template>
 <v-row>
-    <v-col cols="12">
-        <Transaction-Loyalty />
-    </v-col>
-    <v-col cols="12" md="4">
-        <ButtonRebate-Cashout />
-    </v-col>
-    <v-col cols="12" md="4">
-        <ButtonRebate-Redeem />
-    </v-col>
-    <v-col cols="12" md="4">
-        <ButtonRebate-Reward />
-    </v-col>
-    <v-col cols="12">
+    
+    <v-col cols="12" class="mt-5">
         <Transaction-History />
     </v-col>
     

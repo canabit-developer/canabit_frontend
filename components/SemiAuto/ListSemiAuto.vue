@@ -49,7 +49,7 @@
                         </template>
                         <template #text>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
                             </p>
                         </template>
                         <template #interactions>
@@ -63,6 +63,7 @@
                                     Request test
                                 </span>
                             </vs-button>
+                            
                         </template>
                     </vs-card>
                 </vs-clos>

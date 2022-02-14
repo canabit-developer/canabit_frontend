@@ -29,11 +29,11 @@
                         <v-card-text> 
                              <div class="flex">
                                 <div class="p-2">
-                                    <h2 class="text-xl text-white font-semibold">Redeeming</h2>
+                                    <h2 class="text-xl text-white font-semibold">Cashout</h2>
                                     <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                 </div>
                                 <div class="flex justify-end">
-                                    <v-btn  @click="$router.push(`/redeem`)"  rounded fab><v-icon>mdi-arrow-right</v-icon></v-btn>
+                                    <v-btn  @click="$router.push(`/cashout`)"  rounded fab><v-icon>mdi-arrow-right</v-icon></v-btn>
                                 </div>
                             </div>
                         </v-card-text>
@@ -44,11 +44,11 @@
                         <v-card-text>
                             <div class="flex">
                                 <div class="p-2">
-                                    <h2  class="text-xl text-white font-semibold">Win Prize</h2>
+                                    <h2  class="text-xl text-white font-semibold">Reward</h2>
                                     <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                                 </div>
                                 <div class="flex justify-end">
-                                    <v-btn @click="$router.push(`/reward`)"  rounded fab><v-icon>mdi-arrow-right</v-icon></v-btn>
+                                    <v-btn @click="$router.push(`/redeem`)"  rounded fab><v-icon>mdi-arrow-right</v-icon></v-btn>
                                 </div>
                             </div>
                         </v-card-text>
@@ -59,45 +59,9 @@
         </div>
     </section>
 
-    <Dashboard-Favorite />
-    <Dashboard-Special />
+    
 
-    <section>
-        <v-toolbar color="transparent" flat>
-            <v-spacer></v-spacer>
-        </v-toolbar>
-        <v-card color="basil">
-            <v-card-title class="text-center justify-center py-6">
-                <h1 class="font-weight-bold text-h4 basil--text">Canabit Partner</h1>
-            </v-card-title>
-
-            <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
-                <v-tab v-for="item in items" :key="item">
-                    {{ item }}
-                </v-tab>
-            </v-tabs>
-            <v-tabs-items v-model="tab">
-                <v-tab-item v-for="item in items" :key="item">
-                    <vs-row w="12">
-                        <vs-col w="3" v-for="n in 8" :key="n" class="p-1 mt-2">
-                            <vs-md w="4">
-                                <vs-card type="2">
-                                    <template #img>
-                                        <img src="https://liveatpccoma3c1a.zapwp.com/q:i/r:0/wp:1/w:1/u:https://liveatpc.com/wp-content/uploads/2020/07/Photo-2-Lazada-Logo.jpg" alt="" />
-                                    </template>
-                                    <template #interactions>
-                                        <vs-button class="btn-chat" shadow primary>
-                                            <v-icon x-small color="pink">mdi-cards-heart</v-icon>
-                                        </vs-button>
-                                    </template>
-                                </vs-card>
-                            </vs-md>
-                        </vs-col>
-                    </vs-row>
-                </v-tab-item>
-            </v-tabs-items>
-        </v-card>
-    </section>
+    
 </div>
 </template>
 
