@@ -1,17 +1,17 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-class-modules";
 import axios from '@/plugins/axios'
-import _ from "lodash" 
- 
+import _ from "lodash"
+
 import { Web } from './web'
 
 
 @Module({ generateMutationSetters: true })
 class CoreModule extends VuexModule {
- 
+
   private token: string | null = null;
-  
-  public url:any = axios.defaults.baseURL
-  
+
+  public url: any = axios.defaults.baseURL
+
 
   async getHttp(url: string): Promise<any> {
     return await axios.get(url).then((r) => { return r.data }).catch((e) => { return e.response.data })
@@ -19,8 +19,9 @@ class CoreModule extends VuexModule {
   async postHttpAlert(url: string, form: object): Promise<any> {
     return await axios.post(url, form).then((r) => {
       Web.alert('Successfully Saved')
-      return r.data }).catch((e) => {
-        Web.alert('Failed to save data','error')
+      return r.data
+    }).catch((e) => {
+      Web.alert('Failed to save data', 'error')
       console.log(e)
       return e.response.data
     })
@@ -68,11 +69,11 @@ class CoreModule extends VuexModule {
   async putImageHttpAlert(url: string, form: any): Promise<any> {
     let check = await Web.confirm("Are you sure you want to edit the information?")
     if (check) {
-      return await axios.put(url, form,{
+      return await axios.put(url, form, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
-    }).then((r) => {
+      }).then((r) => {
         Web.alert('Successfully edited')
         return r.data
       }).catch((e) => {
@@ -82,14 +83,14 @@ class CoreModule extends VuexModule {
     }
   }
 
-public fillData(arr: any, key: string, val: any) {
+  public fillData(arr: any, key: string, val: any) {
     return _.find(arr, (r) => { return r[key] == val })
   }
 
   convertDate(date: any) {
     return moment(date).format('DD/MM/YYYY');
   }
- 
+
   async getBase64(file: any) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -99,13 +100,26 @@ public fillData(arr: any, key: string, val: any) {
     });
   }
 
-  async setWaterMark(file:any){
+  async setWaterMark(file: any) {
     const watermark = require('watermarkjs');
     return watermark([file])
-    .image(watermark.text.center("สำหรับสมัครสมาชิก canabit  เท่านั้น", "40px Josefin Slab", "black", 0.5))
-    .then((img:any) =>{
+      .image(watermark.text.center("สำหรับสมัครสมาชิก canabit  เท่านั้น", "40px Josefin Slab", "blue", 0.5))
+      .then((img: any) => {
         return img
-    });
+      });
+  }
+  async dataURLtoFile(dataurl: any) {
+    let moment = require('moment')
+    let date = moment();
+    let extension = dataurl.substring("data:image/".length, dataurl.indexOf(";base64")) 
+    let filename = `${date.format('ddDDmmyyhhmmss')}.${extension}` 
+    console.log(filename);
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    } 
+    return new File([u8arr],filename , { type: mime });
   }
 
 }

@@ -1,6 +1,8 @@
 <template>
 <div>
     <img src="" ref="ximg" class="w-full" alt="">
+
+ 
     <v-card flat class="pa-3 mt-2 pl-2">
         <v-card-text class="d-flex">
 
@@ -19,9 +21,8 @@
         </v-card-text>
 
         <v-card-text>
-             <input @input="getFileImage()" ref="imageProfile" type="file" accept=".jpeg,.png,.jpg,GIF" />
-            <v-form class="multi-col-validation mt-6">
-
+             <Core-ImageInput @profileImage="getFileImage"></Core-ImageInput>
+            <v-form class="multi-col-validation mt-6"> 
                 <v-row>
                     <div class="flex flex-col md:flex-row md:flex-wrap"> 
                         <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field>
@@ -78,11 +79,18 @@ import {
     Core
 } from '~/vuexes/core'
 import watermark from 'watermarkjs'
+ 
 export default {
+    components: {
+  
+  },
     data: () => {
         return ({
             form: {},
-            user: Auth.user
+            user: Auth.user,
+            showCropper:true,
+            data:{},
+               src: 'http://img1.vued.vanthink.cn/vued0a233185b6027244f9d43e653227439a.png',
         })
     },
     computed: {
@@ -94,6 +102,10 @@ export default {
         await this.initial()
     },
     methods: {
+         async imageuploaded(res) {
+             console.log( res);
+      
+    },
         async initial() {
             this.form = await Core.getHttp(`/api/account/userprofile/${this.user.id}/`)
             delete this.form.image_profile
@@ -103,8 +115,8 @@ export default {
             let update = await Core.putHttpAlert(`/api/account/userprofile/${this.user.id}/`, this.form)
 
         },
-        async getFileImage() {
-            let image = this.$refs.imageProfile.files[0]
+        async getFileImage(file) {
+            let image = file //this.$refs.imageProfile.files[0]
             let formData = new FormData()
             formData.append('image_profile', image);
             let update = await Core.putImageHttpAlert(`/api/account/userprofile/${this.user.id}/`, formData)
