@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[64],{755:function(e,n,t){"use strict";t.r(n);var r={},c=t(48),component=Object(c.a)(r,(function(){var e=this.$createElement,n=this._self._c||e;return n("div",[n("Forex-ListBorcker")],1)}),[],!1,null,null,null);n.default=component.exports}}]);
