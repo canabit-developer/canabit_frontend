@@ -20,9 +20,9 @@
             <v-container>
                 <v-row justify="center">
                     <v-col cols="12">
-                        <v-text-field label="Please enter the number of points" class="ml-5 mr-5 mt-3 " outlined></v-text-field>
+                        
                     </v-col>
-                    <v-col cols="12" md="10">
+                    <v-col cols="12" md="10" class=" mt-5">
 
                         <v-btn color="primary" class=" -mt-8 " block dark large>
                             add win prizes
@@ -52,8 +52,8 @@
             <v-divider class="mx-4"></v-divider>
             <v-container>
                 <v-row  justify="center">
-                    <v-col cols="12">
-                        <v-text-field label="Please enter the number of points" class="ml-5 mr-5 mt-3" outlined></v-text-field>
+                    <v-col cols="12" class=" mt-5">
+                       
                     </v-col>
                     <v-col cols="12" md="10">
                         <v-btn color="primary" class="  -mt-8 " block dark large>

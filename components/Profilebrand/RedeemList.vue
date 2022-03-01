@@ -26,9 +26,6 @@
                                 </v-card-text>
                                 <v-card-actions class="-mt-8">
                                     <v-list-item class="grow">
-                                        <div class="font-weight-light -ml-3 ">
-                                        shopee
-                                    </div>
                                         <v-row align="center" justify="end">
                                             <button class="py-1 px-2 text-white rounded-lg bg-green-400 shadow-lg block md:inline-block">Redeem</button>
                                         </v-row>
