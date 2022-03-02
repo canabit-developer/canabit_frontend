@@ -2,7 +2,7 @@
 <div>
     <div class="font-sans bg-white flex flex-col min-h-screen w-full">
         <div>
-            <div class="bg-purple-400 md:overflow-hidden">
+            <div class="bg-purple-400 rounded-xl md:overflow-hidden">
                 <div class="px-4 py-16">
                     <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
                         <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
@@ -30,7 +30,7 @@
                 </svg>
             </div>
 
-            <div class="max-w-6xl mx-auto bg-white  relative z-20 rounded-xl -mt-96" >
+            <div class="max-w-6xl mx-auto bg-white  relative z-20 rounded-xl lg:-mt-96 md:-mt-24" >
                 <div class="p-2 rounded-xl shadow-md bg-white  mb: -mt-24">
                     <v-clo justify-center>
                         <v-tabs v-model="tab" background-color="transparent" color="basil" grow>

@@ -14,7 +14,7 @@
             </div>
         </div>
     </v-app-bar>
-  
+
     <v-navigation-drawer app floating width="260" class="app-navigation-menu bg-main" :right="$vuetify.rtl" v-model="isDrawerOpen">
         <div class="vertical-nav-header d-flex items-center ps-6 pe-5 pt-5 pb-2">
             <router-link to="/" class="d-flex align-center text-decoration-none w-full">
@@ -23,7 +23,7 @@
                         <img class="h-14" src="~/static/images/logos/canabit_vector.svg" alt="">
                     </v-slide-x-transition>
                 </center>
-            </router-link>  
+            </router-link>
         </div>
 
         <div class="p-6 flex flex-col items-center">
@@ -43,13 +43,20 @@
             <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="mdi-bank-transfer"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink> -->
             <UserMenu-NavbarLink path="/forex" title="Forex" icon="mdi-finance"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/accountstatus" title="Account Status" icon="mdi-history"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink>
+            <UserMenu-NavbarGroup title="Pages"></UserMenu-NavbarGroup>
+            <!-- <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink> -->
+            <UserMenu-NavMenuGroup title="Product">
+                <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
+                <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink>
+                <UserMenu-NavbarLink path="/" title="Copy Trade" icon="mdi-broadcast"></UserMenu-NavbarLink>
+            </UserMenu-NavMenuGroup>
+            
+            <UserMenu-NavMenuSectionTitle title="USER SETTING"></UserMenu-NavMenuSectionTitle>
+            <UserMenu-NavbarLink path="/accountstatus" title="History Account" icon="mdi-history"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog-outline"></UserMenu-NavbarLink>
         </v-list>
-        
-            
+
         <template v-slot:append>
             <div>
                 <div @click="logout()">
@@ -58,8 +65,8 @@
 
             </div>
         </template>
+
     </v-navigation-drawer>
-    
 
 </div>
 </template>
@@ -80,8 +87,8 @@ export default {
             await location.reload();
         }
     },
-    computed:{
-        user(){
+    computed: {
+        user() {
             return Auth.user
         }
     }

@@ -1,109 +1,153 @@
 <template>
-<v-card class="rounded-lg">
-    <vs-table>
-        <template #thead>
-            <vs-tr>
-                <vs-th>
-                    Name
-                </vs-th>
-                <vs-th>
-                    Email
-                </vs-th>
-                <vs-th>
-                    Id
-                </vs-th>
-            </vs-tr>
-        </template>
-        <template #tbody>
-            <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
-                <vs-td>
-                    {{ tr.name }}
-                </vs-td>
-                <vs-td>
-                    {{ tr.email }}
-                </vs-td>
-                <vs-td>
-                    {{ tr.id }}
-                </vs-td>
-            </vs-tr>
-        </template>
-    </vs-table>
-</v-card> 
+<div class="p-4">
+    <div class="p-8 ">
+          <vs-table>
+            <template #thead>
+                <vs-tr>
+                    <vs-th>
+                        Order number
+                    </vs-th>
+                    <vs-th>
+                        Reward name
+                    </vs-th>
+                    <vs-th>
+                        Date
+                    </vs-th>
+                    <vs-th>
+                        Point
+                    </vs-th>
+                    <vs-th>
+                        Status
+                    </vs-th>
+                    <vs-th>
+                        Action
+                    </vs-th>
+                    <vs-th>
+                        Remark
+                    </vs-th>
+                </vs-tr>
+            </template>
+            <template #tbody>
+                <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
+                    <vs-td>
+                        {{ tr.ordernumber }}
+                    </vs-td>
+                    <vs-td>
+                        <p class="text-blue-600">{{ tr.rewardname }}</p>
+                    </vs-td>
+                    <vs-td>
+                        {{ tr.date }}
+                    </vs-td>
+                    <vs-td>
+                        <p class="text-red-400">{{ tr.point }} point</p>
+                    </vs-td>
+                    <vs-td>
+                        <vs-tooltip success>
+                            <vs-button success flat>
+                                {{ tr.status }}
+                            </vs-button>
+                            <template #tooltip>
+                                This is a beautiful button
+                            </template>
+                        </vs-tooltip>
+                    </vs-td>
+                    <vs-td>
+                        <vs-button :active="active == 0" @click="active = 0">
+                            Cancel Reward
+                        </vs-button>
+                    </vs-td>
+                    <vs-td>
+                        {{ tr.remark }}
+                    </vs-td>
+                </vs-tr>
+            </template>
+            <template #footer>
+                <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
+            </template>
+        </vs-table>
+
+    </div>
+</div>
 </template>
 
 <script>
 export default {
     data: () => ({
+        page: 1,
+        max: 3,
         users: [{
                 "id": 1,
-                "name": "Leanne Graham",
-                "username": "Bret",
-                "email": "Sincere@april.biz",
-                "website": "hildegard.org",
+                "ordernumber": "001547",
+                "rewardname": "apple watch series 7",
+                "date": "5/23/2020, 10:45 AM",
+                "point": "-100",
+                "status": "Approve",
+                "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
             {
                 "id": 2,
-                "name": "Ervin Howell",
-                "username": "Antonette",
-                "email": "Shanna@melissa.tv",
-                "website": "anastasia.net",
+                "ordernumber": "001547",
+                "rewardname": "apple watch series 7",
+                "date": "5/23/2020, 10:45 AM",
+                "point": "-100",
+                "status": "Approve",
+                "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
             {
                 "id": 3,
-                "name": "Clementine Bauch",
-                "username": "Samantha",
-                "email": "Nathan@yesenia.net",
-                "website": "ramiro.info",
+                "ordernumber": "001547",
+                "rewardname": "apple watch series 7",
+                "date": "5/23/2020, 10:45 AM",
+                "point": "-100",
+                "status": "Approve",
+                "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
             {
                 "id": 4,
-                "name": "Patricia Lebsack",
-                "username": "Karianne",
-                "email": "Julianne.OConner@kory.org",
-                "website": "kale.biz",
+                "ordernumber": "001547",
+                "rewardname": "apple watch series 7",
+                "date": "5/23/2020, 10:45 AM",
+                "point": "-100",
+                "status": "Approve",
+                "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
             {
                 "id": 5,
-                "name": "Chelsey Dietrich",
-                "username": "Kamren",
-                "email": "Lucio_Hettinger@annie.ca",
-                "website": "demarco.info",
+                "ordernumber": "001547",
+                "rewardname": "apple watch series 7",
+                "date": "5/23/2020, 10:45 AM",
+                "point": "-100",
+                "status": "Approve",
+                "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
             {
                 "id": 6,
-                "name": "Mrs. Dennis Schulist",
-                "username": "Leopoldo_Corkery",
-                "email": "Karley_Dach@jasper.info",
-                "website": "ola.org",
+                "ordernumber": "001547",
+                "rewardname": "apple watch series 7",
+                "date": "5/23/2020, 10:45 AM",
+                "point": "-100",
+                "status": "Approve",
+                "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
             {
                 "id": 7,
-                "name": "Kurtis Weissnat",
-                "username": "Elwyn.Skiles",
-                "email": "Telly.Hoeger@billy.biz",
-                "website": "elvis.io",
+                "ordernumber": "001547",
+                "rewardname": "apple watch series 7",
+                "date": "5/23/2020, 10:45 AM",
+                "point": "-100",
+                "status": "Approve",
+                "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
             {
                 "id": 8,
-                "name": "Nicholas Runolfsdottir V",
-                "username": "Maxime_Nienow",
-                "email": "Sherwood@rosamond.me",
-                "website": "jacynthe.com",
+                "ordernumber": "001547",
+                "rewardname": "apple watch series 7",
+                "date": "5/23/2020, 10:45 AM",
+                "point": "-100",
+                "status": "Approve",
+                "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
-            {
-                "id": 9,
-                "name": "Glenna Reichert",
-                "username": "Delphine",
-                "email": "Chaim_McDermott@dana.io",
-                "website": "conrad.com",
-            },
-            {
-                "id": 10,
-                "name": "Clementina DuBuque",
-                "username": "Moriah.Stanton",
-                "email": "Rey.Padberg@karina.biz",
-                "website": "ambrose.net",
-            }
+
         ]
     })
 }

@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="font-sans bg-white flex flex-col min-h-screen w-full">
-        <div class="bg-purple-400 md:overflow-hidden">
+        <div class="bg-purple-400 rounded-xl md:overflow-hidden">
             <div class="px-4 py-16">
                 <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
                     <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
