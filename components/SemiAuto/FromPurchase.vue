@@ -2,9 +2,10 @@
 <div>
     <template>
         <div class="inline-flex ">
-            <vs-button color="#7d33ff" @click="active=!active">
-                <v-icon class="mr-2" color="#ffff">mdi-text-box-plus-outline</v-icon>
-                Add Account
+            <vs-button class="btn-chat" color="#0052F9" @click="active=!active">
+                <span class="span">
+                    Purchase
+                </span>
             </vs-button>
             <vs-dialog prevent-close v-model="active">
                 <template #header>
@@ -19,12 +20,16 @@
                             <v-col cols="12" sm="6">
                                 <v-text-field label="Account No" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
                             </v-col>
-                             <v-col cols="12" sm="6">
-                            <v-select persistent-hint hint="www.example.com/page" v-model="select" :items="items" :error-messages="selectErrors" outlined label="Brokers" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
-                           </v-col>
                             <v-col cols="12" sm="6">
-                            <v-select persistent-hint hint="www.example.com/page" v-model="select" :items="items" :error-messages="selectErrors" outlined label="Account Type" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
-                           </v-col>
+                                <v-text-field label="Discount" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="6">
+                                <v-text-field label="Point" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="6">
+                                <h1 class="text-4xl font-semibold leading-9 text-green-400 text-center">Total Price : 140 $</h1>
+
+                            </v-col>
                         </v-row>
                     </v-container>
 
@@ -32,7 +37,7 @@
                 <template #footer>
                     <div class="footer-dialog">
                         <vs-button block>
-                            + Add  Account
+                            Submit Purchase
                         </vs-button>
 
                         <div class="new">

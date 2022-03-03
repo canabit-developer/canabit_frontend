@@ -51,25 +51,10 @@
                             <p>
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                             </p>
-                            <div class="flex flex-wrap justify-center">
-                                                             
-                                <SemiAuto-FromPurchase></SemiAuto-FromPurchase>
-
-                                <SemiAuto-FromRequestTest></SemiAuto-FromRequestTest>
-
-                                   
-                                    <vs-button class="btn-chat" color="#5EDA9F" @click="$router.push(`/detailea`)">
-                                        <span class="span">
-                                            More Detail
-                                        </span>
-                                    </vs-button>
-
-                            </div>
-
-                        </template>
-                        <template #interactions>
-                            <vs-button success flat :active="active == 1" @click="active = 1">
-                                Price : 140 $
+                            <vs-button block class="btn-chat">
+                                <span class="span">
+                                     Detail Master
+                                </span>
                             </vs-button>
                         </template>
                     </vs-card>
@@ -82,9 +67,7 @@
 
 <script>
 export default {
-    data: () => ({
-        active: false,
-    })
+
 }
 </script>
 

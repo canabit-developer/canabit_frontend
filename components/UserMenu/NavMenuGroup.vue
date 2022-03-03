@@ -3,8 +3,13 @@
     ref="refVListGroup"
     class="vertical-nav-menu-group text--primary"
   >
+   <template #prependIcon>
+      <v-icon :class="{'alternate-icon-small': !icon}">
+        {{ icon }}
+      </v-icon>
+    </template>
     <template #activator>
-      <v-list-item-title>
+      <v-list-item-title class="text-gray-400 ">
         {{ title }}
       </v-list-item-title>
     </template>
@@ -20,7 +25,10 @@ export default {
       type: String,
       required: true,
     },
-    
+    icon: {
+      type: String,
+      required: true,
+    },
   },
   setup() {
     return {}

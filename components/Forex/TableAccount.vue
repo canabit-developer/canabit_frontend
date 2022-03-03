@@ -1,40 +1,62 @@
 <template>
 <div>
-    <vs-row justify="center">
-        <div class="w-4/5 p-4 mb: -mt-12">
-            <div class="p-8 rounded-xl shadow-md bg-white"><span class="text-6xl"></span>
-                <vs-table>
-                    <template #thead>
-                        <vs-tr>
-                            <vs-th>
-                                Account No.
-                            </vs-th>
-                            <vs-th>
-                                Broker
-                            </vs-th>
-                            <vs-th>
-                                Account Type
-                            </vs-th>
-                        </vs-tr>
-                    </template>
-                    <template #tbody>
-                        <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
-                            <vs-td>
-                                {{ tr.account }}
-                            </vs-td>
-                            <vs-td>
-                                {{ tr.broker }}
-                            </vs-td>
-                            <vs-td>
-                                {{ tr.accounttype }}
-                            </vs-td>
-                        </vs-tr>
-                    </template>
-                </vs-table>
-
-            </div>
+    <div class="p-4">
+        <div class="p-8 ">
+            
+            <vs-table>
+                <template #thead>
+                    <vs-tr>
+                        <vs-th>
+                            No.
+                        </vs-th>
+                        <vs-th>
+                            Broker
+                        </vs-th>
+                        <vs-th>
+                            Account Type
+                        </vs-th>
+                        <vs-th>
+                            Date Create
+                        </vs-th>
+                        <vs-th>
+                            Status Account
+                        </vs-th>
+                    </vs-tr>
+                </template>
+                <template #tbody>
+                    <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
+                        <vs-td>
+                            {{ tr.id }}
+                        </vs-td>
+                        <vs-td>
+                            <v-avatar rounded size="30px" class="m-1">
+                                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                            </v-avatar>
+                            {{ tr.broker }}
+                        </vs-td>
+                        <vs-td>
+                            <v-avatar size="23px" class="m-1">
+                                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                            </v-avatar>{{ tr.accounttype }}
+                        </vs-td>
+                        <vs-td>
+                            {{ tr.date }}
+                        </vs-td>
+                        <vs-td>
+                            <v-chip label color="#E0FBE2">
+                                <p class="text-green-400 ma-5">{{ tr.status }}</p>
+                            </v-chip>
+                        </vs-td>
+                    </vs-tr>
+                </template>
+                <template #footer>
+                    <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
+                </template>
+                
+            </vs-table>
+            
         </div>
-    </vs-row>
+    </div>
 
 </div>
 </template>
@@ -42,75 +64,87 @@
 <script>
 export default {
     data: () => ({
+        page: 1,
+        max: 3,
         users: [{
                 "id": 1,
                 "account": "00154775349789",
-                "broker": "Bret",
-                "accounttype": "Sincere@april.biz",
-                "website": "hildegard.org",
+                "broker": "FBS",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 2,
                 "account": "00154775349789",
                 "broker": "Antonette",
-                "accounttype": "Shanna@melissa.tv",
-                "website": "anastasia.net",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 3,
                 "account": "00154775349789",
                 "broker": "Samantha",
-                "accounttype": "Nathan@yesenia.net",
-                "website": "ramiro.info",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 4,
                 "account": "00154775349789",
                 "broker": "Karianne",
-                "accounttype": "Julianne.OConner@kory.org",
-                "website": "kale.biz",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 5,
                 "account": "00154775349789",
                 "broker": "Kamren",
-                "accounttype": "Lucio_Hettinger@annie.ca",
-                "website": "demarco.info",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 6,
                 "account": "00154775349789",
                 "broker": "Leopoldo_Corkery",
-                "accounttype": "Karley_Dach@jasper.info",
-                "website": "ola.org",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 7,
                 "account": "00154775349789",
                 "broker": "Elwyn.Skiles",
-                "accounttype": "Telly.Hoeger@billy.biz",
-                "website": "elvis.io",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 8,
                 "account": "00154775349789",
                 "broker": "Maxime_Nienow",
-                "accounttype": "Sherwood@rosamond.me",
-                "website": "jacynthe.com",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 9,
                 "account": "00154775349789",
                 "broker": "Delphine",
-                "accounttype": "Chaim_McDermott@dana.io",
-                "website": "conrad.com",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             },
             {
                 "id": 10,
                 "account": "00154775349789",
                 "broker": "Moriah.Stanton",
-                "accounttype": "Rey.Padberg@karina.biz",
-                "website": "ambrose.net",
+                "accounttype": "0112483941234",
+                "date": "2/15/2020, 10:30 AM",
+                "status": "Approve",
             }
         ]
     })

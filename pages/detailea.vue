@@ -38,43 +38,6 @@
 
             </div>
 
-            <vs-row w="12" class="-mt-5" justify="center">
-                <vs-clos v-for="col,index in 6" :key="index" class="p-2 mt-2">
-                    <vs-card>
-                        <template #title>
-                            <h3>Pot with a plant</h3>
-                        </template>
-                        <template #img>
-                            <img src="/foto5.png" alt="">
-                        </template>
-                        <template #text>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                            </p>
-                            <div class="flex flex-wrap justify-center">
-                                                             
-                                <SemiAuto-FromPurchase></SemiAuto-FromPurchase>
-
-                                <SemiAuto-FromRequestTest></SemiAuto-FromRequestTest>
-
-                                   
-                                    <vs-button class="btn-chat" color="#5EDA9F" @click="$router.push(`/detailea`)">
-                                        <span class="span">
-                                            More Detail
-                                        </span>
-                                    </vs-button>
-
-                            </div>
-
-                        </template>
-                        <template #interactions>
-                            <vs-button success flat :active="active == 1" @click="active = 1">
-                                Price : 140 $
-                            </vs-button>
-                        </template>
-                    </vs-card>
-                </vs-clos>
-            </vs-row>
         </div>
     </div>
 </div>
@@ -82,9 +45,7 @@
 
 <script>
 export default {
-    data: () => ({
-        active: false,
-    })
+
 }
 </script>
 

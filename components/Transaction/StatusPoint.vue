@@ -55,10 +55,9 @@
                 </vs-tr>
             </template>
             <template #footer>
-          <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
-        </template>
+                <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
+            </template>
         </vs-table>
-
     </div>
 </div>
 </template>
