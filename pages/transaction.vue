@@ -33,7 +33,7 @@
             <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:-mt-96 md:-mt-24">
                 <div class="p-2 rounded-xl shadow-md bg-white  mb: -mt-24">
                     <v-clo justify-center>
-                        <v-tabs v-model="tab" background-color="transparent" color="basil" grow>
+                        <v-tabs v-model="tab"  grow>
                             <v-tab v-for="item in items" :key="item">
                                 {{ item }}
                             </v-tab>

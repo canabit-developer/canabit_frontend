@@ -5,11 +5,11 @@
             <div class="px-4 py-16">
                 <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
                     <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
-                        A simple and smart tool that will help grow your business
+                        Free products! For Cash Back members
                     </h1>
 
                     <p class="text-white md:text-xl md:px-18">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit hello.
+                        Signals are forex trading indicators that can give you information about your trades. Including telling the trend of which direction the candlestick is going, as well as some indicators that can tell the point where you will open a buy order. Or sell orders as well. Indicators are often called by another name "Indy".
                     </p>
 
                     <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
@@ -43,7 +43,7 @@
                         <h3>Pot with a plant</h3>
                     </template>
                     <template #img>
-                        <img src="/foto5.png" alt="">
+                        <img src="@/assets/misc/signal.png" alt="">
                     </template>
                     <template #text>
                         <p>

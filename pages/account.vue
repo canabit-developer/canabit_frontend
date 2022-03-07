@@ -31,7 +31,7 @@
             </div>
             <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:-mt-96 md:-mt-24">
                 <div class="p-2 rounded-xl shadow-md bg-white  mb: -mt-24">
-                    <v-tabs v-model="tab" show-arrows>
+                    <v-tabs v-model="tab" show-arrows grow>
                         <v-tab>
                             <v-icon size="20" class="me-3">mdi-account-outline</v-icon> Account
                         </v-tab>

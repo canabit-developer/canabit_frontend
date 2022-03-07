@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn @click="dialogFile = true" color="success">upload</v-btn>
+    <vs-button floating @click="dialogFile = true" color="success">Upload Picture</vs-button>
 
     <v-dialog v-if="dialogFile"
       v-model="dialogFile"
@@ -12,8 +12,7 @@
       <v-card>
         <v-card-title primary-title> Setting Image 
           <v-spacer></v-spacer>
-          <v-btn @click="callbackImage()" color="success">Success</v-btn>
-        </v-card-title>
+          <vs-button  floating  @click="callbackImage()" color="success">Success Image</vs-button>        </v-card-title>
         <v-card-text>
           <picture-input
           v-if="step == 1"

@@ -6,11 +6,11 @@
                 <div class="px-4 py-16">
                     <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
                         <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
-                            A simple and smart tool that will help grow your business
+                            Copy Leader Track profits From traders around the world.
                         </h1>
 
                         <p class="text-white md:text-xl md:px-18">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit hello.
+                            Invest with automation Full-featured and making it easy to enter the world of finance, allows you to follow and connect Professional Traders, Leaders, and Followers together to make profits and track success from traders all over the world
                         </p>
 
                         <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
@@ -40,7 +40,7 @@
                             <h3>Pot with a plant</h3>
                         </template>
                         <template #img>
-                            <img src="/foto5.png" alt="">
+                            <img src="@/assets/misc/logo_joker.png" alt="">
                         </template>
                         <template #text>
                             <p>

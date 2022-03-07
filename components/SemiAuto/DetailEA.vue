@@ -7,7 +7,7 @@
                     <div class="flex justify-between">
                         <div class="flex items-start">
                              <v-avatar tile size="150" class="m-5">
-                                <img src="@/assets/misc/fbs.png">
+                                <img src="@/assets/misc/gri.png">
                             </v-avatar>
                             <div class="m-5">
                                 <div class="pb-2 font-bold">Semi Auto</div>
