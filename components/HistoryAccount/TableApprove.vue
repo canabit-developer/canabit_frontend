@@ -5,38 +5,53 @@
             <template #thead>
                 <vs-tr>
                     <vs-th>
-                        Order
+                        Order Number
                     </vs-th>
                     <vs-th>
-                        Account No.
+                        Order  
                     </vs-th>
                     <vs-th>
-                        price
+                        Broker
                     </vs-th>
                     <vs-th>
-                        Signals
+                        Account No
+                    </vs-th>
+                    <vs-th>
+                        Price
                     </vs-th>
                     <vs-th>
                         Date Create
                     </vs-th>
                     <vs-th>
-                        STATUS
+                        Status
+                    </vs-th>
+                    <vs-th>
+                        Remark
                     </vs-th>
                 </vs-tr>
             </template>
             <template #tbody>
                 <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
                     <vs-td>
-                        {{ tr.name }}
+                        {{ tr.id }}
                     </vs-td>
                     <vs-td>
-                        {{ tr.username }}
+                        <v-avatar class=" m-1" size="30" tile>
+                           <img src="@/assets/misc/logo_highrisk.png" alt="John" class="rounded-lg ">    
+                        </v-avatar>{{ tr.name }}
+                    </vs-td>
+                    <vs-td>
+                        <v-avatar class=" m-1" size="30" tile>
+                            <img src="@/assets/misc/fbs.png" alt="John" class="rounded-lg ">
+                        </v-avatar>{{ tr.brokername }} 
+                    </vs-td>
+                    <vs-td>
+                        <v-avatar class=" m-1" size="18" tile>
+                            <img src="../../assets/misc/CENT.png"  class="rounded-lg">
+                        </v-avatar>{{ tr.accountno }}
                     </vs-td>
                     <vs-td>
                         {{ tr.price }} $
-                    </vs-td>
-                    <vs-td>
-                        {{ tr.signals }}
                     </vs-td>
                     <vs-td>
                         {{ tr.createdate }}
@@ -55,8 +70,8 @@
                 </vs-tr>
             </template>
             <template #footer>
-          <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
-        </template>
+                <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
+            </template>
         </vs-table>
 
     </div>
@@ -71,18 +86,18 @@ export default {
         users: [{
                 "id": 1,
                 "name": "High Risk",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "140",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             },
             {
                 "id": 2,
                 "name": "Gri 6.0",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "140",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
 
@@ -90,72 +105,72 @@ export default {
             {
                 "id": 3,
                 "name": "Gri 6.0",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "140",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             },
             {
                 "id": 4,
                 "name": "High Risk",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "170",
-                "signals": "kale.biz",
+                "accountno": "kale.biz",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             },
             {
                 "id": 5,
                 "name": "High Risk",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "140",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             },
             {
                 "id": 6,
                 "name": "Grid pro ",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "170",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             },
             {
                 "id": 7,
                 "name": "Gri 6.0",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "170",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             },
             {
                 "id": 8,
                 "name": "High Risk",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "140",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             },
             {
                 "id": 9,
                 "name": "High Risk",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "140",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             },
             {
                 "id": 10,
                 "name": "Gri 6.0",
-                "username": "00154775349789",
+                "brokername": "FBS",
                 "price": "170",
-                "signals": "Indicator",
+                "accountno": "01124839",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             }

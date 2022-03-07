@@ -1,9 +1,9 @@
 <template>
 <div>
-    <div class=" bg-purple-400 flex justify-center items-center">
-        <div class="absolute w-60 h-60 rounded-xl bg-purple-300 top-1/3 mt-16  -left-16 z-0 transform rotate-45 hidden md:block">
+    <div class=" bg-green-400 flex justify-center items-center">
+        <div class="absolute w-60 h-60 rounded-xl bg-green-300 top-1/3 mt-16  -left-16 z-0 transform rotate-45 hidden md:block">
         </div>
-        <div class="absolute w-48 h-48 rounded-xl bg-purple-300  -bottom-6 -right-10 transform rotate-12 hidden md:block">
+        <div class="absolute w-48 h-48 rounded-xl bg-green-300  -bottom-6 -right-10 transform rotate-12 hidden md:block">
         </div>
         <div class="max-w-6xl mx-auto md:px-6 px-4">
             <div class="md:py-20 py-12">
@@ -24,8 +24,8 @@
               <Reward-List></Reward-List>
             </div>
         </div>
-        <div class="w-40 h-40 absolute bg-purple-300 rounded-full top-1/3 mt-16  right-12 hidden md:block"></div>
-        <div class="w-20 h-40 absolute bg-purple-300 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
+        <div class="w-40 h-40 absolute bg-green-300 rounded-full top-1/3 mt-16  right-12 hidden md:block"></div>
+        <div class="w-20 h-40 absolute bg-green-300 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
         </div>
     </div>
 </div>

@@ -19,16 +19,12 @@
 
             <v-container>
                 <v-row justify="center">
-                    <v-col cols="12">
-                        
+                   <v-col cols="12">
+                        <vs-button block floating color="#4FE54C" size="large">
+                            Win Prizes
+                        </vs-button>
                     </v-col>
-                    <v-col cols="12" md="10" class=" mt-5">
 
-                        <v-btn color="primary" class=" -mt-8 " block dark large>
-                            add win prizes
-                        </v-btn>
-
-                    </v-col>
                 </v-row>
 
             </v-container>
@@ -51,15 +47,13 @@
 
             <v-divider class="mx-4"></v-divider>
             <v-container>
-                <v-row  justify="center">
-                    <v-col cols="12" class=" mt-5">
-                       
+                <v-row justify="center">
+                    <v-col cols="12">
+                        <vs-button block floating color="#4FE54C" size="large">
+                            Win Prizes
+                        </vs-button>
                     </v-col>
-                    <v-col cols="12" md="10">
-                        <v-btn color="primary" class="  -mt-8 " block dark large>
-                            add win prizes
-                        </v-btn>
-                    </v-col>
+
                 </v-row>
 
             </v-container>
@@ -71,11 +65,10 @@
 </template>
 
 <script>
-
 export default {
-    data: () =>{
+    data: () => {
         return ({
-            
+
         })
     }
 }

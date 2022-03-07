@@ -1,23 +1,17 @@
 <template>
 <div class="p-4">
-    <div class="p-8 ">
+    <div class="p-8 "><span class="text-6xl"></span>
           <vs-table>
             <template #thead>
                 <vs-tr>
                     <vs-th>
-                        No.
+                        Order No.
                     </vs-th>
                     <vs-th>
-                        transaction point
-                    </vs-th>
-                    <vs-th>
-                        Point
+                        Request Test Name
                     </vs-th>
                     <vs-th>
                         Date Create
-                    </vs-th>
-                    <vs-th>
-                        STATUS
                     </vs-th>
                 </vs-tr>
             </template>
@@ -27,24 +21,12 @@
                         {{ tr.id }}
                     </vs-td>
                     <vs-td>
-                        {{ tr.name }}
+                        <v-avatar class="m-1" size="30" tile>
+                            <img src="@/assets/misc/gri.png" alt="John" class="rounded-lg ">
+                        </v-avatar>{{ tr.username }}
                     </vs-td>
                     <vs-td>
-                         <p class="text-green-500">+ {{ tr.price }} point </p>
-                    </vs-td>
-                    <vs-td>
-                        {{ tr.createdate }}
-                    </vs-td>
-                    <vs-td>
-                        <vs-tooltip success>
-                            <vs-button success flat>
-                                {{ tr.status }}
-                            </vs-button>
-                            <template #tooltip>
-                                This is a beautiful button
-                            </template>
-                        </vs-tooltip>
-
+                        {{ tr.createdate }} 
                     </vs-td>
                 </vs-tr>
             </template>
@@ -52,6 +34,7 @@
                 <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
             </template>
         </vs-table>
+
     </div>
 </div>
 </template>
@@ -63,94 +46,94 @@ export default {
         max: 3,
         users: [{
                 "id": 1,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "100",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 2,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "High Risk",
+                "username": "Gri 6.0",
                 "price": "140",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
+            },
+            {
+                "id": 2,
+                "name": "Gri 6.0",
+                "username": "Gri 6.0",
+                "price": "140",
+                "signals": "Indicator",
+                "createdate": "5/23/2020, 10:45 AM",
+                "status": "Reject",
 
             },
             {
                 "id": 3,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "Gri 6.0",
+                "username": "Gri 6.0",
                 "price": "140",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
             },
             {
                 "id": 4,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "High Risk",
+                "username": "Gri 6.0",
                 "price": "170",
                 "signals": "kale.biz",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
             },
             {
                 "id": 5,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "High Risk",
+                "username": "Gri 6.0",
                 "price": "140",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
             },
             {
                 "id": 6,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "Grid pro ",
+                "username": "Gri 6.0",
                 "price": "170",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
             },
             {
                 "id": 7,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "Gri 6.0",
+                "username": "Gri 6.0",
                 "price": "170",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
             },
             {
                 "id": 8,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "High Risk",
+                "username": "Gri 6.0",
                 "price": "140",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
             },
             {
                 "id": 9,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "High Risk",
+                "username": "Gri 6.0",
                 "price": "140",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
             },
             {
                 "id": 10,
-                "name": "Cashback",
-                "username": "00154775349789",
+                "name": "Gri 6.0",
+                "username": "Gri 6.0",
                 "price": "170",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                "status": "Reject",
             }
         ]
     })

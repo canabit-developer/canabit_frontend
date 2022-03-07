@@ -5,51 +5,28 @@
             <template #thead>
                 <vs-tr>
                     <vs-th>
-                        Order
+                        Order No
                     </vs-th>
                     <vs-th>
-                        Account No.
+                        Indicator No.
                     </vs-th>
                     <vs-th>
-                        price
-                    </vs-th>
-                    <vs-th>
-                        Signals
-                    </vs-th>
-                    <vs-th>
-                        Date Create
-                    </vs-th>
-                    <vs-th>
-                        STATUS
+                        Date
                     </vs-th>
                 </vs-tr>
             </template>
             <template #tbody>
                 <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
                     <vs-td>
-                        {{ tr.name }}
+                        {{ tr.id }}
                     </vs-td>
                     <vs-td>
-                        {{ tr.username }}
-                    </vs-td>
-                    <vs-td>
-                        {{ tr.price }} $
-                    </vs-td>
-                    <vs-td>
-                        {{ tr.signals }}
+                        <v-avatar class=" m-1" size="30" tile>
+                            <img src="@/assets/misc/signal.png" alt="John" class="rounded-lg ">
+                        </v-avatar> {{ tr.signals }}
                     </vs-td>
                     <vs-td>
                         {{ tr.createdate }}
-                    </vs-td>
-                    <vs-td>
-                        <vs-tooltip danger>
-                            <vs-button danger flat>
-                                {{ tr.status }}
-                            </vs-button>
-                            <template #tooltip>
-                                This is a beautiful button
-                            </template>
-                        </vs-tooltip>
                     </vs-td>
                 </vs-tr>
             </template>
@@ -70,8 +47,8 @@ export default {
         users: [{
                 "id": 1,
                 "name": "High Risk",
-                "username": "00154775349789",
-                "price": "140",
+                "username": "Indicator",
+                "price": "170",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Reject",
@@ -80,17 +57,16 @@ export default {
                 "id": 2,
                 "name": "Gri 6.0",
                 "username": "00154775349789",
-                "price": "140",
+                "price": "170",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Reject",
-
             },
             {
                 "id": 3,
                 "name": "Gri 6.0",
                 "username": "00154775349789",
-                "price": "140",
+                "price": "170",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Reject",
@@ -100,7 +76,7 @@ export default {
                 "name": "High Risk",
                 "username": "00154775349789",
                 "price": "170",
-                "signals": "kale.biz",
+                "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Reject",
             },
@@ -108,7 +84,7 @@ export default {
                 "id": 5,
                 "name": "High Risk",
                 "username": "00154775349789",
-                "price": "140",
+                "price": "170",
                 "signals": "Indicator",
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Reject",

@@ -30,13 +30,13 @@
                         </vs-td>
                         <vs-td>
                             <v-avatar rounded size="30px" class="m-1">
-                                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                <img src="@/assets/misc/exness.png" alt="John">
                             </v-avatar>
                             {{ tr.broker }}
                         </vs-td>
                         <vs-td>
                             <v-avatar size="23px" class="m-1">
-                                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                <img src="../../assets/misc/STAND.png" alt="John">
                             </v-avatar>{{ tr.accounttype }}
                         </vs-td>
                         <vs-td>

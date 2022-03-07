@@ -2,7 +2,7 @@
 <div>
     <template>
         <div class="inline-flex ">
-            <vs-button color="#7d33ff" @click="active=!active">
+            <vs-button  floating color="#22c55e" @click="active=!active">
                 <v-icon class="mr-2" color="#ffff">mdi-text-box-plus-outline</v-icon>
                 Add Account
             </vs-button>

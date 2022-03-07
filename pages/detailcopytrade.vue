@@ -36,18 +36,17 @@
                 <div class="h-20 w-20 rounded-full bg-purple-500 absolute top-0 left-0 -ml-10 -mt-16" style="z-index: -1;"></div>
                 <div class="h-5 w-5 rounded-full bg-purple-500 absolute top-0 left-0 -ml-32 mt-12" style="z-index: -1;"></div>
 
-            </div>
-            <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:mt-5 md:-mt-24">
-                <SemiAuto-DetailEA></SemiAuto-DetailEA>
-            </div>
+            </div>           
         </div>
+         <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:mt-5 md:-mt-24">
+               <CopyTrade-DetailCopyTrade></CopyTrade-DetailCopyTrade>
+            </div>
     </div>
 </div>
 </template>
 
 <script>
 export default {
-  
 
 }
 </script>
