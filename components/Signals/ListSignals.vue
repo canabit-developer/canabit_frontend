@@ -67,13 +67,27 @@
                 </vs-card>
             </vs-clos>
         </vs-row>
+        <pre>{{indicatorsproduct}}</pre>
     </div>
 </div>
 </template>
 
 <script>
-export default {
 
+import {Indicators} from '~/vuexes/indictor'
+export default {
+    data: () =>({
+        indicatorsproduct:[],
+
+    }),
+    async created(){
+        this.startup()
+    },
+    methods:{
+        async startup(){
+            this.indicatorsproduct = await Indicators.getIndicatorProduct()
+        }
+    }
 }
 </script>
 

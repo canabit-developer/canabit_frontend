@@ -55,20 +55,26 @@
                     </vs-card>
                 </vs-clos>
             </vs-row>
+            <pre>{{copytradeproduct}}</pre>
         </div>
     </div>
 </div>
 </template>
 
-<script>
+<script> 
+import {CopyTrade} from '~/vuexes/copytrade'
 export default {
-
-    data() {
-        return {
-            
-        }
+    data:() =>({
+        copytradeproduct:[],
+    }),
+    async created(){
+        this.startup()
     },
-
+    methods:{
+        async startup(){
+            this.copytradeproduct = await CopyTrade.getCopytradeProduct()
+        }
+    }
 }
 </script>
 

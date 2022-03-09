@@ -52,7 +52,6 @@
                 <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
             </template>
         </vs-table>
-        <pre>{{statuspoint}}</pre>
     </div>
 </div>
 </template>

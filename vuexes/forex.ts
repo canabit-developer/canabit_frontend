@@ -8,6 +8,13 @@ class ForexModule extends VuexModule{
     public async getAccountForex(){
         return await Core.getHttp('/api/finance/brokeraccount/')
     }
+    public async getBroker(){
+        return await Core.getHttp('/api/finance/broker/')
+    }
+    public async getAccountType(){
+        return await Core.getHttp('/api/finance/accounttype/')
+    }
+ 
 }
 
 

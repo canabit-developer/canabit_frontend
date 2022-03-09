@@ -2,7 +2,7 @@
 <div>
     <template>
         <div class="inline-flex ">
-            <vs-button  floating color="#22c55e" @click="active=!active">
+            <vs-button floating color="#22c55e" @click="active=!active">
                 <v-icon class="mr-2" color="#ffff">mdi-text-box-plus-outline</v-icon>
                 Add Account
             </vs-button>
@@ -17,27 +17,23 @@
                     <v-container>
                         <v-row>
                             <v-col cols="12" sm="6">
-                                <v-text-field label="Account No" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
+                                <v-text-field label="Account No" v-model="form.accountno" hint="For example, flowers or used cars" outlined></v-text-field>
                             </v-col>
-                             <v-col cols="12" sm="6">
-                            <v-select persistent-hint hint="www.example.com/page" v-model="select" :items="items" :error-messages="selectErrors" outlined label="Brokers" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
-                           </v-col>
                             <v-col cols="12" sm="6">
-                            <v-select persistent-hint hint="www.example.com/page" v-model="select" :items="items" :error-messages="selectErrors" outlined label="Account Type" required @change="$v.select.$touch()" @blur="$v.select.$touch()"></v-select>
-                           </v-col>
+                                <v-select persistent-hint hint="www.example.com/page" v-model="selectbroker" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
+                            </v-col>
+                            <v-col cols="12" sm="6">
+                                <v-select persistent-hint hint="www.example.com/page" v-model="selectaccounttype" :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
+                            </v-col>
                         </v-row>
                     </v-container>
 
                 </div>
                 <template #footer>
                     <div class="footer-dialog">
-                        <vs-button block>
+                        <vs-button block floating color="#4ade80">
                             + Add  Account
                         </vs-button>
-
-                        <div class="new">
-
-                        </div>
                     </div>
                 </template>
             </vs-dialog>
@@ -47,20 +43,44 @@
 </template>
 
 <script>
+import {
+    Core
+} from '@/vuexes/core'
+import {
+    Forex
+} from '~/vuexes/forex'
+
 export default {
     data: () => ({
+        accounttype: [],
+        broker: [],
+
         active: false,
         input1: '',
         input2: '',
-        checkbox1: false,
         select: null,
-        items: [
-            'Item 1',
-            'Item 2',
-            'Item 3',
-            'Item 4',
-        ],
-    })
+        accountno: {},
+        selectbroker: {},
+        selectaccounttype: {
+
+        },
+        form: {
+            broker_no: null
+        }
+    }),
+    async created() {
+        this.startup()
+    },
+    methods: {
+        async startup() {
+            this.accounttype = await Forex.getAccountType()
+            this.broker = await Forex.getBroker()
+        }
+    },
+    computed: {
+
+    },
+
 }
 </script>
 

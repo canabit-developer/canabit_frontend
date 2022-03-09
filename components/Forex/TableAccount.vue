@@ -3,7 +3,7 @@
     <div class="p-4">
         <div class="p-8 ">
 
-            <vs-table>
+            <!-- <vs-table>
                 <template #thead>
                     <vs-tr>
                         <vs-th>
@@ -24,7 +24,7 @@
                     </vs-tr>
                 </template>
                 <template #tbody>
-                    <vs-tr :key="i" v-for="(tr, i) in brokeraccount" :data="brokeraccount">
+                    <vs-tr :key="i" v-for="(tr, i) in items" :data="items">
                         <vs-td>
                             {{ tr.id }}
                         </vs-td>
@@ -50,11 +50,12 @@
                     </vs-tr>
                 </template>
                 <template #footer>
-                    <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
+                    <vs-pagination v-model="page" :length="items.count/2" />
                 </template>
 
-            </vs-table>
-            
+            </vs-table> -->
+            <v-data-table :headers="headers" :items="items.results" class="elevation-1"></v-data-table>
+            <v-pagination :length="items.count/2" v-model="page"></v-pagination>
         </div>
     </div>
 
@@ -65,103 +66,39 @@
 import {
     Forex
 } from '~/vuexes/forex'
+import {
+    Core
+} from '@/vuexes/core'
 export default {
     data: () => ({
-        brokeraccount: [],
+        items: [],
         page: 1,
         max: 3,
-        users: [{
-                "id": 1,
-                "account": "00154775349789",
-                "broker": "FBS",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 2,
-                "account": "00154775349789",
-                "broker": "Antonette",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 3,
-                "account": "00154775349789",
-                "broker": "Samantha",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 4,
-                "account": "00154775349789",
-                "broker": "Karianne",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 5,
-                "account": "00154775349789",
-                "broker": "Kamren",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 6,
-                "account": "00154775349789",
-                "broker": "Leopoldo_Corkery",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 7,
-                "account": "00154775349789",
-                "broker": "Elwyn.Skiles",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 8,
-                "account": "00154775349789",
-                "broker": "Maxime_Nienow",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 9,
-                "account": "00154775349789",
-                "broker": "Delphine",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 10,
-                "account": "00154775349789",
-                "broker": "Moriah.Stanton",
-                "accounttype": "0112483941234",
-                "date": "2/15/2020, 10:30 AM",
-                "status": "Approve",
-            }
-        ],
+      
     }),
     async created() {
         this.startup()
     },
-    methods:{
-        async startup(){
-            this.brokeraccount = await Forex.getAccountForex()
+    methods: {
+        async startup() {
+            this.items = await Core.getHttp(`/api/finance/brokeraccount/?page=${this.page}`)
+            if (this.items.results.length > 0) {
+                this.headers = _.map(Object.keys(this.items.results[0]), (r) => {
+                    return {
+                        text: r,
+                        value: r
+                    }
+                })
+            }
         }
     },
-    computed:{
+    computed: {
 
+    },
+    watch: {
+        async page(oldVal, newVal) {
+            await this.startup();
+        }
     }
 }
 </script>
