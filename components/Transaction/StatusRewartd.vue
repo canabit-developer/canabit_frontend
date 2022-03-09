@@ -28,23 +28,23 @@
                 </vs-tr>
             </template>
             <template #tbody>
-                <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
+                <vs-tr :key="i" v-for="(statusreward, i) in statusreward" :data="statusreward">
                     <vs-td>
-                        {{ tr.ordernumber }}
+                        {{ statusreward.code }}
                     </vs-td>
                     <vs-td>
-                        <p class="text-blue-600">{{ tr.rewardname }}</p>
+                        <p class="text-blue-600">{{ statusreward.product }}</p>
                     </vs-td>
                     <vs-td>
-                        {{ tr.date }}
+                        {{ statusreward.created_at }}
                     </vs-td>
                     <vs-td>
-                        <p class="text-red-400">{{ tr.point }} point</p>
+                        <p class="text-red-400">{{ statusreward.point_use }} point</p>
                     </vs-td>
                     <vs-td>
                         <vs-tooltip success>
                             <vs-button success flat>
-                                {{ tr.status }}
+                                {{ statusreward.status }}
                             </vs-button>
                             <template #tooltip>
                                 This is a beautiful button
@@ -57,7 +57,7 @@
                         </vs-button>
                     </vs-td>
                     <vs-td>
-                        {{ tr.remark }}
+                        {{ statusreward.remark }}
                     </vs-td>
                 </vs-tr>
             </template>
@@ -71,8 +71,11 @@
 </template>
 
 <script>
+import {Transaction} from '@/vuexes/transaction'
 export default {
+
     data: () => ({
+        statusreward: [],
         page: 1,
         max: 3,
         users: [{
@@ -148,8 +151,20 @@ export default {
                 "remark": "*The product has been shipped already, please check the parcel number in the email.",
             },
 
-        ]
-    })
+        ],
+        response:false,
+    }),
+    async created() {
+        await this.startup();
+    },
+    methods: {
+        async startup(){
+            this.statusreward = await Transaction.getRewardHistory()
+        }
+    },
+    computed: {
+
+    }
 }
 </script>
 

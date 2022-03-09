@@ -7,9 +7,10 @@
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
 
                 <v-spacer></v-spacer>
-                <v-btn dark rounded color="blue" class="my-point">
-                    <v-icon style="color:white;">mdi-bitcoin</v-icon> Point : 8000
-                </v-btn>
+               
+                <vs-button color="#4ade80" floating class="my-point" >
+                     <v-icon style="color:white;">mdi-bitcoin</v-icon> Point : 8000
+                </vs-button>
 
             </div>
         </div>
@@ -51,7 +52,7 @@
                 <UserMenu-NavbarLink path="/signals" title="Indicator" icon="mdi-broadcast"></UserMenu-NavbarLink>
                 <UserMenu-NavbarLink path="/copytrade" title=" Copy Trade" icon="mdi-crown-outline"></UserMenu-NavbarLink>
             </UserMenu-NavMenuGroup>
-            
+
             <UserMenu-NavMenuSectionTitle title="USER SETTING"></UserMenu-NavMenuSectionTitle>
             <UserMenu-NavbarLink path="/accountstatus" title="History Account" icon="mdi-history"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog-outline"></UserMenu-NavbarLink>

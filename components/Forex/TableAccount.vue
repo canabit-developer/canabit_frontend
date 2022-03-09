@@ -2,7 +2,7 @@
 <div>
     <div class="p-4">
         <div class="p-8 ">
-            
+
             <vs-table>
                 <template #thead>
                     <vs-tr>
@@ -24,7 +24,7 @@
                     </vs-tr>
                 </template>
                 <template #tbody>
-                    <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
+                    <vs-tr :key="i" v-for="(tr, i) in brokeraccount" :data="brokeraccount">
                         <vs-td>
                             {{ tr.id }}
                         </vs-td>
@@ -37,10 +37,10 @@
                         <vs-td>
                             <v-avatar size="23px" class="m-1">
                                 <img src="../../assets/misc/STAND.png" alt="John">
-                            </v-avatar>{{ tr.accounttype }}
+                            </v-avatar>{{ tr.account_type }}
                         </vs-td>
                         <vs-td>
-                            {{ tr.date }}
+                            {{ tr.created_at }}
                         </vs-td>
                         <vs-td>
                             <v-chip label color="#E0FBE2">
@@ -52,7 +52,7 @@
                 <template #footer>
                     <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
                 </template>
-                
+
             </vs-table>
             
         </div>
@@ -62,8 +62,12 @@
 </template>
 
 <script>
+import {
+    Forex
+} from '~/vuexes/forex'
 export default {
     data: () => ({
+        brokeraccount: [],
         page: 1,
         max: 3,
         users: [{
@@ -146,8 +150,19 @@ export default {
                 "date": "2/15/2020, 10:30 AM",
                 "status": "Approve",
             }
-        ]
-    })
+        ],
+    }),
+    async created() {
+        this.startup()
+    },
+    methods:{
+        async startup(){
+            this.brokeraccount = await Forex.getAccountForex()
+        }
+    },
+    computed:{
+
+    }
 }
 </script>
 

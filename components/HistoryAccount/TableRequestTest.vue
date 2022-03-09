@@ -16,17 +16,17 @@
                 </vs-tr>
             </template>
             <template #tbody>
-                <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
+                <vs-tr :key="i" v-for="(requestea, i) in requestea" :data="requestea">
                     <vs-td>
-                        {{ tr.id }}
+                        {{ requestea.code }}
                     </vs-td>
                     <vs-td>
                         <v-avatar class="m-1" size="30" tile>
                             <img src="@/assets/misc/gri.png" alt="John" class="rounded-lg ">
-                        </v-avatar>{{ tr.username }}
+                        </v-avatar>{{ requestea.product }}
                     </vs-td>
                     <vs-td>
-                        {{ tr.createdate }} 
+                        {{ requestea.created_at }} 
                     </vs-td>
                 </vs-tr>
             </template>
@@ -34,14 +34,16 @@
                 <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
             </template>
         </vs-table>
-
+        <pre>{{requestea}}</pre>
     </div>
 </div>
 </template>
 
 <script>
+import {HistoryAccount} from '~/vuexes/historyaccount'
 export default {
     data: () => ({
+        requestea:[],
         page: 1,
         max: 3,
         users: [{
@@ -136,7 +138,18 @@ export default {
                 "status": "Reject",
             }
         ]
-    })
+    }),
+    async created(){
+        this.startup()
+    },
+    methods:{
+         async startup(){
+            this.requestea = await HistoryAccount.getRquestTestEA()
+        }
+    },
+    computed:{
+
+    }
 }
 </script>
 

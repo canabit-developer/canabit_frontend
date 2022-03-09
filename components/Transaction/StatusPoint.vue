@@ -30,7 +30,7 @@
                         {{ tr.name }}
                     </vs-td>
                     <vs-td>
-                         <p class="text-green-500">+ {{ tr.price }} point </p>
+                        <p class="text-green-500">+ {{ tr.price }} point </p>
                     </vs-td>
                     <vs-td>
                         {{ tr.createdate }}
@@ -52,13 +52,18 @@
                 <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
             </template>
         </vs-table>
+        <pre>{{statuspoint}}</pre>
     </div>
 </div>
 </template>
 
 <script>
+import {
+    Transaction
+} from '~/vuexes/transaction'
 export default {
     data: () => ({
+        statuspoint: [],
         page: 1,
         max: 3,
         users: [{
@@ -152,8 +157,18 @@ export default {
                 "createdate": "5/23/2020, 10:45 AM",
                 "status": "Approve",
             }
-        ]
-    })
+        ],
+    }),
+    async created() {
+        this.startup()
+    },
+    methods: {
+        async startup() {
+            this.statuspoint = await Transaction.getStatusPoint()
+        }
+    },
+    computed: {}
+
 }
 </script>
 

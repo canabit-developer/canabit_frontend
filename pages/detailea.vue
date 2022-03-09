@@ -6,11 +6,11 @@
                 <div class="px-4 py-16">
                     <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
                         <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
-                            A simple and smart tool that will help grow your business
+                           Intelligent innovation, Make your trading easy
                         </h1>
 
                         <p class="text-white md:text-xl md:px-18">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit hello.
+                            EA service, the automated trading system from CANABIT is not for everyone. If you have studied the information It is worth considering whether this investment strategy and approach fits your expectations. If this approach is Let's go together.
                         </p>
 
                         <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>

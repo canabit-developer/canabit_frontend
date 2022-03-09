@@ -6,11 +6,11 @@
                 <div class="px-4 py-16">
                     <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
                         <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
-                            A simple and smart tool that will help grow your business
+                            EDIT ACCOUT , SECURITY , KYC
                         </h1>
 
                         <p class="text-white md:text-xl md:px-18">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit hello.
+                            Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in
                         </p>
 
                         <div class="hidden md:block h-5 w-5 rounded-full bg-green-500 absolute top-0 right-0 -mr-40 mt-32"></div>

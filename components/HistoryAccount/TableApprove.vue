@@ -14,7 +14,7 @@
                         Broker
                     </vs-th>
                     <vs-th>
-                        Account No
+                        Account Type
                     </vs-th>
                     <vs-th>
                         Price
@@ -31,41 +31,43 @@
                 </vs-tr>
             </template>
             <template #tbody>
-                <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
+                <vs-tr :key="i" v-for="(historyaccountea, i) in historyaccountea" :data="historyaccountea">
                     <vs-td>
-                        {{ tr.id }}
+                        {{ historyaccountea.code }}
                     </vs-td>
                     <vs-td>
                         <v-avatar class=" m-1" size="30" tile>
                            <img src="@/assets/misc/logo_highrisk.png" alt="John" class="rounded-lg ">    
-                        </v-avatar>{{ tr.name }}
+                        </v-avatar>{{ historyaccountea.product }}
                     </vs-td>
                     <vs-td>
                         <v-avatar class=" m-1" size="30" tile>
                             <img src="@/assets/misc/fbs.png" alt="John" class="rounded-lg ">
-                        </v-avatar>{{ tr.brokername }} 
+                        </v-avatar>{{ historyaccountea.broker }} 
                     </vs-td>
                     <vs-td>
                         <v-avatar class=" m-1" size="18" tile>
                             <img src="../../assets/misc/CENT.png"  class="rounded-lg">
-                        </v-avatar>{{ tr.accountno }}
+                        </v-avatar>{{ historyaccountea.account_type }}
                     </vs-td>
                     <vs-td>
-                        {{ tr.price }} $
+                        {{ historyaccountea.price }} $
                     </vs-td>
                     <vs-td>
-                        {{ tr.createdate }}
+                        {{ historyaccountea.created_at }}
                     </vs-td>
                     <vs-td>
                         <vs-tooltip success>
                             <vs-button success flat>
-                                {{ tr.status }}
+                                {{ historyaccountea.status }}
                             </vs-button>
                             <template #tooltip>
                                 This is a beautiful button
                             </template>
                         </vs-tooltip>
-
+                    </vs-td>
+                    <vs-td>
+                        {{ historyaccountea.remark }} 
                     </vs-td>
                 </vs-tr>
             </template>
@@ -73,14 +75,15 @@
                 <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
             </template>
         </vs-table>
-
     </div>
 </div>
 </template>
 
 <script>
+import {HistoryAccount} from '~/vuexes/historyaccount'
 export default {
     data: () => ({
+        historyaccountea:[],
         page: 1,
         max: 3,
         users: [{
@@ -175,7 +178,18 @@ export default {
                 "status": "Approve",
             }
         ]
-    })
+    }),
+    async created() {
+        await this.startup();
+    },
+    methods:{
+        async startup(){
+            this.historyaccountea = await HistoryAccount.getEA()
+        }
+    },
+    computed:{
+
+    }
 }
 </script>
 
