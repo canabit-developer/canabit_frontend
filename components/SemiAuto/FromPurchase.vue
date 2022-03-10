@@ -16,21 +16,23 @@
 
                 <div class="con-form">
                     <v-container>
-                        <v-row>
-                            <v-col cols="12" sm="6">
-                                <v-text-field label="Account No" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                                <v-text-field label="Discount" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                                <v-text-field label="Point" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
-                            </v-col>
-                            <v-col cols="12" sm="6">
-                                <h1 class="text-4xl font-semibold leading-9 text-green-400 text-center">Total Price : 140 $</h1>
+                        <v-form>
+                            <v-row>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-text-field label="Account No" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-text-field label="Discount" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="6" md="6">
+                                    <v-text-field label="Point" value="Grocery delivery" hint="For example, flowers or used cars" outlined></v-text-field>
+                                </v-col>
+                                <v-col cols="12" sm="6">
+                                    <h1 class="text-4xl font-semibold leading-9 text-green-400 text-center">Total Price : 140 $</h1>
+                                </v-col>
+                            </v-row>
+                        </v-form>
 
-                            </v-col>
-                        </v-row>
                     </v-container>
 
                 </div>

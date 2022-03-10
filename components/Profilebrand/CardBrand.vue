@@ -14,7 +14,7 @@
               Fiat Currency
             </p>
 
-            <vs-button color="#884CF7" >
+            <vs-button color="#fff" >
               View Web Brand
             </vs-button>
           </div>

@@ -52,21 +52,20 @@
 
         <div class="w-full  md:w-3/5 p-8 bg-white lg:ml-16 ">
 
-            <v-form>
+            <v-form @submit="cashout()">
                 <v-row>
                     <v-col cols="12" md="12">
-                        <v-text-field label="Point to Cashout" prepend-inner-icon="mdi-alpha-p-circle-outline" outlined dense id="firstname"  hide-details></v-text-field>
+                        <v-text-field label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-alpha-p-circle-outline" outlined dense id="firstname"  hide-details></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
-                        <v-text-field label="Name" prepend-inner-icon="mdi-account" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
+                        <v-text-field label="Name" v-model="form.name" prepend-inner-icon="mdi-account" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
-                        <v-text-field label="Bank Account Number" prepend-inner-icon="mdi-lock-outline" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
+                        <v-text-field label="Bank Account Number" v-model="form.bankcode" prepend-inner-icon="mdi-lock-outline" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
-                        <v-text-field label="Name Bank" prepend-inner-icon="mdi-bank-transfer" outlined dense id="Name" placeholder="Name Bank" hide-details></v-text-field>
+                        <v-text-field label="Name Bank" v-model="form.bankname" prepend-inner-icon="mdi-bank-transfer" outlined dense id="Name" placeholder="Name Bank" hide-details></v-text-field>
                     </v-col>
-
                     <vs-button color="primary" class="w-full py-3 mt-6 font-medium">
                         Cashout
                     </vs-button>
@@ -79,7 +78,26 @@
 </template>
 
 <script>
+import {CashOut} from '~/vuexes/cashout'
 export default {
+    data:() =>({
+        form:{
+            point: null,
+            name: null,
+            bankcode: null,
+            bankname:null
+        }
+    }),
+    async created(){
+        
+    },
+    methods:{
+        async cashout(){
+            await CashOut.postCashout(this.form)
+        }
+    },
+    computed:{
 
+    }
 }
 </script>

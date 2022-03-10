@@ -32,7 +32,7 @@
 
             <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:-mt-96 md:-mt-24" >
                 <div class="p-2 rounded-xl shadow-md bg-white  mb: -mt-24">
-                    <v-clo justify-center>
+                    <v-col justify-center>
                         <v-tabs v-model="tab"  grow>
                             <v-tab v-for="item in items" :key="item">
                                 {{ item }}
@@ -56,7 +56,7 @@
                                 </v-card>
                             </v-tab-item>
                         </v-tabs-items>
-                    </v-clo>
+                    </v-col>
                 </div>
             </div>
         </div>

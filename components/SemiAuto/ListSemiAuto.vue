@@ -38,7 +38,7 @@
             </div>
 
             <vs-row w="12" class="-mt-5" justify="center">
-                <vs-clos v-for="col,index in 6" :key="index" class="p-2 mt-2">
+                <vs-clos v-for="col,index in 2" :key="index" class="p-2 mt-2">
                     <vs-card>
                         <template #title>
                             <h3>Pot with a plant</h3>
@@ -75,15 +75,26 @@
                 </vs-clos>
             </vs-row>
         </div>
+        <pre>{{eaproduct}}</pre>
     </div>
 </div>
 </template>
 
 <script>
+import {EA} from '~/vuexes/ea'
 export default {
     data: () => ({
         active: false,
-    })
+        eaproduct:[],
+    }),
+    async created(){
+        this.startup()
+    },
+    methods:{
+        async startup(){
+            this.eaproduct = await EA.getEAProduct()
+        }
+    },
 }
 </script>
 

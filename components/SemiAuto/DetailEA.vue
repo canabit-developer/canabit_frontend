@@ -55,16 +55,20 @@
                     </p>
 
                 </div>
-
             </div>
+            
         </v-col>
+        
     </div>
 </div>
 </template>
 
 <script>
-export default {
 
+export default {
+    data:() =>({
+       
+    }),
 }
 </script>
 

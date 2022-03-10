@@ -8,23 +8,53 @@
             <Dashboard-Slide></Dashboard-Slide>
         </div>
         <div class="flex flex-col md:flex-row md:h-60 mt-4">
-            <div class="w-full md:w-1/2 p-3">
+            <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-0 bg-white ">
+                <div class="space-y-16 mt-2 ">
+                    <div class="mt-6 md:max-w-xl w-96 h-56 m-auto bg-red-100 rounded-xl relative text-white shadow-lg transition-transform transform hover:scale-110 ">
+                        <img class="relative object-cover w-full h-full rounded-xl" src="https://i.imgur.com/kGkSg1v.png">
+                        <div class="w-full px-8 absolute top-8">
+                            <div class="">
+                                <div class="flex justify-between">
+                                    <p class="font-light">
+                                        Name
+                                    </p>
+                                    <p class="font-medium tracking-widest">
+                                        Karthik P
+                                    </p>
+                                </div>
 
-                <v-card elevation="4" class="w-full h-full bgh" style=" border:0;">
-                    <v-card-text>
-                        <h2 class="text-3xl text-white font-semibold">Cash out</h2>
-                    </v-card-text>
-                    <v-card-actions>
-                        <div class="p-2 flex">
-                            <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-                            <v-spacer></v-spacer>
-                            <v-btn @click="$router.push(`/cashout`)" rounded fab>
-                                <v-icon>mdi-arrow-right</v-icon>
-                            </v-btn>
+                            </div>
+                            <div class="pt-1 flex justify-between">
+
+                                <p class="font-light">
+                                    Point Number
+                                </p>
+                                <p class="font-medium tracking-more-wider">
+                                    12,345,789 point
+                                </p>
+                            </div>
+
+                            <div class="flex justify-between mt-4">
+                                <div class="">
+                                    <p class="font-light text-xs">
+                                        Valid
+
+                                        <p class="font-medium tracking-wider text-sm">
+                                            11/15
+                                        </p>
+                                </div>
+                                <div class="">
+                                    <p class="font-light text-xs text-xs">
+                                        Expiry
+
+                                        <p class="font-medium tracking-wider text-sm">
+                                            03/25
+                                        </p>
+                                </div>
+                            </div>
                         </div>
-
-                    </v-card-actions>
-                </v-card>
+                    </div>
+                </div>
             </div>
             <div class="w-full md:w-1/2 p-3">
                 <div class="w-full h-1/2">
@@ -71,7 +101,7 @@
                     </div>
                 </div>
                 <div class="pt-3 w-full h-1/2">
-                   
+
                     <div class="max-w-3xl w-full mx-auto z-10">
                         <div class="flex flex-col">
                             <div class="bg-sky-400  border-white shadow-lg  rounded-3xl p-4 ">
