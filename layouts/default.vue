@@ -3,7 +3,7 @@
     <Core-Loading></Core-Loading>
     <UserMenu-MainMenu></UserMenu-MainMenu>
 
-    <v-main >
+    <v-main>
         <Core-Notification />
         <div class=" md:ml-28 md:mr-28">
             <Nuxt />
@@ -16,7 +16,8 @@
 
 <script>
 import {
-    Auth} from '@/vuexes/auth'
+    Auth
+} from '@/vuexes/auth'
 export default {
     name: 'DefaultLayout',
     data() {
@@ -27,21 +28,21 @@ export default {
         }
     },
     async created() {
-     
+
         await this.initial()
-            await Auth.checkUser();
+        await Auth.checkUser();
     },
     methods: {
         async initial() {
             await Auth.checkToken();
             this.user = await Auth.setUser();
             await this.checkUser();
-            this.response = (this.user.id) ? true : false; 
+            this.response = (this.user.id) ? true : false;
         },
         async checkUser() {
             let user = await Auth.getUser();
             if (!user.id) {
-              await this.$router.replace(`/home/`)
+                await this.$router.replace(`/home/`)
             }
         }
     }
@@ -50,7 +51,36 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap');
- * {
-     font-family: 'Noto Sans Thai', sans-serif !important;
- }
+
+* {
+    font-family: 'Noto Sans Thai', sans-serif !important;
+}
+
+ul.breadcrumb {
+    border-radius: 50px;
+    padding: 4px 10px;
+    list-style: none;
+    background-color: #eee;
+}
+
+ul.breadcrumb li {
+    display: inline;
+    font-size: 12px;
+}
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+ul.breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+}
+
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
 </style>

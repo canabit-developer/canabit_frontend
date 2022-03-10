@@ -16,26 +16,19 @@
                 <div class="con-form">
                     <v-container>
                         <form @submit.prevent="store()">
-                            <v-row>
-                                <v-col cols="12" sm="6">
-                                    <v-text-field label="Account No" v-model="form.account_no" hint="For example, flowers or used cars" outlined></v-text-field>
-                                </v-col>
-                                <v-col cols="12" sm="6">
-                                    <v-select item-text="name" item-value="id" persistent-hint hint="www.example.com/page" v-model="form.broker" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
-                                </v-col>
-                                <v-col cols="12" sm="6">
-                                    <v-select  item-text="name" item-value="id" persistent-hint hint="www.example.com/page" v-model="form.account_type"  :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
-                                </v-col>
-                            </v-row>
-                              <vs-button type="submit" block floating color="#4ade80">
-                            + Add  Account
-                        </vs-button>
+                            <v-text-field required label="Account No" v-model="form.account_no" hint="For example, 222 444" outlined></v-text-field>
+                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.broker" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
+                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.account_type" :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
+
+                            <vs-button v-if="form.broker && form.account_type" type="submit" block floating color="#4ade80">
+                                + Add  Account
+                            </vs-button>
                         </form>
 
                     </v-container>
 
                 </div>
-                 
+
             </vs-dialog>
         </div>
     </template>
@@ -56,8 +49,8 @@ import moment from 'moment'
 export default {
     data: () => ({
         accounttype: [],
-        broker: [], 
-        active: false, 
+        broker: [],
+        active: false,
         form: {}
     }),
     async created() {
@@ -68,10 +61,10 @@ export default {
             this.accounttype = await Forex.getAccountType()
             this.broker = await Forex.getBroker()
         },
-        async store(){
-            this.form.user = Auth.user.id 
+        async store() {
+            this.form.user = Auth.user.id
             this.form.broker_no = moment().format('DDMMYYhhmmss')
-            let add = await Core.postHttpAlert(`/api/finance/brokeraccount/`,this.form)
+            let add = await Core.postHttpAlert(`/api/finance/brokeraccount/`, this.form)
             this.active = false;
             location.reload();
         }
