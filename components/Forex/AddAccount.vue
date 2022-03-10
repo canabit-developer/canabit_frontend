@@ -15,10 +15,10 @@
 
                 <div class="con-form">
                     <v-container>
-                        <v-form>
+                        <form @submit.prevent="store()">
                             <v-row>
                                 <v-col cols="12" sm="6">
-                                    <v-text-field label="Account No" v-model="form.broker_no" hint="For example, flowers or used cars" outlined></v-text-field>
+                                    <v-text-field label="Account No" v-model="form.account_no" hint="For example, flowers or used cars" outlined></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="6">
                                     <v-select item-text="name" item-value="id" persistent-hint hint="www.example.com/page" v-model="form.broker" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
@@ -27,18 +27,15 @@
                                     <v-select  item-text="name" item-value="id" persistent-hint hint="www.example.com/page" v-model="form.account_type"  :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
                                 </v-col>
                             </v-row>
-                        </v-form>
+                              <vs-button type="submit" block floating color="#4ade80">
+                            + Add  Account
+                        </vs-button>
+                        </form>
 
                     </v-container>
 
                 </div>
-                <template #footer>
-                    <div class="footer-dialog">
-                        <vs-button block floating color="#4ade80">
-                            + Add  Account
-                        </vs-button>
-                    </div>
-                </template>
+                 
             </vs-dialog>
         </div>
     </template>
@@ -52,7 +49,10 @@ import {
 import {
     Forex
 } from '~/vuexes/forex'
-
+import {
+    Auth
+} from '~/vuexes/auth'
+import moment from 'moment'
 export default {
     data: () => ({
         accounttype: [],
@@ -67,6 +67,13 @@ export default {
         async startup() {
             this.accounttype = await Forex.getAccountType()
             this.broker = await Forex.getBroker()
+        },
+        async store(){
+            this.form.user = Auth.user.id 
+            this.form.broker_no = moment().format('DDMMYYhhmmss')
+            let add = await Core.postHttpAlert(`/api/finance/brokeraccount/`,this.form)
+            this.active = false;
+            location.reload();
         }
     },
     computed: {
