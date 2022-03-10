@@ -40,7 +40,7 @@
                             <h3>{{copytradeproduct.name}}</h3>
                         </template>
                         <template #img>
-                            <img src="@/assets/misc/logo_joker.png" alt="">
+                            <img :src="copytradeproduct.image" alt="">
                         </template>
                         <template #text>
                             <p>
@@ -55,7 +55,6 @@
                     </vs-card>
                 </vs-clos>
             </vs-row>
-            <pre>{{copytradeproduct}}</pre>
         </div>
     </div>
 </div>

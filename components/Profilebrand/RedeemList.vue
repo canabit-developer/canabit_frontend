@@ -28,7 +28,6 @@
                 </v-col>
             </v-row>
         </v-container>
-        <pre>{{storeproduct}}</pre>
     </v-item-group>
 </div>
 </template>

@@ -44,7 +44,7 @@
                             <h3>{{eaproduct.name}}</h3>
                         </template>
                         <template #img>
-                            <img :src="eaproduct" alt="">
+                            <img :src="eaproduct.image" alt="">
                         </template>
                         <template #text>
                             <p>
@@ -87,7 +87,7 @@ export default {
         eaproduct:[],
     }),
     async created(){
-        this.startup()
+        await this.startup()
     },
     methods:{
         async startup(){

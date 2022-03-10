@@ -43,7 +43,7 @@
                         <h3>{{indicatorsproduct.name}}</h3>
                     </template>
                     <template #img>
-                        <img src="@/assets/misc/signal.png" alt="">
+                        <img :src="indicatorsproduct.image" alt="">
                     </template>
                     <template #text>
                         <p>
@@ -67,7 +67,6 @@
                 </vs-card>
             </vs-clos>
         </vs-row>
-        <pre>{{indicatorsproduct}}</pre>
     </div>
 </div>
 </template>
