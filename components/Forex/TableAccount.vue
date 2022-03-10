@@ -2,7 +2,13 @@
 <div>
     <div class="p-4"  v-if="response">
         <div class="p-8 "> 
-            <v-data-table :headers="headers" :items="items" class="elevation-1"></v-data-table> 
+            <v-data-table :headers="headers" :items="items" class="elevation-1">
+             <template v-slot:item.actions="{ item }">
+                <div>
+                    <v-btn @click="removeBrokerAccount(item.id)" color="error" small>delete</v-btn>
+                </div>
+      </template>
+            </v-data-table> 
         </div>
     </div>
 
@@ -54,8 +60,17 @@ export default {
                         text: r,
                         value: r
                     }
+                }) 
+                this.headers.push({
+                        text: 'Action',
+                        value: "actions",
+                        sortable: false
                 })
             }
+        },
+        async removeBrokerAccount(id){
+            let remove = await Core.deleteHttpAlert(`/api/finance/brokeraccount/${id}/`)
+            await this.startup();
         },
         async getBrokers(){
             this.brokers = await Core.getHttp(`/api/finance/broker/`)
