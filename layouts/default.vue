@@ -49,8 +49,8 @@ export default {
 </script>
 
 <style>
-/* @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
-*{
-    font-family: 'Kanit', sans-serif!important;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap');
+ * {
+     font-family: 'Noto Sans Thai', sans-serif !important;
+ }
 </style>

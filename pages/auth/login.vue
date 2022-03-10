@@ -1,88 +1,88 @@
 <template>
 <div>
-    <v-card class="auth-card">
-        <!-- logo -->
-        <v-card-title class="d-flex align-center justify-center py-7">
-            <router-link to="/" class="d-flex align-center">
-                <img class="h-14" src="~/static/images/logos/canabit_vector.svg" alt="">
-            </router-link>
-        </v-card-title>
-
-        <!-- title -->
-        <v-card-text>
-            <p class="text-2xl font-weight-semibold text--primary mb-2 text-center ">
-                Welcome to Cannabit! 👋🏻
-            </p>
-            <p class="mb-2">
-                Please sign-in to your account and start the adventure
-            </p>
-        </v-card-text>
-
-        <!-- login form -->
-        <v-card-text>
-            <div v-if="error.detail">
-                <v-alert dense outlined text type="error" :value="true">
-                    {{error.detail}}
-                </v-alert>
+    <div>
+        <section class="min-h-screen flex items-stretch  ">
+            <div class="lg:flex w-1/2 hidden bg-green-400 bg-no-repeat bg-cover relative items-center">
+                <div class="w-full px-24 z-10 text-white">
+                    <h1 class="text-5xl font-bold text-left tracking-wide">CASH BACK</h1><br><br>
+                    <h1 class="text-3xl font-bold text-left tracking-wide">Let’s Trade something amazing today.</h1>
+                    <p class="text-2xl my-4">Maybe some text here will help me see it better. Oh God. Oke, let’s do it then. </p>
+                </div>
             </div>
-            <div v-if="errorRegister.email">
-                <v-alert dense outlined text v-for="(message,i) in errorRegister.email" :key="i" type="error" :value="true">
-                    {{message}}
-                </v-alert>
-            </div>
-            <div v-if="errorRegister.password">
-                <v-alert dense outlined text v-for="(message,i) in errorRegister.password" :key="i" type="error" :value="true">
-                    {{message}}
-                </v-alert>
-            </div>
+            <div class="lg:w-1/2 w-full flex items-center justify-center   md:px-16 px-0 z-0">
+                <div class="w-full py-6 z-20">
+                  
+                    <form @submit.prevent="login" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                        <h1 class="font-bold text-4xl">Cash Back</h1><br><br>
+                        <h1 class=" font-bold text-2xl">
+                            Welcome back!
+                        </h1>
+                        <p>
+                            Let's build someting great
+                        </p><br>
+                          <div>  
+                          <div v-if="userCheckError">
+                            <v-alert dense outlined text  type="error" :value="true">
+                                "ไม่พบผู้ใช้งาน"
+                            </v-alert>
+                        </div>
+                        <div v-if="error.detail">
+                            <v-alert dense outlined text type="error" :value="true">
+                                {{error.detail}}
+                            </v-alert>
+                        </div>
+                        <div v-if="errorRegister.email">
+                            <v-alert dense outlined text v-for="(message,i) in errorRegister.email" :key="i" type="error" :value="true">
+                                {{message}}
+                            </v-alert>
+                        </div>
+                        <div v-if="errorRegister.password">
+                            <v-alert dense outlined text v-for="(message,i) in errorRegister.password" :key="i" type="error" :value="true">
+                                {{message}}
+                            </v-alert>
+                        </div>
 
-            <div v-if="errorRegister.phone_number">
-                <v-alert dense outlined text v-for="(message,i) in errorRegister.phone_number" :key="i" type="error" :value="true">
-                    {{message}}
-                </v-alert>
-            </div>
-            <form @submit.prevent="login">
-                <v-text-field prepend-inner-icon="mdi-card-account-details" v-model="form.username" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
-                <br>
-                <v-text-field prepend-inner-icon="mdi-form-textbox-password" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <div v-if="errorRegister.phone_number">
+                            <v-alert dense outlined text v-for="(message,i) in errorRegister.phone_number" :key="i" type="error" :value="true">
+                                {{message}}
+                            </v-alert>
+                        </div>
+                    </div>
+                        <v-text-field prepend-inner-icon="mdi-card-account-details" v-model="form.username" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
+                        <br>
+                        <v-text-field prepend-inner-icon="mdi-form-textbox-password" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
 
-                <div class="d-flex align-center justify-space-between flex-wrap">
-                    <v-spacer></v-spacer>
-
-                    <router-link class="mt-1" :to="{path:'/auth/forgot'}">
-                        Forgot Password?
-                    </router-link>
+                        <v-btn type="submit" x-large dark block class="bg-primary-g mt-6">
+                            Login
+                        </v-btn>
+                        <div class="d-flex align-center justify-space-between flex-wrap mt-4">
+                            <p class="mt-1">Don’t have an account?
+                                <router-link :to="{path:'/auth/register'}">
+                                    Get started
+                                </router-link>
+                            </p>
+                            <v-spacer></v-spacer>
+                            <p class="mt-1">
+                                <router-link :to="{path:'/auth/forgot'}">
+                                    Forgot Password?
+                                </router-link>
+                            </p>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
+                    <div class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                        <center>
+                            <p>Or Use Social accounts</p>
+                        </center>
+                        <Auth-SocialLogin @callback="callback"></Auth-SocialLogin> <br>
+                    </div>
                 </div>
 
-                <v-btn type="submit" x-large dark block class="bg-primary-g mt-6">
-                    Login
-                </v-btn>
-            </form>
-        </v-card-text>
-
-        <!-- create new account  -->
-        <v-card-text class="d-flex align-center justify-center flex-wrap mt-2">
-            <span class="me-2">
-                New on our platform?
-            </span>
-            <router-link class="font-semibold" :to="{path:'/auth/register'}">
-                Create an account
-            </router-link>
-        </v-card-text>
-
-        <!-- divider -->
-        <v-card-text class="d-flex align-center mt-2">
-            <v-divider></v-divider>
-            <span class="mx-5">or</span>
-            <v-divider></v-divider>
-        </v-card-text>
-
-        <!-- social links -->
-        <v-card-actions class="flex flex-col w-full">
-            <Auth-SocialLogin @callback="callback"></Auth-SocialLogin> <br>
-
-        </v-card-actions>
-    </v-card>
+            </div>
+        </section>
+    </div>
+   
 
 </div>
 </template>
@@ -108,7 +108,8 @@ export default {
                 password: ''
             },
             error: {},
-            errorRegister: {}
+            errorRegister: {},
+            userCheckError:false
         })
     },
     async created() {
@@ -124,6 +125,7 @@ export default {
                     await Auth.storeToken(signin.key)
                     await Auth.storeTokenToStorage(signin.key)
                     await this.$router.replace(`/`)
+                    this.userCheckError = false
                     return true
                 } else {
                     if (alert) {
@@ -131,14 +133,18 @@ export default {
                     }
                     return false
                 }
-            } 
+            }else{
+               // alert('sdsd');
+                this.userCheckError = true
+                console.log(this.userCheckError);
+            }
         },
         async callback(user) {
-             await Web.switchLoad(true)
+            await Web.switchLoad(true)
             this.form = user.login
             let logined = await this.login(false)
             if (!logined) {
-               
+
                 let registerUser = await Auth.register(user.register)
                 if (registerUser.id) {
                     await Web.switchLoad(false)
@@ -157,19 +163,21 @@ export default {
         },
 
         async generateKyc(userId) {
-       let kyc = await Core.postHttp(`/api/account/kyc/`,{user:userId})
-       if(kyc.id){
-            this.$vs.notification({
-            color:'success', 
-            title: 'สร้างข้อมูล KYC สำเร็จแล้ว', 
-          })
-       }else{
-             this.$vs.notification({
-            color:'danger', 
-            title: 'สร้างข้อมูล KYC ไม่สำเร็จ', 
-          })
-       }
-    },
+            let kyc = await Core.postHttp(`/api/account/kyc/`, {
+                user: userId
+            })
+            if (kyc.id) {
+                this.$vs.notification({
+                    color: 'success',
+                    title: 'สร้างข้อมูล KYC สำเร็จแล้ว',
+                })
+            } else {
+                this.$vs.notification({
+                    color: 'danger',
+                    title: 'สร้างข้อมูล KYC ไม่สำเร็จ',
+                })
+            }
+        },
     }
 }
 </script>

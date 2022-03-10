@@ -1,10 +1,10 @@
 <template>
-<div>
-    <v-btn @click="loginFacebook()" class="capitalize " block large dark color="blue">
+<div class="flex flex-col md:flex-row justify-space-around items-around w-full">
+    <v-btn @click="loginFacebook()" class="capitalize "   large dark color="blue">
         <v-icon class="mr-2">mdi-facebook</v-icon>
         <span class="capitalize ">Contuine with Facebook</span>
     </v-btn><br>
-    <v-btn @click="loginGoogle()" block large color="white"><img class="h-4 w-auto mr-2" src="~/static/images/logos/google.png" alt="">
+    <v-btn @click="loginGoogle()"   large color="white"><img class="h-4 w-auto mr-2" src="~/static/images/logos/google.png" alt="">
         <span class="capitalize ">Contuine with Google</span>
     </v-btn>
 </div>

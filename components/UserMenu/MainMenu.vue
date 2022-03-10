@@ -44,7 +44,7 @@
             <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="mdi-bank-transfer"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink> -->
             <UserMenu-NavbarLink path="/forex" title="Forex" icon="mdi-finance"></UserMenu-NavbarLink>
-            <UserMenu-NavbarGroup title="Pages"></UserMenu-NavbarGroup>
+            <!-- <UserMenu-NavMenuGroup title="Pages"></UserMenu-NavMenuGroup> -->
             <!-- <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink> -->
             <UserMenu-NavMenuGroup icon="mdi-bookmark-multiple-outline" title="Product">
