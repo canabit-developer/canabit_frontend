@@ -1,61 +1,8 @@
 <template>
 <div>
-    <div class="p-4">
-        <div class="p-8 ">
-
-            <!-- <vs-table>
-                <template #thead>
-                    <vs-tr>
-                        <vs-th>
-                            No.
-                        </vs-th>
-                        <vs-th>
-                            Broker
-                        </vs-th>
-                        <vs-th>
-                            Account Type
-                        </vs-th>
-                        <vs-th>
-                            Date Create
-                        </vs-th>
-                        <vs-th>
-                            Status Account
-                        </vs-th>
-                    </vs-tr>
-                </template>
-                <template #tbody>
-                    <vs-tr :key="i" v-for="(tr, i) in items" :data="items">
-                        <vs-td>
-                            {{ tr.id }}
-                        </vs-td>
-                        <vs-td>
-                            <v-avatar rounded size="30px" class="m-1">
-                                <img src="@/assets/misc/exness.png" alt="John">
-                            </v-avatar>
-                            {{ tr.broker }}
-                        </vs-td>
-                        <vs-td>
-                            <v-avatar size="23px" class="m-1">
-                                <img src="../../assets/misc/STAND.png" alt="John">
-                            </v-avatar>{{ tr.account_type }}
-                        </vs-td>
-                        <vs-td>
-                            {{ tr.created_at }}
-                        </vs-td>
-                        <vs-td>
-                            <v-chip label color="#E0FBE2">
-                                <p class="text-green-400 ma-5">{{ tr.status }}</p>
-                            </v-chip>
-                        </vs-td>
-                    </vs-tr>
-                </template>
-                <template #footer>
-                    <vs-pagination v-model="page" :length="items.count/2" />
-                </template>
-
-            </vs-table> -->
-            <v-data-table :headers="headers" :items="items.results" class="elevation-1"></v-data-table>
-            <v-pagination :length="items.count/2" v-model="page"></v-pagination>
+    <div class="p-4"  v-if="response">
+        <div class="p-8 "> 
+            <v-data-table :headers="headers" :items="items" class="elevation-1"></v-data-table> 
         </div>
     </div>
 
@@ -69,27 +16,56 @@ import {
 import {
     Core
 } from '@/vuexes/core'
+import _ from 'lodash'
 export default {
     data: () => ({
         items: [],
-        page: 1,
-        max: 3,
+        headers:[], 
+        brokers:[],
+        accountTypes:[],
+        response:false
       
     }),
     async created() {
-        this.startup()
+        await this.startup()
+        this.response = true
     },
     methods: {
         async startup() {
-            this.items = await Core.getHttp(`/api/finance/brokeraccount/?page=${this.page}`)
-            if (this.items.results.length > 0) {
-                this.headers = _.map(Object.keys(this.items.results[0]), (r) => {
+            await this.getBrokers()
+            await this.getTable();
+        },
+
+        async getTable(){
+                this.items = await Core.getHttp(`/api/finance/brokeraccount/`) 
+            this.items = _.map(this.items,(r)=>{
+                let obj = r 
+                obj.broker = this.getNameBroker(obj.broker)
+                obj.account_type = this.getAccountType(obj.account_type)
+                obj.created_at = Core.convertDate(obj.created_at)
+                obj.updated_at = Core.convertDate(obj.updated_at)
+                delete obj.user
+                return obj
+            })
+
+            if (this.items.length > 0) {
+                this.headers = _.map(Object.keys(this.items[0]), (r) => { 
                     return {
                         text: r,
                         value: r
                     }
                 })
             }
+        },
+        async getBrokers(){
+            this.brokers = await Core.getHttp(`/api/finance/broker/`)
+            this.accountTypes = await Core.getHttp(`/api/finance/accounttype/`)
+        },
+        getNameBroker(id){
+           return _.find(this.brokers,{id:id}).name
+        },
+        getAccountType(id){
+            return _.find(this.accountTypes,{id:id}).name
         }
     },
     computed: {
