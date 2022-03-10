@@ -23,6 +23,9 @@ import {
     Core
 } from '@/vuexes/core'
 import _ from 'lodash'
+import {
+    Auth
+} from '@/vuexes/auth'
 export default {
     data: () => ({
         items: [],
@@ -43,7 +46,7 @@ export default {
         },
 
         async getTable(){
-                this.items = await Core.getHttp(`/api/finance/brokeraccount/`) 
+                this.items = await Core.getHttp(`/api/finance/brokeraccount/?user=${Auth.user.id}`) 
             this.items = _.map(this.items,(r)=>{
                 let obj = r 
                 obj.broker = this.getNameBroker(obj.broker)
