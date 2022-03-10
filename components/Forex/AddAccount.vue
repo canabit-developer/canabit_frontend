@@ -18,13 +18,13 @@
                         <v-form>
                             <v-row>
                                 <v-col cols="12" sm="6">
-                                    <v-text-field label="Account No" v-model="form.accountno" hint="For example, flowers or used cars" outlined></v-text-field>
+                                    <v-text-field label="Account No" v-model="form.broker_no" hint="For example, flowers or used cars" outlined></v-text-field>
                                 </v-col>
                                 <v-col cols="12" sm="6">
-                                    <v-select persistent-hint hint="www.example.com/page" v-model="selectbroker" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
+                                    <v-select item-text="name" item-value="id" persistent-hint hint="www.example.com/page" v-model="form.broker" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
                                 </v-col>
                                 <v-col cols="12" sm="6">
-                                    <v-select persistent-hint hint="www.example.com/page" v-model="selectaccounttype" :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
+                                    <v-select  item-text="name" item-value="id" persistent-hint hint="www.example.com/page" v-model="form.account_type"  :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
                                 </v-col>
                             </v-row>
                         </v-form>
@@ -56,20 +56,9 @@ import {
 export default {
     data: () => ({
         accounttype: [],
-        broker: [],
-
-        active: false,
-        input1: '',
-        input2: '',
-        select: null,
-        accountno: {},
-        selectbroker: {},
-        selectaccounttype: {
-
-        },
-        form: {
-            broker_no: null
-        }
+        broker: [], 
+        active: false, 
+        form: {}
     }),
     async created() {
         this.startup()
