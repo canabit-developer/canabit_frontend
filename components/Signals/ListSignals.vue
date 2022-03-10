@@ -37,19 +37,19 @@
         <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
         
         <vs-row w="12" class="-mt-4" justify="center">
-            <vs-clos v-for="col,index in 6" :key="index" class="p-5" w="3">
+            <vs-clos v-for="indicatorsproduct,index in indicatorsproduct" :key="index" class="p-5" w="3">
                 <vs-card>
                     <template #title>
-                        <h3>Pot with a plant</h3>
+                        <h3>{{indicatorsproduct.name}}</h3>
                     </template>
                     <template #img>
                         <img src="@/assets/misc/signal.png" alt="">
                     </template>
                     <template #text>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                            {{indicatorsproduct.detail}}
                         </p>
-                        <vs-button block class="btn-chat">
+                        <vs-button block class="btn-chat mt-3">
                             <span class="span">
                                 <v-icon color="#ffff" class="mr-2">mdi-cloud-download-outline</v-icon>
                                 Download
@@ -74,7 +74,7 @@
 
 <script>
 
-import {Indicators} from '~/vuexes/indictor'
+import {Product} from '~/vuexes/product'
 export default {
     data: () =>({
         indicatorsproduct:[],
@@ -85,7 +85,7 @@ export default {
     },
     methods:{
         async startup(){
-            this.indicatorsproduct = await Indicators.getIndicatorProduct()
+            this.indicatorsproduct = await Product.getIndicatorProduct()
         }
     }
 }

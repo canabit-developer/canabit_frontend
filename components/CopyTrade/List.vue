@@ -34,19 +34,19 @@
                 <div class="h-5 w-5 rounded-full bg-green-500 absolute top-0 left-0 -ml-32 mt-12" style="z-index: -1;"></div>
             </div>
             <vs-row w="12" class="-mt-5" justify="center">
-                <vs-clos v-for="col,index in 6" :key="index" class="p-2 mt-2">
+                <vs-clos v-for="copytradeproduct,index in copytradeproduct" :key="index" class="p-2 mt-2">
                     <vs-card>
                         <template #title>
-                            <h3>Pot with a plant</h3>
+                            <h3>{{copytradeproduct.name}}</h3>
                         </template>
                         <template #img>
                             <img src="@/assets/misc/logo_joker.png" alt="">
                         </template>
                         <template #text>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                {{copytradeproduct.sub_title}}
                             </p>
-                            <vs-button block class="btn-chat" @click="$router.push(`/detailcopytrade`)">
+                            <vs-button block class="btn-chat mt-5" @click="$router.push(`/detailcopytrade`)">
                                 <span class="span">
                                     Detail Master
                                 </span>
@@ -62,7 +62,7 @@
 </template>
 
 <script> 
-import {CopyTrade} from '~/vuexes/copytrade'
+import {Product} from '~/vuexes/product'
 export default {
     data:() =>({
         copytradeproduct:[],
@@ -72,7 +72,7 @@ export default {
     },
     methods:{
         async startup(){
-            this.copytradeproduct = await CopyTrade.getCopytradeProduct()
+            this.copytradeproduct = await Product.getCopytradeProduct()
         }
     }
 }

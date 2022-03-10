@@ -3,52 +3,57 @@
     <v-item-group>
         <v-container>
             <v-row>
-                <v-col v-for="n in 20" :key="n" sm="4" lg="3" md="8" xl="2">
-                    <v-item v-slot="{ }">
-                        <v-hover v-slot="{ hover }">
-                            <v-card class="mx-auto rounded-lg" max-width="500" max-height="500">
-                                <v-img :aspect-ratio="18/9" src="https://cdn.vuetifyjs.com/images/cards/kitchen.png">
-                                    <v-expand-transition>
-                                        <div v-if="hover" class="d-flex   bg-green-400  text-h6   v-card--reveal text-center white--text" style="height:100%;">
-                                            <v-card-text class="my-4 text-center text-h6">
-                                                Hover over me!
-                                            </v-card-text>
-                                        </div>
-                                    </v-expand-transition>
-                                </v-img>
-                                <v-card-text class="pt-6" style="position: relative;">
-                                    <div class="font-weight-light grey--text text-h6 mb-2 text-start">
-                                        E-commerce
-                                    </div>
-                                    <div class="font-weight-light text-green-400  text-lg mb-2">
-                                        200 point
-                                    </div>
-                                </v-card-text>
-                                <v-card-actions class="-mt-8">
-                                    <v-list-item class="grow">
-                                        <v-row align="center" justify="end">
-                                            <button class="py-1 px-2 text-white rounded-lg bg-green-400 shadow-lg block md:inline-block">Redeem</button>
-                                        </v-row>
-                                    </v-list-item>
-                                </v-card-actions>
-                            </v-card>
-                        </v-hover>
-                    </v-item>
+                <v-col v-for="storeproduct,n in storeproduct" :key="n" sm="4" lg="6" md="8" xl="3">
+                    <vs-card>
+                        <template #title>
+                            <h3>{{storeproduct.name}}</h3>
+                        </template>
+                        <template #img>
+                            <img :src="storeproduct.image" alt="">
+                        </template>
+                        <template #text>
+                            <p>
+                                {{storeproduct.detail}}
+                            </p>
+                            <vs-button block color="#4ade80" class="btn-chat mt-5">
+                                Redeem
+                            </vs-button>
+                        </template>
+                        <template #interactions>
+                            <vs-button color="#4ade80">
+                                {{storeproduct.point_use}} Point
+                            </vs-button>
+                        </template>
+                    </vs-card>
                 </v-col>
             </v-row>
         </v-container>
+        <pre>{{storeproduct}}</pre>
     </v-item-group>
 </div>
 </template>
 
 <script>
-
+import {
+    Store
+} from '~/vuexes/store'
 export default {
-   data: () =>{
-       return({
-           
-       })
-   }
+    data: () => ({
+        storeproduct: [],
+    }),
+    async created() {
+        this.startup()
+    },
+    methods: {
+        async startup() {
+            this.storeproduct = await Store.getStoreProduct()
+        }
+    },
+    computed: {
+        imageStoreProduct(){
+            return Store.image
+        }
+    }
 }
 </script>
 

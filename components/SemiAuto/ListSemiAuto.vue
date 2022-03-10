@@ -38,19 +38,19 @@
             </div>
 
             <vs-row w="12" class="-mt-5" justify="center">
-                <vs-clos v-for="col,index in 2" :key="index" class="p-2 mt-2">
+                <vs-clos v-for="eaproduct,index in eaproduct" :key="index" class="p-2 mt-2">
                     <vs-card>
                         <template #title>
-                            <h3>Pot with a plant</h3>
+                            <h3>{{eaproduct.name}}</h3>
                         </template>
                         <template #img>
-                            <img src="@/assets/misc/gri.png" alt="">
+                            <img :src="eaproduct" alt="">
                         </template>
                         <template #text>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                {{eaproduct.sub_title}}
                             </p>
-                            <div class="flex flex-wrap justify-center">
+                            <div class="flex flex-wrap justify-center mt-2">
                                                              
                                 <SemiAuto-FromPurchase></SemiAuto-FromPurchase>
 
@@ -68,20 +68,19 @@
                         </template>
                         <template #interactions>
                             <vs-button success flat :active="active == 1" @click="active = 1">
-                                Price : 140 $
+                                Price : {{eaproduct.price}} $
                             </vs-button>
                         </template>
                     </vs-card>
                 </vs-clos>
             </vs-row>
         </div>
-        <pre>{{eaproduct}}</pre>
     </div>
 </div>
 </template>
 
 <script>
-import {EA} from '~/vuexes/ea'
+import {Product} from '~/vuexes/product'
 export default {
     data: () => ({
         active: false,
@@ -92,7 +91,7 @@ export default {
     },
     methods:{
         async startup(){
-            this.eaproduct = await EA.getEAProduct()
+            this.eaproduct = await Product.getEAProduct()
         }
     },
 }
