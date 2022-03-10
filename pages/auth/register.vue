@@ -19,6 +19,24 @@
                         <p>
                             It’s free and easy
                         </p><br>
+                        <div>
+                            <div v-if="error.email">
+                                <v-alert dense outlined text v-for="(message, i) in error.email" :key="i" type="error" :value="true">
+                                    {{ message }}
+                                </v-alert>
+                            </div>
+                            <div v-if="error.password">
+                                <v-alert dense outlined text v-for="(message, i) in error.password" :key="i" type="error" :value="true">
+                                    {{ message }}
+                                </v-alert>
+                            </div>
+
+                            <div v-if="error.phone_number">
+                                <v-alert dense outlined text v-for="(message, i) in error.phone_number" :key="i" type="error" :value="true">
+                                    {{ message }}
+                                </v-alert>
+                            </div>
+                        </div>
                         <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field>
                         <v-text-field v-model="form.email" class="mt-4" prepend-inner-icon="mdi-email-outline" outlined label="Email" hide-details></v-text-field>
 
@@ -29,10 +47,10 @@
                         <v-text-field v-model="form.password" class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Password" hide-details></v-text-field>
 
                         <v-text-field v-model="form.password_confirm" class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Confirm Password" hide-details></v-text-field>
-                         <br>
+                        <br>
                         <v-text-field class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Referral Code" hide-details></v-text-field>
                         <br>
-                        <Auth-Captcha @cap="getSuccess"></Auth-Captcha>
+                        <Auth-Captcha :reload="openCaptcha" @cap="getSuccess"></Auth-Captcha>
                         <v-btn v-if="successBtn" type="submit" x-large dark block class="bg-primary-g mt-6">
                             Sign Up
                         </v-btn>
@@ -42,9 +60,9 @@
                                     Login
                                 </router-link>
                             </p>
-                            <v-spacer></v-spacer> 
+                            <v-spacer></v-spacer>
                         </div>
-                    </form> 
+                    </form>
                 </div>
 
             </div>
@@ -205,7 +223,8 @@ export default {
     layout: "root",
     data: () => {
         return {
-           successBtn:false,
+            successBtn: false,
+            openCaptcha: true,
             form: {
                 password: "Pautn1234",
                 username: "pongvarid2020",
@@ -215,7 +234,7 @@ export default {
                 display_name: "Pongvarid",
                 phone_number: "0988203179",
                 password_confirm: "Pautn1234",
-               
+
             },
             error: {},
         };
@@ -240,6 +259,7 @@ export default {
                 await this.$router.replace(`/auth/verify`);
             } else {
                 this.error = user;
+                await this.reCaptcha();
                 await Web.switchLoad(false);
             }
         },
@@ -259,8 +279,22 @@ export default {
                 })
             }
         },
-        async getSuccess(val){
-          this.successBtn = val
+        async getSuccess(val) {
+            this.successBtn = val
+        },
+
+        async reCaptcha() {
+            this.successBtn = false;
+            this.openCaptcha = true;
+            this.sleep(3)
+            await this.reOpenCapcha();
+        },
+        async reOpenCapcha() {
+            this.openCaptcha = false;
+        },
+        sleep(seconds) {
+            var e = new Date().getTime() + (seconds * 1000);
+            while (new Date().getTime() <= e) {}
         }
     },
 };

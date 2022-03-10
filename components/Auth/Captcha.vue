@@ -1,14 +1,13 @@
 <template>
-<div>
-    <div class="bg-gray-100 rounded p-4" v-if="response">
-        <div id="captcha">
-        </div>
+<div>  
+    <div class="bg-gray-100 rounded p-4"  v-if="response"> 
+        <img :src="ss" />
         <div class="flex">
             <v-text-field type="text" placeholder="Captcha" v-model="currentCap" />
             <v-btn  small @click="validateCaptcha()" color="success">Check</v-btn>
         </div> 
     </div>
-    <v-alert v-else type="success" :value="true" text outlined>
+    <v-alert  v-else type="success" :value="true" text outlined>
         Verify Captcha Success
     </v-alert>
 </div>
@@ -22,26 +21,38 @@ import {
     Auth
 } from '@/vuexes/auth'
 export default {
+   props:{
+       reload:{
+           default:true
+       }
+   },
     data() {
         return ({
             response: true,
             lists: [],
             cap: '',
-            currentCap: ''
+            currentCap: '',
+            id:'',
+            ss:''
         })
     },
-    async mounted() {
-
-        await this.startup();
-
+    watch:{
+        async reload(old,val){ 
+            this.response = val
+            await this.startup(); 
+        }
+    },
+    async mounted() { 
+        this.response = true
+        await this.startup(); 
     },
     methods: {
         async startup() {
-            this.currentCap = ''
-            document.getElementById('captcha').innerHTML = "";
+            this.currentCap = '' 
+            this.$refs.captcha = "";
             var charsArray =
                 "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
-            var lengthOtp = 6;
+            var lengthOtp = 2;
             var captcha = [];
             for (var i = 0; i < lengthOtp; i++) {
                 //below code will not allow Repetition of Characters
@@ -59,7 +70,11 @@ export default {
             ctx.strokeText(captcha.join(""), 0, 30);
             //storing captcha so that can validate you can save it somewhere else according to your specific requirements
             this.cap = captcha.join("");
-            document.getElementById("captcha").appendChild(canv); // adds the canvas to the body element
+            //document.getElementById("captcha").appendChild(canv); // adds the canvas to the body element
+            this.$refs.captcha = canv
+            this.ss = canv.toDataURL();
+            console.log(this.$refs.captcha,canv)
+           
         },
         async validateCaptcha() {
             if (this.currentCap == this.cap) {
@@ -74,7 +89,7 @@ export default {
 
     },
     computed: {
-
+       
     }
 }
 </script>
