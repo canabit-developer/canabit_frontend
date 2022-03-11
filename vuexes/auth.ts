@@ -6,13 +6,22 @@ import axios from  '@/plugins/axios'
 class AuthModule extends VuexModule {
   private  token:any =  localStorage.getItem('token')
   public user:any = null
+  public kyc :any = null
 
   public async setUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
     this.user = user;
-    this.user.fuck = "sdsdsd"
+    await this.getMyKyc();
+ 
     return user;
   }
+
+  async getMyKyc() {
+    let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
+    if (kyc.length > 0) {
+        this.kyc = kyc[kyc.length - 1];
+    }
+}
 
  
   public async getUser(){

@@ -5,23 +5,26 @@
             <div class="d-flex align-center mx-6">
                 <!-- Left Content -->
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
-             
-                <v-spacer></v-spacer>
 
+                <v-spacer></v-spacer>
+              
+               <vs-button @click="$router.push('/account')" color="#FF0000" floating class="my-point">
+                    <v-icon style="color:white;" class="mr-2">mdi-account-alert</v-icon> ยังไม่ได้ยืนยันตัวตน KYC
+                </vs-button>
                 <vs-button color="#4ade80" floating class="my-point">
-                    <v-icon style="color:white;">mdi-bitcoin</v-icon> Point : 8000
+                    <v-icon style="color:white;" class="mr-2">mdi-bitcoin</v-icon> Point : 8000
                 </vs-button>
 
             </div>
         </div>
     </v-app-bar>
 
-    <v-navigation-drawer app floating width="260" class="app-navigation-menu bg-main" :right="$vuetify.rtl" v-model="isDrawerOpen">
+    <v-navigation-drawer app floating width="260" class="app-navigation-menu bg-main shadow-2xl" :right="$vuetify.rtl" v-model="isDrawerOpen">
         <div class="vertical-nav-header d-flex items-center ps-6 pe-5 pt-5 pb-2">
             <router-link to="/" class="d-flex align-center text-decoration-none w-full">
                 <center>
                     <v-slide-x-transition>
-                        <img class="h-14" src="~/static/images/logos/canabit_vector.svg" alt="">
+                        <img class="h-14" src="https://www.img.in.th/images/90cc2f82b6c393cc69828ea5a21eacd1.png" alt="">
                     </v-slide-x-transition>
                 </center>
             </router-link>
@@ -33,13 +36,14 @@
                 <v-img v-else class="shadow-2xl rounded-full h-36 w-36" src="https://i.pinimg.com/originals/4a/6a/cb/4a6acb8ab84a58ca85ef817b02de7067.jpg"> </v-img>
 
             </v-badge> -->
-
-            <!-- <h2 v-if="user.display_name" class="text-2xl font-semibold">{{user.display_name}}</h2>
+<!-- 
+            <h2 v-if="user.display_name" class="text-2xl font-semibold">{{user.display_name}}</h2>
             <h2 v-else class="text-2xl font-semibold">{{user.first_name}}</h2>
             <h2>{{user.email}}</h2> -->
         </div>
 
         <v-list expand shaped class="vertical-nav-menu-items pr-5">
+
             <UserMenu-NavbarLink path="/" title="Home" icon="mdi-home-outline"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="mdi-bank-transfer"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink> -->
@@ -56,6 +60,7 @@
             <UserMenu-NavMenuSectionTitle title="USER SETTING"></UserMenu-NavMenuSectionTitle>
             <UserMenu-NavbarLink path="/accountstatus" title="History Account" icon="mdi-history"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog-outline"></UserMenu-NavbarLink>
+ 
         </v-list>
 
         <template v-slot:append>
@@ -76,11 +81,14 @@
 import {
     Auth
 } from '@/vuexes/auth'
+import {
+    Core
+} from '~/vuexes/core'
 export default {
     data() {
         return {
             isDrawerOpen: true,
-            kyc: {}
+            kyc: {}, 
         }
     },
     methods: {
@@ -91,7 +99,7 @@ export default {
         async getMyKyc() {
             let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
             if (kyc.length > 0) {
-                this.kyc = kyc[kyc.length - 1]; 
+                this.kyc = kyc[kyc.length - 1];
             }
         },
     },
@@ -100,8 +108,8 @@ export default {
             return Auth.user
         }
     },
-    async created(){
-        
+    async created() {
+        await this.getMyKyc();
     }
 }
 </script>
