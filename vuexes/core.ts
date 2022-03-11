@@ -103,7 +103,7 @@ class CoreModule extends VuexModule {
   async setWaterMark(file: any) {
     const watermark = require('watermarkjs');
     return watermark([file])
-      .image(watermark.text.center("สำหรับสมัครสมาชิก canabit  เท่านั้น", "40px Josefin Slab", "blue", 0.5))
+      .image(watermark.text.center("สำหรับสมัครสมาชิก Cashback  เท่านั้น", "40px Josefin Slab", "blue", 0.5))
       .then((img: any) => {
         return img
       });

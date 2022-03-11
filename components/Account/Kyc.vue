@@ -2,24 +2,56 @@
 <v-card flat class="mt-5" v-if="response">
 
     <div class="px-3  mb-5">
-        <v-card-text class="">
+        <v-card-text class=""> 
+            <v-alert v-if="kyc.user_verified" type="success" :value="true">
+                คุณได้ทำการยืนยันตัวตนเรียบร้อยแล้ว
+            </v-alert>
+            <v-alert v-if="kyc.user_verified == false" type="warning" :value="true">
+                คุณยังไม่ได้ทำการยืนยันตัวตน โปรดตรวจสอบข้อมูล หากคุณกรอกข้อมูลแล้ว รอระบบตรวจสอบ 1-2 วันทำการ
+            </v-alert>
+            <v-alert v-if="kyc.user_verified_image_card_error == true && kyc.user_verified == false" type="error" :value="true">
+                ภาพถ่ายสำเนาบัตรประจำตัวประชาชน มีปัญหา
+            </v-alert>
+            <v-alert v-if="kyc.user_verified_image_selfie_error == true && kyc.user_verified == false" type="error" :value="true">
+                ภาพถ่าย selfie กับบัตรประจำตัวประชาชน มีปัญหา
+            </v-alert>
+            <v-alert v-if="kyc.user_verified_name_error == true && kyc.user_verified == false" type="error" :value="true">
+                ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน'
+            </v-alert>
+            <v-alert v-if="kyc.user_verified_id_error == true && kyc.user_verified == false" type="error" :value="true">
+                เลขบัตรประชาชน ไม่ตรงกับบัตรประจำตัวประชาชน
+            </v-alert>
+            <v-alert v-if="kyc.phone_verified == false && kyc.user_verified == false" type="error" :value="true">
+                ยังไม่ได้ยืนยันตัวตนผ่าน มือถือ (OTP)
+            </v-alert>
             <v-row>
                 <v-col cols="12" sm="8" md="6">
                     <h2> 1. Verify your identity by entering your ID card number or passport number. </h2>
-                    <v-text-field class="mt-5" v-model="title" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
-                </v-col>
+                    <v-alert v-if="!checkId" type="error" :value="true" dense outlined>
+                        เลขบัตรประจำตัวประชาชนไม่ถูกต้อง
+                    </v-alert>
+                    <form @submit.prevent="updateCardId()">
+                        <v-text-field required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
+                        <div class="flex">
+                            <v-spacer></v-spacer>
+                            <v-btn v-if="checkId" type="submit" color="success">Update</v-btn>
+                        </div>
+                    </form> 
+                </v-col><br>
                 <v-container>
                     <v-row justify="space-between">
                         <v-col cols="12" md="4">
                             <h2> 2. Verification of identity by uploading a picture of an ID card </h2><br>
-                            <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""> 
+                            <!-- <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""> -->
+                            <img v-if="kyc.image_card" :src="kyc.image_card" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
                             <br><br>
                             <input @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
                         <v-col cols="12" md="6">
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>
-                            <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
+                            <!-- <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt=""> -->
+                            <img v-if="kyc.image_selfie" :src="kyc.image_selfie" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
                             <br> <br>
                             <input @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" />
@@ -92,6 +124,8 @@ export default {
             kyc: {},
             response: false,
             active: false,
+            id: '',
+            checkId: false,
         };
     },
     async created() {
@@ -104,11 +138,13 @@ export default {
             let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
             if (kyc.length > 0) {
                 this.kyc = kyc[kyc.length - 1];
+                this.id = this.kyc.card_id
+                await this.checkIdData();
                 this.response = true;
             }
         },
         async storeKycCard(typeImage) {
-            await Web.switchLoad(true);
+
             let image = this.$refs[typeImage];
             let cover = await Core.setWaterMark(image.files[0]);
             let file = await Core.dataURLtoFile(cover.src);
@@ -118,17 +154,41 @@ export default {
                 `/api/account/kyc/${this.kyc.id}/`,
                 formData
             );
+            await Web.switchLoad(true);
             await this.getMyKyc();
             await Web.switchLoad(false);
         },
-        async checkId(id) {
+        async updateCardId() {
+
+            let store = await Core.putHttpAlert(`/api/account/kyc/${this.kyc.id}/`, {
+                'card_id': this.id
+            })
+            await Web.switchLoad(true);
+            await this.getMyKyc();
+            await Web.switchLoad(false);
+        },
+        async checkIdData() {
+            let id = this.id;
             if (!this.IsNumeric(id)) return false;
             if (id.substring(0, 1) == 0) return false;
-            if (id.length != 13) return false;
-            for (i = 0, sum = 0; i < 12; i++)
+            if (id.length != 13) {
+                    this.checkId = false
+                console.log(false);
+                return false
+            }
+            let sum = 0;
+            for (let i = 0; i < 12; i++)
                 sum += parseFloat(id.charAt(i)) * (13 - i);
-            if ((11 - sum % 11) % 10 != parseFloat(id.charAt(12))) return false;
-            return true;
+            if ((11 - sum % 11) % 10 != parseFloat(id.charAt(12))) {
+                this.checkId = false
+                console.log(false);
+                return false
+            } else {
+                this.checkId = true
+                console.log(true);
+                return true;
+            }
+
         },
         IsNumeric(input) {
             var RE = /^-?(0|INF|(0[1-7][0-7]*)|(0x[0-9a-fA-F]+)|((0|[1-9][0-9]*|(?=[\.,]))([\.,][0-9]+)?([eE]-?\d+)?))$/;
