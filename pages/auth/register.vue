@@ -37,7 +37,7 @@
                                 </v-alert>
                             </div>
                         </div>
-                        <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field>
+                        <!-- <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field> -->
                         <v-text-field v-model="form.email" class="mt-4" prepend-inner-icon="mdi-email-outline" outlined label="Email" hide-details></v-text-field>
 
                         <v-text-field v-model="form.first_name" class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Frist Name" hide-details></v-text-field>
@@ -226,14 +226,14 @@ export default {
             successBtn: false,
             openCaptcha: true,
             form: {
-                password: "Pautn1234",
-                username: "pongvarid2020",
-                first_name: "maneewan",
-                last_name: "maneewan",
-                email: "pongvarid2020@gmail.com",
-                display_name: "Pongvarid",
-                phone_number: "0988203179",
-                password_confirm: "Pautn1234",
+                // password: "Pautn1234",
+                // username: "pongvarid2020",
+                // first_name: "maneewan",
+                // last_name: "maneewan",
+                // email: "pongvarid2020@gmail.com",
+                // display_name: "Pongvarid",
+                // phone_number: "0988203179",
+                // password_confirm: "Pautn1234",
 
             },
             error: {},
@@ -250,6 +250,7 @@ export default {
         async register() {
             this.error = {};
             await Web.switchLoad(true);
+            this.form.username = this.form.email
             let user = await Auth.register(this.form);
 
             if (user.id) {

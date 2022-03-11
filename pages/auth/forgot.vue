@@ -103,7 +103,9 @@ export default {
     },
     methods: {
         async forgot() {
+             await Web.switchLoad(true)
             let user = await Core.postHttp(`/api/auth/v2/send-reset-password-link/`, this.form)
+             await Web.switchLoad(false)
             console.log(user)
             if(user.detail){
               Web.alert(user.detail);
