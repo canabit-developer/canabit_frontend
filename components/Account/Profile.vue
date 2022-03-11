@@ -12,10 +12,10 @@
             <img src="" ref="imgs" alt="">
             <!-- upload photo -->
             <div class="ml-4">
-                <h3 class="text-4xl">{{form.display_name}}</h3>
-                <h2>{{form.email}}</h2>
+              <h3 class="text-3xl">{{form.display_name}}</h3>
+                <!--   <h2>{{form.email}}</h2>
                 <v-spacer></v-spacer>
-                <v-spacer></v-spacer>
+                <v-spacer></v-spacer> -->
                 <div class="mt-2">
                     <Core-ImageInput @profileImage="getFileImage"></Core-ImageInput>
                 </div>
