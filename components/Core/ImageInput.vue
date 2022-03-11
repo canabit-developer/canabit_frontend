@@ -2,11 +2,11 @@
 <div>
     <vs-button floating @click="dialogFile = true" color="success">Upload Picture</vs-button>
 
-    <v-dialog v-if="dialogFile" v-model="dialogFile" scrollable max-width="500px" transition="dialog-transition">
+    <v-dialog v-if="dialogFile" v-model="dialogFile" persistent scrollable max-width="500px" transition="dialog-transition">
         <v-card>
             <v-card-title primary-title> Setting Image
                 <v-spacer></v-spacer>
-
+                <v-btn @click="closeDialog()" icon  color="error"><v-icon>mdi-close</v-icon></v-btn>
             </v-card-title>
             <v-card-text>
                 <div v-if="step == 1">
@@ -86,6 +86,11 @@ export default {
             this.step = 1
             this.dialogFile = false;
             await this.$emit('profileImage', this.file)
+        },
+        async closeDialog(){
+            this.step = 1
+          this.dialogFile = false;
+        
         }
     },
 };

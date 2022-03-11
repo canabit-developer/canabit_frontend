@@ -52,7 +52,7 @@ export default {
             this.$refs.captcha = "";
             var charsArray =
                 "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@!#$%^&*";
-            var lengthOtp = 2;
+            var lengthOtp = 6;
             var captcha = [];
             for (var i = 0; i < lengthOtp; i++) {
                 //below code will not allow Repetition of Characters

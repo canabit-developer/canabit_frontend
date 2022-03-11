@@ -39,7 +39,7 @@
                             <Account-Profile></Account-Profile>
                         </v-tab-item>
                         <v-tab>
-                            <v-icon size="20" class="me-3">mdi-lock-open-outline</v-icon> Security
+                            <v-icon size="20" class="me-3">mdi-lock-open-outline</v-icon> Password
                         </v-tab>
                         <v-tab-item>
                             <Account-ResetPassword></Account-ResetPassword>

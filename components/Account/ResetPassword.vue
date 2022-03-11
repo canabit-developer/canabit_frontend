@@ -1,11 +1,10 @@
 <template>
 <div>
-    <div class="px-3">
-        <v-card-text class="pt-5" v-if="(user.register_by=='Register')|| (user.register_by == null)">
+    <div class="px-3"> 
+        <v-card-text class="pt-5" v-if="(user.register_by=='Register')|| (user.register_by == null)|| (user.register_by == 'Web')">
             <v-row>
 
-                <v-col cols="12" sm="8" md="6">
-                    <pre>{{user}}</pre>
+                <v-col cols="12" sm="8" md="6"> 
                     <div v-if="error.old_password">
                         <v-alert dense outlined text v-for="(message,i) in error.old_password" :key="i" type="error" :value="true">
                             {{message}}
@@ -22,12 +21,12 @@
                         </v-alert>
                     </div>
                     <form @submit.prevent="changePassword()" ref="formResetPassword">
-                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.old_password" label="old_password" dense outlined></v-text-field>
-                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password" label="password" dense outlined></v-text-field>
-                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password_confirm" label="password_confirm" dense outlined></v-text-field>
+                        <h2 class="text-xl mt-4 mb-4">Change Password</h2>
+                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.old_password" label="Old Password" dense outlined></v-text-field>
+                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password" label="New Password" dense outlined></v-text-field>
+                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password_confirm" label="New Password Confirm" dense outlined></v-text-field>
                         <v-btn type="submit" color="success">Update Password</v-btn>
-                    </form>
-                    <!-- current password -->
+                    </form> 
                 </v-col>
 
                 <v-col cols="12" sm="4" md="6" class="d-none d-sm-flex justify-center position-relative">
@@ -35,7 +34,7 @@
                 </v-col>
             </v-row>
         </v-card-text>
-        <v-card-text>
+        <v-card-text v-else>
             <div class="p-6">
                 <v-alert    outlined text type="info" :value="true">
                     You are logged in with a social network, you cannot change your password.
