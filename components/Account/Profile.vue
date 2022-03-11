@@ -49,7 +49,7 @@
                                 <v-text-field v-model="form.zipcode" label="zip code" dense outlined></v-text-field>
                             </div>
                         </div>
-                        <v-text-field name="name" label="label" id="id"></v-text-field>
+                        <v-text-field name="name" label="label" id="id"></v-text-field>      
                         <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.tier" label="tier" dense outlined></v-text-field>  -->
                     </div>
                     <!--  
