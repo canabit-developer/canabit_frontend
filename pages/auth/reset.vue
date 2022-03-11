@@ -53,8 +53,7 @@
 
                         <v-btn type="submit" x-large dark block class="bg-primary-g mt-4" v-if="(form.password == form.password_confirm) && (form.password && form.password_confirm)">
                             Forgot Password
-                        </v-btn>
-                        <pre>{{form}}</pre>
+                        </v-btn> 
                         <div class="d-flex align-center justify-space-between flex-wrap mt-4">
                             <p class="mt-1">Back To
                                 <router-link :to="{path:'/auth/login'}">
@@ -107,7 +106,9 @@ export default {
             this.form.user_id = this.$route.query.user_id
             this.form.timestamp = this.$route.query.timestamp
             this.form.signature = this.$route.query.signature
+            await Web.switchLoad(true)
             let user = await Core.postHttp(`/api/auth/v2/reset-password/`, this.form)
+             await Web.switchLoad(false)
             console.log(user)
             if (user.detail) {
                 this.form = {}
