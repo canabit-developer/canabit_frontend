@@ -1,100 +1,93 @@
 <template>
-  <div>
+<div>
     <vs-button floating @click="dialogFile = true" color="success">Upload Picture</vs-button>
 
-    <v-dialog v-if="dialogFile"
-      v-model="dialogFile"
-      scrollable
-      persistent
-      max-width="500px"
-      transition="dialog-transition"
-    >
-      <v-card>
-        <v-card-title primary-title> Setting Image 
-          <v-spacer></v-spacer>
-          <vs-button  floating  @click="callbackImage()" color="success">Success Image</vs-button>        </v-card-title>
-        <v-card-text>
-          <picture-input
-          v-if="step == 1"
-          ref="pictureInput"
-          @change="changeImage"
-          width="600"
-          height="600"
-          margin="16"
-          accept="image/jpeg,image/png"
-          size="10"
-          :removable="true"
-          :customStrings="{
-            upload: '<h1>Bummer!</h1>',
-            drag: 'Drag a 😺 GIF or GTFO',
-          }"
-        >
-        </picture-input>
+    <v-dialog v-if="dialogFile" v-model="dialogFile" scrollable max-width="500px" transition="dialog-transition">
+        <v-card>
+            <v-card-title primary-title> Setting Image
+                <v-spacer></v-spacer>
 
-        <div v-if="step == 2">
-          <div v-html="canvas"></div>
-          <cropper
-            class="cropper"
-            :src="image"
-            :stencil-props="{
+            </v-card-title>
+            <v-card-text>
+                <div v-if="step == 1">
+                    <input ref="pictureInput2" accept="image/jpeg,image/png" @change="changeImage2" type="file" name="" id="">
+                </div>
+          
+
+                <div v-if="step == 2">
+                    <!-- <div v-html="canvas"></div> -->
+                    <cropper class="cropper" :src="image" :stencil-props="{
               aspectRatio: 10 / 12,
-            }"
-            @change="ready"
-          ></cropper>
-        </div>
-        </v-card-text>
-        
-      </v-card>
+            }" @change="ready"></cropper>
+                    <br>
+                    <center>
+                        <vs-button floating @click="callbackImage()" color="success">Upload Image</vs-button>
+                    </center>
+                </div>
+            </v-card-text>
+
+        </v-card>
     </v-dialog>
-  </div>
+</div>
 </template>
 
 <script>
 import PictureInput from "vue-picture-input";
-import { Cropper } from "vue-advanced-cropper";
+import {
+    Cropper
+} from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
 import {
     Core
 } from '~/vuexes/core'
 export default {
-  components: {
-    PictureInput,
-    Cropper,
-  },
-  data() {
-    return {
-      dialogFile: false,
-      image: "",
-      step: 1,
-      canvas: {},
-      data: {},
-      file: {},
-    };
-  },
-  methods: {
-    async changeImage(val) {
-      console.log(this.$refs.pictureInput.file);
-      this.image = val;
-      this.step = 2;
+    components: {
+        PictureInput,
+        Cropper,
     },
-    change({ coordinates, canvas }) {
-      console.log(coordinates, canvas);
-      this.canvas = coordinates;
+    data() {
+        return {
+            dialogFile: false,
+            image: "",
+            step: 1,
+            canvas: {},
+            data: {},
+            file: {},
+        };
     },
-    async ready(val) {
-      console.log(val);
-      let canvas = val.canvas;
-      var url = canvas.toDataURL(); 
-      this.file = await Core.dataURLtoFile(url);
-      console.log(this.file );
-    }, 
+    methods: {
+        async changeImage2() {
+            console.log(this.$refs.pictureInput2.files[0]);
+            let data = await Core.getBase64(this.$refs.pictureInput2.files[0]);
+            this.image = data;
+            this.step = 2;
+        },
+        async changeImage(val) {
+            console.log(this.$refs.pictureInput.file);
+            this.image = val;
+            this.step = 2;
+        },
+        change({
+            coordinates,
+            canvas
+        }) {
+            console.log(coordinates, canvas);
+            this.canvas = coordinates;
+        },
+        async ready(val) {
+            console.log(val);
+            let canvas = val.canvas;
+            var url = canvas.toDataURL();
+            this.file = await Core.dataURLtoFile(url);
+            console.log(this.file);
+        },
 
-    async callbackImage(){
-      this.step = 1
-      this.dialogFile = false;
-      await this.$emit('profileImage',this.file)
-    }
-  },
+        async callbackImage() {
+            this.step = 1
+            this.dialogFile = false;
+            await this.$emit('profileImage', this.file)
+        }
+    },
 };
 </script>
 
