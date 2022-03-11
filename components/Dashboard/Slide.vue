@@ -1,15 +1,17 @@
 <template>
-<v-carousel cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl" v-if="response" >
-    <v-carousel-item v-for="(slide, i) in slides" :key="i" > 
-        <v-img :src="$url+slide.image"></v-img>
- 
+<v-carousel cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl" v-if="response">
+    <v-carousel-item v-for="(slide, i) in slides" :key="i">
+        <!-- <v-img :src="$url+slide.image"></v-img> -->
+        <v-img :src="slide.image" @click="openLink(slide.url)"></v-img>
     </v-carousel-item>
- 
+<pre>{{slide}}</pre>
 </v-carousel>
 </template>
 
 <script>
-import { initial } from 'lodash'
+import {
+    initial
+} from 'lodash'
 import {
     Core
 } from '~/vuexes/core'
@@ -34,25 +36,28 @@ export default {
                     total: '$88k',
                 },
             ],
-            colors:[
+            colors: [
                 'primary',
                 'success',
                 'error',
                 'warning',
                 'info',
             ],
-            response:false
+            response: false
         })
     },
 
-    async created(){
+    async created() {
         await this.initial();
     },
-    methods:{
-        async initial(){
+    methods: {
+        async initial() {
             this.slides = await Core.getHttp(`/api/webconfig/slide/?is_active=true`)
             console.log(this.slides)
             this.response = true
+        },
+        async openLink(link) {
+            window.open(link);
         }
     }
 }
