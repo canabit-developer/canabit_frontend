@@ -1,5 +1,6 @@
 <template>
 <div>
+    <Core-City></Core-City>
     <img src="" ref="ximg" class="w-full" alt="">
     <v-card flat class="pa-3 mt-2 pl-2">
         <v-card-text class="d-flex">
@@ -12,7 +13,7 @@
             <img src="" ref="imgs" alt="">
             <!-- upload photo -->
             <div class="ml-4">
-              <h3 class="text-3xl">{{form.display_name}}</h3>
+                <h3 class="text-3xl">{{form.display_name}}</h3>
                 <!--   <h2>{{form.email}}</h2>
                 <v-spacer></v-spacer>
                 <v-spacer></v-spacer> -->
@@ -35,24 +36,20 @@
                         <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" label="display_name" dense outlined></v-text-field>
                         <!-- <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.phone_number" label="phone_number" dense outlined></v-text-field> -->
                         <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.register_by" label="register_by" dense outlined></v-text-field>
-                        
+
                         <div class="flex flex-col mt-14  md:flex-row md:flex-wrap ">
-                            <div class="w-full lg:w-1/2 md:w-1/2 mt-2 pl-2">
+                            <div class="w-full  lg:w-1/2 md:w-1/2 mt-2 pl-2">
                                 <v-text-field v-model="form.address" label="Address" dense outlined></v-text-field>
                             </div>
                             <div class="w-full lg:w-1/2 md:w-1/2 mt-2 pl-2">
-                                <v-text-field v-model="form.address" label="Province" dense outlined></v-text-field>
+                                <v-text-field dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="จังหวัด อำเภอ ตำบล" prepend-inner-icon="fas fa-globe-asia" />
                             </div>
-                            <div class="w-full lg:w-1/2 md:w-1/2 mt-2 pl-2">
-                                <v-text-field v-model="form.address" label="District" dense outlined></v-text-field>
-                            </div>
+
                             <div class="w-full  lg:w-1/2 md:w-1/2 mt-2 pl-2">
-                                <v-text-field v-model="form.address" label="Sub-district," dense outlined></v-text-field>
-                            </div>
-                            <div class="w-full  lg:w-1/2 md:w-1/2 mt-2 pl-2">
-                                <v-text-field v-model="form.address" label="zip code" dense outlined></v-text-field>
+                                <v-text-field v-model="form.zipcode" label="zip code" dense outlined></v-text-field>
                             </div>
                         </div>
+                        <v-text-field name="name" label="label" id="id"></v-text-field>
                         <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.tier" label="tier" dense outlined></v-text-field>  -->
                     </div>
                     <!--  
@@ -95,7 +92,9 @@ import {
     Core
 } from '~/vuexes/core'
 import watermark from 'watermarkjs'
-
+import {
+    City
+} from '~/vuexes/city'
 export default {
     components: {
 
@@ -112,6 +111,9 @@ export default {
     computed: {
         imageProfile() {
             return Auth.user.image_profile
+        },
+        CityFrom() {
+            return City.showName;
         }
     },
     async created() {
@@ -128,6 +130,10 @@ export default {
         },
 
         async updateProfile() {
+            this.form.geo = City.currentGeo.id;
+            this.form.province = City.currentProvince.id;
+            this.form.amphur = City.currentAmphur.id;
+            this.form.district = City.currentDistrict.id;
             let update = await Core.putHttpAlert(`/api/account/userprofile/${this.user.id}/`, this.form)
 
         },
@@ -142,6 +148,9 @@ export default {
             // let cover = await Core.setWaterMark(image) 
             // this.$refs.ximg.src = cover.src
 
+        },
+        async openCityDialog() {
+            City.dialogCityState = true;
         }
     }
 }
