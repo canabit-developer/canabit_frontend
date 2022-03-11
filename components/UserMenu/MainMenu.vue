@@ -7,8 +7,8 @@
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
 
                 <v-spacer></v-spacer>
-              
-               <vs-button @click="$router.push('/account')" color="#FF0000" floating class="my-point">
+            
+               <vs-button v-if="!kyc.user_verified" @click="$router.push('/account')" color="#FF0000" floating class="my-point">
                     <v-icon style="color:white;" class="mr-2">mdi-account-alert</v-icon> ยังไม่ได้ยืนยันตัวตน KYC
                 </vs-button>
                 <vs-button color="#4ade80" floating class="my-point">
@@ -60,7 +60,7 @@
             <UserMenu-NavMenuSectionTitle title="USER SETTING"></UserMenu-NavMenuSectionTitle>
             <UserMenu-NavbarLink path="/accountstatus" title="History Account" icon="mdi-history"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog-outline"></UserMenu-NavbarLink>
- 
+    
         </v-list>
 
         <template v-slot:append>
