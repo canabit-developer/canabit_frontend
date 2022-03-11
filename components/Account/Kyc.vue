@@ -11,13 +11,17 @@
                 <v-container>
                     <v-row justify="space-between">
                         <v-col cols="12" md="4">
-                            <h2> 2. Verification of identity by uploading a picture of an ID card </h2>
-                            <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""><br> <br>
+                            <h2> 2. Verification of identity by uploading a picture of an ID card </h2><br>
+                            <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""> 
+                            <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
+                            <br><br>
                             <input @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
                         <v-col cols="12" md="6">
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>
-                            <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt=""><br> <br>
+                            <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
+                            <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
+                            <br> <br>
                             <input @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
                     </v-row>
@@ -52,7 +56,7 @@
                                 <v-col cols="12" sm="6" md="4">
                                     <v-otp-input length="4"></v-otp-input>
                                 </v-col>
-                                <v-col cols="12" sm="6" md="12" >
+                                <v-col cols="12" sm="6" md="12">
                                     <vs-button floating block color="#4ade80" size="large" class="mt-1">Submit OTP</vs-button>
                                 </v-col>
 
@@ -117,6 +121,19 @@ export default {
             await this.getMyKyc();
             await Web.switchLoad(false);
         },
+        async checkId(id) {
+            if (!this.IsNumeric(id)) return false;
+            if (id.substring(0, 1) == 0) return false;
+            if (id.length != 13) return false;
+            for (i = 0, sum = 0; i < 12; i++)
+                sum += parseFloat(id.charAt(i)) * (13 - i);
+            if ((11 - sum % 11) % 10 != parseFloat(id.charAt(12))) return false;
+            return true;
+        },
+        IsNumeric(input) {
+            var RE = /^-?(0|INF|(0[1-7][0-7]*)|(0x[0-9a-fA-F]+)|((0|[1-9][0-9]*|(?=[\.,]))([\.,][0-9]+)?([eE]-?\d+)?))$/;
+            return (RE.test(input));
+        }
     },
 };
 </script>

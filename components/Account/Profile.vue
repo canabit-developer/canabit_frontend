@@ -7,16 +7,15 @@
 
             <vs-avatar size="120" history circle>
                 <img v-if="!imageProfile" src="~/static/images/avatars/1.png">
-                <img v-else :src="$url+imageProfile" alt="">
+                <!-- <img v-else :src="$url+imageProfile" alt=""> -->
+                <img v-else :src="imageProfile" alt="">
             </vs-avatar>
 
             <img src="" ref="imgs" alt="">
             <!-- upload photo -->
             <div class="ml-4">
                 <h3 class="text-3xl">{{form.display_name}}</h3>
-                <!--   <h2>{{form.email}}</h2>
-                <v-spacer></v-spacer>
-                <v-spacer></v-spacer> -->
+
                 <div class="mt-2">
                     <Core-ImageInput @profileImage="getFileImage"></Core-ImageInput>
                 </div>
@@ -25,60 +24,45 @@
         </v-card-text>
         <v-card-text>
 
-            <v-form class="multi-col-validation mt-6">
-                <v-row>
-                    <div class="flex flex-col md:flex-row md:flex-wrap">
-                        <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field>
-                        <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" label="email" dense outlined></v-text-field>
-                        <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.first_name" label="first_name" dense outlined></v-text-field>
-                        <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" label="last_name" dense outlined></v-text-field>
+            <form @submit.prevent="updateProfile" class="multi-col-validation mt-6">
 
-                        <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" label="display_name" dense outlined></v-text-field>
-                        <!-- <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.phone_number" label="phone_number" dense outlined></v-text-field> -->
-                        <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.register_by" label="register_by" dense outlined></v-text-field>
-
-                        <div class="flex flex-col mt-14  md:flex-row md:flex-wrap ">
-                            <div class="w-full  lg:w-1/2 md:w-1/2 mt-2 pl-2">
-                                <v-text-field v-model="form.address" label="Address" dense outlined></v-text-field>
-                            </div>
-                            <div class="w-full lg:w-1/2 md:w-1/2 mt-2 pl-2">
-                                <v-text-field dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="จังหวัด อำเภอ ตำบล" prepend-inner-icon="fas fa-globe-asia" />
-                            </div>
-
-                            <div class="w-full  lg:w-1/2 md:w-1/2 mt-2 pl-2">
-                                <v-text-field v-model="form.zipcode" label="zip code" dense outlined></v-text-field>
-                            </div>
-                        </div>
-                        <v-text-field name="name" label="label" id="id"></v-text-field>      
-                        <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.tier" label="tier" dense outlined></v-text-field>  -->
+                <div class="flex flex-col md:flex-row md:flex-wrap">
+                    <div class="w-full flex">
+                        <h2 class="w-full md:w-9/12 text-2xl mb-4">General Profile</h2>
+                        <v-chip v-if="form.register_by == 'Facebook'" class="ma-2 w-full md:w-3/12 " color="blue" dark small>
+                            <v-icon>mdi-facebook</v-icon> Register By Facebook
+                        </v-chip>
+                        <v-chip v-else-if="form.register_by == 'Google'" class="ma-2 w-full md:w-3/12 " color="grey" dark small>
+                            <v-icon>mdi-google</v-icon> Register By Google
+                        </v-chip>
+                        <v-chip v-else class="ma-2 w-full md:w-3/12 " color="primary" small>
+                            <v-icon>mdi-login</v-icon> Register By Website
+                        </v-chip>
                     </div>
-                    <!--  
-                    <v-col cols="12">
-                        <v-alert color="warning" text class="mb-0">
-                            <div class="d-flex align-start">
-                                <v-icon color="warning">
-
-                                </v-icon>
-
-                                <div class="ms-3">
-                                    <p class="text-base font-weight-medium mb-1">
-                                        Your email is not confirmed. Please check your inbox.
-                                    </p>
-                                    <a href="javascript:void(0)" class="text-decoration-none warning--text">
-                                        <span class="text-sm">Resend Confirmation</span>
-                                    </a>
-                                </div>
-                            </div>
+                    <div class="w-full">
+                        <v-alert v-if="!nonName" type="error" outlined >
+                            ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน โปรดแก้ไขข้อมูล
                         </v-alert>
-                    </v-col> -->
+                    </div>
 
-                    <v-col cols="12" md="2">
+                    <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" label="display_name" dense outlined></v-text-field>
+                    <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" label="email" dense outlined></v-text-field>
+                    <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field> -->
+                    <v-text-field :disabled="nonName" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.first_name" label="first_name" dense outlined></v-text-field>
+                    <v-text-field  :disabled="nonName"  class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" label="last_name" dense outlined></v-text-field>
 
-                        <vs-button floating block color="success" @click="updateProfile">Save Changes</vs-button>
+                    <br><br>
+                    <h2 class="w-full text-2xl">Address</h2>
+                    <v-checkbox label="Foreigner" v-model="form.foreigner"></v-checkbox>
+                    <v-text-field class="w-full  pl-2" v-model="form.address" label="Address" dense outlined></v-text-field>
+                    <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="จังหวัด อำเภอ ตำบล" prepend-inner-icon="fas fa-globe-asia" />
+                    <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" label="zip code" dense outlined></v-text-field>
 
-                    </v-col>
-                </v-row>
-            </v-form>
+                </div>
+                <br>
+                <vs-button type="submit" floating block color="success" @click="updateProfile">Save Changes</vs-button>
+
+            </form>
         </v-card-text>
     </v-card>
 </div>
@@ -106,6 +90,8 @@ export default {
             showCropper: true,
             data: {},
             src: 'http://img1.vued.vanthink.cn/vued0a233185b6027244f9d43e653227439a.png',
+            foreigner: false,
+            nonName:true,
         })
     },
     computed: {
@@ -127,6 +113,7 @@ export default {
         async initial() {
             this.form = await Core.getHttp(`/api/account/userprofile/${this.user.id}/`)
             delete this.form.image_profile
+            await this.setCity();
         },
 
         async updateProfile() {
@@ -151,6 +138,21 @@ export default {
         },
         async openCityDialog() {
             City.dialogCityState = true;
+        },
+        async setCity() {
+            City.currentGeo = await Core.getHttp(
+                `/api/location/geography/${this.form.geo}/`
+            );
+            City.currentProvince = await Core.getHttp(
+                `/api/location/province/${this.form.province}/`
+            );
+            City.currentAmphur = await Core.getHttp(
+                `/api/location/amphur/${this.form.amphur}/`
+            );
+            City.currentDistrict = await Core.getHttp(
+                `/api/location/district/${this.form.district}/`
+            ); 
+            await City.setShowName();
         }
     }
 }
