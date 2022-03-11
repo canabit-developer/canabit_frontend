@@ -1,193 +1,175 @@
 <template>
-<div class="p-4">
+<div class="p-4" v-if="response">
     <div class="p-8 ">
-          <vs-table>
-            <template #thead>
-                <vs-tr>
-                    <vs-th>
-                        Order Number
-                    </vs-th>
-                    <vs-th>
-                        Order  
-                    </vs-th>
-                    <vs-th>
-                        Broker
-                    </vs-th>
-                    <vs-th>
-                        Account Type
-                    </vs-th>
-                    <vs-th>
-                        Price
-                    </vs-th>
-                    <vs-th>
-                        Date Create
-                    </vs-th>
-                    <vs-th>
-                        Status
-                    </vs-th>
-                    <vs-th>
-                        Remark
-                    </vs-th>
-                </vs-tr>
-            </template>
-            <template #tbody>
-                <vs-tr :key="i" v-for="(historyaccountea, i) in historyaccountea" :data="historyaccountea">
-                    <vs-td>
-                        {{ historyaccountea.code }}
-                    </vs-td>
-                    <vs-td>
-                        <v-avatar class=" m-1" size="30" tile>
-                           <img src="@/assets/misc/logo_highrisk.png" alt="John" class="rounded-lg ">    
-                        </v-avatar>{{ historyaccountea.product }}
-                    </vs-td>
-                    <vs-td>
-                        <v-avatar class=" m-1" size="30" tile>
-                            <img src="@/assets/misc/fbs.png" alt="John" class="rounded-lg ">
-                        </v-avatar>{{ historyaccountea.broker }} 
-                    </vs-td>
-                    <vs-td>
-                        <v-avatar class=" m-1" size="18" tile>
-                            <img src="../../assets/misc/CENT.png"  class="rounded-lg">
-                        </v-avatar>{{ historyaccountea.account_type }}
-                    </vs-td>
-                    <vs-td>
-                        {{ historyaccountea.price }} $
-                    </vs-td>
-                    <vs-td>
-                        {{ historyaccountea.created_at }}
-                    </vs-td>
-                    <vs-td>
-                        <vs-tooltip success>
-                            <vs-button success flat>
-                                {{ historyaccountea.status }}
-                            </vs-button>
-                            <template #tooltip>
-                                This is a beautiful button
-                            </template>
-                        </vs-tooltip>
-                    </vs-td>
-                    <vs-td>
-                        {{ historyaccountea.remark }} 
-                    </vs-td>
-                </vs-tr>
-            </template>
-            <template #footer>
-                <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
-            </template>
-        </vs-table>
+        <div class="p-8 "><span class="text-6xl"></span>
+             <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
+                <template v-slot:item.products="{ item }">
+                    <div class="flex">
+                        <img class="h-6" :src="item.products_imgae" alt=""> <span class="ml-2">{{item.products}}</span>
+                    </div>
+                </template>
+                <template v-slot:item.account_no="{ item }">
+                    <div class="flex">
+                        <img class="h-6" :src="item.account_type_image" alt=""> <span class="ml-2">{{item.account_no}}</span>
+                    </div>
+                </template>
+                <template v-slot:item.status="{ item }">
+                    <Core-Status :status="item.status" />
+                </template>
+            </v-data-table>
+        </div>
     </div>
 </div>
 </template>
 
 <script>
-import {HistoryAccount} from '~/vuexes/historyaccount'
+import {
+    HistoryAccount
+} from '~/vuexes/historyaccount'
+import {
+    Core
+} from '@/vuexes/core'
+import _ from 'lodash'
+import {
+    Auth
+} from '@/vuexes/auth'
 export default {
     data: () => ({
-        historyaccountea:[],
-        page: 1,
-        max: 3,
-        users: [{
-                "id": 1,
-                "name": "High Risk",
-                "brokername": "FBS",
-                "price": "140",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 2,
-                "name": "Gri 6.0",
-                "brokername": "FBS",
-                "price": "140",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+        response: false,
+        filterProduct: [],
+        filterBroker:[],
+        filterAccountType:[],
+        listFilerProduct: [],
+        listsFilterAccount:[],
+        listsFilterBroker:[],
+
+        no: 1,
+        headers: [{
+                text: 'Order Number',
+                value: "no",
 
             },
             {
-                "id": 3,
-                "name": "Gri 6.0",
-                "brokername": "FBS",
-                "price": "140",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Order',
+                value: "product",
+
             },
             {
-                "id": 4,
-                "name": "High Risk",
-                "brokername": "FBS",
-                "price": "170",
-                "accountno": "kale.biz",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Broker',
+                value: "broker",
+
             },
             {
-                "id": 5,
-                "name": "High Risk",
-                "brokername": "FBS",
-                "price": "140",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Account Type',
+                value: "account_type",
+
             },
             {
-                "id": 6,
-                "name": "Grid pro ",
-                "brokername": "FBS",
-                "price": "170",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Price',
+                value: "",
+
             },
             {
-                "id": 7,
-                "name": "Gri 6.0",
-                "brokername": "FBS",
-                "price": "170",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Status',
+                value: "status",
+
             },
             {
-                "id": 8,
-                "name": "High Risk",
-                "brokername": "FBS",
-                "price": "140",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Remark',
+                value: "remark",
+
             },
-            {
-                "id": 9,
-                "name": "High Risk",
-                "brokername": "FBS",
-                "price": "140",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 10,
-                "name": "Gri 6.0",
-                "brokername": "FBS",
-                "price": "170",
-                "accountno": "01124839",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            }
         ]
     }),
     async created() {
         await this.startup();
+        this.response = true
     },
-    methods:{
-        async startup(){
-            this.historyaccountea = await HistoryAccount.getEA()
-        }
+    methods: {
+        async startup() {
+            await this.getOrderEA()
+            await this.getTableEA()
+        },
+        async getTableEA() {
+            let no = 1
+            this.items = await Core.getHttp(`/api/ea/order/?user=${Auth.user.id}${this.filterProduct}${this.filterBroker}${this.filterAccountType}`)
+            this.items = _.map(this.items, (r) => {
+                let obj = r
+                obj.on = no++
+                obj.product_image = this.getProduct(obj.product).image
+                obj.product_id = r.product
+                obj.product = this.getProduct(obj.product).name
+                obj.broker_image = this.getBroker(obj.broker).image
+                obj.broker_id = r.broker
+                obj.broker = this.getBroker(obj.broker).name
+                obj.act = this.getAccountType(obj.account_type)
+                obj.account_type = obj.act.name
+                obj.account_type_image = obj.act.image
+                obj.created_at = Core.convertDate(obj.created_at)
+                return obj
+            })
+        },
+        async getOrderEA() {
+            this.products = await Core.getHttp(`/api/ea/product/`)
+            this.listFilerProduct = _.map(this.products, (r) => {
+                return {
+                    id: `&product=` + r.id,
+                    name: r.name
+                }
+            })
+            this.listFilerProduct.push({
+                id: ``,
+                name: 'All'
+            })
+            console.log(this.listFilerProduct);
+
+            this.brokers = await Core.getHttp(`/api/finance/broker/`)
+            this.listsFilterBroker = _.map(this.brokers, (r) => {
+                return {
+                    id: `&broker=` + r.id,
+                    name: r.name
+                }
+            })
+            this.listsFilterBroker.push({
+                id: ``,
+                name: 'All'
+            })
+             console.log(this.listFilerProduct);
+
+
+            this.accountTypes = await Core.getHttp(`/api/finance/accounttype/`)
+            this.listsFilterAccount = this.accountTypes
+            this.listsFilterAccount = _.map(this.listsFilterAccount, (r) => {
+                return {
+                    id: `&account_type=` + r.id,
+                    name: r.name,
+                    broker:r.broker
+                }
+            })
+            this.listsFilterAccount.push({
+                id: ``,
+                name: 'All'
+            })
+        },
+
+        getProduct(id) {
+            return _.find(this.products, {
+                id: id
+            })
+        },
+        getBroker(id) {
+            return _.find(this.brokers, {
+                id: id
+            })
+        },
+        getAccountType(id) {
+            return _.find(this.accountTypes, {
+                id: id
+            })
+        },
     },
-    computed:{
+
+    computed: {
 
     }
 }
