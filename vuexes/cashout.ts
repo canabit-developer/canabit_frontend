@@ -6,7 +6,7 @@ import axios from  '@/plugins/axios'
 class CashOutModule extends VuexModule{
 
    public async postCashout(params:any){
-       return await Core.postHttp('api/cash/ cashout/', params)
+       return await Core.postHttpAlert('api/cash/cashout/', params)
    }
 
 }

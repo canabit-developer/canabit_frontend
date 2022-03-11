@@ -52,25 +52,25 @@
 
         <div class="w-full  md:w-3/5 p-8 bg-white lg:ml-16 ">
 
-            <v-form @submit="cashout()">
+            <form @submit.prevent="cashout()">
                 <v-row>
                     <v-col cols="12" md="12">
-                        <v-text-field label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-alpha-p-circle-outline" outlined dense id="firstname"  hide-details></v-text-field>
+                        <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-alpha-p-circle-outline" outlined dense id="firstname"  hide-details></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
-                        <v-text-field label="Name" v-model="form.name" prepend-inner-icon="mdi-account" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
+                        <v-text-field required label="Name" v-model="form.name" prepend-inner-icon="mdi-account" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
-                        <v-text-field label="Bank Account Number" v-model="form.bankcode" prepend-inner-icon="mdi-lock-outline" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
+                        <v-text-field  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Bank Account Number" v-model="form.bank_code" prepend-inner-icon="mdi-lock-outline" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
                     </v-col>
                     <v-col cols="12" md="12">
-                        <v-text-field label="Name Bank" v-model="form.bankname" prepend-inner-icon="mdi-bank-transfer" outlined dense id="Name" placeholder="Name Bank" hide-details></v-text-field>
+                        <v-text-field required label="Name Bank" v-model="form.bank_name" prepend-inner-icon="mdi-bank-transfer" outlined dense id="Name" placeholder="Name Bank" hide-details></v-text-field>
                     </v-col>
-                    <vs-button color="primary" class="w-full py-3 mt-6 font-medium">
+                    <vs-button type="submit" color="primary" class="w-full py-3 mt-6 font-medium">
                         Cashout
                     </vs-button>
                 </v-row>
-            </v-form>
+            </form>
         </div>
     </div>
 
@@ -79,6 +79,7 @@
 
 <script>
 import {CashOut} from '~/vuexes/cashout'
+import {Auth} from '~/vuexes/auth'
 export default {
     data:() =>({
         form:{
@@ -93,7 +94,10 @@ export default {
     },
     methods:{
         async cashout(){
+            this.form.user = Auth.user.id
             await CashOut.postCashout(this.form)
+            this.form = {}
+            this.$emit('reload',false)
         }
     },
     computed:{

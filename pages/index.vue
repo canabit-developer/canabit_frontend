@@ -86,7 +86,7 @@
                                                     </v-alert>
                                                 </template>
                                                 <div class="w-full -mt-8">
-                                                    <Cashout-From></Cashout-From>
+                                                    <Cashout-From @reload="reloadCashOut" ></Cashout-From>
                                                 </div>
                                                 <template #footer>
 
@@ -167,6 +167,11 @@ export default {
         };
     },
     async created() {},
+    methods:{
+        async reloadCashOut(val){
+            this.active = false
+        }
+    }
 };
 </script>
 
