@@ -5,11 +5,11 @@
             <div class="d-flex align-center mx-6">
                 <!-- Left Content -->
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
-
+             
                 <v-spacer></v-spacer>
-               
-                <vs-button color="#4ade80" floating class="my-point" >
-                     <v-icon style="color:white;">mdi-bitcoin</v-icon> Point : 8000
+
+                <vs-button color="#4ade80" floating class="my-point">
+                    <v-icon style="color:white;">mdi-bitcoin</v-icon> Point : 8000
                 </vs-button>
 
             </div>
@@ -79,19 +79,29 @@ import {
 export default {
     data() {
         return {
-            isDrawerOpen: true
+            isDrawerOpen: true,
+            kyc: {}
         }
     },
     methods: {
         async logout() {
             await Auth.logout();
             await location.reload();
-        }
+        },
+        async getMyKyc() {
+            let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
+            if (kyc.length > 0) {
+                this.kyc = kyc[kyc.length - 1]; 
+            }
+        },
     },
     computed: {
         user() {
             return Auth.user
         }
+    },
+    async created(){
+        
     }
 }
 </script>
