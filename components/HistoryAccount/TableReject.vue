@@ -1,153 +1,111 @@
 <template>
-<div class="p-4">
+<div class="p-4" v-if="response">
     <div class="p-8 "><span class="text-6xl"></span>
-          <vs-table>
-            <template #thead>
-                <vs-tr>
-                    <vs-th>
-                        Order No
-                    </vs-th>
-                    <vs-th>
-                        Indicator No.
-                    </vs-th>
-                    <vs-th>
-                        Date
-                    </vs-th>
-                </vs-tr>
+          <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
+            <template v-slot:item.product="{ item }">
+                <div class="flex">
+                    <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.product}}</span>
+                </div>
             </template>
-            <template #tbody>
-                <vs-tr :key="i" v-for="(tr, i) in historyaccountindicator" :data="tr">
-                    <vs-td>
-                        {{ tr.code }}
-                    </vs-td>
-                    <vs-td>
-                        <v-avatar class=" m-1" size="30" tile>
-                            <img src="@/assets/misc/signal.png" alt="John" class="rounded-lg ">
-                        </v-avatar> {{ tr.product }}
-                    </vs-td>
-                    <vs-td>
-                        {{ tr.created_at }}
-                    </vs-td>
-                </vs-tr>
-            </template>
-            <template #footer>
-                <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
-            </template>
-        </vs-table>
-
+        </v-data-table>
     </div>
 </div>
 </template>
 
 <script>
-import {HistoryAccount} from '~/vuexes/historyaccount'
+import {
+    HistoryAccount
+} from '~/vuexes/historyaccount'
+import {
+    Core
+} from '@/vuexes/core'
+import _ from 'lodash'
+import {
+    Auth
+} from '@/vuexes/auth'
 export default {
     data: () => ({
-        historyaccountindicator:[],
-        page: 1,
-        max: 3,
-        users: [{
-                "id": 1,
-                "name": "High Risk",
-                "username": "Indicator",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
+        historyaccountindicator: [],
+        no: 1,
+        search: '',
+        items: [],
+        response: false,
+        products: [],
+        listProduct: [],
+        filterProduct: '',
+        headers: [{
+                text: 'No.',
+                value: "no",
+
             },
             {
-                "id": 2,
-                "name": "Gri 6.0",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
+                text: 'Order Product',
+                value: "product",
+
             },
             {
-                "id": 3,
-                "name": "Gri 6.0",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
+                text: 'Date Create',
+                value: "created_at",
+
             },
-            {
-                "id": 4,
-                "name": "High Risk",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
-            },
-            {
-                "id": 5,
-                "name": "High Risk",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
-            },
-            {
-                "id": 6,
-                "name": "Grid pro ",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
-            },
-            {
-                "id": 7,
-                "name": "Gri 6.0",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
-            },
-            {
-                "id": 8,
-                "name": "High Risk",
-                "username": "00154775349789",
-                "price": "140",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
-            },
-            {
-                "id": 9,
-                "name": "High Risk",
-                "username": "00154775349789",
-                "price": "140",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
-            },
-            {
-                "id": 10,
-                "name": "Gri 6.0",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Reject",
-            }
-        ]
+        ],
+
     }),
     async created() {
-        await this.startup();
-    },
-    methods:{
-        async startup(){
-            this.historyaccountindicator = await HistoryAccount.getIndicator()
-        }
-    },
-    computed:{
+        await this.startup()
+        this.response = true
 
+    },
+    methods: {
+        async startup() {
+            await this.getProducts()
+            await this.getTableIndicator()
+        },
+        async getTableIndicator() {
+            let no = 1
+            this.items = await Core.getHttp(`/api/indicator/order/?user=${Auth.user.id}${this.filterProduct}`)
+            this.items = _.map(this.items, (r) => {
+                let obj = r
+                obj.no = no++
+                obj.product_image = this.getProduct(r.product).image
+                obj.product_id = r.product
+                obj.product = this.getProduct(obj.product).name
+                obj.created_at = Core.convertDate(obj.created_at)
+                return obj
+            })
+
+        },
+        async getProducts() {
+            this.products = await Core.getHttp(`/api/indicator/product/`)
+            this.listProduct = _.map(this.products, (r) => {
+                return {
+                    id: `&product=` + r.id,
+                    name: r.name
+                }
+            })
+            this.listProduct.push({
+                id: ``,
+                name: 'All'
+            })
+            console.log(this.listsFilterBroker);
+        },
+        getProduct(id) {
+            return _.find(this.products, {
+                id: id
+            })
+        },
+        async getFilter() {
+            await this.getTableIndicator()
+        },
+
+    },
+    computed: {
+
+    },
+    watch: {
+        async page(oldVal, newVal) {
+            await this.startup();
+        }
     }
 }
 </script>
