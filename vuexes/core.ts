@@ -122,6 +122,12 @@ class CoreModule extends VuexModule {
     return new File([u8arr],filename , { type: mime });
   }
 
+  async fileToBase64(file:any, callback:any,) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(file);
+}
+
 }
 
 import store from "@/vuexes"
