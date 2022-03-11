@@ -99,6 +99,7 @@ export default {
                 obj.product_image = this.getProduct(obj.product).image
                 obj.product_id = r.product
                 obj.product = this.getProduct(obj.product).name
+                
                 obj.broker_image = this.getBroker(obj.broker).image
                 obj.broker_id = r.broker
                 obj.broker = this.getBroker(obj.broker).name
@@ -114,7 +115,7 @@ export default {
             this.listFilerProduct = _.map(this.products, (r) => {
                 return {
                     id: `&product=` + r.id,
-                    name: r.name
+                    name: r.name,
                 }
             })
             this.listFilerProduct.push({

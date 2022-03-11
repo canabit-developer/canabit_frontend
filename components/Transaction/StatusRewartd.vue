@@ -1,169 +1,97 @@
 <template>
-<div class="p-4">
-    <div class="p-8 ">
-          <vs-table>
-            <template #thead>
-                <vs-tr>
-                    <vs-th>
-                        Order number
-                    </vs-th>
-                    <vs-th>
-                        Reward name
-                    </vs-th>
-                    <vs-th>
-                        Date
-                    </vs-th>
-                    <vs-th>
-                        Point
-                    </vs-th>
-                    <vs-th>
-                        Status
-                    </vs-th>
-                    <vs-th>
-                        Action
-                    </vs-th>
-                    <vs-th>
-                        Remark
-                    </vs-th>
-                </vs-tr>
+<div class="p-4" v-if="response">
+    <div class="p-8 "><span class="text-6xl"></span>
+          <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
+            <template v-slot:item.product="{ item }">
+                <div class="flex">
+                    <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.product}}</span>
+                </div>
+            </template> 
+                  <template v-slot:item.point_use="{ item }">
+                    <span class="text-red-600">- {{item.point_use}}</span> 
+                   
+                </template>
+            <template v-slot:item.status="{ item }">
+                <Core-Status :status="item.status" />
             </template>
-            <template #tbody>
-                <vs-tr :key="i" v-for="(statusreward, i) in statusreward" :data="statusreward">
-                    <vs-td>
-                        {{ statusreward.code }}
-                    </vs-td>
-                    <vs-td>
-                        <p class="text-blue-600">{{ statusreward.product }}</p>
-                    </vs-td>
-                    <vs-td>
-                        {{ statusreward.created_at }}
-                    </vs-td>
-                    <vs-td>
-                        <p class="text-red-400">{{ statusreward.point_use }} point</p>
-                    </vs-td>
-                    <vs-td>
-                        <vs-tooltip success>
-                            <vs-button success flat>
-                                {{ statusreward.status }}
-                            </vs-button>
-                            <template #tooltip>
-                                This is a beautiful button
-                            </template>
-                        </vs-tooltip>
-                    </vs-td>
-                    <vs-td>
-                        <vs-button :active="active == 0" @click="active = 0">
-                            Cancel Reward
-                        </vs-button>
-                    </vs-td>
-                    <vs-td>
-                        {{ statusreward.remark }}
-                    </vs-td>
-                </vs-tr>
-            </template>
-            <template #footer>
-                <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
-            </template>
-        </vs-table>
-
+        </v-data-table>
     </div>
 </div>
 </template>
 
 <script>
-import {Transaction} from '@/vuexes/transaction'
+import {
+    HistoryAccount
+} from '~/vuexes/historyaccount'
+import {
+    Core
+} from '@/vuexes/core'
+import _ from 'lodash'
+import {
+    Auth
+} from '@/vuexes/auth'
 export default {
-
     data: () => ({
-        statusreward: [],
-        page: 1,
-        max: 3,
-        users: [{
-                "id": 1,
-                "ordernumber": "001547",
-                "rewardname": "apple watch series 7",
-                "date": "5/23/2020, 10:45 AM",
-                "point": "-100",
-                "status": "Approve",
-                "remark": "*The product has been shipped already, please check the parcel number in the email.",
-            },
-            {
-                "id": 2,
-                "ordernumber": "001547",
-                "rewardname": "apple watch series 7",
-                "date": "5/23/2020, 10:45 AM",
-                "point": "-100",
-                "status": "Approve",
-                "remark": "*The product has been shipped already, please check the parcel number in the email.",
-            },
-            {
-                "id": 3,
-                "ordernumber": "001547",
-                "rewardname": "apple watch series 7",
-                "date": "5/23/2020, 10:45 AM",
-                "point": "-100",
-                "status": "Approve",
-                "remark": "*The product has been shipped already, please check the parcel number in the email.",
-            },
-            {
-                "id": 4,
-                "ordernumber": "001547",
-                "rewardname": "apple watch series 7",
-                "date": "5/23/2020, 10:45 AM",
-                "point": "-100",
-                "status": "Approve",
-                "remark": "*The product has been shipped already, please check the parcel number in the email.",
-            },
-            {
-                "id": 5,
-                "ordernumber": "001547",
-                "rewardname": "apple watch series 7",
-                "date": "5/23/2020, 10:45 AM",
-                "point": "-100",
-                "status": "Approve",
-                "remark": "*The product has been shipped already, please check the parcel number in the email.",
-            },
-            {
-                "id": 6,
-                "ordernumber": "001547",
-                "rewardname": "apple watch series 7",
-                "date": "5/23/2020, 10:45 AM",
-                "point": "-100",
-                "status": "Approve",
-                "remark": "*The product has been shipped already, please check the parcel number in the email.",
-            },
-            {
-                "id": 7,
-                "ordernumber": "001547",
-                "rewardname": "apple watch series 7",
-                "date": "5/23/2020, 10:45 AM",
-                "point": "-100",
-                "status": "Approve",
-                "remark": "*The product has been shipped already, please check the parcel number in the email.",
-            },
-            {
-                "id": 8,
-                "ordernumber": "001547",
-                "rewardname": "apple watch series 7",
-                "date": "5/23/2020, 10:45 AM",
-                "point": "-100",
-                "status": "Approve",
-                "remark": "*The product has been shipped already, please check the parcel number in the email.",
-            },
+        historyaccountindicator: [],
+        no: 1,
+        search: '',
+        items: [],
+        response: false,
+        products: [],
+        listProduct: [],
+        filterProduct: '',
+        headers: [{
+            text: 'Order number.',
+            value: "code",
+        }, {
+            text: 'Reward name',
+            value: "product",
+        }, {
+            text: 'Point',
+            value: "point_use",
+        }, {
+            text: 'Status',
+            value: "status",
+        }, {
+            text: 'Action',
+            value: " ",
+        }, {
+            text: 'Remark',
+            value: "remark",
+        }, ],
 
-        ],
-        response:false,
     }),
     async created() {
-        await this.startup();
+        await this.startup()
+        this.response = true
+
     },
     methods: {
-        async startup(){
-            this.statusreward = await Transaction.getRewardHistory()
-        }
+        async startup() {
+            await this.getTableIndicator()
+        },
+        async getTableIndicator() {
+            let no = 1
+            this.items = await Core.getHttp(`/api/store/rewardhistory/?user=${Auth.user.id}`)
+            this.items = _.map(this.items, (r) => {
+                let obj = r
+                obj.no = no++
+
+                obj.created_at = Core.convertDate(obj.created_at)
+                obj.updated_at = Core.convertDate(obj.updated_at)
+                return obj
+            })
+
+        },
+
     },
     computed: {
 
+    },
+    watch: {
+        async page(oldVal, newVal) {
+            await this.startup();
+        }
     }
 }
 </script>

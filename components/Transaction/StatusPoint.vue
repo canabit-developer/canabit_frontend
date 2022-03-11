@@ -1,173 +1,102 @@
 <template>
-<div class="p-4">
-    <div class="p-8 ">
-          <vs-table>
-            <template #thead>
-                <vs-tr>
-                    <vs-th>
-                        No.
-                    </vs-th>
-                    <vs-th>
-                        transaction point
-                    </vs-th>
-                    <vs-th>
-                        Point
-                    </vs-th>
-                    <vs-th>
-                        Date Create
-                    </vs-th>
-                    <vs-th>
-                        STATUS
-                    </vs-th>
-                </vs-tr>
+<div class="p-4" v-if="response">
+    <div class="p-8 "><span class="text-6xl"></span>
+          <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
+            <template v-slot:item.product="{ item }">
+                <div class="flex">
+                    <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.product}}</span>
+                </div>
             </template>
-            <template #tbody>
-                <vs-tr :key="i" v-for="(tr, i) in users" :data="tr">
-                    <vs-td>
-                        {{ tr.id }}
-                    </vs-td>
-                    <vs-td>
-                        {{ tr.name }}
-                    </vs-td>
-                    <vs-td>
-                        <p class="text-green-500">+ {{ tr.price }} point </p>
-                    </vs-td>
-                    <vs-td>
-                        {{ tr.createdate }}
-                    </vs-td>
-                    <vs-td>
-                        <vs-tooltip success>
-                            <vs-button success flat>
-                                {{ tr.status }}
-                            </vs-button>
-                            <template #tooltip>
-                                This is a beautiful button
-                            </template>
-                        </vs-tooltip>
-
-                    </vs-td>
-                </vs-tr>
-            </template>
-            <template #footer>
-                <vs-pagination v-model="page" :length="$vs.getLength(users, max)" />
-            </template>
-        </vs-table>
+                  <template v-slot:item.point="{ item }">
+                    <span class="text-red-600" v-if="item.type == 1">- {{item.point}}</span> 
+                    <span class="text-green-600" v-if="item.type == 0">+ {{item.point}}</span> 
+                </template>
+            <template v-slot:item.status="{ item }">
+                    <Core-Status :status="item.status" />
+                </template>
+        </v-data-table>
     </div>
 </div>
 </template>
 
 <script>
 import {
-    Transaction
-} from '~/vuexes/transaction'
+    HistoryAccount
+} from '~/vuexes/historyaccount'
+import {
+    Core
+} from '@/vuexes/core'
+import _ from 'lodash'
+import {
+    Auth
+} from '@/vuexes/auth'
 export default {
     data: () => ({
-        statuspoint: [],
-        page: 1,
-        max: 3,
-        users: [{
-                "id": 1,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "100",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 2,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "140",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+        historyaccountindicator: [],
+        no: 1,
+        search: '',
+        items: [],
+        response: false,
+        products: [],
+        listProduct: [],
+        filterProduct: '',
+        headers: [{
+                text: 'No.',
+                value: "no",
 
             },
             {
-                "id": 3,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "140",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Transaction',
+                value: "received_from",
+
             },
             {
-                "id": 4,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "kale.biz",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Point',
+                value: "point",
+
             },
             {
-                "id": 5,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "140",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
+                text: 'Status',
+                value: "status",
+
             },
-            {
-                "id": 6,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 7,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 8,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "140",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 9,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "140",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            },
-            {
-                "id": 10,
-                "name": "Cashback",
-                "username": "00154775349789",
-                "price": "170",
-                "signals": "Indicator",
-                "createdate": "5/23/2020, 10:45 AM",
-                "status": "Approve",
-            }
         ],
+
     }),
     async created() {
-        this.startup()
+        await this.startup()
+        this.response = true
+
     },
     methods: {
         async startup() {
-            this.statuspoint = await Transaction.getStatusPoint()
-        }
-    },
-    computed: {}
+            await this.getTableIndicator()
+        },
+        async getTableIndicator() {
+            let no = 1
+            this.items = await Core.getHttp(`/api/account/userpointhistory/?user=${Auth.user.id}`)
+            this.items = _.map(this.items, (r) => {
+                let obj = r
+                obj.no = no++
 
+
+
+                obj.created_at = Core.convertDate(obj.created_at)
+                obj.updated_at = Core.convertDate(obj.updated_at)
+                return obj
+            })
+
+        },
+
+    },
+    computed: {
+
+    },
+    watch: {
+        async page(oldVal, newVal) {
+            await this.startup();
+        }
+    }
 }
 </script>
 
