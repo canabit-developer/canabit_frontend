@@ -13,7 +13,7 @@
 
             <img src="" ref="imgs" alt="">
             <!-- upload photo -->
-            <div class="ml-4">
+            <div class="ml-4"> 
                 <h3 class="text-3xl">{{form.display_name}}</h3>
 
                 <div class="mt-2">
@@ -43,8 +43,7 @@
                         <v-alert v-if="!nonName" type="error" outlined >
                             ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน โปรดแก้ไขข้อมูล
                         </v-alert>
-                    </div>
-
+                    </div> 
                     <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" label="display_name" dense outlined></v-text-field>
                     <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" label="email" dense outlined></v-text-field>
                     <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field> -->
@@ -92,6 +91,7 @@ export default {
             src: 'http://img1.vued.vanthink.cn/vued0a233185b6027244f9d43e653227439a.png',
             foreigner: false,
             nonName:true,
+            kyc:{}
         })
     },
     computed: {
@@ -106,6 +106,15 @@ export default {
         await this.initial()
     },
     methods: {
+          async getMyKyc() {
+            let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
+            if (kyc.length > 0) {
+                this.kyc = kyc[kyc.length - 1]; 
+                if(this.kyc.user_verified_name_error == true){
+                    this.nonName = false
+                } 
+            }
+        },
         async imageuploaded(res) {
             console.log(res);
 
@@ -114,6 +123,7 @@ export default {
             this.form = await Core.getHttp(`/api/account/userprofile/${this.user.id}/`)
             delete this.form.image_profile
             await this.setCity();
+            await this.getMyKyc();
         },
 
         async updateProfile() {
