@@ -47,21 +47,23 @@
                             <img :src="eaproduct.image" alt="">
                         </template>
                         <template #text>
-                            <p>
-                                {{eaproduct.sub_title}}
-                            </p>
+                            <div class="h-16 mt-2">
+                                <p class="textellipsis">
+                                    {{eaproduct.sub_title}}
+                                </p>
+                            </div>
+
                             <div class="flex flex-wrap justify-center mt-2">
-                                                             
+
                                 <SemiAuto-FromPurchase></SemiAuto-FromPurchase>
 
                                 <SemiAuto-FromRequestTest></SemiAuto-FromRequestTest>
 
-                                   
-                                    <vs-button class="btn-chat" color="#5EDA9F" @click="$router.push(`/detailea`)">
-                                        <span class="span">
-                                            More Detail
-                                        </span>
-                                    </vs-button>
+                                <vs-button class="btn-chat" color="#5EDA9F" @click="$router.push(`/detailea`)">
+                                    <span class="span">
+                                        More Detail
+                                    </span>
+                                </vs-button>
 
                             </div>
 
@@ -80,17 +82,19 @@
 </template>
 
 <script>
-import {Product} from '~/vuexes/product'
+import {
+    Product
+} from '~/vuexes/product'
 export default {
     data: () => ({
         active: false,
-        eaproduct:[],
+        eaproduct: [],
     }),
-    async created(){
+    async created() {
         await this.startup()
     },
-    methods:{
-        async startup(){
+    methods: {
+        async startup() {
             this.eaproduct = await Product.getEAProduct()
         }
     },
@@ -98,5 +102,11 @@ export default {
 </script>
 
 <style>
-
+.textellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 </style>

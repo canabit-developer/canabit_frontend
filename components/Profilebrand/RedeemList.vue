@@ -16,12 +16,10 @@
                         </template>
                         <template #text>
                             <div class="h-20">
-                                <p class="testellipsis" >
+                                <p class="textellipsis" >
                                     {{storeproduct.detail}}
-                                
                                 </p>
                             </div>
-
                             <vs-button block color="#4ade80" class="btn-chat mt-5">
                                 Redeem
                             </vs-button>
@@ -74,7 +72,7 @@ export default {
     position: absolute;
     width: 100%;
 }
-.testellipsis{
+.textellipsis{
    overflow: hidden;
 text-overflow: ellipsis;
 display: -webkit-box;

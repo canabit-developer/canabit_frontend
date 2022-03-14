@@ -43,9 +43,12 @@
                             <img :src="copytradeproduct.image" alt="">
                         </template>
                         <template #text>
-                            <p>
-                                {{copytradeproduct.sub_title}}
-                            </p>
+                            <div class="h-16 mt-2">
+                                <p class="textellipsis">
+                                    {{copytradeproduct.sub_title}}
+                                </p>
+                            </div>
+
                             <vs-button block class="btn-chat mt-5" @click="$router.push(`/detailcopytrade`)">
                                 <span class="span">
                                     Detail Master
@@ -60,23 +63,31 @@
 </div>
 </template>
 
-<script> 
-import {Product} from '~/vuexes/product'
-export default {
-    data:() =>({
-        copytradeproduct:[],
-    }),
-    async created(){
-        this.startup()
-    },
-    methods:{
-        async startup(){
-            this.copytradeproduct = await Product.getCopytradeProduct()
-        }
-    }
-}
+<script>
+ import {
+     Product
+ } from '~/vuexes/product'
+ export default {
+     data: () => ({
+         copytradeproduct: [],
+     }),
+     async created() {
+         this.startup()
+     },
+     methods: {
+         async startup() {
+             this.copytradeproduct = await Product.getCopytradeProduct()
+         }
+     }
+ }
 </script>
 
 <style>
-
+.textellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 </style>

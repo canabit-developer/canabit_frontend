@@ -16,12 +16,12 @@
                     <div class="hidden md:block h-5 w-5 rounded-full bg-green-500 absolute top-0 right-0 -mr-40 mt-32"></div>
 
                     <div class="text-center mb-10 mt-10">
-                    <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
-                    <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
-                    <span class="inline-block w-40 h-1 rounded-full bg-white ml-1"></span>
-                    <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
-                    <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
-                </div>
+                        <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
+                        <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
+                        <span class="inline-block w-40 h-1 rounded-full bg-white ml-1"></span>
+                        <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
+                        <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
+                    </div>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
             <div class="hidden md:block h-24 w-24 rounded-full bg-green-500 absolute top-0 right-0 -mr-40 mt-32"></div>
         </div>
         <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
-        
+
         <vs-row w="12" class="-mt-4" justify="center">
             <vs-clos v-for="indicatorsproduct,index in indicatorsproduct" :key="index" class="p-5" w="3">
                 <vs-card>
@@ -46,9 +46,12 @@
                         <img :src="indicatorsproduct.image" alt="">
                     </template>
                     <template #text>
-                        <p>
-                            {{indicatorsproduct.detail}}
-                        </p>
+                        <div class="h-16 mt-2">
+                            <p class="textellipsis">
+                                {{indicatorsproduct.detail}}
+                            </p>
+                        </div>
+
                         <vs-button block class="btn-chat mt-3">
                             <span class="span">
                                 <v-icon color="#ffff" class="mr-2">mdi-cloud-download-outline</v-icon>
@@ -58,11 +61,11 @@
                     </template>
                     <template #interactions>
                         <div>
-                            <vs-button  success flat :active="active == 1" @click="active = 1">
+                            <vs-button success flat :active="active == 1" @click="active = 1">
                                 Price : Free
                             </vs-button>
                         </div>
-                        
+
                     </template>
                 </vs-card>
             </vs-clos>
@@ -72,18 +75,19 @@
 </template>
 
 <script>
-
-import {Product} from '~/vuexes/product'
+import {
+    Product
+} from '~/vuexes/product'
 export default {
-    data: () =>({
-        indicatorsproduct:[],
+    data: () => ({
+        indicatorsproduct: [],
 
     }),
-    async created(){
+    async created() {
         this.startup()
     },
-    methods:{
-        async startup(){
+    methods: {
+        async startup() {
             this.indicatorsproduct = await Product.getIndicatorProduct()
         }
     }
@@ -91,5 +95,11 @@ export default {
 </script>
 
 <style>
-
+.textellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 </style>
