@@ -1,20 +1,27 @@
 <template>
 <div>
     <v-item-group>
-        <v-container>
+        <v-container v-if="response">
             <v-row>
-                <v-col v-for="storeproduct,n in storeproduct" :key="n" sm="4" lg="6" md="8" xl="3">
+                <v-col v-for="storeproduct,n in storeproducts" :key="n" sm="4" lg="6" md="8" xl="3">
                     <vs-card>
                         <template #title>
                             <h3>{{storeproduct.name}}</h3>
                         </template>
                         <template #img>
-                            <img :src="storeproduct.image" alt="">
+                            <div class="h-64 w-full ">
+                                <img :src="storeproduct.image" alt="" />
+                            </div>
+
                         </template>
                         <template #text>
-                            <p>
-                                {{storeproduct.detail}}
-                            </p>
+                            <div class="h-20">
+                                <p class="testellipsis" >
+                                    {{storeproduct.detail}}
+                                
+                                </p>
+                            </div>
+
                             <vs-button block color="#4ade80" class="btn-chat mt-5">
                                 Redeem
                             </vs-button>
@@ -38,18 +45,21 @@ import {
 } from '~/vuexes/store'
 export default {
     data: () => ({
-        storeproduct: [],
+        storeproducts: [],
+        response: false,
     }),
     async created() {
-        this.startup()
+        await this.startup()
+        this.response = true
     },
     methods: {
         async startup() {
-            this.storeproduct = await Store.getStoreProduct()
+            this.storeproducts = await Store.getStoreProduct()
+
         }
     },
     computed: {
-        imageStoreProduct(){
+        imageStoreProduct() {
             return Store.image
         }
     }
@@ -63,5 +73,12 @@ export default {
     justify-content: center;
     position: absolute;
     width: 100%;
+}
+.testellipsis{
+   overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 3;
+-webkit-box-orient: vertical;
 }
 </style>

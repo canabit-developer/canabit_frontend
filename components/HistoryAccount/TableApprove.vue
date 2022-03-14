@@ -5,7 +5,7 @@
              <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
                 <template v-slot:item.products="{ item }">
                     <div class="flex">
-                        <img class="h-6" :src="item.products_imgae" alt=""> <span class="ml-2">{{item.products}}</span>
+                        <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.products}}</span>
                     </div>
                 </template>
                 <template v-slot:item.account_no="{ item }">
@@ -35,6 +35,7 @@ import {
 } from '@/vuexes/auth'
 export default {
     data: () => ({
+        items:[],
         response: false,
         filterProduct: [],
         filterBroker:[],
@@ -46,7 +47,7 @@ export default {
         no: 1,
         headers: [{
                 text: 'Order Number',
-                value: "no",
+                value: "code",
 
             },
             {
