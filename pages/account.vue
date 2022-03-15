@@ -1,5 +1,6 @@
 <template>
 <div>
+    <h2 class="text-xl font-semibold">ACCOUNT SETTING</h2>
     <ul class="breadcrumb mt-3">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
         <li>Account Setting</li>
