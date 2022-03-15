@@ -5,14 +5,14 @@ import axios from  '@/plugins/axios'
 
 class ProductModule extends VuexModule{
 
-    public async getEAProduct(){
-         return await Core.getHttp('/api/ea/product/')
+    public async getEAProduct(is_active:boolean = true){
+         return await Core.getHttp('/api/ea/product/?is_active='+is_active)
     }
-    public async getIndicatorProduct(){
-        return await Core.getHttp('/api/indicator/product/')
+    public async getIndicatorProduct(is_active:boolean = true){
+        return await Core.getHttp('/api/indicator/product/?is_active='+is_active)
    }
-   public async getCopytradeProduct(){
-        return await Core.getHttp('/api/copytrade/product/')
+   public async getCopytradeProduct(is_active:boolean = true){
+        return await Core.getHttp('/api/copytrade/product/?is_active='+is_active)
 }
   
 

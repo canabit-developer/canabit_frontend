@@ -71,7 +71,7 @@
 
                         </template>
                         <template #interactions>
-                            <vs-button class="btn-chat" color="#5EDA9F"  >
+                            <vs-button class="btn-chat" success  >
                                Price:{{eaproduct.price}}
                             </vs-button>
                         </template>
@@ -94,6 +94,7 @@ export default {
     }),
     async created() {
         await this.startup()
+    
     },
     methods: {
         async startup() {

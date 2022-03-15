@@ -20,7 +20,7 @@
                                     {{storeproduct.detail}}
                                 </p>
                             </div>
-                            <vs-button block color="#4ade80" class="btn-chat mt-5">
+                            <vs-button block color="#4ade80" class="btn-chat mt-5" @click="getRedeem()">
                                 Redeem
                             </vs-button>
                         </template>
@@ -41,7 +41,12 @@
 import {
     Store
 } from '~/vuexes/store'
+import {
+    Web
+} from '~/vuexes/web'
 export default {
+  watch: {
+  },
     data: () => ({
         storeproducts: [],
         response: false,
@@ -54,6 +59,15 @@ export default {
         async startup() {
             this.storeproducts = await Store.getStoreProduct()
 
+        },
+        async getRedeem(){
+               let check =  await Web.confirm('sasas')
+               if(check){
+                   
+               }else{
+
+               }
+      
         }
     },
     computed: {

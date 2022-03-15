@@ -5,14 +5,10 @@ import axios from  '@/plugins/axios'
 
 class StoreModule extends VuexModule{
 
-    public async getStoreProduct(){
-        return await Core.getHttp('/api/store/product/')
+    public async getStoreProduct(is_active:boolean = true){
+        return await Core.getHttp('/api/store/product/?is_active='+is_active)
     }
-    public async postRedeem(){
-        return await Core.postHttp('/api/store/rewardhistory/')
-    }
-  
-
+    
 }
 import store from "@/vuexes"
 export const Store = new StoreModule({store, name: "Store"})

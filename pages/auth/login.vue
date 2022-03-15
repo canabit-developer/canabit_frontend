@@ -114,6 +114,7 @@ export default {
     },
     async created() {
         await Auth.checkUser();
+        await this.geData()
     },
     methods: {
         async login(alert = true) {
@@ -178,6 +179,10 @@ export default {
                 })
             }
         },
+        async geData(){
+            let data = await Core.getHttp('https://www.myfxbook.com/private/charts.json?invitation=&showLots=false&showPips=true&showChange=false&showSymbolPips=false&showMain=true&magicNumbers=&symbols=&tags=&days=1,5,2,6,3,7,4&hours=0,4,8,12,16,20,1,5,9,13,17,21,2,6,10,18,22,14,3,7,11,15,19,23&buySell=0,1,6,16&yieldStart=&yieldEnd=&netProfitStart=&netProfitEnd=&selectedTime=1&pipsStart=&pipsEnd=&l=s&accountOid=6214185&startDate=2022-01-01&endDate=2022-12-31&chartType=3&monthType=0&oid=6214185&rand=0.15501768751485212')
+            console.log(data)
+        }
     }
 }
 </script>
