@@ -1,6 +1,10 @@
 <template>
 <div>
-    <div class="font-sans bg-white flex flex-col min-h-screen w-full ">
+    <ul class="breadcrumb mt-3">
+        <li><a @click="$router.push('/')" href="#">Home</a></li>
+        <li>Transaction</li>
+    </ul>
+    <div class="font-sans bg-white flex flex-col min-h-screen w-full mt-3">
         <div>
             <div class="bg-green-400 rounded-xl md:overflow-hidden ">
                 <div class="px-4 py-16">
@@ -24,7 +28,6 @@
                     </div>
 
                 </div>
-
                 <svg class="fill-current bg-green-400  text-white hidden md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                     <path fill-opacity="1" d="M0,64L120,85.3C240,107,480,149,720,149.3C960,149,1200,107,1320,85.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
                 </svg>
@@ -33,7 +36,7 @@
             <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:-mt-96 md:-mt-24">
                 <div class="p-2 rounded-xl shadow-md bg-white  mb: -mt-24">
                     <v-clo justify-center>
-                        <v-tabs v-model="tab"  grow>
+                        <v-tabs v-model="tab" grow>
                             <v-tab v-for="item in items" :key="item">
                                 {{ item }}
                             </v-tab>

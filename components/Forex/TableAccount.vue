@@ -10,7 +10,7 @@
                             <div class="grid grid-cols-6">
                                 <div class="col-span-3 px-3 font-semibold flex flex-col">
                                     <div class=""> {{list.name}} </div>
-                                    <div class="text-sm text-gray-400 font-light"> @Broker Partner </div>
+                                    <div class="text-sm text-gray-400 font-light"> </div>
                                 </div>
                                 <div class="col-span-3 py-2 ml-8 justify-self-end">
                                     <v-chip color="success" label>

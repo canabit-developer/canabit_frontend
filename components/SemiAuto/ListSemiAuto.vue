@@ -41,7 +41,9 @@
                 <vs-clos v-for="eaproduct,index in eaproduct" :key="index" class="p-2 mt-2">
                     <vs-card>
                         <template #title>
-                            <h3>{{eaproduct.name}}</h3>
+                            <div class="">
+                                <h3> {{eaproduct.name}} </h3>
+                            </div>
                         </template>
                         <template #img>
                             <img :src="eaproduct.image" alt="">
@@ -69,8 +71,8 @@
 
                         </template>
                         <template #interactions>
-                            <vs-button success flat :active="active == 1" @click="active = 1">
-                                Price : {{eaproduct.price}} $
+                            <vs-button class="btn-chat" color="#5EDA9F"  >
+                               Price:{{eaproduct.price}}
                             </vs-button>
                         </template>
                     </vs-card>

@@ -1,7 +1,15 @@
 <template>
-    <div>
+<div>
+    <ul class="breadcrumb mt-3">
+        <li><a @click="$router.push('/')" href="#">Home</a></li>
+        <li>Product</li>
+        <li>Indicator</li>
+    </ul>
+    <div class="mt-3">
         <Signals-ListSignals></Signals-ListSignals>
     </div>
+
+</div>
 </template>
 
 <script>

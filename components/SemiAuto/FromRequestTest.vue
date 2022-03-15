@@ -11,7 +11,7 @@
             <vs-dialog prevent-close v-model="active">
                 <template #header>
                     <h4 class="not-margin">
-                        <b>Request Test</b>
+                        
                     </h4>
                 </template>
 

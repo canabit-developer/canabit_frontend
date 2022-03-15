@@ -61,7 +61,7 @@
                     </template>
                     <template #interactions>
                         <div>
-                            <vs-button success flat :active="active == 1" @click="active = 1">
+                            <vs-button success  >
                                 Price : Free
                             </vs-button>
                         </div>

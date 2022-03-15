@@ -1,6 +1,10 @@
 <template>
 <div>
-    <div class="font-sans bg-white flex flex-col min-h-screen w-full">
+    <ul class="breadcrumb mt-3">
+        <li><a @click="$router.push('/')" href="#">Home</a></li>
+        <li>Account Setting</li>
+    </ul>
+    <div class="font-sans bg-white flex flex-col min-h-screen w-full mt-3">
         <div>
             <div class="bg-green-400 rounded-xl md:overflow-hidden">
                 <div class="px-4 py-16">

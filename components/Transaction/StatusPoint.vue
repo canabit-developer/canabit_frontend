@@ -78,9 +78,6 @@ export default {
             this.items = _.map(this.items, (r) => {
                 let obj = r
                 obj.no = no++
-
-
-
                 obj.created_at = Core.convertDate(obj.created_at)
                 obj.updated_at = Core.convertDate(obj.updated_at)
                 return obj

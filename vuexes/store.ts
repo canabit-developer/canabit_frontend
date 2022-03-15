@@ -8,6 +8,9 @@ class StoreModule extends VuexModule{
     public async getStoreProduct(){
         return await Core.getHttp('/api/store/product/')
     }
+    public async postRedeem(){
+        return await Core.postHttp('/api/store/rewardhistory/')
+    }
   
 
 }
