@@ -5,7 +5,7 @@
             <v-slide-item v-for="list,i in brokers" :key="i" v-slot="{ active, toggle }">
                 <div class="overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-5 hover:shadow-2xl rounded-lg h-90 w-60 md:w-80 cursor-pointer  m-4">
                     <div class="w-full block h-full">
-                        <img alt="blog photo" :src="list.image" class="max-h-40 w-full object-cover" />
+                        <img alt="blog photo" :src="$url+list.image" class="max-h-40 w-full object-cover" />
                         <div class="bg-white w-full p-4">
                             <div class="grid grid-cols-6">
                                 <div class="col-span-3 px-3 font-semibold flex flex-col">
@@ -50,7 +50,7 @@
             <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
                 <template v-slot:item.broker="{ item }">
                     <div class="flex">
-                        <img class="h-6" :src="item.broker_image" alt=""> <span class="ml-2">{{item.broker}}</span>
+                        <img class="h-6" :src="$url+item.broker_image" alt=""> <span class="ml-2">{{item.broker}}</span>
                     </div>
                 </template>
                 <template v-slot:item.actions="{ item }">

@@ -6,11 +6,11 @@
                 <div class="flex">
                     <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.product}}</span>
                 </div>
-            </template> 
-                  <template v-slot:item.point_use="{ item }">
-                    <span class="text-red-600">- {{item.point_use}}</span> 
-                   
-                </template>
+            </template>
+            <template v-slot:item.point_use="{ item }">
+                <span class="text-red-600">- {{item.point_use}}</span>
+
+            </template>
             <template v-slot:item.status="{ item }">
                 <Core-Status :status="item.status" />
             </template>
@@ -41,24 +41,30 @@ export default {
         listProduct: [],
         filterProduct: '',
         headers: [{
-            text: 'Order number.',
-            value: "code",
-        }, {
-            text: 'Reward name',
-            value: "product",
-        }, {
-            text: 'Point',
-            value: "point_use",
-        }, {
-            text: 'Status',
-            value: "status",
-        }, {
-            text: 'Action',
-            value: " ",
-        }, {
-            text: 'Remark',
-            value: "remark",
-        }, ],
+                text: 'Order number.',
+                value: "code",
+            }, {
+                text: 'Reward name',
+                value: "product",
+            },
+            {
+                text: 'Date',
+                value: "created_at",
+            },
+            {
+                text: 'Point',
+                value: "point_use",
+            }, {
+                text: 'Status',
+                value: "status",
+            }, {
+                text: 'Action',
+                value: " ",
+            }, {
+                text: 'Remark',
+                value: "remark",
+            },
+        ],
 
     }),
     async created() {
@@ -68,20 +74,41 @@ export default {
     },
     methods: {
         async startup() {
+            await this.getStoreProduct()
             await this.getTableIndicator()
         },
         async getTableIndicator() {
             let no = 1
-            this.items = await Core.getHttp(`/api/store/rewardhistory/?user=${Auth.user.id}`)
+            this.items = await Core.getHttp(`/api/store/rewardhistory/?user=${Auth.user.id}${this.filterProduct}`)
             this.items = _.map(this.items, (r) => {
                 let obj = r
                 obj.no = no++
-
+                obj.product_id = r.product
+                obj.product = this.getProduct(obj.product).name
                 obj.created_at = Core.convertDate(obj.created_at)
                 obj.updated_at = Core.convertDate(obj.updated_at)
                 return obj
             })
 
+        },
+        async getStoreProduct(){
+            this.products = await Core.getHttp(`/api/store/product/`)
+             this.listFilerProduct = _.map(this.products, (r) => {
+                return {
+                    id: `&product=` + r.id,
+                    name: r.name,
+                }
+            })
+            this.listFilerProduct.push({
+                id: ``,
+                name: 'All'
+            })
+            console.log(this.listFilerProduct);
+        },
+        getProduct(id) {
+            return _.find(this.products, {
+                id: id
+            })
         },
 
     },

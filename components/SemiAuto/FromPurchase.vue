@@ -54,6 +54,7 @@
 </template>
 
 <script>
+
 export default {
     data: () => ({
         active: false,
@@ -61,12 +62,7 @@ export default {
         input2: '',
         checkbox1: false,
         select: null,
-        items: [
-            'Item 1',
-            'Item 2',
-            'Item 3',
-            'Item 4',
-        ],
+        
     })
 }
 </script>

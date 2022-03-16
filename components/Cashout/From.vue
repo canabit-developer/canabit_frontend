@@ -98,6 +98,7 @@ export default {
             await CashOut.postCashout(this.form)
             this.form = {}
             this.$emit('reload',false)
+            this.$router.push('/transaction')
         }
     },
     computed:{

@@ -16,7 +16,7 @@
                         </template>
                         <template #text>
                             <div class="h-20">
-                                <p class="textellipsis" >
+                                <p class="textellipsis">
                                     {{storeproduct.detail}}
                                 </p>
                             </div>
@@ -45,8 +45,7 @@ import {
     Web
 } from '~/vuexes/web'
 export default {
-  watch: {
-  },
+    watch: {},
     data: () => ({
         storeproducts: [],
         response: false,
@@ -60,14 +59,13 @@ export default {
             this.storeproducts = await Store.getStoreProduct()
 
         },
-        async getRedeem(){
-               let check =  await Web.confirm('sasas')
-               if(check){
-                   await this.$router.push('/transaction')
-               }else{
+        async getRedeem() {
+            let check = await Web.confirm('sasas')
+            if (check) {
+                await this.$router.push('/transaction')
+            } else {
 
-               }
-      
+            }
         }
     },
     computed: {
@@ -86,11 +84,12 @@ export default {
     position: absolute;
     width: 100%;
 }
-.textellipsis{
-   overflow: hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 3;
--webkit-box-orient: vertical;
+
+.textellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 </style>

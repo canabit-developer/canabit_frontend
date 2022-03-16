@@ -43,7 +43,7 @@
                         <v-col cols="12" md="4">
                             <h2> 2. Verification of identity by uploading a picture of an ID card </h2><br>
                             <!-- <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""> -->
-                            <img v-if="kyc.image_card" :src="kyc.image_card" alt="">
+                            <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
                             <br><br>
                             <input @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
@@ -51,7 +51,7 @@
                         <v-col cols="12" md="6">
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>
                             <!-- <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt=""> -->
-                            <img v-if="kyc.image_selfie" :src="kyc.image_selfie" alt="">
+                            <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
                             <br> <br>
                             <input @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" />

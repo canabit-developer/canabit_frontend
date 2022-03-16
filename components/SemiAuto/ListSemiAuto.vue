@@ -78,6 +78,7 @@
                     </vs-card>
                 </vs-clos>
             </vs-row>
+            <pre>{{eaproduct}}</pre>
         </div>
     </div>
 </div>
@@ -94,7 +95,6 @@ export default {
     }),
     async created() {
         await this.startup()
-    
     },
     methods: {
         async startup() {

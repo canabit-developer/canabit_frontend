@@ -7,14 +7,18 @@
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
 
                 <v-spacer></v-spacer>
-            
-               <vs-button v-if="!kyc.user_verified" @click="$router.push('/account')" color="#FF0000" floating class="my-point">
+
+                <vs-button v-if="!kyc.user_verified" @click="$router.push('/account')" color="#FF0000" floating class="my-point">
                     <v-icon style="color:white;" class="mr-2">mdi-account-alert</v-icon> ยังไม่ได้ยืนยันตัวตน KYC
                 </vs-button>
                 <vs-button color="#4ade80" floating class="my-point">
                     <v-icon style="color:white;" class="mr-2">mdi-bitcoin</v-icon> Point : 8000
                 </vs-button>
-
+                
+                <vs-avatar history>
+                    <img  :src="imageProfile" alt="">
+                    <pre>{{imageProfile}}</pre>
+                </vs-avatar>
             </div>
         </div>
     </v-app-bar>
@@ -36,7 +40,7 @@
                 <v-img v-else class="shadow-2xl rounded-full h-36 w-36" src="https://i.pinimg.com/originals/4a/6a/cb/4a6acb8ab84a58ca85ef817b02de7067.jpg"> </v-img>
 
             </v-badge> -->
-<!-- 
+            <!-- 
             <h2 v-if="user.display_name" class="text-2xl font-semibold">{{user.display_name}}</h2>
             <h2 v-else class="text-2xl font-semibold">{{user.first_name}}</h2>
             <h2>{{user.email}}</h2> -->
@@ -52,15 +56,21 @@
             <!-- <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink> -->
             <UserMenu-NavMenuGroup icon="mdi-bookmark-multiple-outline" title="Product">
-                <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
-                <UserMenu-NavbarLink path="/signals" title="Indicator" icon="mdi-broadcast"></UserMenu-NavbarLink>
-                <UserMenu-NavbarLink path="/copytrade" title=" Copy Trade" icon="mdi-crown-outline"></UserMenu-NavbarLink>
+                <div class="ml-2">
+                    <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
+                </div>
+                <div class="ml-2">
+                    <UserMenu-NavbarLink path="/signals" title="Indicator" icon="mdi-broadcast"></UserMenu-NavbarLink>
+                </div>
+                <div class="ml-2">
+                    <UserMenu-NavbarLink path="/copytrade" title=" Copy Trade" icon="mdi-crown-outline"></UserMenu-NavbarLink>
+                </div>
             </UserMenu-NavMenuGroup>
-
-            <UserMenu-NavMenuSectionTitle title="USER SETTING"></UserMenu-NavMenuSectionTitle>
             <UserMenu-NavbarLink path="/accountstatus" title="History Account" icon="mdi-history"></UserMenu-NavbarLink>
+            <UserMenu-NavMenuSectionTitle title="USER SETTING"></UserMenu-NavMenuSectionTitle>
+
             <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog-outline"></UserMenu-NavbarLink>
-    
+
         </v-list>
 
         <template v-slot:append>
@@ -88,7 +98,8 @@ export default {
     data() {
         return {
             isDrawerOpen: true,
-            kyc: {}, 
+            kyc: {},
+            
         }
     },
     methods: {
@@ -106,7 +117,8 @@ export default {
     computed: {
         user() {
             return Auth.user
-        }
+        },
+        
     },
     async created() {
         await this.getMyKyc();
