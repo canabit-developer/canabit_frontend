@@ -40,7 +40,7 @@
                             <h3>{{copytradeproduct.name}}</h3>
                         </template>
                         <template #img>
-                            <img :src="copytradeproduct.image" alt="">
+                            <img :src="$url+copytradeproduct.image" alt="">
                         </template>
                         <template #text>
                             <div class="h-16 mt-2">

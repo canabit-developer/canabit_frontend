@@ -67,7 +67,7 @@ export default {
             this.items = _.map(this.items, (r) => {
                 let obj = r
                 obj.no = no++
-                obj.product_image = this.getProduct(r.product).image
+                obj.product_image = this.$url+this.getProduct(r.product).image
                 obj.product_id = r.product
                 obj.product = this.getProduct(obj.product).name
                 obj.created_at = Core.convertDate(obj.created_at)

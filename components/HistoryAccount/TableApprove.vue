@@ -5,6 +5,7 @@
              <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
                 <template v-slot:item.products="{ item }">
                     <div class="flex">
+                   
                         <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.products}}</span>
                     </div>
                 </template>
@@ -97,11 +98,11 @@ export default {
             this.items = _.map(this.items, (r) => {
                 let obj = r
                 obj.on = no++
-                obj.product_image = this.getProduct(obj.product).image
+                obj.product_image = this.$url+this.getProduct(obj.product).image
                 obj.product_id = r.product
                 obj.product = this.getProduct(obj.product).name
                 
-                obj.broker_image = this.getBroker(obj.broker).image
+                obj.broker_image = this.$url+this.getBroker(obj.broker).image
                 obj.broker_id = r.broker
                 obj.broker = this.getBroker(obj.broker).name
                 obj.act = this.getAccountType(obj.account_type)

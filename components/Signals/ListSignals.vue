@@ -43,7 +43,7 @@
                         <h3>{{indicatorsproduct.name}}</h3>
                     </template>
                     <template #img>
-                        <img :src="indicatorsproduct.image" alt="">
+                        <img :src="$url+indicatorsproduct.image" alt="">
                     </template>
                     <template #text>
                         <div class="h-16 mt-2">

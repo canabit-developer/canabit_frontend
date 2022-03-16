@@ -44,11 +44,11 @@
                         <v-text-field v-model="form.last_name" class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Last Name" hide-details></v-text-field>
 
                         <v-text-field v-model="form.phone_number" class="mt-4" type="text" outlined prepend-inner-icon="mdi-cellphone" label="Number" hide-details></v-text-field>
-                        <v-text-field v-model="form.password" class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Password" hide-details></v-text-field>
+                        <v-text-field v-model="form.password" class="mt-4" prepend-inner-icon="mdi-lock-outline" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
-                        <v-text-field v-model="form.password_confirm" class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Confirm Password" hide-details></v-text-field>
+                        <v-text-field v-model="form.password_confirm" class="mt-4" prepend-inner-icon="mdi-lock-outline" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
                         <br>
-                        <v-text-field class="mt-4" prepend-inner-icon="mdi-lock-outline" type="password" outlined label="Referral Code" hide-details></v-text-field>
+                        <v-text-field class="mt-4" prepend-inner-icon="mdi-lock-outline" type="text" outlined label="Referral Code" hide-details></v-text-field>
                         <br>
                         <Auth-Captcha :reload="openCaptcha" @cap="getSuccess"></Auth-Captcha>
                         <v-btn v-if="successBtn" type="submit" x-large dark block class="bg-primary-g mt-6">
@@ -223,6 +223,7 @@ export default {
     layout: "root",
     data: () => {
         return {
+            isPasswordVisible: false,
             successBtn: false,
             openCaptcha: true,
             form: {

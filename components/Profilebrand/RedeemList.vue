@@ -10,7 +10,7 @@
                         </template>
                         <template #img>
                             <div class="h-64 w-full ">
-                                <img :src="storeproduct.image" alt="" />
+                                <img :src="$url+storeproduct.image" alt="" />
                             </div>
 
                         </template>
@@ -63,7 +63,7 @@ export default {
         async getRedeem(){
                let check =  await Web.confirm('sasas')
                if(check){
-                   
+                   await this.$router.push('/transaction')
                }else{
 
                }
