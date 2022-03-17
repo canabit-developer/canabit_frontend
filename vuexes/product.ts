@@ -14,6 +14,9 @@ class ProductModule extends VuexModule{
    public async getCopytradeProduct(is_active:boolean = true){
         return await Core.getHttp('/api/copytrade/product/?is_active='+is_active)
 }
+     public async getReqursttest(){
+          return await Core.getHttp('/api/ea/requesttest/')
+     }
   
 
 }

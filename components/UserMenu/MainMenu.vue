@@ -7,18 +7,14 @@
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
 
                 <v-spacer></v-spacer>
-
+ 
                 <vs-button v-if="!kyc.user_verified" @click="$router.push('/account')" color="#FF0000" floating class="my-point">
                     <v-icon style="color:white;" class="mr-2">mdi-account-alert</v-icon> ยังไม่ได้ยืนยันตัวตน KYC
                 </vs-button>
                 <vs-button color="#4ade80" floating class="my-point">
-                    <v-icon style="color:white;" class="mr-2">mdi-bitcoin</v-icon> Point : 8000
+                    <v-icon style="color:white;" class="mr-2">mdi-bitcoin</v-icon>
+                     Point : {{point.current}} 
                 </vs-button>
-                
-                <vs-avatar history>
-                    <img  :src="imageProfile" alt="">
-                    <pre>{{imageProfile}}</pre>
-                </vs-avatar>
             </div>
         </div>
     </v-app-bar>
@@ -118,6 +114,12 @@ export default {
         user() {
             return Auth.user
         },
+        point(){
+            return Auth.point
+        },
+        tier(){
+            return Auth.tier
+        }
         
     },
     async created() {

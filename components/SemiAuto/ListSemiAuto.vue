@@ -78,7 +78,6 @@
                     </vs-card>
                 </vs-clos>
             </vs-row>
-            <pre>{{eaproduct}}</pre>
         </div>
     </div>
 </div>

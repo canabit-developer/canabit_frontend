@@ -1,18 +1,24 @@
 import {VuexModule, Module, Mutation, Action} from "vuex-class-modules";
 import _ from "lodash"
 import {Core} from '@/vuexes/core'
+import {Web} from '@/vuexes/web'
 import axios from  '@/plugins/axios'
 @Module({generateMutationSetters: true})
 class AuthModule extends VuexModule {
   private  token:any =  localStorage.getItem('token')
   public user:any = null
   public kyc :any = null
+  public point:any = null 
+  public tier:any = null
 
   public async setUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
     this.user = user;
     await this.getMyKyc();
- 
+    await this.getMypoint();
+    await this.getMyTier();
+    await this.checkTier()
+    await this.currentPoint()
     return user;
   }
 
@@ -22,6 +28,47 @@ class AuthModule extends VuexModule {
         this.kyc = kyc[kyc.length - 1];
     }
 }
+
+async getMypoint() {
+  let point = await Core.getHttp(`/api/account/userpoint/?user=${this.user.id}`);
+  if (point.length > 0) {
+      this.point = point[point.length - 1];
+  }
+}
+
+async getMyTier(){
+  this.tier = await Core.getHttp(`/api/account/tier/${this.point.tier}/`);
+}
+
+private async  currentPoint (){
+    
+}
+
+
+private async checkTier(){
+  let listTier = await Core.getHttp(`/api/account/tier/`)
+  let tier = await _.filter(listTier,(r)=>{
+       return this.point.total >= r.length
+  })
+ 
+  let currentTier:any = (tier.length>0)?tier[tier.length - 1]:this.tier 
+  if(this.tier.id == currentTier.id){
+   // alert("Point not update")
+  }else{
+    await this.updateMyTier(currentTier);
+  } 
+}
+
+private async updatePoint(){
+    
+}
+
+private async updateMyTier(currentTier:any){
+    let tier = await Core.putHttp(`/api/account/userpoint/${this.point.id}/`,{tier:currentTier.id})
+    await this.getMypoint();
+    await Web.alert(`Your Point Update to ${currentTier.name}`)
+    location.reload()
+  }
 
  
   public async getUser(){

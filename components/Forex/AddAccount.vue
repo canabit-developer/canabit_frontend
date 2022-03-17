@@ -67,7 +67,8 @@ export default {
             let add = await Core.postHttpAlert(`/api/finance/brokeraccount/`, this.form)
             this.active = false;
             location.reload();
-        }
+        },
+        
     },
     computed: {
 

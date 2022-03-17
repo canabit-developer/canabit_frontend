@@ -6,6 +6,7 @@
     <v-main>
         <Core-Notification />
         <div class=" md:ml-28 md:mr-28">
+            
             <Nuxt />
         </div>
 
@@ -44,6 +45,11 @@ export default {
             if (!user.id) {
                 await this.$router.replace(`/home/`)
             }
+        }
+    },
+    computed:{
+        tier(){
+            return Auth.tier
         }
     }
 }
