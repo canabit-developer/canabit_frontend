@@ -28,7 +28,7 @@
 
                 <div class="flex flex-col md:flex-row md:flex-wrap">
                     <div class="w-full flex">
-                        <h2 class="w-full md:w-9/12 text-2xl mb-4">General Profile</h2>
+                        <h2 class="w-full md:w-9/12 text-2xl mb-4"><v-icon class="mr-2 ">em em-female-technologist</v-icon> General Profile</h2>
                         <v-chip v-if="form.register_by == 'Facebook'" class="ma-2 w-full md:w-3/12 " color="blue" dark small>
                             <v-icon>mdi-facebook</v-icon> Register By Facebook
                         </v-chip>
@@ -44,18 +44,18 @@
                             ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน โปรดแก้ไขข้อมูล
                         </v-alert>
                     </div> 
-                    <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" label="display_name" dense outlined></v-text-field>
-                    <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" label="email" dense outlined></v-text-field>
+                    <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" prepend-inner-icon="em em-bust_in_silhouette" label="Display Name" dense outlined></v-text-field>
+                    <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" prepend-inner-icon="em em-email" label="E-mail" dense outlined></v-text-field>
                     <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field> -->
-                    <v-text-field :disabled="nonName" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.first_name" label="first_name" dense outlined></v-text-field>
-                    <v-text-field  :disabled="nonName"  class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" label="last_name" dense outlined></v-text-field>
+                    <v-text-field :disabled="nonName" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.first_name" prepend-inner-icon="em em-man-frowning" label="First Name" dense outlined></v-text-field>
+                    <v-text-field  :disabled="nonName"  class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" prepend-inner-icon="em em-man-frowning" label="Last name" dense outlined></v-text-field>
 
                     <br><br>
-                    <h2 class="w-full text-2xl">Address</h2>
+                    <h2 class="w-full text-2xl" > <v-icon class="mr-2">em em-house</v-icon> Address</h2>
                     <v-checkbox label="Foreigner" v-model="form.foreigner"></v-checkbox>
-                    <v-text-field class="w-full  pl-2" v-model="form.address" label="Address" dense outlined></v-text-field>
-                    <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="จังหวัด อำเภอ ตำบล" prepend-inner-icon="fas fa-globe-asia" />
-                    <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" label="zip code" dense outlined></v-text-field>
+                    <v-text-field class="w-full  pl-2" v-model="form.address" prepend-inner-icon="em em-house" label="Address" dense outlined></v-text-field>
+                    <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="Province District" prepend-inner-icon="em em-house_buildings" />
+                    <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" prepend-inner-icon="em em-postbox" label="zip code" dense outlined></v-text-field>
 
                 </div>
                 <br>

@@ -22,9 +22,9 @@
                     </div>
                     <form @submit.prevent="changePassword()" ref="formResetPassword">
                         <h2 class="text-xl mt-4 mb-4">Change Password</h2>
-                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.old_password" label="Old Password" dense outlined></v-text-field>
-                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password" label="New Password" dense outlined></v-text-field>
-                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password_confirm" label="New Password Confirm" dense outlined></v-text-field>
+                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.old_password" prepend-inner-icon="em em-lock" label="Old Password" dense outlined></v-text-field>
+                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password" prepend-inner-icon="em em-closed_lock_with_key" label="New Password" dense outlined></v-text-field>em em-closed_lock_with_key
+                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password_confirm" prepend-inner-icon="em em-closed_lock_with_key" label="New Password Confirm" dense outlined></v-text-field>
                         <v-btn type="submit" color="success">Update Password</v-btn>
                     </form> 
                 </v-col>
