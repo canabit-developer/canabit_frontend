@@ -34,7 +34,7 @@
                         <v-text-field required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
                         <div class="flex">
                             <v-spacer></v-spacer>
-                            <v-btn v-if="checkId" type="submit" color="success">Update</v-btn>
+                            <vs-button v-if="checkId" type="submit" floating color="#4ade80">Update</vs-button>
                         </div>
                     </form> 
                 </v-col><br>
@@ -46,7 +46,7 @@
                             <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
                             <br><br>
-                            <input @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
+                            <input  @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
                         <v-col cols="12" md="6">
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>

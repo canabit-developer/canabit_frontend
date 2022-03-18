@@ -15,7 +15,6 @@
             <!-- upload photo -->
             <div class="ml-4"> 
                 <h3 class="text-3xl">{{form.display_name}}</h3>
-
                 <div class="mt-2">
                     <Core-ImageInput @profileImage="getFileImage"></Core-ImageInput>
                 </div>
@@ -23,7 +22,6 @@
 
         </v-card-text>
         <v-card-text>
-
             <form @submit.prevent="updateProfile" class="multi-col-validation mt-6">
                 <div class="flex flex-col md:flex-row md:flex-wrap">
                     <div class="w-full flex">

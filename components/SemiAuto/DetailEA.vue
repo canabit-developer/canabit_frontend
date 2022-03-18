@@ -11,7 +11,7 @@
                             </v-avatar>
                             <div class="m-5">
                                 <div class="pb-2 font-bold text-3xl">{{ea.name}}</div>
-                                <div class="text-xs text-gray-400 text-2xl leading-6 mt-2">Price : {{ea.price}} $</div>
+                                <div class="text-xs text-green-400 text-2xl leading-6 mt-2">Price : {{ea.price}} $</div>
                                 <div class="text-xs text-gray-400  text-1xl leading-6 mt-2">{{ea.sub_title}} </div>
                             </div>
                         </div>
@@ -34,10 +34,7 @@
                     </h2>
                     <div class="  ml-10 mt-6">
                       <div v-html="ea.detail">
-
                       </div>
-
-
                     </div>
                   <h2 class="font-bold text-3xl  ml-10 mt-8">
                     Reviews
@@ -45,10 +42,10 @@
                   <div class="ml-10 ">
 
                     <form class="mt-3" @submit.prevent="storeComment()">
-                      <v-rating    color="orange"   length="5" size="24"
-                                v-model="form.star"
+                      <v-rating   class="justify-end" color="orange"   length="5" size="24"
+                                v-model="form.star" 
                       ></v-rating>
-                      <v-textarea v-model="form.comment" required row="3" outlined></v-textarea>
+                      <v-textarea v-model="form.comment" class="mt-3" required row="3" outlined></v-textarea>
                       <div class="flex"> <v-spacer></v-spacer> <vs-button type="submit" floating color="success">Comment</vs-button>
                       </div>
                     </form>

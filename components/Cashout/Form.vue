@@ -22,10 +22,10 @@
     </div>
     <vs-dialog prevent-close v-model="active">
         <template #header>
-                    <h3 class="not-margin mt-6 text-xl">
+                    <h2 class="not-margin mt-6 text-xl">
                         <v-icon size="30" class="me-3">em em-money_with_wings</v-icon>
                         <b>CASH OUT</b>
-                    </h3>
+                    </h2>
                 </template>
         <v-card-title>
 
