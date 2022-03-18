@@ -25,6 +25,9 @@
                                 </div>
 
                             </div>
+                          <v-rating readonly  color="orange"   length="5" size="20"
+                                    v-model="rate"
+                          ></v-rating>
                         </div>
 
                     </div>
@@ -35,8 +38,41 @@
                       <div v-html="ea.detail">
 
                       </div>
-                    </div>
 
+
+                    </div>
+                  <h2 class="font-bold text-3xl  ml-10 mt-8">
+                    Reviews
+                  </h2>
+                  <div class="ml-10 ">
+
+                    <form class="mt-3" @submit.prevent="storeComment()">
+                      <v-rating    color="orange"   length="5" size="24"
+                                v-model="form.star"
+                      ></v-rating>
+                      <v-textarea v-model="form.comment" required row="3" outlined></v-textarea>
+                      <div class="flex"> <v-spacer></v-spacer> <v-btn type="submit" color="success">Comment</v-btn>
+                      </div>
+                    </form>
+
+                    <div v-for="review, index in reviews" :key="index" class="mt-4 w-full bg-gray-100 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
+                      <v-toolbar class="w-full" color="transparent" flat>
+                        <img alt="avatar" width="50" height="50" class="rounded-full w-16 h-16 mr-4 shadow-lg mb-4 mt-4" :src="$url+review.user_image">
+                        <div>
+                          <h3 class="text-purple-600 font-semibold text-xl  md:text-left mt-4 ">{{review.user_full}}</h3>
+                          <v-rating readonly  color="orange"   length="5" size="20"
+                                    v-model="review.star"
+                          ></v-rating>
+                        </div>
+                        <v-spacer></v-spacer>
+
+
+                        <span class="text-purple-600 text-sm font-bold">{{review.created_at}}</span>
+                      </v-toolbar >
+                      <v-divider></v-divider>
+                      <p style="width: 90%" class="text-gray-600 text-lg  p-6 md:text-left ">{{review.comment}} </p><br>
+                    </div>
+                  </div>
 
                 </div>
             </div>
@@ -48,19 +84,53 @@
 </template>
 
 <script>
+import {
+  Core
+} from '@/vuexes/core'
+import _ from 'lodash'
+import {
+  Auth
+} from '@/vuexes/auth'
 export default {
     data: () => ({
         active: false,
-        active1: false,
-        input1: '',
-        input2: '',
-        checkbox1: false,
-        select: null,
+        reviews:[],
+        form:{},
+        rate:0
+
     }),
+  async created(){
+     await this.startup()
+  },
+  methods:{
+      async startup(){
+        this.reviews = await Core.getHttp(`/api/ea/review/?product=${this.$route.query.id}`)
+        this.rate = _.mean(_.map(this.reviews,'star'))
+
+      },
+    async storeComment(){
+        this.form.product = this.$route.query.id
+        this.form.user = this.user.id
+        let data = await Core.postHttpAlert(`/api/ea/review/`,this.form)
+      if(data.id){
+
+        await this.startup()
+      }
+      this.form = {}
+    }
+  },
   props:{
       ea:{
         default:{}
       }
+  },
+  computed:{
+    user:()=>{return Auth.user},
+    point:()=>{return Auth.point},
+    tier:()=>{return Auth.tier},
+    tiers:()=>{return Auth.tiers},
+    setting:()=>{return Auth.setting},
+
   }
 }
 </script>
