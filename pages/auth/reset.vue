@@ -41,6 +41,11 @@
                                     {{message}}
                                 </v-alert>
                             </div>
+                          <div v-if="errorRegister.password_confirm">
+                            <v-alert dense outlined text v-for="(message,i) in errorRegister.password_confirm" :key="i" type="error" :value="true">
+                              {{message}}
+                            </v-alert>
+                          </div>
 
                             <div v-if="errorRegister.phone_number">
                                 <v-alert dense outlined text v-for="(message,i) in errorRegister.phone_number" :key="i" type="error" :value="true">
@@ -48,12 +53,13 @@
                                 </v-alert>
                             </div>
                         </div>
+                      <v-alert v-if="(form.password != form.password_confirm) && (form.password && form.password_confirm)" type="error">Password and Password Confirm not match!</v-alert>
                         <v-text-field type="password" prepend-inner-icon="mdi-card-account-details" v-model="form.password" required color="primary" outlined label="Password" hide-details class="mb-3"></v-text-field>
                         <v-text-field type="password" prepend-inner-icon="mdi-card-account-details" v-model="form.password_confirm" required color="primary" outlined label="Confirm Password" hide-details class="mb-3"></v-text-field>
 
                         <v-btn type="submit" x-large dark block class="bg-primary-g mt-4" v-if="(form.password == form.password_confirm) && (form.password && form.password_confirm)">
                             Forgot Password
-                        </v-btn> 
+                        </v-btn>
                         <div class="d-flex align-center justify-space-between flex-wrap mt-4">
                             <p class="mt-1">Back To
                                 <router-link :to="{path:'/auth/login'}">
