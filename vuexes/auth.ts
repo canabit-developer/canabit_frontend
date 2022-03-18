@@ -7,9 +7,9 @@ import axios from  '@/plugins/axios'
 class AuthModule extends VuexModule {
   private  token:any =  localStorage.getItem('token')
   public user:any = null
-  public kyc :any = null
-  public point:any = null 
-  public tier:any = null
+  public kyc :any = {}
+  public point:any = {} 
+  public tier:any = {}
 
   public async setUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)

@@ -111,22 +111,27 @@ class CoreModule extends VuexModule {
   async dataURLtoFile(dataurl: any) {
     let moment = require('moment')
     let date = moment();
-    let extension = dataurl.substring("data:image/".length, dataurl.indexOf(";base64")) 
-    let filename = `${date.format('ddDDmmyyhhmmss')}.${extension}` 
+    let extension = dataurl.substring("data:image/".length, dataurl.indexOf(";base64"))
+    let filename = `${date.format('ddDDmmyyhhmmss')}.${extension}`
     console.log(filename);
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
-    } 
-    return new File([u8arr],filename , { type: mime });
+    }
+    return new File([u8arr], filename, { type: mime });
   }
 
-  async fileToBase64(file:any, callback:any,) {
+  async fileToBase64(file: any, callback: any,) {
     const reader = new FileReader();
     reader.addEventListener('load', () => callback(reader.result));
     reader.readAsDataURL(file);
-}
+  }
+
+  async getChoice(name: string) {
+    return await this.getHttp(`/api/webconfig/choice/?type__name=${name}`)
+  }
+
 
 }
 
