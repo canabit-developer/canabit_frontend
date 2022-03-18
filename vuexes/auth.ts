@@ -11,6 +11,7 @@ class AuthModule extends VuexModule {
   public point:any = {}
   public tier:any = {}
   public tiers:any = []
+  public setting:any = []
 
   public async setUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
@@ -19,7 +20,8 @@ class AuthModule extends VuexModule {
       await this.getMyKyc();
       await this.getMypoint();
       await this.getMyTier();
-      await this.checkTier()
+      await this.checkTier();
+      await this.getSetting();
     }
 
     return user;
@@ -29,6 +31,13 @@ class AuthModule extends VuexModule {
     let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
     if (kyc.length > 0) {
         this.kyc = kyc[kyc.length - 1];
+    }
+}
+
+async getSetting(){
+    let setting = await Core.getHttp(`/api/webconfig/setting/`)
+    if(setting.length > 0){
+      this.setting = JSON.parse(setting[setting.length - 1].value)
     }
 }
 

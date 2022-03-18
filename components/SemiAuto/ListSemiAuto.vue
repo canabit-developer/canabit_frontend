@@ -38,7 +38,7 @@
             </div>
 
             <vs-row w="12" class="-mt-5" justify="center">
-                <vs-clos v-for="eaproduct,index in eaproduct" :key="index" class="p-2 mt-2">
+                <div v-for="eaproduct,index in eaproduct" :key="index" class="p-2 mt-2">
                     <vs-card>
                         <template #title>
                             <div class="">
@@ -57,7 +57,7 @@
 
                             <div class="flex flex-wrap justify-center mt-2">
 
-                                <SemiAuto-FromPurchase></SemiAuto-FromPurchase>
+                                <SemiAuto-FromPurchase :ea="eaproduct"></SemiAuto-FromPurchase>
 
                                 <SemiAuto-FromRequestTest></SemiAuto-FromRequestTest>
 
@@ -76,7 +76,7 @@
                             </vs-button>
                         </template>
                     </vs-card>
-                </vs-clos>
+                </div>
             </vs-row>
         </div>
     </div>
