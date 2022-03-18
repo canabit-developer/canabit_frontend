@@ -19,9 +19,9 @@
                         <template #title>
                             <div class="flex justify-between ">
                                 <h3 class=" text-2xl mt-1">{{storeproduct.name}}</h3>
-                                <vs-button color="#4ade80">
+                                <h3 class="text-green-400">
                                     {{storeproduct.point_use}} Point
-                                </vs-button>
+                                </h3>
                             </div>
                             
                         </template>
