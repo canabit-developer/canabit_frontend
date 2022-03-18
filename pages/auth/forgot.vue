@@ -11,7 +11,7 @@
             </div>
             <div class="lg:w-1/2 w-full flex items-center justify-center   md:px-16 px-0 z-0">
                 <div class="w-full py-6 z-20">
-                  
+
                     <form @submit.prevent="forgot" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                         <h1 class="font-bold text-4xl">Cash Back</h1><br><br>
                         <h1 class=" font-bold text-2xl">
@@ -20,7 +20,7 @@
                         <!-- <p>
                             Let's build someting great
                         </p><br> -->
-                          <div>  
+                          <div>
                           <div v-if="userCheckError">
                             <v-alert dense outlined text  type="error" :value="true">
                                 "ไม่พบผู้ใช้งาน"
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                         <v-text-field prepend-inner-icon="mdi-card-account-details" v-model="form.login" required color="primary" outlined label="Email" placeholder="Insert Your Email" hide-details class="mb-3"></v-text-field>
-                     
+
                         <v-btn type="submit" x-large dark block class="bg-primary-g mt-4">
                             Forgot Password
                         </v-btn>
@@ -60,18 +60,18 @@
                                 </router-link>
                             </p>
                             <v-spacer></v-spacer>
-                            
+
                         </div>
                     </form>
                     <br>
                     <br>
-                 
+
                 </div>
 
             </div>
         </section>
     </div>
-   
+
 
 </div>
 </template>
@@ -99,7 +99,7 @@ export default {
         })
     },
     async created() {
-     
+
     },
     methods: {
         async forgot() {
@@ -107,16 +107,19 @@ export default {
             let user = await Core.postHttp(`/api/auth/v2/send-reset-password-link/`, this.form)
              await Web.switchLoad(false)
             console.log(user)
-            if(user.detail){
+            if(user.detail!= 'User not found'){
               Web.alert(user.detail);
               this.form = {}
+            }else{
+              Web.alert(user.detail,'error');
+              this.form = {}
             }
-             
-            
+
+
         },
-      
+
     }
 }
 </script>
 
- 
+
