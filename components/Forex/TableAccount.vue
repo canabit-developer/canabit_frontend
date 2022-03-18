@@ -13,12 +13,12 @@
                                     <div class="text-sm text-gray-400 font-light"> </div>
                                 </div>
                                 <div class="col-span-3 py-2 ml-8 justify-self-end">
-                                    <!-- <v-chip color="success" label>
+                                    <v-chip color="success" label>
                                         <v-icon left> 
                                             mdi-account-circle-outline
                                         </v-icon>
                                         {{countAccount(list.id)}} Account
-                                    </v-chip> -->
+                                    </v-chip>
                                 </div>
 
                             </div>
@@ -28,12 +28,9 @@
             </v-slide-item>
         </v-slide-group>
         <div class="p-8 ">
-
             <div class="flex flex-col md:flex-row">
                 <div class="w-1/2">
-                    <v-btn x-large color="success" rounded>
-                        <v-icon class="mr-2 text-4xl" dark>mdi-account</v-icon>Account Forex
-                    </v-btn>
+                    
                 </div>
                 <div class="w-1/2">
                     <div class="flex flex-col md:flex-row">
@@ -70,7 +67,7 @@
             <v-row class="d-flex align-content-space-between flex-wrap justify-center mt-6">
                 <span text class="ml-3 text-sm" v-for="ac,i  in accountTypes" :key="i">
                     <v-avatar size="23">
-                        <img :src="ac.image">
+                        <img :src="$url+ac.image">
                     </v-avatar> {{ac.name}}
                 </span>
             </v-row>

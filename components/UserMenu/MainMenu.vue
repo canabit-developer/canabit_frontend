@@ -7,13 +7,27 @@
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
 
                 <v-spacer></v-spacer>
- 
+                <div>
+                    <div class="flex gap-3 items-center font-semibold text-gray-800 p-3 rounded-md hover:cursor-pointer">
+                        <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/24.jpg" alt="Rebecca Burke">
+                        <div class="flex flex-col">
+                            <div>
+                                Rebecca Burkes
+                            </div>
+                            <div class="text-gray-400 text-sm font-normal">
+                                +1(227)-691-8675
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pre>{{account}}</pre>
+
                 <vs-button v-if="!kyc.user_verified" @click="$router.push('/account')" color="#FF0000" floating class="my-point">
                     <v-icon style="color:white;" class="mr-2">mdi-account-alert</v-icon> ยังไม่ได้ยืนยันตัวตน KYC
                 </vs-button>
                 <vs-button color="#4ade80" floating class="my-point">
                     <v-icon style="color:white;" class="mr-2">mdi-bitcoin</v-icon>
-                     Point : {{point.current}} 
+                    Point : {{point.current}}
                 </vs-button>
             </div>
         </div>
@@ -95,7 +109,6 @@ export default {
         return {
             isDrawerOpen: true,
             kyc: {},
-            
         }
     },
     methods: {
@@ -109,18 +122,22 @@ export default {
                 this.kyc = kyc[kyc.length - 1];
             }
         },
+
     },
     computed: {
         user() {
             return Auth.user
         },
-        point(){
+        point() {
             return Auth.point
         },
-        tier(){
+        tier() {
             return Auth.tier
-        }
-        
+        },
+        imageProfile() {
+            return Auth.user.image_profile
+        },
+
     },
     async created() {
         await this.getMyKyc();
