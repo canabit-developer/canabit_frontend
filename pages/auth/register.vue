@@ -41,17 +41,17 @@
                         <v-alert outlined dense shaped type="info" prominent border="left" >
                                 Please fill out the information completely.</v-alert>
                         <!-- <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field> -->
-                        <v-text-field required v-model="form.email" class="mt-2" hint="* fill in fill E-mail" prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
+                        <v-text-field required v-model="form.email" class="mt-2" hint="* fill in fill E-mail" persistent-hint prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
 
-                        <v-text-field v-model="form.first_name" hint="* fill in fill Frist Name" prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
-                        <v-text-field v-model="form.last_name"  hint="* fill in fill Last Name" prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
+                        <v-text-field v-model="form.first_name" hint="* fill in fill Frist Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
+                        <v-text-field v-model="form.last_name"  hint="* fill in fill Last Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
 
-                        <v-text-field v-model="form.phone_number"  hint="* fill in fill Number Phone" maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
-                        <v-text-field v-model="form.password"  hint="* fill in fill Password" prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
+                        <v-text-field v-model="form.phone_number"  hint="* fill in fill Number Phone" persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
+                        <v-text-field v-model="form.password"  hint="* fill in fill Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
-                        <v-text-field v-model="form.password_confirm" class="mt-8" hint="* fill in fill Confirm Password" prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <v-text-field v-model="form.password_confirm" hint="* fill in fill Confirm Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
                         <br>
-                        <v-text-field class="mt-2" prepend-inner-icon="em em-woman-raising-hand" type="text" outlined label="Referral Code" hide-details></v-text-field>
+                        <v-text-field prepend-inner-icon="em em-woman-raising-hand" type="text" persistent-hint outlined label="Referral Code" ></v-text-field>
                         <br>
                         <Auth-Captcha :reload="openCaptcha" @cap="getSuccess"></Auth-Captcha>
                         <v-btn v-if="successBtn" type="submit" x-large dark block class="bg-primary-g mt-6">
