@@ -1,6 +1,8 @@
 <template>
 <div>
-    <h2 class="text-xl font-semibold">ACCOUNT SETTING</h2>
+    <h2 class="text-xl font-semibold">
+        <v-icon size="20" class="me-3">em em-bust_in_silhouette</v-icon>
+        ACCOUNT SETTING</h2>
     <ul class="breadcrumb mt-3">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
         <li>Account Setting</li>
@@ -38,19 +40,19 @@
                 <div class="p-2 rounded-xl shadow-md bg-white  mb: -mt-24">
                     <v-tabs v-model="tab" show-arrows grow>
                         <v-tab>
-                            <v-icon size="20" class="me-3">mdi-account-outline</v-icon> Account
+                            <v-icon size="20" class="me-3">em em-bust_in_silhouette</v-icon> Account
                         </v-tab>
                         <v-tab-item>
                             <Account-Profile></Account-Profile>
                         </v-tab-item>
                         <v-tab>
-                            <v-icon size="20" class="me-3">mdi-lock-open-outline</v-icon> Password
+                            <v-icon size="20" class="me-3">em em-lock</v-icon> Password
                         </v-tab>
                         <v-tab-item>
                             <Account-ResetPassword></Account-ResetPassword>
                         </v-tab-item>
                         <v-tab>
-                            <v-icon size="20" class="me-3">mdi-information </v-icon> KYC
+                            <v-icon size="20" class="me-3">em em-exclamation </v-icon> KYC
                         </v-tab>
                         <v-tab-item>
                             <Account-Kyc></Account-Kyc>
