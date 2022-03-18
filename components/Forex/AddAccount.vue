@@ -3,22 +3,25 @@
     <template>
         <div class="inline-flex ">
             <vs-button floating color="#22c55e" @click="active=!active">
-                <v-icon class="mr-2" color="#ffff">mdi-text-box-plus-outline</v-icon>
+                <v-icon class="mr-2 " size="15">em em-memo</v-icon>
                 Add Account
             </vs-button>
             <vs-dialog prevent-close v-model="active">
                 <template #header>
-                    <h4 class="not-margin">
-                        <b>Add trading account</b>
-                    </h4>
+                    <h3 class="not-margin mt-6">
+                        <v-icon size="20" class="me-3">em em-chart_with_upwards_trend</v-icon>
+                        <b>Add Trading Account</b>
+                    </h3>
                 </template>
 
                 <div class="con-form">
                     <v-container>
                         <form @submit.prevent="store()">
-                            <v-text-field required label="Account No" v-model="form.account_no" hint="For example, 222 444" outlined></v-text-field>
-                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.broker" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
-                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.account_type" :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
+                            <v-alert outlined dense shaped type="warning" prominent border="left" >
+                                The account number must be the number registered with the IB only.</v-alert>
+                            <v-text-field required label="Account No" v-model="form.account_no" prepend-inner-icon="em em-1234" hint="For example, 222 444" outlined></v-text-field>
+                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.broker" prepend-inner-icon="em em-chart" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
+                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.account_type" prepend-inner-icon="em em-moneybag" :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
 
                             <vs-button v-if="form.broker && form.account_type" type="submit" block floating color="#4ade80">
                                 + Add  Account

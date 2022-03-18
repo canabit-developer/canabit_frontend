@@ -2,7 +2,9 @@
 <div>
 
     <v-toolbar color="transparent" flat>
-        <h2 class="text-xl font-semibold">FOREX BROKER</h2>
+        <h2 class="text-xl font-semibold">
+            <v-icon size="20" class="me-3">em em-chart_with_upwards_trend</v-icon>
+            FOREX BROKER</h2>
         <v-spacer></v-spacer>
         <Forex-AddAccount></Forex-AddAccount>
     </v-toolbar>

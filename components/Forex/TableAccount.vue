@@ -37,7 +37,7 @@
                 </div>
                 <div class="w-1/2">
                     <div class="flex flex-col md:flex-row">
-                        <v-select @change="getTable()" v-model="filterBroker" class="mr-2" dense :items="listsFilterBroker" item-text="name" item-value="id" outlined label="Broker"></v-select>
+                        <v-select @change="getTable()" v-model="filterBroker" class="mr-2" dense :items="listsFilterBroker" item-text="name" item-value="id"  outlined label="Broker"></v-select>
                         <v-select @change="getTable()" v-model="filterAccountType" dense :items="listsFilterAccount" item-text="name" item-value="id" outlined label="Account Type"></v-select>
 
                     </div>
