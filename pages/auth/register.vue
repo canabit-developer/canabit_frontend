@@ -71,143 +71,6 @@
             </div>
         </section>
     </div>
-    <!-- <v-card class="auth-card">
-
-      <v-card-title class="d-flex align-center justify-center py-7">
-        <router-link to="/" class="d-flex align-center">
-          <img
-            class="h-14"
-            src="~/static/images/logos/canabit_vector.svg"
-            alt=""
-          />
-        </router-link>
-      </v-card-title>
-
-      <v-card-text>
-        <p class="text-2xl font-weight-semibold text--primary mb-2 text-center">
-          Adventure starts here 🚀
-        </p>
-        <p class="mb-2 text-center">Make your app management easy and fun!</p>
-      </v-card-text>
-
-      <v-card-text>
-        <div v-if="error.email">
-          <v-alert
-            dense
-            outlined
-            text
-            v-for="(message, i) in error.email"
-            :key="i"
-            type="error"
-            :value="true"
-          >
-            {{ message }}
-          </v-alert>
-        </div>
-        <div v-if="error.password">
-          <v-alert
-            dense
-            outlined
-            text
-            v-for="(message, i) in error.password"
-            :key="i"
-            type="error"
-            :value="true"
-          >
-            {{ message }}
-          </v-alert>
-        </div>
-
-        <div v-if="error.phone_number">
-          <v-alert
-            dense
-            outlined
-            text
-            v-for="(message, i) in error.phone_number"
-            :key="i"
-            type="error"
-            :value="true"
-          >
-            {{ message }}
-          </v-alert>
-        </div>
-
-        <form @submit.prevent="register()">
-          <v-text-field
-            v-model="form.username"
-            class="mt-4"
-            prepend-inner-icon="mdi-card-account-details"
-            outlined
-            label="Username"
-            hide-details
-          ></v-text-field>
-          <v-text-field
-            v-model="form.email"
-            class="mt-4"
-            prepend-inner-icon="mdi-email-outline"
-            outlined
-            label="Email"
-            hide-details
-          ></v-text-field>
-
-          <v-text-field
-            v-model="form.first_name"
-            class="mt-4"
-            prepend-inner-icon="mdi-account-outline"
-            outlined
-            label=" Frist Name"
-            hide-details
-          ></v-text-field>
-          <v-text-field
-            v-model="form.last_name"
-            class="mt-4"
-            prepend-inner-icon="mdi-account-outline"
-            outlined
-            label=" Last Name"
-            hide-details
-          ></v-text-field>
-
-          <v-text-field
-            v-model="form.phone_number"
-            class="mt-4"
-            type="text"
-            outlined
-            prepend-inner-icon="mdi-cellphone"
-            label="Number"
-            hide-details
-          ></v-text-field>
-          <v-text-field
-            v-model="form.password"
-            class="mt-4"
-            prepend-inner-icon="mdi-lock-outline"
-            type="password"
-            outlined
-            label="Password"
-            hide-details
-          ></v-text-field>
-
-          <v-text-field
-            v-model="form.password_confirm"
-            class="mt-4"
-            prepend-inner-icon="mdi-lock-outline"
-            type="password"
-            outlined
-            label="Confirm Password"
-            hide-details
-          ></v-text-field>
-
-          <v-btn type="submit" x-large dark block class="bg-primary-g mt-6">
-            Sign Up
-          </v-btn>
-        </form>
-      </v-card-text> 
-      <v-card-text class="d-flex align-center justify-center flex-wrap mt-2">
-        <span class="me-2"> Already have an account? </span>
-        <router-link :to="{ path: '/auth/login' }" class="font-semibold">
-          Sign in instead
-        </router-link>
-      </v-card-text>
-    </v-card> -->
 
 </div>
 </template>
@@ -222,6 +85,7 @@ import {
 import {
     Auth
 } from "~/vuexes/auth";
+import _ from 'lodash'
 export default {
     layout: "root",
     data: () => {
@@ -262,6 +126,7 @@ export default {
 
             if (user.id) {
                 await this.generateKyc(user.id);
+                await this.generatePoint(user.id))
                 await Web.switchLoad(false);
                 await Web.alert(`OK`, `success`, `Register is success`);
                 await this.$router.replace(`/auth/verify`);
@@ -287,6 +152,17 @@ export default {
                 })
             }
         },
+      async generatePoint(userId){
+          let tiers = await Core.getHttp(`/api/account/tier/`)
+          let tier = _.find(tiers,(r)=>{r.length <= 0})
+          let form = {
+            "total": 0,
+            "current": 0,
+            "tier": tier.id,
+            "user": userId
+          }
+          await Core.postHttp(`/api/account/userpoint/`,form)
+      },
         async getSuccess(val) {
             this.successBtn = val
         },
