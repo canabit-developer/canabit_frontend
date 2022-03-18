@@ -126,7 +126,7 @@ export default {
 
             if (user.id) {
                 await this.generateKyc(user.id);
-                await this.generatePoint(user.id))
+                await this.generatePoint(user.id)
                 await Web.switchLoad(false);
                 await Web.alert(`OK`, `success`, `Register is success`);
                 await this.$router.replace(`/auth/verify`);

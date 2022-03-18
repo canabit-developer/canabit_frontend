@@ -11,7 +11,7 @@
             </div>
             <div class="lg:w-1/2 w-full flex items-center justify-center   md:px-16 px-0 z-0">
                 <div class="w-full py-6 z-20">
-                  
+
                     <form @submit.prevent="login" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                         <h1 class="font-bold text-4xl">Cash Back</h1><br><br>
                         <h1 class=" font-bold text-2xl">
@@ -21,7 +21,7 @@
                         <p>
                             Let's build someting great
                         </p><br>
-                          <div>  
+                          <div>
                           <div v-if="userCheckError">
                             <v-alert dense outlined text  type="error" :value="true">
                                 User not found Please fill out the correct information.
@@ -83,7 +83,7 @@
             </div>
         </section>
     </div>
-   
+
 
 </div>
 </template>
@@ -98,6 +98,7 @@ import {
 import {
     Auth
 } from '~/vuexes/auth'
+import _ from "lodash";
 
 export default {
     layout: 'root',
@@ -153,6 +154,7 @@ export default {
                 if (registerUser.id) {
                     await Web.switchLoad(false)
                     await this.generateKyc(registerUser.id);
+                    await this.generatePoint(registerUser.id)
                     await this.$router.replace(`/auth/verify`)
                     console.log(registerUser)
                 } else {
@@ -182,6 +184,17 @@ export default {
                 })
             }
         },
+      async generatePoint(userId){
+        let tiers = await Core.getHttp(`/api/account/tier/`)
+        let tier = _.find(tiers,(r)=>{r.length <= 0})
+        let form = {
+          "total": 0,
+          "current": 0,
+          "tier": tier.id,
+          "user": userId
+        }
+        await Core.postHttp(`/api/account/userpoint/`,form)
+      },
     }
 }
 </script>
