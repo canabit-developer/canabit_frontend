@@ -2,6 +2,17 @@
 <div>
     <v-item-group>
         <v-container v-if="response">
+            <div class="flex flex-col md:flex-row">
+                <div class="w-1/2">
+                    
+                </div>
+                <div class="w-1/2">
+                    <div class="flex flex-col md:flex-row">
+                        <v-select class="mr-2" dense outlined label="Sort point from least to greatest"></v-select>
+
+                    </div>
+                </div>
+            </div>
 
             <v-row>
                 <v-col v-for="storeproduct,n in storeproducts" :key="n" sm="4" lg="6" md="8" xl="3">
@@ -87,7 +98,8 @@ export default {
                 })
                 await this.$router.push('/transaction')
             }
-        }
+        },
+
     },
     computed: {
         imageStoreProduct() {
