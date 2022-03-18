@@ -14,10 +14,11 @@
 
                     <form @submit.prevent="register()" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                         <h1 class=" font-bold text-2xl">
+                            <v-icon class="mr-2">em em-writing_hand</v-icon>
                             Create your account
                         </h1>
                         <p>
-                            It’s free and easy
+                            Be a part of us by subscribing.
                         </p><br>
                         <div>
                             <div v-if="error.email">
@@ -37,18 +38,20 @@
                                 </v-alert>
                             </div>
                         </div>
+                        <v-alert outlined dense shaped type="info" prominent border="left" >
+                                Please fill out the information completely.</v-alert>
                         <!-- <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field> -->
-                        <v-text-field v-model="form.email" class="mt-4" prepend-inner-icon="mdi-email-outline" outlined label="Email" hide-details></v-text-field>
+                        <v-text-field required v-model="form.email" class="mt-2" hint="* fill in fill E-mail" prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
 
-                        <v-text-field v-model="form.first_name" class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Frist Name" hide-details></v-text-field>
-                        <v-text-field v-model="form.last_name" class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Last Name" hide-details></v-text-field>
+                        <v-text-field v-model="form.first_name" hint="* fill in fill Frist Name" prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
+                        <v-text-field v-model="form.last_name"  hint="* fill in fill Last Name" prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
 
-                        <v-text-field v-model="form.phone_number" class="mt-4"  maxlength="10" type="text" outlined prepend-inner-icon="mdi-cellphone" label="Number" hide-details></v-text-field>
-                        <v-text-field v-model="form.password" class="mt-4" prepend-inner-icon="mdi-lock-outline" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
+                        <v-text-field v-model="form.phone_number"  hint="* fill in fill Number Phone" maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Number Phone" ></v-text-field>
+                        <v-text-field v-model="form.password"  hint="* fill in fill Password" prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
-                        <v-text-field v-model="form.password_confirm" class="mt-4" prepend-inner-icon="mdi-lock-outline" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <v-text-field v-model="form.password_confirm" class="mt-8" hint="* fill in fill Confirm Password" prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
                         <br>
-                        <v-text-field class="mt-4" prepend-inner-icon="mdi-lock-outline" type="text" outlined label="Referral Code" hide-details></v-text-field>
+                        <v-text-field class="mt-2" prepend-inner-icon="em em-woman-raising-hand" type="text" outlined label="Referral Code" hide-details></v-text-field>
                         <br>
                         <Auth-Captcha :reload="openCaptcha" @cap="getSuccess"></Auth-Captcha>
                         <v-btn v-if="successBtn" type="submit" x-large dark block class="bg-primary-g mt-6">

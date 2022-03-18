@@ -17,7 +17,7 @@
                 <div class="con-form">
                     <v-container>
                         <form @submit.prevent="store()">
-                            <v-alert outlined dense shaped type="warning" prominent border="left" >
+                            <v-alert outlined dense shaped type="info" prominent border="left" >
                                 The account number must be the number registered with the IB only.</v-alert>
                             <v-text-field required label="Account No" v-model="form.account_no" prepend-inner-icon="em em-1234" hint="For example, 222 444" outlined></v-text-field>
                             <v-select item-text="name" item-value="id" persistent-hint  v-model="form.broker" prepend-inner-icon="em em-chart" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
