@@ -53,7 +53,7 @@
                                 </div>
                             </v-col>
                         </v-row>
-                        <vs-button block color="#4ade80" floating type="submit" class="mt-5"> Submit  Purchase </vs-button>
+                        <vs-button block color="#4ade80" floating type="submit" class="mt-5"> Submit  Purchases </vs-button>
                     </form>
                 </v-card-text>
             </vs-dialog>
