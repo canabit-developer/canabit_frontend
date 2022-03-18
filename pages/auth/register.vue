@@ -43,7 +43,7 @@
                         <v-text-field v-model="form.first_name" class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Frist Name" hide-details></v-text-field>
                         <v-text-field v-model="form.last_name" class="mt-4" prepend-inner-icon="mdi-account-outline" outlined label=" Last Name" hide-details></v-text-field>
 
-                        <v-text-field v-model="form.phone_number" class="mt-4" type="text" outlined prepend-inner-icon="mdi-cellphone" label="Number" hide-details></v-text-field>
+                        <v-text-field v-model="form.phone_number" class="mt-4"  maxlength="10" type="text" outlined prepend-inner-icon="mdi-cellphone" label="Number" hide-details></v-text-field>
                         <v-text-field v-model="form.password" class="mt-4" prepend-inner-icon="mdi-lock-outline" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
                         <v-text-field v-model="form.password_confirm" class="mt-4" prepend-inner-icon="mdi-lock-outline" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
