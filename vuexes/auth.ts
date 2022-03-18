@@ -8,8 +8,9 @@ class AuthModule extends VuexModule {
   private  token:any =  localStorage.getItem('token')
   public user:any = null
   public kyc :any = {}
-  public point:any = {} 
+  public point:any = {}
   public tier:any = {}
+  public tiers:any = []
 
   public async setUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
@@ -45,16 +46,17 @@ async getMyTier(){
 
 private async checkTier(){
   let listTier = await Core.getHttp(`/api/account/tier/`)
+  this.tiers = listTier
   let tier = await _.filter(listTier,(r)=>{
        return this.point.total >= r.length
   })
- 
-  let currentTier:any = (tier.length>0)?tier[tier.length - 1]:this.tier 
+
+  let currentTier:any = (tier.length>0)?tier[tier.length - 1]:this.tier
   if(this.tier.id == currentTier.id){
    // alert("Point not update")
   }else{
     await this.updateMyTier(currentTier);
-  } 
+  }
 }
 
 
@@ -65,7 +67,7 @@ private async updateMyTier(currentTier:any){
     location.reload()
   }
 
- 
+
   public async getUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
     return user;
@@ -74,13 +76,13 @@ private async updateMyTier(currentTier:any){
   public async login(form:any){
     await this.reToken();
     let user = await Core.postHttp(`/api/auth/v1/login/`, form)
-    return user 
+    return user
   }
 
   public async register(form:any){
     await this.reToken();
     let user = await Core.postHttp(`/api/auth/v2/register/`, form)
-    return user 
+    return user
   }
 
 
@@ -105,16 +107,16 @@ private async updateMyTier(currentTier:any){
   }
 
   public async checkUser(){
-    let user = await this.getUser(); 
+    let user = await this.getUser();
     if(this.token){
       if(!user.id){
         alert('Session หมดอายุ')
         await this.reToken();
-        await this.logout(); 
+        await this.logout();
         location.reload();
       }
     }
-  
+
     // if(!this.user.id){
     //   await window.location.replace("/auth/login");
     // }
