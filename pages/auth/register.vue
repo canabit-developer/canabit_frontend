@@ -46,7 +46,7 @@
                         <v-text-field v-model="form.first_name" hint="* fill in fill Frist Name" prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
                         <v-text-field v-model="form.last_name"  hint="* fill in fill Last Name" prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
 
-                        <v-text-field v-model="form.phone_number"  hint="* fill in fill Number Phone" maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Number Phone" ></v-text-field>
+                        <v-text-field v-model="form.phone_number"  hint="* fill in fill Number Phone" maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
                         <v-text-field v-model="form.password"  hint="* fill in fill Password" prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
                         <v-text-field v-model="form.password_confirm" class="mt-8" hint="* fill in fill Confirm Password" prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>

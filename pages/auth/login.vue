@@ -15,6 +15,7 @@
                     <form @submit.prevent="login" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                         <h1 class="font-bold text-4xl">Cash Back</h1><br><br>
                         <h1 class=" font-bold text-2xl">
+                            <v-icon class="mr-2">em em-raised_hand_with_fingers_splayed</v-icon>
                             Welcome back!
                         </h1>
                         <p>
@@ -48,9 +49,9 @@
                             </v-alert>
                         </div>
                     </div>
-                        <v-text-field prepend-inner-icon="mdi-card-account-details" :rules="[rules.required]" v-model="form.username" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
+                        <v-text-field prepend-inner-icon="em em-bust_in_silhouette" :rules="[rules.required]" v-model="form.username" required color="primary" outlined label="E-mail or Phone Number" placeholder="E-mail,Phone Number" hide-details class="mb-3"></v-text-field>
                         <br>
-                        <v-text-field prepend-inner-icon="mdi-form-textbox-password"  :rules="[rules.required]" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <v-text-field prepend-inner-icon="em em-lock"  :rules="[rules.required]" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
 
                         <v-btn type="submit" x-large dark block class="bg-primary-g mt-6">
                             Login
