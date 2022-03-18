@@ -59,9 +59,9 @@
 
                                 <SemiAuto-FromPurchase :ea="eaproduct"></SemiAuto-FromPurchase>
 
-                                <SemiAuto-FromRequestTest></SemiAuto-FromRequestTest>
+                                <SemiAuto-FromRequestTest  :ea="eaproduct"></SemiAuto-FromRequestTest>
 
-                                <vs-button class="btn-chat" color="#5EDA9F" @click="$router.push(`/detailea`)">
+                                <vs-button class="btn-chat" color="#5EDA9F" @click="$router.push(`/detailea?id=${eaproduct.id}`)">
                                     <span class="span">
                                         More Detail
                                     </span>
