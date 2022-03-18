@@ -25,7 +25,6 @@
                             <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
                             <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
                         </div>
-
                     </div>
 
                 </div>

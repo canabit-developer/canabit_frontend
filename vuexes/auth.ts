@@ -85,6 +85,31 @@ private async updateMyTier(currentTier:any){
     return user
   }
 
+  public async logPoint(received_from:string,point:string,status:number) {
+    let form = {
+      "received_from":received_from,
+      "point": point,
+      "type": status,
+      "status": 0,
+      "user": this.user.id
+    }
+    let out = await Core.postHttp(`/api/account/userpointhistory/`,form)
+    if(out.id){
+
+    }
+  }
+
+  public async cutPoint(point:number){
+    let form = this.point
+    form.current = form.current  - point
+      await Core.putHttp(`/api/account/userpoint/${this.point.id}/`,form)
+  }
+
+  public async addPoint(point:number){
+    let form = this.point
+    form.current = form.current  + point
+    await Core.putHttp(`/api/account/userpoint/${form.id}/`,form)
+  }
 
 
   public async reToken(){

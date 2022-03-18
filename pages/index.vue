@@ -15,43 +15,7 @@
                 <div class="w-full h-1/2">
                     <div class="max-w-3xl w-full mx-auto z-10">
                         <div class="flex flex-col">
-                            <div class="bg-green-400  border-white shadow-xl  rounded-3xl p-4 ">
-                                <div class="flex-none sm:flex">
-                                    <div class="flex-auto sm:ml-5 justify-evenly">
-                                        <div class="flex items-center justify-between sm:mt-2">
-                                            <div class="flex items-center">
-                                                <div class="flex flex-col">
-                                                    <div class="w-full flex-none text-lg text-white font-bold leading-none">Cash out</div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-row items-center justify-end">
-                                            <div class="flex-auto text-white my-1">
-                                                <span class="mr-3 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
-                                            </div>
-                                            <v-btn @click="active=!active" rounded fab>
-                                                <v-icon>mdi-arrow-right</v-icon>
-                                            </v-btn>
-
-                                            <vs-dialog prevent-close v-model="active">
-                                                <template #header>
-                                                    <v-alert class="mt-4 m-6" icon="mdi-shield-lock-outline" prominent text type="info">
-                                                        Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. pellentesque eu, pretium quis, sem.pellentesque eu, pretium quis, sem.
-                                                    </v-alert>
-                                                </template>
-                                                <div class="w-full -mt-8">
-                                                    <Cashout-From @reload="reloadCashOut" ></Cashout-From>
-                                                </div>
-                                                <template #footer>
-
-                                                </template>
-                                            </vs-dialog>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <Cashout-Form></Cashout-Form>
                         </div>
                     </div>
                 </div>
@@ -101,7 +65,9 @@ import {
     Web
 } from "~/vuexes/web";
 export default {
-    data: () => {
+  components: {},
+
+  data: () => {
         return {
             tab: null,
             items: [
