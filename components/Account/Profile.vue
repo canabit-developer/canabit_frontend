@@ -8,7 +8,7 @@
             <vs-avatar size="120" history circle>
                 <img v-if="!imageProfile" src="~/static/images/avatars/1.png">
                 <!-- <img v-else :src="$url+imageProfile" alt=""> -->
-                <img v-else :src="imageProfile" alt="">
+                <img v-else :src="$url+imageProfile" alt="">
             </vs-avatar>
 
             <img src="" ref="imgs" alt="">

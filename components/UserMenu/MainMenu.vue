@@ -7,7 +7,7 @@
                 <v-app-bar-nav-icon class="d-block d-lg-none me-2" @click="isDrawerOpen = !isDrawerOpen"></v-app-bar-nav-icon>
 
                 <v-spacer></v-spacer>
-                
+
                 <pre>{{account}}</pre>
 
                 <vs-button v-if="!kyc.user_verified" @click="$router.push('/account')" color="#FF0000" floating class="my-point">
@@ -19,13 +19,16 @@
                 </vs-button>
                 <div>
                     <div class="flex gap-3 items-center font-semibold text-gray-800 p-3 rounded-md hover:cursor-pointer">
-                        <img class="w-10 h-10 rounded-full" src="https://randomuser.me/api/portraits/women/24.jpg" alt="Rebecca Burke">
+                        <vs-avatar history success>
+                            <img v-if="!imageProfile" src="~/static/images/avatars/1.png">
+                            <img v-else class="w-10 h-10 rounded-full" :src="$url+imageProfile" alt="Rebecca Burke">
+                        </vs-avatar>
                         <div class="flex flex-col">
-                            <div>
-                                Rebecca Burkes
+                            <div class="text-green-400">
+                                {{form.display_name}}
                             </div>
                             <div class="text-gray-400 text-sm font-normal">
-                                +1(227)-691-8675
+                                {{form.first_name}} {{form.last_name}}
                             </div>
                         </div>
                     </div>
@@ -110,6 +113,7 @@ export default {
         return {
             isDrawerOpen: true,
             kyc: {},
+            form: {},
         }
     },
     methods: {
@@ -123,7 +127,9 @@ export default {
                 this.kyc = kyc[kyc.length - 1];
             }
         },
-
+        async initial() {
+            this.form = await Core.getHttp(`/api/account/userprofile/${this.user.id}/`)
+        },
     },
     computed: {
         user() {
@@ -141,6 +147,7 @@ export default {
 
     },
     async created() {
+        await this.initial()
         await this.getMyKyc();
     }
 }
