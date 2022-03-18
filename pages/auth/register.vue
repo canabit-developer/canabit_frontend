@@ -31,6 +31,11 @@
                                     {{ message }}
                                 </v-alert>
                             </div>
+                          <div v-if="error.password_confirm">
+                            <v-alert dense outlined text v-for="(message, i) in error.password_confirm" :key="i" type="error" :value="true">
+                              {{ message }}
+                            </v-alert>
+                          </div>
 
                             <div v-if="error.phone_number">
                                 <v-alert dense outlined text v-for="(message, i) in error.phone_number" :key="i" type="error" :value="true">
