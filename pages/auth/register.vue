@@ -154,14 +154,24 @@ export default {
         },
       async generatePoint(userId){
           let tiers = await Core.getHttp(`/api/account/tier/`)
-          let tier = _.find(tiers,(r)=>{r.length <= 0})
           let form = {
             "total": 0,
             "current": 0,
-            "tier": tier.id,
+            "tier": tiers[0].id,
             "user": userId
           }
-          await Core.postHttp(`/api/account/userpoint/`,form)
+          let data = await Core.postHttp(`/api/account/userpoint/`,form)
+          if (data.id) {
+            this.$vs.notification({
+              color: 'success',
+              title: 'สร้างข้อมูล Point สำเร็จแล้ว',
+            })
+          } else {
+            this.$vs.notification({
+              color: 'danger',
+              title: 'สร้างข้อมูล Point ไม่สำเร็จ',
+            })
+          }
       },
         async getSuccess(val) {
             this.successBtn = val

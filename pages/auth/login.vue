@@ -123,7 +123,7 @@ export default {
     methods: {
         async login(alert = true) {
             let user = await Core.postHttp(`/api/auth/v2/check/`, this.form)
-            if (user.username) {
+            if (user.username && user.is_active != false) {
                 this.form.username = user.username
                 let signin = await Auth.login(this.form)
                 if (signin.key) {
@@ -138,7 +138,11 @@ export default {
                     }
                     return false
                 }
-            }else{
+            }else if(user.is_active == false){
+              await this.$router.replace(`/auth/verify`)
+            }
+
+            else{
                // alert('sdsd');
                 this.userCheckError = true
                 console.log(this.userCheckError);
@@ -149,7 +153,6 @@ export default {
             this.form = user.login
             let logined = await this.login(false)
             if (!logined) {
-
                 let registerUser = await Auth.register(user.register)
                 if (registerUser.id) {
                     await Web.switchLoad(false)
@@ -186,19 +189,26 @@ export default {
         },
       async generatePoint(userId){
         let tiers = await Core.getHttp(`/api/account/tier/`)
-        let tier = _.find(tiers,(r)=>{r.length <= 0})
         let form = {
           "total": 0,
           "current": 0,
-          "tier": tier.id,
+          "tier": tiers[0].id,
           "user": userId
         }
-        await Core.postHttp(`/api/account/userpoint/`,form)
+        let data = await Core.postHttp(`/api/account/userpoint/`,form)
+        if (data.id) {
+          this.$vs.notification({
+            color: 'success',
+            title: 'สร้างข้อมูล Point สำเร็จแล้ว',
+          })
+        } else {
+          this.$vs.notification({
+            color: 'danger',
+            title: 'สร้างข้อมูล Point ไม่สำเร็จ',
+          })
+        }
       },
     }
 }
 </script>
 
-<style lang="scss">
-@import '@/plugins/vuetify/preset/pages/auth.scss';
-</style>
