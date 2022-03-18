@@ -4,11 +4,11 @@
         <v-container v-if="response">
             <div class="flex flex-col md:flex-row">
                 <div class="w-1/2">
-                    
+
                 </div>
                 <div class="w-1/2">
                     <div class="flex flex-col md:flex-row">
-                        <v-select class="mr-2" dense outlined label="Sort point from least to greatest"></v-select>
+                        <v-select @change="startup()" v-model="sortBy" :items="sorts" item-text="text" item-value="value" class="mr-2" dense outlined label="Sort By Point"></v-select>
 
                     </div>
                 </div>
@@ -32,12 +32,15 @@
                                     {{storeproduct.detail}}
                                 </p>
                             </div>
-                            <vs-button block color="#4ade80" class="btn-chat mt-5" @click="postRedeem(storeproduct)">
+                            <vs-button  v-if="point.current >= storeproduct.point_use"  block color="#4ade80" class="btn-chat mt-5" @click="postRedeem(storeproduct)">
                                 Redeem
                             </vs-button>
+                          <vs-button  v-else  block disabled color="gray" class="btn-chat mt-5"  >
+                             Your point not enough
+                          </vs-button>
                         </template>
                         <template #interactions>
-                            <vs-button color="#4ade80">
+                            <vs-button color="#4ade80" >
                                 {{storeproduct.point_use}} Point
                             </vs-button>
                         </template>
@@ -63,12 +66,18 @@ import {
 import {
     Core
 } from '~/vuexes/core'
+import _ from 'lodash'
 export default {
     watch: {},
     data: () => ({
         storeproducts: [],
         response: false,
-        form: {}
+        form: {},
+        sortBy:'asc',
+        sorts:[
+          {'text':'Descending',value:'asc'},
+          {'text':'Ascending',value:'desc'},
+        ]
     }),
     async created() {
         await this.startup()
@@ -76,7 +85,8 @@ export default {
     },
     methods: {
         async startup() {
-            this.storeproducts = await Store.getStoreProduct()
+            this.storeproducts = await Core.getHttp('/api/store/product/?is_active=true')
+            this.storeproducts = _.orderBy(this.storeproducts,['point_use'],[this.sortBy])
         },
         async getRedeem() {
             let check = await Web.confirm('Thank you for the Redeem')
@@ -104,7 +114,23 @@ export default {
     computed: {
         imageStoreProduct() {
             return Store.image
-        }
+        },
+      user: () => {
+        return Auth.user
+      },
+      point: () => {
+        return Auth.point
+      },
+      tier: () => {
+        return Auth.tier
+      },
+      tiers: () => {
+        return Auth.tiers
+      },
+      setting: () => {
+        return Auth.setting
+      },
+
     }
 }
 </script>
