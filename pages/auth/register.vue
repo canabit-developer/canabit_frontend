@@ -58,7 +58,7 @@
                         <br>
                         <v-text-field prepend-inner-icon="em em-woman-raising-hand" type="text" persistent-hint outlined label="Referral Code" ></v-text-field>
                         <br>
-                        <Auth-Captcha :reload="openCaptcha" @cap="getSuccess"></Auth-Captcha>
+                        <Auth-Captcha v-if="!successBtn" :reload="openCaptcha" @cap="getSuccess"></Auth-Captcha>
                         <v-btn v-if="successBtn" type="submit" x-large dark block class="bg-primary-g mt-6">
                             Sign Up
                         </v-btn>
@@ -98,6 +98,7 @@ export default {
             isPasswordVisible: false,
             successBtn: false,
             openCaptcha: true,
+          success:false,
             form: {
                 // password: "Pautn1234",
                 // username: "pongvarid2020",
@@ -137,6 +138,8 @@ export default {
                 await this.$router.replace(`/auth/verify`);
             } else {
                 this.error = user;
+              this.success = false
+              this.successBtn = false
                 await this.reCaptcha();
                 await Web.switchLoad(false);
             }
@@ -180,6 +183,7 @@ export default {
       },
         async getSuccess(val) {
             this.successBtn = val
+          this.success =val
         },
 
         async reCaptcha() {
@@ -199,6 +203,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "@/plugins/vuetify/preset/pages/auth.scss";
-</style>
+
