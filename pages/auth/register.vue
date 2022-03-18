@@ -241,6 +241,9 @@ export default {
 
             },
             error: {},
+            rules: {
+              required: value => !!value || 'Required.',
+            }
         };
     },
     async created() {

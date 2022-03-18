@@ -25,7 +25,6 @@
         <v-card-text>
 
             <form @submit.prevent="updateProfile" class="multi-col-validation mt-6">
-
                 <div class="flex flex-col md:flex-row md:flex-wrap">
                     <div class="w-full flex">
                         <h2 class="w-full md:w-9/12 text-2xl mb-4"><v-icon class="mr-2 ">em em-female-technologist</v-icon> General Profile</h2>
@@ -56,11 +55,9 @@
                     <v-text-field class="w-full  pl-2" v-model="form.address" prepend-inner-icon="em em-house" label="Address" dense outlined></v-text-field>
                     <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="Province District" prepend-inner-icon="em em-house_buildings" />
                     <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" prepend-inner-icon="em em-postbox" label="zip code" dense outlined></v-text-field>
-
                 </div>
                 <br>
                 <vs-button type="submit" floating block color="success" @click="updateProfile">Save Changes</vs-button>
-
             </form>
         </v-card-text>
     </v-card>

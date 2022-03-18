@@ -157,9 +157,6 @@ private async updateMyTier(currentTier:any){
 
 
 
-
-
-
 }
 
 import store from "@/vuexes"

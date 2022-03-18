@@ -1,114 +1,136 @@
 <template>
 <div>
-  <div class="bg-green-400  border-white shadow-xl  rounded-3xl p-4 ">
-    <div class="flex-none sm:flex">
-      <div class="flex-auto sm:ml-5 justify-evenly">
-        <div class="flex items-center">
-          <div class="flex flex-col">
-            <div class="w-full flex-none text-lg text-white font-bold leading-none">Cash out</div>
-            <div class="flex flex-row items-center justify-end">
-              <div class="flex-auto text-white my-1">
-                <span class="mr-3 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
-              </div>
-              <v-btn @click="active=!active" rounded fab>
-                <v-icon>mdi-arrow-right</v-icon>
-              </v-btn>
+    <div class="bg-green-400  border-white shadow-xl  rounded-3xl p-4 ">
+        <div class="flex-none sm:flex">
+            <div class="flex-auto sm:ml-5 justify-evenly">
+                <div class="flex items-center">
+                    <div class="flex flex-col">
+                        <div class="w-full flex-none text-lg text-white font-bold leading-none">Cash out</div>
+                        <div class="flex flex-row items-center justify-end">
+                            <div class="flex-auto text-white my-1">
+                                <span class="mr-3 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
+                            </div>
+                            <v-btn @click="active=!active" rounded fab>
+                                <v-icon>mdi-arrow-right</v-icon>
+                            </v-btn>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-  <v-dialog v-model="active">
-    <v-card>
-      <v-card-title>
+    <vs-dialog prevent-close v-model="active">
 
-      </v-card-title>
-      <v-card-text>
-        <div class=" block md:flex">
-          <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-8 bg-white ">
-            <Core-TierCard></Core-TierCard>
-          </div>
+        <v-card-title>
 
-          <div class="w-full  md:w-3/5 p-8 bg-white lg:ml-16 ">
+        </v-card-title>
+        <v-alert
+      icon="mdi-shield-lock-outline"
+      prominent
+      text
+      type="info"
+    >
+      Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Sed in libero ut nibh placerat accumsan.. Curabitur blandit mollis lacus. Curabitur blandit mollis lacus.
+    </v-alert>
+        <v-card-text class="-mt-9">
+            <div class=" block md:flex">
+                <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-8 bg-white ">
 
-            <form @submit.prevent="cashout()">
-              <v-row>
-                <v-col cols="12" md="12">
-                  <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> More than the points  </v-alert>
-                  <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-alpha-p-circle-outline" outlined dense id="firstname"  hide-details></v-text-field>
-                </v-col>
-                <v-col cols="12" md="12">
-                  <v-text-field required label="Name" v-model="form.name" prepend-inner-icon="mdi-account" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
-                </v-col>
-                <v-col cols="12" md="12">
-                  <v-text-field  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Bank Account Number" v-model="form.bank_code" prepend-inner-icon="mdi-lock-outline" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
-                </v-col>
-                <v-col cols="12" md="12">
-                  <v-autocomplete required label="Name Bank" item-text="value" item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="mdi-bank-transfer" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
-                </v-col>
+                    <Core-TierCard></Core-TierCard>
+                </div>
 
+                <div class="w-full  md:w-3/5 p-8 bg-white lg:ml-16 ">
 
+                    <form @submit.prevent="cashout()">
+                        <v-row>
+                            <v-col cols="12" md="12">
+                                <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> More than the points </v-alert>
+                                <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-alpha-p-circle-outline" outlined dense id="firstname" hide-details></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="12">
+                                <v-text-field required label="Name" v-model="form.name" prepend-inner-icon="mdi-account" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="12">
+                                <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Bank Account Number" v-model="form.bank_code" prepend-inner-icon="mdi-lock-outline" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="12">
+                                <v-autocomplete required label="Name Bank" item-text="value" item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="mdi-bank-transfer" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
+                            </v-col>
 
-                <vs-button v-if="(Number(form.point) <= Number(point.current)) && (form.bank_name != null) "  type="submit" color="primary" class="w-full py-3 mt-6 font-medium">
-                  Cashout
-                </vs-button>
-              </v-row>
-            </form>
-          </div>
-        </div>
+                            <vs-button v-if="(Number(form.point) <= Number(point.current)) && (form.bank_name != null) " @click="active=false" type="submit" floating color="#4ade80" class="w-full py-3 mt-6 font-medium">
+                                Cashout
+                            </vs-button>
+                        </v-row>
+                    </form>
+                </div>
+            </div>
 
-      </v-card-text>
-    </v-card>
-  </v-dialog>
+        </v-card-text>
+
+    </vs-dialog>
 
 </div>
 </template>
 
 <script>
-import {CashOut} from '~/vuexes/cashout'
-import {Auth} from '~/vuexes/auth'
-import {Core} from '~/vuexes/core'
-import {Web} from '~/vuexes/web'
+import {
+    CashOut
+} from '~/vuexes/cashout'
+import {
+    Auth
+} from '~/vuexes/auth'
+import {
+    Core
+} from '~/vuexes/core'
+import {
+    Web
+} from '~/vuexes/web'
 export default {
-    data:() =>({
-        form:{  },
-      bankList:[],
-      active:false,
+    data: () => ({
+        form: {},
+        bankList: [],
+        active: false,
     }),
-    async created(){
+    async created() {
         await this.startup()
     },
-    methods:{
-      async startup(){
-          this.bankList = await Core.getChoice('bank')
-      },
-        async cashout(){
+    methods: {
+        async startup() {
+            this.bankList = await Core.getChoice('bank')
+        },
+        async cashout() {
             let check = await Web.confirm(`Are You Sure ?`)
-          if(check){
-            this.form.user = Auth.user.id
-            let out = await CashOut.postCashout(this.form)
-            if(out.id){
-                await Auth.cutPoint(this.form.point)
-                await Auth.logPoint(`Cash Out`,this.form.point,1)
-            }
+            if (check) {
+                this.form.user = Auth.user.id
+                let out = await CashOut.postCashout(this.form)
+                if (out.id) {
+                    await Auth.cutPoint(this.form.point)
+                    await Auth.logPoint(`Cash Out`, this.form.point, 1)
+                }
 
-            this.form = {}
-            this.$emit('reload',false)
-            this.$router.push('/transaction')
-          }else{
-            this.form = {}
-          }
+                this.form = {}
+                this.$emit('reload', false)
+                this.$router.push('/transaction')
+            } else {
+                this.form = {}
+            }
 
         }
     },
-    computed:{
-      user:()=>{return Auth.user},
-      point:()=>{return Auth.point},
-      tier:()=>{return Auth.tier},
-      tiers:()=>{return Auth.tiers},
+    computed: {
+        user: () => {
+            return Auth.user
+        },
+        point: () => {
+            return Auth.point
+        },
+        tier: () => {
+            return Auth.tier
+        },
+        tiers: () => {
+            return Auth.tiers
+        },
 
     }
 }
 </script>
-

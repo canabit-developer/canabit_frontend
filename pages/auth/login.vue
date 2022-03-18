@@ -48,9 +48,9 @@
                             </v-alert>
                         </div>
                     </div>
-                        <v-text-field prepend-inner-icon="mdi-card-account-details" v-model="form.username" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
+                        <v-text-field prepend-inner-icon="mdi-card-account-details" :rules="[rules.required]" v-model="form.username" required color="primary" outlined label="Username" placeholder="email,phone number" hide-details class="mb-3"></v-text-field>
                         <br>
-                        <v-text-field prepend-inner-icon="mdi-form-textbox-password" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <v-text-field prepend-inner-icon="mdi-form-textbox-password"  :rules="[rules.required]" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
 
                         <v-btn type="submit" x-large dark block class="bg-primary-g mt-6">
                             Login
@@ -109,7 +109,10 @@ export default {
             },
             error: {},
             errorRegister: {},
-            userCheckError:false
+            userCheckError:false,
+            rules: {
+              required: value => !!value || 'Required.',
+            }
         })
     },
     async created() {
