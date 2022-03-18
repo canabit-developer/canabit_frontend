@@ -49,7 +49,7 @@
                                 </p>
                             </div>
 
-                            <vs-button block class="btn-chat mt-5" @click="$router.push(`/detailcopytrade`)">
+                            <vs-button block floating color="#4ade80" class="btn-chat mt-5" @click="$router.push(`/detailcopytrade`)">
                                 <span class="span">
                                     Detail Master
                                 </span>

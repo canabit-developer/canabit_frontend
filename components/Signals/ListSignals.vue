@@ -52,7 +52,7 @@
                             </p>
                         </div>
 
-                        <vs-button block class="btn-chat mt-3">
+                        <vs-button block floating class="btn-chat mt-3" color="#4ade80">
                             <span class="span">
                                 <v-icon color="#ffff" class="mr-2">mdi-cloud-download-outline</v-icon>
                                 Download
