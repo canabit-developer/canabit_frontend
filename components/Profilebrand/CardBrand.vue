@@ -3,15 +3,13 @@
     <v-row class="ma-0 pa-0">
       <v-col cols="8">
         <v-card-title class="text-no-wrap pt-1 ps-2">
-          Cash out  🥳
+          Award Redemption
         </v-card-title>
-        <v-card-subtitle class="text-no-wrap ps-2">
-          Redeem your point to Fiat Currency.
-        </v-card-subtitle>
+
         <v-card-text class="d-flex align-center -mt-1 pb-2 ps-2">
           <div>
-            <p class="text-xl font-weight-semibold primary--text mb-2">
-              Fiat Currency
+            <p class="text-xm mb-2">
+              The company reserves the right to change the conditions. without prior notice
             </p>
 
             <vs-button color="#fff" >

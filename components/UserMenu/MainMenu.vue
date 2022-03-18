@@ -65,7 +65,7 @@
             <UserMenu-NavbarLink path="/" title="Home" icon="em em-house"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="em em-clipboard"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink> -->
-            <UserMenu-NavbarLink path="/forex" title="Forex" icon="em em-bank"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/forex" title="Forex Broker" icon="em em-bank"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavMenuGroup title="Pages"></UserMenu-NavMenuGroup> -->
             <!-- <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink> -->

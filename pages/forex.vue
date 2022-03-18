@@ -11,10 +11,10 @@
 
     <ul class="breadcrumb">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
-        <li>Forex</li>
+        <li>Forex Broker</li>
     </ul>
 
-    <div class="font-sans bg-white flex flex-col min-h-screen w-full">
+    <div class=" font-sans bg-white flex flex-col min-h-screen w-full">
         <v-card class="m-4 rounded-xl" flat>
             <v-img src="https://sv1.picz.in.th/images/2022/03/10/rnABtv.png"></v-img>
         </v-card> 

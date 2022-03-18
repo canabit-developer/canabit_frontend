@@ -30,8 +30,7 @@
         <v-card-title>
 
         </v-card-title>
-        <v-alert class="" outlined dense shaped type="info" prominent border="left" >
-                                Please fill out the information completely.</v-alert>
+        
         <v-card-text class="-mt-9">
             <div class=" block md:flex">
                 <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-8 bg-white ">
@@ -43,18 +42,20 @@
 
                     <form @submit.prevent="cashout()">
                         <v-row>
+                            <v-alert class="" outlined dense shaped type="info" prominent border="left" >
+                                Please fill out the information completely.</v-alert>
                             <v-col cols="12" md="12">
                                 <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> More than the points </v-alert>
-                                <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-alpha-p-circle-outline" outlined dense id="firstname" hide-details></v-text-field>
+                                <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-bitcoin" outlined dense id="firstname" hide-details></v-text-field>
                             </v-col>
                             <v-col cols="12" md="12">
-                                <v-text-field required label="Name" v-model="form.name" prepend-inner-icon="mdi-account" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
+                                <v-text-field required label="Name" v-model="form.name" prepend-inner-icon="em em-male-technologist" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
                             </v-col>
                             <v-col cols="12" md="12">
-                                <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Bank Account Number" v-model="form.bank_code" prepend-inner-icon="mdi-lock-outline" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
+                                <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Bank Account Number" v-model="form.bank_code" prepend-inner-icon="em em-lock" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
                             </v-col>
                             <v-col cols="12" md="12">
-                                <v-autocomplete required label="Name Bank" item-text="value" item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="mdi-bank-transfer" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
+                                <v-autocomplete required label="Name Bank" item-text="value" item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="em em-bank" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
                             </v-col>
 
                             <vs-button v-if="(Number(form.point) <= Number(point.current)) && (form.bank_name != null) " @click="active=false" type="submit" floating color="#4ade80" class="w-full py-3 mt-6 font-medium">

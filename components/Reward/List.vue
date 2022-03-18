@@ -21,7 +21,7 @@
                 <v-row justify="center">
                    <v-col cols="12">
                         <vs-button block floating color="#4FE54C" size="large">
-                            Win Prizes
+                            Vote
                         </vs-button>
                     </v-col>
 
@@ -50,7 +50,7 @@
                 <v-row justify="center">
                     <v-col cols="12">
                         <vs-button block floating color="#4FE54C" size="large">
-                            Win Prizes
+                            Vote
                         </vs-button>
                     </v-col>
 
