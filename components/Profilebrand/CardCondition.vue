@@ -3,7 +3,15 @@
     <template #title>
         Rewards
     </template>
-    This  reward is counted from the date and time of tracking cashback from that purchase. The cashback bonus will appear once your cashback is tracked. Store orders that do not meet the above conditions will not be counted as mission orders (eg cancelation, return, exchange, use of a discount code that is not confirmed by ShopBack, or purchase of a category that is not verified by ShopBack). except for refunds from ShopBack). The company reserves the right to change the conditions. without prior notice
+    This  reward is counted from the date and time of tracking cashback from that purchase. The cashback bonus will appear once your 
+    cashback is tracked. Store orders that do not meet the above conditions 
+    will not be counted as mission orders (eg cancelation, return, exchange, 
+    use of a discount code that is not confirmed by ShopBack, 
+    or purchase of a category that is not verified by ShopBack). 
+    except for refunds from ShopBack). The company reserves the 
+    right to change the conditions. without prior notice
+     use of a discount code that is not confirmed by ShopBack, 
+    or purchase of a category that is not verified by ShopBack). 
 
 </vs-alert>
 </template>
