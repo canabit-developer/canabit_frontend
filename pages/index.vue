@@ -66,6 +66,9 @@
 import {
     Web
 } from "~/vuexes/web";
+import {
+  Auth
+} from "~/vuexes/auth";
 export default {
   components: {},
 
@@ -89,12 +92,38 @@ export default {
             checkbox1: false,
         };
     },
-    async created() {},
+    async created() {
+          await this.startup()
+    },
     methods:{
+    async startup(){
+      if(!this.kyc.user_verified){
+         await Web.alert(`Please Confirm Your KYC`,'info')
+        await this.$router.push(`/account`)
+      }
+    },
         async reloadCashOut(val){
             this.active = false
         }
-    }
+    },
+  computed: {
+    user() {
+      return Auth.user
+    },
+    kyc() {
+      return Auth.kyc
+    },
+    point() {
+      return Auth.point
+    },
+    tier() {
+      return Auth.tier
+    },
+    imageProfile() {
+      return Auth.user.image_profile
+    },
+
+  },
 };
 </script>
 

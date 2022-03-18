@@ -54,7 +54,7 @@
                 <v-img v-else class="shadow-2xl rounded-full h-36 w-36" src="https://i.pinimg.com/originals/4a/6a/cb/4a6acb8ab84a58ca85ef817b02de7067.jpg"> </v-img>
 
             </v-badge> -->
-            <!-- 
+            <!--
             <h2 v-if="user.display_name" class="text-2xl font-semibold">{{user.display_name}}</h2>
             <h2 v-else class="text-2xl font-semibold">{{user.first_name}}</h2>
             <h2>{{user.email}}</h2> -->
@@ -63,13 +63,13 @@
         <v-list expand shaped class="vertical-nav-menu-items pr-5">
 
             <UserMenu-NavbarLink path="/" title="Home" icon="em em-house"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="em em-clipboard"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/transaction" title="Transaction" icon="em em-clipboard"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink> -->
-            <UserMenu-NavbarLink path="/forex" title="Forex Broker" icon="em em-bank"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink v-if="kyc.user_verified"  path="/forex" title="Forex Broker" icon="em em-bank"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavMenuGroup title="Pages"></UserMenu-NavMenuGroup> -->
             <!-- <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink> -->
-            <UserMenu-NavMenuGroup icon="em em-shopping_trolley" title="Product">
+            <UserMenu-NavMenuGroup v-if="kyc.user_verified"  icon="em em-shopping_trolley" title="Product">
                 <div class="ml-2">
                     <UserMenu-NavbarLink path="/semiauto" title="EA" icon="em em-chart"></UserMenu-NavbarLink>
                 </div>
@@ -80,7 +80,7 @@
                     <UserMenu-NavbarLink path="/copytrade" title=" Copy Trade" icon="em em-bookmark_tabs"></UserMenu-NavbarLink>
                 </div>
             </UserMenu-NavMenuGroup>
-            <UserMenu-NavbarLink path="/accountstatus" title="History Account" icon="em em-clock1"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink v-if="kyc.user_verified"  path="/accountstatus" title="History Account" icon="em em-clock1"></UserMenu-NavbarLink>
             <UserMenu-NavMenuSectionTitle title="USER SETTING"></UserMenu-NavMenuSectionTitle>
 
             <UserMenu-NavbarLink path="/account" title="Account Setting" icon="em em-wrench"></UserMenu-NavbarLink>

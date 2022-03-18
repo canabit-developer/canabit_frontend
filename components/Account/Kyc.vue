@@ -2,7 +2,7 @@
 <v-card flat class="mt-5" v-if="response">
 
     <div class="px-3  mb-5">
-        <v-card-text class=""> 
+        <v-card-text class="">
             <v-alert v-if="kyc.user_verified" type="success" :value="true">
                 คุณได้ทำการยืนยันตัวตนเรียบร้อยแล้ว
             </v-alert>
@@ -31,12 +31,12 @@
                         เลขบัตรประจำตัวประชาชนไม่ถูกต้อง
                     </v-alert>
                     <form @submit.prevent="updateCardId()">
-                        <v-text-field required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
+                        <v-text-field :disabled="kyc.user_verified" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
                         <div class="flex">
                             <v-spacer></v-spacer>
-                            <vs-button v-if="checkId" type="submit" floating color="#4ade80">Update</vs-button>
+                            <vs-button   v-if="checkId && !kyc.user_verified"" type="submit" floating color="#4ade80">Update</vs-button>
                         </div>
-                    </form> 
+                    </form>
                 </v-col><br>
                 <v-container>
                     <v-row justify="space-between">
@@ -46,7 +46,7 @@
                             <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
                             <br><br>
-                            <input  @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
+                            <input v-if="!kyc.user_verified"  @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
                         <v-col cols="12" md="6">
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>
@@ -54,7 +54,7 @@
                             <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
                             <br> <br>
-                            <input @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" />
+                            <input v-if="!kyc.user_verified"  @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
                     </v-row>
                 </v-container>
@@ -65,7 +65,7 @@
                 </v-col> -->
 
             </v-row>
-            <v-col cols="12" md="4" class="mt-10">
+            <v-col cols="12" md="4" class="mt-10" v-if="false">
                 <h2> 4. Phone number OTP (one-time-password)</h2>
                 <div class="center">
                     <vs-button floating @click="active=!active" color="#4ade80" class="mt-6">
