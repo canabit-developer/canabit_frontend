@@ -2,6 +2,7 @@
 <div>
     <section>
         <v-toolbar color="transparent" flat>
+            <v-icon class="mr-4">em em-mega</v-icon>
             <h2 class="text-2xl font-semibold">Promotions</h2>
         </v-toolbar>
         <div class="p-3">
@@ -29,14 +30,16 @@
                                         <div class="flex items-center justify-between sm:mt-2">
                                             <div class="flex items-center">
                                                 <div class="flex flex-col">
-                                                    <div class="w-full flex-none text-lg text-white font-bold leading-none">Reward</div>
+                                                    <div class="w-full flex-none text-lg text-white font-bold leading-none">
+                                                        <v-icon class="mr-2" size="20">em em-trophy</v-icon>
+                                                        Reward</div>
 
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex flex-row items-center justify-end">
                                             <div class="flex-auto text-white my-1">
-                                                <span class="mr-3 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
+                                                <span class="mr-3 ">customers can bring Points can be exchanged for rewards.</span>
                                             </div>
                                             <v-btn @click="$router.push(`/redeem`)" rounded fab>
                                                 <v-icon>mdi-arrow-right</v-icon>

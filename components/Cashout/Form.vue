@@ -5,10 +5,11 @@
             <div class="flex-auto sm:ml-5 justify-evenly">
                 <div class="flex items-center">
                     <div class="flex flex-col">
-                        <div class="w-full flex-none text-lg text-white font-bold leading-none">Cash out</div>
+                        <div class="w-full flex-none text-lg text-white font-bold leading-none">
+                            <v-icon class="mr-2" size="20">em em-money_with_wings</v-icon>Cash out</div>
                         <div class="flex flex-row items-center justify-end">
                             <div class="flex-auto text-white my-1">
-                                <span class="mr-3 ">Lorem ipsum dolor sit amet, consectetur adipiscing elit </span>
+                                <span class="mr-3 ">Customers can exchange points for cash.</span>
                             </div>
                             <v-btn @click="active=!active" rounded fab>
                                 <v-icon>mdi-arrow-right</v-icon>
