@@ -67,6 +67,7 @@ export default {
         let data = await Core.postHttpAlert(`/api/ea/requesttest/`,form)
         if(data.id){
           this.active = false;
+          this.$router.push('/accountstatus')
         }
 
       }

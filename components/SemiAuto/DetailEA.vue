@@ -10,9 +10,9 @@
                                 <img :src="$url+ea.image">
                             </v-avatar>
                             <div class="m-5">
-                                <div class="pb-2 font-bold">{{ea.name}}</div>
-                                <div class="text-xs text-gray-400 leading-6">Price : {{ea.price}} $</div>
-                                <div class="text-xs text-gray-400 leading-6">{{ea.sub_title}} </div>
+                                <div class="pb-2 font-bold text-3xl">{{ea.name}}</div>
+                                <div class="text-xs text-gray-400 text-2xl leading-6 mt-2">Price : {{ea.price}} $</div>
+                                <div class="text-xs text-gray-400  text-1xl leading-6 mt-2">{{ea.sub_title}} </div>
                             </div>
                         </div>
                         <div class="text-right text-sm leading-7">
@@ -23,13 +23,11 @@
                                 <div class="inline-flex ">
                                   <SemiAuto-FromRequestTest  :ea="ea"></SemiAuto-FromRequestTest>
                                 </div>
-
                             </div>
-                          <v-rating readonly  color="orange"   length="5" size="20"
+                          <v-rating readonly  color="orange" class="mr-5"   length="5" size="20"
                                     v-model="rate"
                           ></v-rating>
                         </div>
-
                     </div>
                     <h2 class="font-bold text-3xl  ml-10 mt-8">
                         Details
@@ -51,7 +49,7 @@
                                 v-model="form.star"
                       ></v-rating>
                       <v-textarea v-model="form.comment" required row="3" outlined></v-textarea>
-                      <div class="flex"> <v-spacer></v-spacer> <v-btn type="submit" color="success">Comment</v-btn>
+                      <div class="flex"> <v-spacer></v-spacer> <vs-button type="submit" floating color="success">Comment</vs-button>
                       </div>
                     </form>
 
@@ -59,7 +57,7 @@
                       <v-toolbar class="w-full" color="transparent" flat>
                         <img alt="avatar" width="50" height="50" class="rounded-full w-16 h-16 mr-4 shadow-lg mb-4 mt-4" :src="$url+review.user_image">
                         <div>
-                          <h3 class="text-purple-600 font-semibold text-xl  md:text-left mt-4 ">{{review.user_full}}</h3>
+                          <h3 class="text-gray-400 font-semibold text-xl  md:text-left mt-4 ">{{review.user_full}}</h3>
                           <v-rating readonly  color="orange"   length="5" size="20"
                                     v-model="review.star"
                           ></v-rating>
@@ -67,7 +65,7 @@
                         <v-spacer></v-spacer>
 
 
-                        <span class="text-purple-600 text-sm font-bold">{{review.created_at}}</span>
+                        <span class="text-green-400 text-sm font-bold">{{review.created_at}}</span>
                       </v-toolbar >
                       <v-divider></v-divider>
                       <p style="width: 90%" class="text-gray-600 text-lg  p-6 md:text-left ">{{review.comment}} </p><br>

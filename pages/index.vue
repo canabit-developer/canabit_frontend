@@ -21,8 +21,7 @@
                     </div>
                 </div>
                 <div class="pt-3 w-full h-1/2">
-
-                    <div class="max-w-3xl w-full mx-auto z-10">
+                    <div class="max-w-3xl w-full mt-1 mx-auto z-10">
                         <div class="flex flex-col">
                             <div class="bg-sky-400  border-white shadow-lg  rounded-3xl p-4 ">
                                 <div class="flex-none sm:flex">
