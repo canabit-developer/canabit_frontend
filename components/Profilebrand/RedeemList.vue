@@ -32,10 +32,10 @@
                                     {{storeproduct.detail}}
                                 </p>
                             </div>
-                            <vs-button  v-if="point.current >= storeproduct.point_use"  block color="#4ade80" class="btn-chat mt-5" @click="postRedeem(storeproduct)">
+                            <vs-button floating v-if="point.current >= storeproduct.point_use"  block color="#4ade80" class="btn-chat mt-5" @click="postRedeem(storeproduct)">
                                 Redeem
                             </vs-button>
-                          <vs-button  v-else  block disabled color="gray" class="btn-chat mt-5"  >
+                          <vs-button  v-else floating block disabled color="#425466" class="btn-chat mt-5"  >
                              Your point not enough
                           </vs-button>
                         </template>
