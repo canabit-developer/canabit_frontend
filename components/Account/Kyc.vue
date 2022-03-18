@@ -16,7 +16,7 @@
                 ภาพถ่าย selfie กับบัตรประจำตัวประชาชน มีปัญหา
             </v-alert>
             <v-alert v-if="kyc.user_verified_name_error == true && kyc.user_verified == false" type="error" :value="true">
-                ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน'
+                ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน
             </v-alert>
             <v-alert v-if="kyc.user_verified_id_error == true && kyc.user_verified == false" type="error" :value="true">
                 เลขบัตรประชาชน ไม่ตรงกับบัตรประจำตัวประชาชน
