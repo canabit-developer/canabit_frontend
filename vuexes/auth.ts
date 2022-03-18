@@ -108,6 +108,7 @@ private async updateMyTier(currentTier:any){
   public async addPoint(point:number){
     let form = this.point
     form.current = form.current  + point
+    form.total = form.total  + point
     await Core.putHttp(`/api/account/userpoint/${form.id}/`,form)
   }
 
