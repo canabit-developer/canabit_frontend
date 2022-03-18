@@ -1,7 +1,7 @@
 <template>
 <div>
     <template>
-        <div class="inline-flex ">
+        <div class="inline-flex " v-if="response">
             <vs-button floating color="#22c55e" @click="active=!active">
                 <v-icon class="mr-2 " size="15">em em-memo</v-icon>
                 Add Account
@@ -20,8 +20,8 @@
                             <v-alert outlined dense shaped type="info" prominent border="left" >
                                 The account number must be the number registered with the IB only.</v-alert>
                             <v-text-field required label="Account No" v-model="form.account_no" prepend-inner-icon="em em-1234" hint="For example, 222 444" outlined></v-text-field>
-                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.broker" prepend-inner-icon="em em-chart" :items="broker" :error-messages="selectErrors" outlined label="Brokers" required></v-select>
-                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.account_type" prepend-inner-icon="em em-moneybag" :items="accounttype" :error-messages="selectErrors" outlined label="Account Type"></v-select>
+                            <v-select @change="checkAccount()" item-text="name" item-value="id" persistent-hint  v-model="form.broker" prepend-inner-icon="em em-chart" :items="broker"   outlined label="Brokers" required></v-select>
+                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.account_type" prepend-inner-icon="em em-moneybag" :items="accounttype"  outlined label="Account Type"></v-select>
 
                             <vs-button v-if="form.broker && form.account_type" type="submit" block floating color="#4ade80">
                                 + Add  Account
@@ -49,19 +49,23 @@ import {
     Auth
 } from '~/vuexes/auth'
 import moment from 'moment'
+import _ from "lodash";
 export default {
     data: () => ({
         accounttype: [],
         broker: [],
         active: false,
-        form: {}
+        listAccountType : [],
+        form: {},
+      response:false,
     }),
     async created() {
-        this.startup()
+      await  this.startup()
+      this.response = true;
     },
     methods: {
         async startup() {
-            this.accounttype = await Forex.getAccountType()
+            this.listAccountType = await Forex.getAccountType()
             this.broker = await Forex.getBroker()
         },
         async store() {
@@ -71,7 +75,14 @@ export default {
             this.active = false;
             location.reload();
         },
-        
+      async checkAccount(){
+          let brokerAccounts = await Core.getHttp(`/api/finance/accounttype/`)
+          let inBroker = _.find(this.broker,{id:this.form.broker})
+        this.accounttype =   _.reject(brokerAccounts, (item) => _.find(inBroker.types, (r) => {
+          return r == item.id
+        }));
+      }
+
     },
     computed: {
 

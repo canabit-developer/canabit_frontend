@@ -9,12 +9,12 @@ class ForexModule extends VuexModule{
         return await Core.getHttp('/api/finance/brokeraccount/')
     }
     public async getBroker(){
-        return await Core.getHttp('/api/finance/broker/')
+        return await Core.getHttp('/api/finance/broker/?is_active=true')
     }
     public async getAccountType(){
-        return await Core.getHttp('/api/finance/accounttype/')
+        return await Core.getHttp('/api/finance/accounttype/?is_active=true')
     }
- 
+
 }
 
 
