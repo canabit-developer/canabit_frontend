@@ -129,7 +129,7 @@ class CoreModule extends VuexModule {
   }
 
   async getChoice(name: string) {
-    return await this.getHttp(`/api/webconfig/choice/?type__name=${name}`)
+    return await this.getHttp(`/api/webconfig/choice/?is_active=true&type__name=${name}`)
   }
 
 
