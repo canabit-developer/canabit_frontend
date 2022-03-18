@@ -8,6 +8,10 @@
                 </span>
             </vs-button>
             <vs-dialog prevent-close max-width="500px" persistent v-model="active">
+                <h3 class="not-margin mt-6">
+                        <v-icon size="20" class="me-3">em em-chart_with_upwards_trend</v-icon>
+                        <b>Purchase to {{ea.name}}</b>
+                    </h3>
                 <template #header>
                     <h4 class="not-margin">
                         Purchase to <b>{{ea.name}}</b>

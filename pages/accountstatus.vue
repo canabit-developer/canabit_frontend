@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h2 class="text-xl font-semibold">HISTORY ACCOUNT</h2>
+    <h2 class="text-xl font-semibold"><v-icon class="mr-2" size="20">em em-clock1</v-icon> HISTORY ACCOUNT</h2>
     <ul class="breadcrumb mt-3">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
         <li>HistoryAccount</li>
