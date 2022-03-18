@@ -38,7 +38,7 @@
 
             </div>
             <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:mt-5 md:-mt-24">
-                <SemiAuto-DetailEA></SemiAuto-DetailEA>
+                <SemiAuto-DetailEA :ea="ea"></SemiAuto-DetailEA>
             </div>
         </div>
     </div>
@@ -46,9 +46,33 @@
 </template>
 
 <script>
+import {
+  Core
+} from '@/vuexes/core'
+import _ from 'lodash'
+import {
+  Auth
+} from '@/vuexes/auth'
 export default {
-  
+  data () {return ({
+      ea:{}
+  })},
+  async created(){
+      await this.startup();
+  },
+  methods:{
+    async startup(){
+        this.ea = await Core.getHttp(`/api/ea/product/${this.$route.query.id}/`)
+    }
+  },
+  computed:{
+    user:()=>{return Auth.user},
+    point:()=>{return Auth.point},
+    tier:()=>{return Auth.tier},
+    tiers:()=>{return Auth.tiers},
+    setting:()=>{return Auth.setting},
 
+  }
 }
 </script>
 
