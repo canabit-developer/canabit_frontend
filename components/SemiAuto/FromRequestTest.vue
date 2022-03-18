@@ -24,7 +24,7 @@
 
                 <template #footer>
                     <div class="footer-dialog">
-                        <vs-button block color="#17c964" @click="postRequesttest(requestest)">
+                        <vs-button block color="#17c964" >
                             Submit Request Test
                         </vs-button>
                     </div>
@@ -49,26 +49,12 @@ import {Product} from '~/vuexes/product'
 export default {
     data: () => ({
         active: false,
-        form: {},
-        requestest:[]
+        
+        
     }),
     
     methods: {
-        async startup() {
-            this.requestest = await Product.getReqursttest()
-        },
-        async postRequesttest(product) {
-            let check = await Web.confirm('Do you want to Redeem')
-            if (check) {
-                this.form.user = Auth.user.id
-                let code = 'RD' + Date.now()
-                let request = await Core.postHttpAlert(`/api/ea/requesttest/`, {
-                    "code": code,
-                    "product": product.id
-                })
-                await this.$router.push('/accountstatus')
-            }
-        }
+        
     }
 }
 </script>

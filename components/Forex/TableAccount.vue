@@ -13,12 +13,12 @@
                                     <div class="text-sm text-gray-400 font-light"> </div>
                                 </div>
                                 <div class="col-span-3 py-2 ml-8 justify-self-end">
-                                    <v-chip color="success" label>
+                                    <!-- <v-chip color="success" label>
                                         <v-icon left> 
                                             mdi-account-circle-outline
                                         </v-icon>
                                         {{countAccount(list.id)}} Account
-                                    </v-chip>
+                                    </v-chip> -->
                                 </div>
 
                             </div>

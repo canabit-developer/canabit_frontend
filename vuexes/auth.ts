@@ -14,11 +14,13 @@ class AuthModule extends VuexModule {
   public async setUser(){
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
     this.user = user;
-    await this.getMyKyc();
-    await this.getMypoint();
-    await this.getMyTier();
-    await this.checkTier()
-    await this.currentPoint()
+    if(this.user.id){
+      await this.getMyKyc();
+      await this.getMypoint();
+      await this.getMyTier();
+      await this.checkTier()
+    }
+
     return user;
   }
 
@@ -40,10 +42,6 @@ async getMyTier(){
   this.tier = await Core.getHttp(`/api/account/tier/${this.point.tier}/`);
 }
 
-private async  currentPoint (){
-    
-}
-
 
 private async checkTier(){
   let listTier = await Core.getHttp(`/api/account/tier/`)
@@ -59,9 +57,6 @@ private async checkTier(){
   } 
 }
 
-private async updatePoint(){
-    
-}
 
 private async updateMyTier(currentTier:any){
     let tier = await Core.putHttp(`/api/account/userpoint/${this.point.id}/`,{tier:currentTier.id})
