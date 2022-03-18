@@ -62,28 +62,28 @@
 
         <v-list expand shaped class="vertical-nav-menu-items pr-5">
 
-            <UserMenu-NavbarLink path="/" title="Home" icon="mdi-home-outline"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="mdi-bank-transfer"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/" title="Home" icon="em em-house"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/transaction" title="Transaction" icon="em em-clipboard"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavbarLink path="/partner" title="E-commerce" icon="mdi-handshake-outline"></UserMenu-NavbarLink> -->
-            <UserMenu-NavbarLink path="/forex" title="Forex" icon="mdi-finance"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/forex" title="Forex" icon="em em-bank"></UserMenu-NavbarLink>
             <!-- <UserMenu-NavMenuGroup title="Pages"></UserMenu-NavMenuGroup> -->
             <!-- <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink path="/signals" title="Signals" icon="mdi-broadcast"></UserMenu-NavbarLink> -->
-            <UserMenu-NavMenuGroup icon="mdi-bookmark-multiple-outline" title="Product">
+            <UserMenu-NavMenuGroup icon="em em-shopping_trolley" title="Product">
                 <div class="ml-2">
-                    <UserMenu-NavbarLink path="/semiauto" title="EA" icon="mdi-animation"></UserMenu-NavbarLink>
+                    <UserMenu-NavbarLink path="/semiauto" title="EA" icon="em em-chart"></UserMenu-NavbarLink>
                 </div>
                 <div class="ml-2">
-                    <UserMenu-NavbarLink path="/signals" title="Indicator" icon="mdi-broadcast"></UserMenu-NavbarLink>
+                    <UserMenu-NavbarLink path="/signals" title="Indicator" icon="em em-arrow_double_down"></UserMenu-NavbarLink>
                 </div>
                 <div class="ml-2">
-                    <UserMenu-NavbarLink path="/copytrade" title=" Copy Trade" icon="mdi-crown-outline"></UserMenu-NavbarLink>
+                    <UserMenu-NavbarLink path="/copytrade" title=" Copy Trade" icon="em em-bookmark_tabs"></UserMenu-NavbarLink>
                 </div>
             </UserMenu-NavMenuGroup>
-            <UserMenu-NavbarLink path="/accountstatus" title="History Account" icon="mdi-history"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/accountstatus" title="History Account" icon="em em-clock1"></UserMenu-NavbarLink>
             <UserMenu-NavMenuSectionTitle title="USER SETTING"></UserMenu-NavMenuSectionTitle>
 
-            <UserMenu-NavbarLink path="/account" title="Account Setting" icon="mdi-account-cog-outline"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/account" title="Account Setting" icon="em em-wrench"></UserMenu-NavbarLink>
 
         </v-list>
 

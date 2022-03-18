@@ -21,18 +21,17 @@
         </div>
     </div>
     <vs-dialog prevent-close v-model="active">
-
+        <template #header>
+                    <h3 class="not-margin mt-6 text-xl">
+                        <v-icon size="30" class="me-3">em em-money_with_wings</v-icon>
+                        <b>CASH OUT</b>
+                    </h3>
+                </template>
         <v-card-title>
 
         </v-card-title>
-        <v-alert
-      icon="mdi-shield-lock-outline"
-      prominent
-      text
-      type="info"
-    >
-      Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Sed in libero ut nibh placerat accumsan.. Curabitur blandit mollis lacus. Curabitur blandit mollis lacus.
-    </v-alert>
+        <v-alert class="" outlined dense shaped type="info" prominent border="left" >
+                                Please fill out the information completely.</v-alert>
         <v-card-text class="-mt-9">
             <div class=" block md:flex">
                 <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-8 bg-white ">
