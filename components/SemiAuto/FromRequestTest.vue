@@ -24,7 +24,7 @@
 
                 <template #footer>
                     <div class="footer-dialog">
-                        <vs-button block color="#17c964" >
+                        <vs-button @click="store()" block color="#17c964" >
                             Submit Request Test
                         </vs-button>
                     </div>
@@ -47,15 +47,38 @@ import {
 } from '~/vuexes/core'
 import {Product} from '~/vuexes/product'
 export default {
+  props:{
+    ea:{default:{}}
+  },
     data: () => ({
         active: false,
-        
-        
+
+
     }),
-    
+
     methods: {
-        
-    }
+      async store(){
+        let form =  {
+          "code": 'RT' + Date.now(),
+          "link": "",
+          "user": this.user.id,
+          "product": this.ea.id
+        }
+        let data = await Core.postHttpAlert(`/api/ea/requesttest/`,form)
+        if(data.id){
+          this.active = false;
+        }
+
+      }
+    },
+  computed:{
+    user:()=>{return Auth.user},
+    point:()=>{return Auth.point},
+    tier:()=>{return Auth.tier},
+    tiers:()=>{return Auth.tiers},
+    setting:()=>{return Auth.setting},
+
+  }
 }
 </script>
 
