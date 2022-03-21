@@ -52,7 +52,7 @@
                             </p>
                         </div>
 
-                        <vs-button @click="order()" block floating class="btn-chat mt-3" color="#4ade80">
+                        <vs-button @click="order(indicator)" block floating class="btn-chat mt-3" color="#4ade80">
                             <span class="span">
                                 <v-icon color="#ffff" class="mr-2">mdi-cloud-download-outline</v-icon>
                                 Download
@@ -95,11 +95,12 @@ export default {
         async startup() {
             this.indicator = await Product.getIndicatorProduct()
         },
-        async order() {
+        async order(indicator) {
+            window.open(indicator.link);
             let form = {
                 "code": 'IN' + Date.now(),
                 "user": this.user.id,
-                "product": this.indicator.id
+                "product": indicator.id
             }
             let data = await Core.postHttpAlert(`/api/indicator/order/`, form)
             if (data.id) {
