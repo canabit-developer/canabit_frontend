@@ -27,15 +27,17 @@
             <v-row>
                 <v-col cols="12" sm="8" md="6">
                     <h2> 1. Verify your identity by entering your ID card number or passport number. </h2>
-                    <v-alert v-if="!checkId" type="error" :value="true" dense outlined>
+                    <v-alert v-if="!checkId && !isPassport" type="error" :value="true" dense outlined>
                         เลขบัตรประจำตัวประชาชนไม่ถูกต้อง
                     </v-alert>
                     <form @submit.prevent="updateCardId()">
+                        <v-checkbox v-if="!checkId" label="Use Passport Number" v-model="isPassport"></v-checkbox>
+                        <v-text-field v-if="!isPassport " :disabled="kyc.user_verified" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
+                      <v-text-field v-else required   class="mt-5" v-model="id"   hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
 
-                        <v-text-field :disabled="kyc.user_verified" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
-                        <div class="flex">
+                      <div class="flex">
                             <v-spacer></v-spacer>
-                            <vs-button   v-if="checkId && !kyc.user_verified"" type="submit" floating color="#4ade80">Update</vs-button>
+                            <vs-button   v-if="checkId && !kyc.user_verified" type="submit" floating color="#4ade80">Update</vs-button>
                         </div>
                     </form>
                 </v-col><br>

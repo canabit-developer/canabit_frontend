@@ -13,7 +13,7 @@
 
             <img src="" ref="imgs" alt="">
             <!-- upload photo -->
-            <div class="ml-4"> 
+            <div class="ml-4">
                 <h3 class="text-3xl">{{form.display_name}}</h3>
                 <div class="mt-2">
                     <Core-ImageInput @profileImage="getFileImage"></Core-ImageInput>
@@ -22,6 +22,7 @@
 
         </v-card-text>
         <v-card-text>
+
             <form @submit.prevent="updateProfile" class="multi-col-validation mt-6">
                 <div class="flex flex-col md:flex-row md:flex-wrap">
                     <div class="w-full flex">
@@ -40,7 +41,7 @@
                         <v-alert v-if="!nonName" type="error" outlined >
                             ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน โปรดแก้ไขข้อมูล
                         </v-alert>
-                    </div> 
+                    </div>
                     <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" prepend-inner-icon="em em-bust_in_silhouette" label="Display Name" dense outlined></v-text-field>
                     <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" prepend-inner-icon="em em-email" label="E-mail" dense outlined></v-text-field>
                     <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field> -->
@@ -55,8 +56,23 @@
                     <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" prepend-inner-icon="em em-postbox" label="zip code" dense outlined></v-text-field>
                 </div>
                 <br>
+              <div v-if="kyc.user_verified">
+                <div v-if="!kyc.refferal_code">
+                  <v-alert outlined type="info">
+                    <h2>You not have refferal code please click to create your refferal code for your partner use. </h2>
+                    <br>
+                    <v-btn @click="createRefCode()">Create My Refferal Code</v-btn>
+                  </v-alert>
+                </div>
+                <div v-else>
+                  <v-alert outlined type="success">
+                    My Refferal Code
+                    <h2 class="text-3xl">{{kyc.refferal_code}}</h2>
+                  </v-alert>
+                </div>
+              </div><br>
                 <vs-button type="submit" floating block color="success" @click="updateProfile">Save Changes</vs-button>
-            </form>
+            </form><br><br><br>
         </v-card-text>
     </v-card>
 </div>
@@ -95,19 +111,39 @@ export default {
         },
         CityFrom() {
             return City.showName;
-        }
+        },
+
+      point: () => {
+        return Auth.point
+      },
+      tier: () => {
+        return Auth.tier
+      },
+      tiers: () => {
+        return Auth.tiers
+      },
+      setting: () => {
+        return Auth.setting
+      },
     },
     async created() {
         await this.initial()
     },
     methods: {
+      async createRefCode(){
+          let refcode = btoa(this.user.email)
+        let create = await Core.putHttpAlert(`/api/account/kyc/${this.kyc.id}/`,{
+          refferal_code:refcode
+        })
+        await this.initial();
+      },
           async getMyKyc() {
             let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
             if (kyc.length > 0) {
-                this.kyc = kyc[kyc.length - 1]; 
+                this.kyc = kyc[kyc.length - 1];
                 if(this.kyc.user_verified_name_error == true){
                     this.nonName = false
-                } 
+                }
             }
         },
         async imageuploaded(res) {
@@ -137,7 +173,7 @@ export default {
             await Auth.setUser();
             await this.initial()
 
-            // let cover = await Core.setWaterMark(image) 
+            // let cover = await Core.setWaterMark(image)
             // this.$refs.ximg.src = cover.src
 
         },
@@ -156,7 +192,7 @@ export default {
             );
             City.currentDistrict = await Core.getHttp(
                 `/api/location/district/${this.form.district}/`
-            ); 
+            );
             await City.setShowName();
         }
     }
