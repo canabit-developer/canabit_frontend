@@ -37,18 +37,18 @@
         <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
 
         <vs-row w="12" class="-mt-4" justify="center">
-            <div v-for="indicatorsproduct,index in indicatorsproduct" :key="index" class="p-5" w="3">
+            <div v-for="indicator,index in indicator" :key="index" class="p-5" w="3">
                 <vs-card>
                     <template #title>
-                        <h3>{{indicatorsproduct.name}}</h3>
+                        <h3>{{indicator.name}}</h3>
                     </template>
                     <template #img>
-                        <img :src="$url+indicatorsproduct.image" alt="">
+                        <img :src="$url+indicator.image" alt="">
                     </template>
                     <template #text>
                         <div class="h-16 mt-2">
                             <p class="textellipsis">
-                                {{indicatorsproduct.detail}}
+                                {{indicator.detail}}
                             </p>
                         </div>
 
@@ -69,6 +69,7 @@
                 </vs-card>
             </div>
         </vs-row>
+        <pre>{{indicator}}</pre>
     </div>
 </div>
 </template>
@@ -85,20 +86,20 @@ import {
 } from '~/vuexes/product'
 export default {
     data: () => ({
-        indicatorsproduct: [],
+        indicator: [],
     }),
     async created() {
         this.startup()
     },
     methods: {
         async startup() {
-            this.indicatorsproduct = await Product.getIndicatorProduct()
+            this.indicator = await Product.getIndicatorProduct()
         },
         async order() {
             let form = {
                 "code": 'IN' + Date.now(),
                 "user": this.user.id,
-                "product": this.indicatorsproduct.id
+                "product": this.indicator.id
             }
             let data = await Core.postHttpAlert(`/api/indicator/order/`, form)
             if (data.id) {
@@ -107,8 +108,21 @@ export default {
         }
     },
     computed: {
-       user:()=>{return Auth.user},
-       setting:()=>{return Auth.setting},
+        user: () => {
+            return Auth.user
+        },
+        point: () => {
+            return Auth.point
+        },
+        tier: () => {
+            return Auth.tier
+        },
+        tiers: () => {
+            return Auth.tiers
+        },
+        setting: () => {
+            return Auth.setting
+        },
     },
 }
 </script>
