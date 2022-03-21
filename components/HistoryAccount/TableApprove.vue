@@ -20,7 +20,6 @@
             </v-data-table>
         </div>
     </div>
-  <pre>{{myBrokerAccounts}}</pre>
 </div>
 </template>
 

@@ -40,7 +40,12 @@ export default {
         products: [],
         listProduct: [],
         filterProduct: '',
-        headers: [{
+        headers: [
+            {
+                text: 'No',
+                value: "no",
+            },
+            {
                 text: 'Order number.',
                 value: "code",
             }, {
@@ -70,7 +75,6 @@ export default {
     async created() {
         await this.startup()
         this.response = true
-
     },
     methods: {
         async startup() {

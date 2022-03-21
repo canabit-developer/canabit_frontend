@@ -7,7 +7,7 @@
                     <div class="flex justify-between">
                         <div class="flex items-start">
                              <v-avatar tile size="150" class="m-5">
-                               <img :src="$url+cpt.image">
+                               <img  :src="$url+cpt.image">
                             </v-avatar>
                             <div class="m-5">
                                 <div class="pb-2 font-bold">{{cpt.name}}</div>
@@ -48,7 +48,8 @@
 
                 <div v-for="review, index in reviews" :key="index" class="mt-4 w-full bg-gray-100 rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
                   <v-toolbar class="w-full" color="transparent" flat>
-                    <img alt="avatar" width="50" height="50" class="rounded-full w-16 h-16 mr-4 shadow-lg mb-4 mt-4" :src="$url+review.user_image">
+                     <img  v-if="!review.user_image" alt="avatar" width="50" height="50" class="rounded-full w-16 h-16 mr-4 shadow-lg mb-4 mt-4" src="~/static/images/avatars/1.png">
+                    <img v-else alt="avatar" width="50" height="50" class="rounded-full w-16 h-16 mr-4 shadow-lg mb-4 mt-4" :src="$url+review.user_image">
                     <div>
                       <h3 class="text-gray-400 font-semibold text-xl  md:text-left mt-4 ">{{review.user_full}}</h3>
                       <v-rating readonly  color="orange"   length="5" size="20"

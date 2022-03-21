@@ -49,7 +49,7 @@
                     <v-text-field  :disabled="nonName"  class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" prepend-inner-icon="em em-man-frowning" label="Last name" dense outlined></v-text-field>
 
                     <br><br>
-                    <h2 class="w-full text-2xl" > <v-icon class="mr-2">em em-house</v-icon> Address</h2>
+                    <h2 class="w-full text-2xl" ><v-icon class="mr-2">em em-house</v-icon> Address</h2>
                     <v-checkbox label="Foreigner" v-model="form.foreigner"></v-checkbox>
                     <v-text-field class="w-full  pl-2" v-model="form.address" prepend-inner-icon="em em-house" label="Address" dense outlined></v-text-field>
                     <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="Province District" prepend-inner-icon="em em-house_buildings" />
@@ -61,7 +61,7 @@
                   <v-alert outlined type="info">
                     <h2>You not have refferal code please click to create your refferal code for your partner use. </h2>
                     <br>
-                    <v-btn @click="createRefCode()">Create My Refferal Code</v-btn>
+                    <vs-button floating @click="createRefCode()">Create My Refferal Code</vs-button>
                   </v-alert>
                 </div>
                 <div v-else>

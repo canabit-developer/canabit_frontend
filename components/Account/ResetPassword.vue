@@ -3,7 +3,7 @@
     <div class="px-3"> 
         <v-card-text class="pt-5" v-if="(user.register_by=='Register')|| (user.register_by == null)|| (user.register_by == 'Web')">
             <v-row>
-                <v-alert class="mt-3" outlined dense shaped type="info" prominent border="left" >
+                <v-alert class="mt-3" outlined dense  type="info" prominent border="left" >
                      Password must contain at least 8 uppercase letters, lowercase letters and numbers.
                 </v-alert>
                 <v-col cols="12" sm="8" md="6" class="-mt-3"> 
@@ -27,7 +27,7 @@
                         <v-text-field type="password" required class="w-full md:w-1/2 m-1" hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." v-model="form.old_password" prepend-inner-icon="em em-lock" label="Old Password" dense outlined></v-text-field>
                         <v-text-field type="password" required class="w-full md:w-1/2 m-1" hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." v-model="form.password" prepend-inner-icon="em em-closed_lock_with_key" label="New Password" dense outlined></v-text-field>
                         <v-text-field type="password" required class="w-full md:w-1/2 m-1" hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." v-model="form.password_confirm" prepend-inner-icon="em em-closed_lock_with_key" label="New Password Confirm" dense outlined></v-text-field>
-                        <v-btn type="submit" color="success">Update Password</v-btn>
+                        <vs-button floating type="submit" color="success">Update Password</vs-button>
                     </form> 
                 </v-col>
 

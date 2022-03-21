@@ -69,7 +69,6 @@
                 </vs-card>
             </div>
         </vs-row>
-        <pre>{{indicator}}</pre>
     </div>
 </div>
 </template>

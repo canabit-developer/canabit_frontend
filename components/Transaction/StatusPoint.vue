@@ -87,7 +87,6 @@ export default {
                 obj.updated_at = Core.convertDate(obj.updated_at)
                 return obj
             })
-
         },
 
     },
