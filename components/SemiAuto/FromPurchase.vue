@@ -31,7 +31,7 @@
                                 <v-autocomplete v-model="form.account_type" label="Account No" outlined :items="accLists" item-text="account_no" item-value="id"></v-autocomplete>
                             </v-col>
                             <v-col cols="12" md="4">
-                                <v-text-field :disabled="runUsePoint" v-model="usePoint" label="Point" hint="For example, flowers or used cars" outlined></v-text-field>
+                                <v-text-field :disabled="runUsePoint" v-model="usePoint" label="Point"  outlined></v-text-field>
                             </v-col>
                             <div class="mt-3">
                                 <vs-button floating color="#4ade80" v-if="(!runUsePoint) && (usePoint != '' && usePoint > '' ) && (usePoint <= point.current)" @click="usePointFeed()">
@@ -43,7 +43,7 @@
                                 Use Promotion {{myDiscount.name}}
                             </v-alert>
                             <v-col cols="12" md="6">
-                                <v-text-field :disabled="discountActive" label="Discount" v-model="discount" hint="For example, flowers or used cars" outlined></v-text-field>
+                                <v-text-field :disabled="discountActive" label="Discount" v-model="discount"   outlined></v-text-field>
                             </v-col>
                             <!-- <v-btn v-if="  (discount != '')" @click="getDiscount()">Use</v-btn> -->
                             <div class="mt-3">
@@ -148,38 +148,36 @@ export default {
                 id: this.form.account_type
             })
             let broker = _.find(this.broker, {
-                id: ac_type.id
+                id: ac_type.broker
             })
+
+          if(ac_type.id && broker.id){
             this.form.code = 'EA' + Date.now()
             this.form.broker = broker.id
             this.form.product = this.ea.id
             this.form.user = this.user.id
             this.form.use_point = this.usePoint
             if (this.myDiscount.id) {
-                this.form.use_promotion = this.myDiscount.discount
-                this.form.promotion = this.myDiscount.id
+              this.form.use_promotion = this.myDiscount.discount
+              this.form.promotion = this.myDiscount.id
             }
 
             let data = await Core.postHttpAlert(`/api/ea/order/`, this.form)
             if (data.id) {
-                if (this.usePoint > 0) {
-                    await Auth.cutPoint(this.usePoint)
-                    await Auth.logPoint(`EA ${this.ea.name} Use Point `, this.form.point, 1)
-                    this.dialog = false
-                }
+              if (this.usePoint > 0) {
+                await Auth.cutPoint(this.usePoint)
+                await Auth.logPoint(`EA ${this.ea.name} Use Point `, this.form.point, 1)
+                this.active = false
+              }else{
+                this.active = false
+              }
             } else {
 
             }
+          }
 
-            // {
-            //   "code": "",
-            //   "status": null,
-            //   "remark": "",
-            //   "user": null,
-            //   "product": null,
-            //   "broker": null,
-            //   "account_type": null
-            // }
+
+
         }
 
     },
