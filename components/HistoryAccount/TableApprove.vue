@@ -5,7 +5,7 @@
              <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
                 <template v-slot:item.products="{ item }">
                     <div class="flex">
-                   
+
                         <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.products}}</span>
                     </div>
                 </template>
@@ -20,6 +20,7 @@
             </v-data-table>
         </div>
     </div>
+  <pre>{{myBrokerAccounts}}</pre>
 </div>
 </template>
 
@@ -68,7 +69,7 @@ export default {
             },
             {
                 text: 'Price',
-                value: "",
+                value: "price",
 
             },
             {
@@ -81,7 +82,8 @@ export default {
                 value: "remark",
 
             },
-        ]
+        ],
+      myBrokerAccounts:[]
     }),
     async created() {
         await this.startup();
@@ -89,29 +91,36 @@ export default {
     },
     methods: {
         async startup() {
+          await this.getMyAccountType();
             await this.getOrderEA()
             await this.getTableEA()
+
         },
         async getTableEA() {
             let no = 1
             this.items = await Core.getHttp(`/api/ea/order/?user=${Auth.user.id}${this.filterProduct}${this.filterBroker}${this.filterAccountType}`)
-            this.items = _.map(this.items, (r) => {
+            this.items =   _.map(this.items,   (r) => {
+
                 let obj = r
                 obj.on = no++
+              obj.pr = this.getProduct(obj.product)
                 obj.product_image = this.$url+this.getProduct(obj.product).image
                 obj.product_id = r.product
                 obj.product = this.getProduct(obj.product).name
-                
                 obj.broker_image = this.$url+this.getBroker(obj.broker).image
                 obj.broker_id = r.broker
                 obj.broker = this.getBroker(obj.broker).name
-                obj.act = this.getAccountType(obj.account_type)
-                obj.account_type = obj.act.name
+                obj.act =  this.getAccountType(obj.account_type)
+                obj.account_type = this.getAccountTypeList(obj.act.account_type)
                 obj.account_type_image = obj.act.image
-                obj.created_at = Core.convertDate(obj.created_at)
+                obj.price = obj.pr.price
+              obj.remark = r.remark
                 return obj
             })
         },
+      async getMyAccountType(){
+          this.myBrokerAccounts  = await Core.getHttp(`/api/finance/brokeraccount/?user=${this.user.id}`)
+      },
         async getOrderEA() {
             this.products = await Core.getHttp(`/api/ea/product/`)
             this.listFilerProduct = _.map(this.products, (r) => {
@@ -166,14 +175,38 @@ export default {
             })
         },
         getAccountType(id) {
-            return _.find(this.accountTypes, {
+          console.log(id);
+             return  _.find(this.myBrokerAccounts, {
                 id: id
             })
+          // console.log(types);
+          //   return    _.find(this.listsFilterAccount, {
+          //     id: types.account_type
+          //   })
         },
+      getAccountTypeList(id){
+          return    _.find(this.accountTypes, {
+            id: id
+          }).name
+      }
     },
 
     computed: {
-
+      user: () => {
+        return Auth.user
+      },
+      point: () => {
+        return Auth.point
+      },
+      tier: () => {
+        return Auth.tier
+      },
+      tiers: () => {
+        return Auth.tiers
+      },
+      setting: () => {
+        return Auth.setting
+      },
     }
 }
 </script>
