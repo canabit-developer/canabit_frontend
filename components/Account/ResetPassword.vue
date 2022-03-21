@@ -3,9 +3,10 @@
     <div class="px-3"> 
         <v-card-text class="pt-5" v-if="(user.register_by=='Register')|| (user.register_by == null)|| (user.register_by == 'Web')">
             <v-row>
-                <v-alert class="" outlined dense shaped type="info" prominent border="left" >
-                                Password must contain at least 8 uppercase letters, lowercase letters and numbers.</v-alert>
+               
                 <v-col cols="12" sm="8" md="6"> 
+                     <v-alert class="" outlined dense shaped type="info" prominent border="left" >
+                                Password must contain at least 8 uppercase letters, lowercase letters and numbers.</v-alert>
                     <div v-if="error.old_password">
                         <v-alert dense outlined text v-for="(message,i) in error.old_password" :key="i" type="error" :value="true">
                             {{message}}
