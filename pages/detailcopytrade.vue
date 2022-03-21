@@ -36,18 +36,45 @@
                 <div class="h-20 w-20 rounded-full bg-green-500 absolute top-0 left-0 -ml-10 -mt-16" style="z-index: -1;"></div>
                 <div class="h-5 w-5 rounded-full bg-green-500 absolute top-0 left-0 -ml-32 mt-12" style="z-index: -1;"></div>
 
-            </div>           
+            </div>
         </div>
-         <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:mt-5 md:-mt-24">
-               <CopyTrade-DetailCopyTrade></CopyTrade-DetailCopyTrade>
+         <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:mt-5 md:-mt-24" v-if="response">
+               <CopyTrade-DetailCopyTrade :cpt="cpt"></CopyTrade-DetailCopyTrade>
             </div>
     </div>
 </div>
 </template>
 
 <script>
+import {
+  Core
+} from '@/vuexes/core'
+import _ from 'lodash'
+import {
+  Auth
+} from '@/vuexes/auth'
 export default {
+  data () {return ({
+    cpt:{},
+    response:false,
+  })},
+  async created(){
+    await this.startup();
+    this.response = true;
+  },
+  methods:{
+    async startup(){
+      this.cpt = await Core.getHttp(`/api/copytrade/product/${this.$route.query.id}/`)
+    }
+  },
+  computed:{
+    user:()=>{return Auth.user},
+    point:()=>{return Auth.point},
+    tier:()=>{return Auth.tier},
+    tiers:()=>{return Auth.tiers},
+    setting:()=>{return Auth.setting},
 
+  }
 }
 </script>
 
