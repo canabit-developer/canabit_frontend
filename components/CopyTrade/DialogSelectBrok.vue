@@ -7,7 +7,7 @@
                     Copy Master
                 </span>
             </vs-button>
-            <vs-dialog prevent-close v-model="active">
+            <vs-dialog prevent-close v-model="active" v-if="active">
                 <template #header>
                     <h4 class="not-margin">
                         <b>Select Broker</b>
@@ -16,14 +16,17 @@
 
                 <div class="con-form">
                     <v-container>
-                        <v-row>
-                           
-                        </v-row>
+
+                           <div v-for="broker,index in brokers" :key="index" v-if="broker.is_active">
+                              <v-btn @click="openLink(broker.link)" blog x-large class="w-full">
+                                <img class="h-10" :src="$url+broker.image">&nbsp; {{broker.name}}
+                              </v-btn>
+                           </div>
                     </v-container>
 
                 </div>
                 <template #footer>
-                   
+
                 </template>
             </vs-dialog>
         </div>
@@ -32,14 +35,48 @@
 </template>
 
 <script>
+import {
+  Core
+} from '@/vuexes/core'
+import _ from 'lodash'
+import {
+  Auth
+} from '@/vuexes/auth'
+import {
+  Web
+} from '@/vuexes/web'
 export default {
-    data: () => ({
-        active: false,
-        input1: '',
-        input2: '',
-        checkbox1: false,
-        select: null,
+  data() {
+    return ({
+      active:false,
+
     })
+  },
+  async created(){
+    await this.startup()
+
+  },
+  methods: {
+    async startup(){
+
+    },
+    async openLink(link){
+      window.open(link, "_blank");
+    }
+
+  },
+  props:{
+    brokers:{
+      default:[]
+    }
+  },
+  computed:{
+    user:()=>{return Auth.user},
+    point:()=>{return Auth.point},
+    tier:()=>{return Auth.tier},
+    tiers:()=>{return Auth.tiers},
+    setting:()=>{return Auth.setting},
+  }
 }
 </script>
 
