@@ -21,7 +21,14 @@
                         <p>
                             Let's build someting great
                         </p><br>
+
                           <div>
+                            <div v-if="error.non_field_errors">
+                              <v-alert dense outlined text  type="error" :value="true">
+                                Email,Phone Number or Password is incorrect
+                              </v-alert>
+                            </div>
+
                           <div v-if="userCheckError">
                             <v-alert dense outlined text  type="error" :value="true">
                                 User not found Please fill out the correct information.

@@ -31,6 +31,7 @@
                         เลขบัตรประจำตัวประชาชนไม่ถูกต้อง
                     </v-alert>
                     <form @submit.prevent="updateCardId()">
+
                         <v-text-field :disabled="kyc.user_verified" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
                         <div class="flex">
                             <v-spacer></v-spacer>
@@ -126,6 +127,7 @@ export default {
             active: false,
             id: '',
             checkId: false,
+            isPassport:false,
         };
     },
     async created() {

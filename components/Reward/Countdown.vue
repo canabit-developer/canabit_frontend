@@ -2,36 +2,50 @@
 <div>
     <div class="text-yellow-100 -mt-5">
         <div class="text-6xl text-center flex w-full items-center justify-center">
-            <div class="text-2xl mr-1 font-extralight"></div>
-            <div class="w-24 mx-1 p-2 bg-white text-green-500 rounded-lg">
-                <div class="font-mono leading-none" x-text="days">00</div>
-                <div class="font-mono uppercase text-sm leading-none">Days</div>
-            </div>
-            <div class="text-5xl mx-1 font-extralight">:</div>
-            <div class="w-24 mx-1 p-2 bg-white text-green-500 rounded-lg">
-                <div class="font-mono leading-none" x-text="hours">00</div>
-                <div class="font-mono uppercase text-sm leading-none">Hours</div>
-            </div>
-            <div class="text-5xl mx-1 font-extralight">:</div>
-            <div class="w-24 mx-1 p-2 bg-white text-green-500 rounded-lg">
-                <div class="font-mono leading-none" x-text="minutes">00</div>
-                <div class="font-mono uppercase text-sm leading-none">Minutes</div>
-            </div>
-            <div class="text-5xl mx-1 font-extralight">:</div>
-            <div class="w-24 mx-1 p-2 bg-white text-green-500 rounded-lg">
-                <div class="font-mono leading-none" x-text="seconds">00</div>
-                <div class="font-mono uppercase text-sm leading-none">Seconds</div>
-            </div>
+          <Reward-Timmer   :starttime="startDate"
+                           :endtime="endDate"
+                           trans='{
+                           "day":"Day",
+                           "hours":"Hours",
+                           "minutes":"Minuts",
+                           "seconds":"Seconds",
+                           "expired":"Event has been expired.",
+                           "running":"Till the end of event.",
+                           "upcoming":"Till start of event.",
+                           "status": {
+                              "expired":"Expired",
+                              "running":"Running",
+                              "upcoming":"Future"
+                             }}' />
         </div>
     </div>
 </div>
 </template>
 
 <script>
+
+import moment from 'moment'
 export default {
+  components:{
+
+  },
     data() {
         return {}
     },
+  props:{
+      vote:{
+        default:{}
+      }
+  },
+  computed:{
+    endDate(){
+      return moment(this.vote.times).format('MMM  DD YYYY hh:mm:ss')
+    },
+    startDate(){
+      return moment().format('MMM  DD YYYY hh:mm:ss')
+    },
+
+  }
 
 }
 </script>
