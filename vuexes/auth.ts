@@ -30,8 +30,8 @@ class AuthModule extends VuexModule {
   async getMyKyc() {
     let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
     if (kyc.length > 0) {
-        this.kyc = kyc[kyc.length - 1];
-    }
+      this.kyc = kyc[kyc.length - 1];
+  }
 }
 
 async getSetting(){

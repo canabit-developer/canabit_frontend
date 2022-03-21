@@ -37,7 +37,7 @@
         <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
 
         <vs-row w="12" class="-mt-4" justify="center">
-            <vs-clos v-for="indicatorsproduct,index in indicatorsproduct" :key="index" class="p-5" w="3">
+            <div v-for="indicatorsproduct,index in indicatorsproduct" :key="index" class="p-5" w="3">
                 <vs-card>
                     <template #title>
                         <h3>{{indicatorsproduct.name}}</h3>
@@ -52,7 +52,7 @@
                             </p>
                         </div>
 
-                        <vs-button block floating class="btn-chat mt-3" color="#4ade80">
+                        <vs-button @click="order()" block floating class="btn-chat mt-3" color="#4ade80">
                             <span class="span">
                                 <v-icon color="#ffff" class="mr-2">mdi-cloud-download-outline</v-icon>
                                 Download
@@ -61,14 +61,13 @@
                     </template>
                     <template #interactions>
                         <div>
-                            <vs-button success  >
+                            <vs-button success>
                                 Price : Free
                             </vs-button>
                         </div>
-
                     </template>
                 </vs-card>
-            </vs-clos>
+            </div>
         </vs-row>
     </div>
 </div>
@@ -76,12 +75,17 @@
 
 <script>
 import {
+    Auth
+} from '~/vuexes/auth'
+import {
+    Core
+} from '~/vuexes/core'
+import {
     Product
 } from '~/vuexes/product'
 export default {
     data: () => ({
         indicatorsproduct: [],
-
     }),
     async created() {
         this.startup()
@@ -89,8 +93,23 @@ export default {
     methods: {
         async startup() {
             this.indicatorsproduct = await Product.getIndicatorProduct()
+        },
+        async order() {
+            let form = {
+                "code": 'IN' + Date.now(),
+                "user": this.user.id,
+                "product": this.indicatorsproduct.id
+            }
+            let data = await Core.postHttpAlert(`/api/indicator/order/`, form)
+            if (data.id) {
+                this.$router.push('/accountstatus')
+            }
         }
-    }
+    },
+    computed: {
+       user:()=>{return Auth.user},
+       setting:()=>{return Auth.setting},
+    },
 }
 </script>
 

@@ -2,7 +2,7 @@
 <div>
 
     <v-chip small v-if="status == 0" class="ma-2"   color="warning" text-color="white" >
-        Pedding
+        Pending
     </v-chip>
     <v-chip small v-if="status == 1" class="ma-2"   color="success" text-color="white" >
         Success

@@ -48,11 +48,11 @@
                         <!-- <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field> -->
                         <v-text-field required v-model="form.email" class="mt-2" hint="* fill in fill E-mail" persistent-hint prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
 
-                        <v-text-field v-model="form.first_name" hint="* fill in fill Frist Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
-                        <v-text-field v-model="form.last_name"  hint="* fill in fill Last Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
+                        <v-text-field v-model="form.first_name" required hint="* fill in fill Frist Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
+                        <v-text-field v-model="form.last_name"  required hint="* fill in fill Last Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
 
-                        <v-text-field v-model="form.phone_number"  hint="* fill in fill Number Phone" persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
-                        <v-text-field v-model="form.password"  hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
+                        <v-text-field v-model="form.phone_number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" item-text="value"  hint="* fill in fill Number Phone" persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
+                        <v-text-field v-model="form.password"   hint="* fill in fill Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
                         <v-text-field v-model="form.password_confirm" hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
                         <br>

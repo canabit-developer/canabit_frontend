@@ -45,15 +45,12 @@ import {
 import {
     Core
 } from '~/vuexes/core'
-import {Product} from '~/vuexes/product'
 export default {
   props:{
     ea:{default:{}}
   },
     data: () => ({
         active: false,
-
-
     }),
 
     methods: {

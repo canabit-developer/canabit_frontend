@@ -55,7 +55,7 @@
                                 <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Bank Account Number" v-model="form.bank_code" prepend-inner-icon="em em-lock" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
                             </v-col>
                             <v-col cols="12" md="12">
-                                <v-autocomplete required label="Name Bank" item-text="value" item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="em em-bank" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
+                                <v-autocomplete required label="Name Bank"  item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="em em-bank" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
                             </v-col>
 
                             <vs-button v-if="(Number(form.point) <= Number(point.current)) && (form.bank_name != null) " @click="active=false" type="submit" floating color="#4ade80" class="w-full py-3 mt-6 font-medium">
