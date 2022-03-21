@@ -3,7 +3,8 @@
     <div class="px-3"> 
         <v-card-text class="pt-5" v-if="(user.register_by=='Register')|| (user.register_by == null)|| (user.register_by == 'Web')">
             <v-row>
-
+                <v-alert class="" outlined dense shaped type="info" prominent border="left" >
+                                Please enter the same password.</v-alert>
                 <v-col cols="12" sm="8" md="6"> 
                     <div v-if="error.old_password">
                         <v-alert dense outlined text v-for="(message,i) in error.old_password" :key="i" type="error" :value="true">
@@ -23,7 +24,7 @@
                     <form @submit.prevent="changePassword()" ref="formResetPassword">
                         <h2 class="text-xl mt-4 mb-4">Change Password</h2>
                         <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.old_password" prepend-inner-icon="em em-lock" label="Old Password" dense outlined></v-text-field>
-                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password" prepend-inner-icon="em em-closed_lock_with_key" label="New Password" dense outlined></v-text-field>em em-closed_lock_with_key
+                        <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password" prepend-inner-icon="em em-closed_lock_with_key" label="New Password" dense outlined></v-text-field>
                         <v-text-field type="password" required class="w-full md:w-1/2 m-1" v-model="form.password_confirm" prepend-inner-icon="em em-closed_lock_with_key" label="New Password Confirm" dense outlined></v-text-field>
                         <v-btn type="submit" color="success">Update Password</v-btn>
                     </form> 
