@@ -52,9 +52,9 @@
                         <v-text-field v-model="form.last_name"  hint="* fill in fill Last Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
 
                         <v-text-field v-model="form.phone_number"  hint="* fill in fill Number Phone" persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
-                        <v-text-field v-model="form.password"  hint="* fill in fill Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
+                        <v-text-field v-model="form.password"  hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
-                        <v-text-field v-model="form.password_confirm" hint="* fill in fill Confirm Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <v-text-field v-model="form.password_confirm" hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
                         <br>
                         <v-text-field prepend-inner-icon="em em-woman-raising-hand" type="text" persistent-hint outlined label="Referral Code" ></v-text-field>
                         <br>
