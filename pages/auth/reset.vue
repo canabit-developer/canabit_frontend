@@ -53,9 +53,11 @@
                                 </v-alert>
                             </div>
                         </div>
+                         <v-alert class="" outlined dense shaped type="info" prominent border="left" >
+                                Password must contain at least 8 uppercase letters, lowercase letters and numbers.</v-alert>
                       <v-alert v-if="(form.password != form.password_confirm) && (form.password && form.password_confirm)" type="error">Password and Password Confirm not match!</v-alert>
-                        <v-text-field type="password" prepend-inner-icon="mdi-card-account-details" v-model="form.password" required color="primary" outlined label="Password" hide-details class="mb-3"></v-text-field>
-                        <v-text-field type="password" prepend-inner-icon="mdi-card-account-details" v-model="form.password_confirm" required color="primary" outlined label="Confirm Password" hide-details class="mb-3"></v-text-field>
+                        <v-text-field type="password" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Password" hide-details class="mb-3"></v-text-field>
+                        <v-text-field type="password" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password_confirm" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Confirm Password" hide-details class="mb-3"></v-text-field>
 
                         <v-btn type="submit" x-large dark block class="bg-primary-g mt-4" v-if="(form.password == form.password_confirm) && (form.password && form.password_confirm)">
                             Forgot Password
