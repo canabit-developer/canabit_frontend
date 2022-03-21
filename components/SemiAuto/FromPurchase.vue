@@ -38,7 +38,6 @@
                                     Use Point
                                 </vs-button>
                             </div>
-
                             <v-alert type="success" v-if="myDiscount.id">
                                 Use Promotion {{myDiscount.name}}
                             </v-alert>
