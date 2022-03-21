@@ -56,8 +56,9 @@
 
                         <v-text-field v-model="form.password_confirm" hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
                         <br>
-                        <v-text-field prepend-inner-icon="em em-woman-raising-hand" type="text" persistent-hint outlined label="Referral Code" ></v-text-field>
-                        <br>
+                        <v-text-field @change="checkRefCode()" v-model="refCode" prepend-inner-icon="em em-woman-raising-hand" type="text" persistent-hint outlined label="Referral Code" ></v-text-field>
+
+                      <br>
                         <Auth-Captcha v-if="!successBtn" :reload="openCaptcha" @cap="getSuccess"></Auth-Captcha>
                         <v-btn v-if="successBtn" type="submit" x-large dark block class="bg-primary-g mt-6">
                             Sign Up
@@ -113,7 +114,8 @@ export default {
             error: {},
             rules: {
               required: value => !!value || 'Required.',
-            }
+            },
+          refCode:''
         };
     },
     async created() {
@@ -198,6 +200,17 @@ export default {
         sleep(seconds) {
             var e = new Date().getTime() + (seconds * 1000);
             while (new Date().getTime() <= e) {}
+        },
+      async checkRefCode(){
+          let user = await Core.getHttp(`/api/account/kyc/?user__blacklist=false&refferal_code=${this.refCode}`)
+          if(user.length > 0){
+            this.form.other_referral_code = this.refCode
+            await Web.alert(`Your Referral Code can use.`,'success')
+          }else{
+            await Web.alert(`Your Referral Code is not use.`,'error')
+            this.form.other_referral_code = ""
+            this.refCode = ""
+          }
         }
     },
 };
