@@ -31,13 +31,14 @@
                         เลขบัตรประจำตัวประชาชนไม่ถูกต้อง
                     </v-alert>
                     <form @submit.prevent="updateCardId()">
-                        <v-checkbox v-if="!checkId" label="Use Passport Number" v-model="isPassport"></v-checkbox>
+                        <v-checkbox v-if="!kyc.user_verified" label="Use Passport Number" v-model="isPassport"></v-checkbox>
                         <v-text-field v-if="!isPassport " :disabled="kyc.user_verified" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
                       <v-text-field v-else required   class="mt-5" v-model="id"   hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
 
                       <div class="flex">
                             <v-spacer></v-spacer>
-                            <vs-button   v-if="checkId && !kyc.user_verified" type="submit" floating color="#4ade80">Update</vs-button>
+                            <vs-button v-if="!isPassport && !kyc.user_verified" :disabled="!checkId"   type="submit" floating color="#4ade80">Update</vs-button>
+                        <vs-button v-else-if="!kyc.user_verified"   type="submit" floating color="#4ade80">Update</vs-button>
                         </div>
                     </form>
                 </v-col><br>
