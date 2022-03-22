@@ -28,7 +28,7 @@
 
         <!-- social links -->
         <v-card-actions class="flex flex-col w-full">
-            <v-btn dark block @click="$router.push('auth/login')" class="bg-primary-g mt-6">Back to login</v-btn>
+            <v-btn dark block @click="$router.push('/auth/login')" class="bg-primary-g mt-6">Back to login</v-btn>
         </v-card-actions>
     </v-card>
 

@@ -60,12 +60,10 @@
                                 </router-link>
                             </p>
                             <v-spacer></v-spacer>
-
                         </div>
                     </form>
                     <br>
                     <br>
-
                 </div>
 
             </div>
