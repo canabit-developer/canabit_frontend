@@ -74,10 +74,14 @@
                             <vs-button class="btn-chat" success  >
                                Price:{{eaproduct.price}}
                             </vs-button>
+                            <vs-button class="btn-chat" success  >
+                               
+                            </vs-button>
                         </template>
                     </vs-card>
                 </div>
             </vs-row>
+            <pre>{{eaproduct}}</pre>
         </div>
     </div>
 </div>
@@ -98,6 +102,9 @@ export default {
     methods: {
         async startup() {
             this.eaproduct = await Product.getEAProduct()
+        },
+        async getBroker(){
+            this.broker = await Core.getHttp(`/api/ea/product/`)
         }
     },
 }
