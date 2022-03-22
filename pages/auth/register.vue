@@ -4,14 +4,18 @@
         <section class="min-h-screen flex items-stretch  ">
             <div class="lg:flex w-1/2 hidden bg-green-400 bg-no-repeat bg-cover relative items-center">
                 <div class="w-full px-24 z-10 text-white">
-                    <h1 class="text-5xl font-bold text-left tracking-wide">CASH BACK</h1><br><br>
+                    <h1 class="text-5xl font-bold text-left tracking-wide">SOCIAL LOGIN </h1><br><br>
                     <h1 class="text-3xl font-bold text-left tracking-wide">Let’s Trade something amazing today.</h1>
-                    <p class="text-2xl my-4">Maybe some text here will help me see it better. Oh God. Oke, let’s do it then. </p>
+                    <p class="text-2xl my-4">Social login is a form of single sign-on using existing information from a social networking service such as Facebook, or Google, to sign </p>
+                    <div>
+                    </div>
                 </div>
+                
             </div>
+            
             <div class="lg:w-1/2 w-full flex items-center justify-center   md:px-16 px-0 z-0">
                 <div class="w-full py-6 z-20">
-
+                    
                     <form @submit.prevent="register()" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                         <h1 class=" font-bold text-2xl">
                             <v-icon class="mr-2">em em-writing_hand</v-icon>
@@ -20,6 +24,7 @@
                         <p>
                             Be a part of us by subscribing.
                         </p><br>
+                        
                         <div>
                             <div v-if="error.email">
                                 <v-alert dense outlined text v-for="(message, i) in error.email" :key="i" type="error" :value="true">
@@ -43,7 +48,7 @@
                                 </v-alert>
                             </div>
                         </div>
-                        <v-alert outlined dense shaped type="info" prominent border="left" >
+                        <v-alert outlined dense  type="info" prominent border="left" >
                                 Please fill out the information completely.</v-alert>
                         <!-- <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field> -->
                         <v-text-field required v-model="form.email" class="mt-2" hint="* fill in fill E-mail" persistent-hint prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
@@ -72,8 +77,9 @@
                             <v-spacer></v-spacer>
                         </div>
                     </form>
+                    
                 </div>
-
+                
             </div>
         </section>
     </div>
@@ -211,7 +217,7 @@ export default {
             this.form.other_referral_code = ""
             this.refCode = ""
           }
-        }
+        },
     },
 };
 </script>
