@@ -56,7 +56,7 @@
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>
                             <!-- <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt=""> -->
                             <img class="h-1/2 w-3/4 mt-5" v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
-                            <img v-else class="h-1/2 w-3/4 mt-5" src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
+                            <img v-else class="h-1/2 w-3/4 mt-1" src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
                             <br> <br>
                             <input class="mt-4" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
