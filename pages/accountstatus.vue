@@ -35,7 +35,7 @@
                 </svg>
             </div>
 
-            <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:-mt-96 md:-mt-24" >
+            <div class="max-w-7xl mx-auto bg-white  relative  rounded-xl lg:-mt-96 md:-mt-24" >
                 <div class="p-2 rounded-xl shadow-md bg-white  mb: -mt-24">
                     <v-col justify-center>
                         <v-tabs v-model="tab"  grow>

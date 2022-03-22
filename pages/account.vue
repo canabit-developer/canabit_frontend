@@ -36,7 +36,7 @@
                     <path fill-opacity="1" d="M0,64L120,85.3C240,107,480,149,720,149.3C960,149,1200,107,1320,85.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
                 </svg>
             </div>
-            <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:-mt-96 md:-mt-24">
+            <div class="max-w-7xl mx-auto bg-white  relative  rounded-xl lg:-mt-96 md:-mt-24">
                 <div class="p-2 rounded-xl shadow-md bg-white  mb: -mt-24">
                     <v-tabs v-model="tab" show-arrows grow>
                         <v-tab>
