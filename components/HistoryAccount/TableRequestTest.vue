@@ -35,17 +35,14 @@ export default {
         headers: [{
                 text: 'No.',
                 value: "no",
-
             },
             {
                 text: 'Order Request Test',
                 value: "product_id",
-
             },
             {
                 text: 'Date Create',
                 value: "created_at",
-
             },
         ]
 
@@ -59,7 +56,6 @@ export default {
         async startup() {
                await this.getRequesttests()
             await this.getRequesttestEA()
-         
         },
         async getRequesttestEA() {
             let no = 1

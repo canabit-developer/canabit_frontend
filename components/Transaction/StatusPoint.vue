@@ -21,9 +21,6 @@
 
 <script>
 import {
-    HistoryAccount
-} from '~/vuexes/historyaccount'
-import {
     Core
 } from '@/vuexes/core'
 import _ from 'lodash'
