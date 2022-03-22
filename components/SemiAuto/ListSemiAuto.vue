@@ -103,9 +103,6 @@ export default {
         async startup() {
             this.eaproduct = await Product.getEAProduct()
         },
-        async getBroker(){
-            this.broker = await Core.getHttp(`/api/ea/product/`)
-        }
     },
 }
 </script>
