@@ -23,7 +23,7 @@
                                     {{storeproduct.point_use}} Point
                                 </h3>
                             </div>
-                            
+
                         </template>
                         <template #img>
                             <div class="h-64 w-full ">
@@ -113,6 +113,8 @@ export default {
                     "remark": "*Customers can cancel the transaction. can be traded",
                     "product": product.id
                 })
+                await Auth.cutPoint(product.point_use)
+              await Auth.logPoint(`Redeem ${code}`,product.point_use,1)
                 await this.$router.push('/transaction')
             }
         },
@@ -161,10 +163,10 @@ export default {
 
 
 .btn-disable {
-    box-shadow: 0 1px 20px 1px #425466 !important; 
+    box-shadow: 0 1px 20px 1px #425466 !important;
 }
 .btn-redeem {
-    box-shadow: 0 1px 20px 1px #4ade80 !important; 
+    box-shadow: 0 1px 20px 1px #4ade80 !important;
 }
 
 </style>
