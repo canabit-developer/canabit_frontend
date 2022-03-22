@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="col-span-3 py-2 ml-8 justify-self-end">
                                     <v-chip color="success" label>
-                                        <v-icon left> 
+                                        <v-icon left>
                                             mdi-account-circle-outline
                                         </v-icon>
                                         {{countAccount(list.id)}} Account
@@ -30,7 +30,7 @@
         <div class="p-8 ">
             <div class="flex flex-col md:flex-row">
                 <div class="w-1/2">
-                    
+
                 </div>
                 <div class="w-1/2">
                     <div class="flex flex-col md:flex-row">
@@ -91,7 +91,6 @@ import {
 export default {
     data: () => ({
         items: [],
-        headers: [],
         brokers: [],
         accountTypes: [],
         search: '',
@@ -213,10 +212,8 @@ export default {
             await this.getTable()
         },
 
-        countAccount(id) { 
-            let account = _.filter(this.items, {
-                broker_id: id
-            })
+        countAccount(id) {
+            let account = _.filter(this.items, (r)=>{return (r.broker_id == id) && (r.status == 1)})
             return account.length
         }
 
