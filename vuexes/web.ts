@@ -46,6 +46,14 @@ class WebModule extends VuexModule {
       confirmButtonText: `OK`, 
     })
   }
+  public async alerterror(title: any = 'Please click the link from the email again.', type: any = 'error',  text: any = '') {
+    await Swal.fire({
+      icon: type,
+      title: title,
+      text: text,
+      confirmButtonText: `OK`, 
+    })
+  }
 
   public async confirm(title: any = 'Are you sure ?') {
    let check =  await Swal.fire({

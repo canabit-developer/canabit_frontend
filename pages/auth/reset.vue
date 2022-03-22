@@ -126,6 +126,7 @@ export default {
 
             } else {
                 this.errorRegister = user
+                await Web.alerterror(user.detail , 'error');
             }
 
         },
