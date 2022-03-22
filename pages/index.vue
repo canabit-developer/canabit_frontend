@@ -52,8 +52,8 @@
                 </div>
             </div>
         </div>
-        <div class="mt-32 md:block">
-            <div class="md: mt-12">
+        <div class="mt-36 md:block">
+            <div class="md: mt-14">
                 <Reward-Main></Reward-Main>
             </div>
 

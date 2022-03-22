@@ -36,12 +36,12 @@
                                     {{storeproduct.detail}}
                                 </p>
                             </div>
-                            <vs-button floating v-if="point.current >= storeproduct.point_use" block color="#4ade80" class="btn-chat mt-5" @click="postRedeem(storeproduct)">
-                                Redeem
-                            </vs-button>
-                            <vs-button v-else floating block disabled color="#425466" class="btn-chat mt-5">
+                            <v-btn rounded v-if="point.current >= storeproduct.point_use" block color="#4ade80" class="btn-redeem mt-5" @click="postRedeem(storeproduct)">
+                                 <p class=" text-white"> Redeem</p>
+                            </v-btn >
+                            <v-btn  v-else rounded block disabled color="#425466" class=" mt-5 ">
                                 Your point not enough
-                            </vs-button>
+                            </v-btn >
                         </template>
                         <template #interactions>
 
@@ -158,4 +158,13 @@ export default {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+
+.btn-disable {
+    box-shadow: 0 1px 20px 1px #425466 !important; 
+}
+.btn-redeem {
+    box-shadow: 0 1px 20px 1px #4ade80 !important; 
+}
+
 </style>
