@@ -28,7 +28,7 @@
                     <form @submit.prevent="store()">
                         <v-row>
                             <v-col cols="12" md="6">
-                                <v-autocomplete v-model="form.account_type" label="Account No" outlined :items="accLists" item-text="account_no" item-value="id"></v-autocomplete>
+                                <v-autocomplete oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" v-model="form.account_type" label="Account No" outlined :items="accLists" item-text="account_no" item-value="id"></v-autocomplete>
                             </v-col>
                             <v-col cols="12" md="4">
                                 <v-text-field :disabled="runUsePoint" v-model="usePoint" label="Point"  outlined></v-text-field>
@@ -106,6 +106,7 @@ export default {
                 return r == item.broker
             }));
             this.tmpPrice = this.ea.price
+            
         },
         async getDiscount() {
             let dis = await Core.getHttp(`/api/webconfig/promotion/?code=${this.discount}&is_active=true`)
@@ -167,8 +168,10 @@ export default {
                 await Auth.cutPoint(this.usePoint)
                 await Auth.logPoint(`EA ${this.ea.name} Use Point `, this.form.point, 1)
                 this.active = false
+                
               }else{
                 this.active = false
+             
               }
             } else {
 
