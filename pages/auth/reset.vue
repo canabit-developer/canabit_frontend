@@ -121,7 +121,7 @@ export default {
             let user = await Core.postHttp(`/api/auth/v2/reset-password/`, this.form)
              await Web.switchLoad(false)
             console.log(user)
-            if (user.detail) {
+            if (user.detail && user.detail != 'Invalid signature') {
                 this.form = {}
                 await Web.alert(user.detail);
                 await this.$router.push('/auth/login')
