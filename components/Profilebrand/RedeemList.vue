@@ -104,6 +104,7 @@ export default {
         async postRedeem(product) {
             let check = await Web.confirm('Do you want to Redeem')
             if (check) {
+              if (this.usePoint >= product.point_use )  {
                 this.form.user = Auth.user.id
                 let code = 'RD' + Date.now()
                 let redeem = await Core.postHttpAlert(`/api/store/rewardhistory/`, {
@@ -117,6 +118,10 @@ export default {
                 await Auth.cutPoint(product.point_use)
               await Auth.logPoint(`Redeem ${code}`,product.point_use,1)
                 await this.$router.push('/transaction')
+            }else{
+                await Core.alert(`More than point`,`error`)
+              }
+
             }
         },
 
