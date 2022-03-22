@@ -53,11 +53,11 @@
                                 </v-alert>
                             </div>
                         </div>
-                         <v-alert class="" outlined dense shaped type="info" prominent border="left" >
+                         <v-alert class="" outlined dense  type="info" prominent border="left" >
                                 Password must contain at least 8 uppercase letters, lowercase letters and numbers.</v-alert>
                       <v-alert v-if="(form.password != form.password_confirm) && (form.password && form.password_confirm)" type="error">Password and Password Confirm not match!</v-alert>
-                        <v-text-field type="password" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Password" hide-details class="mb-3"></v-text-field>
-                        <v-text-field type="password" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password_confirm" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Confirm Password" hide-details class="mb-3"></v-text-field>
+                        <v-text-field  :type="isPasswordVisible ? 'text' : 'password'" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Password" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"  class="mb-3"></v-text-field>
+                        <v-text-field :type="isPasswordVisible ? 'text' : 'password'" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password_confirm" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Confirm Password" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"  class="mb-3"></v-text-field>
 
                         <v-btn type="submit" x-large dark block class="bg-primary-g mt-4" v-if="(form.password == form.password_confirm) && (form.password && form.password_confirm)">
                             Forgot Password
@@ -103,7 +103,8 @@ export default {
             form: {},
             error: {},
             errorRegister: {},
-            userCheckError: false
+            userCheckError: false,
+             show1: false,
         })
     },
     async created() {
