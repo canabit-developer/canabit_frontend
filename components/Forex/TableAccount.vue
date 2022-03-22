@@ -57,7 +57,7 @@
                 </template>
                 <template v-slot:item.account_no="{ item }">
                     <div class="flex">
-                        <img class="h-6" :src="item.account_type_image" alt=""> <span class="ml-2">{{item.account_no}}</span>
+                        <img class="h-6" :src="$url+item.account_type_image" alt=""> <span class="ml-2">{{item.account_no}}</span>
                     </div>
                 </template>
                 <template v-slot:item.status="{ item }">

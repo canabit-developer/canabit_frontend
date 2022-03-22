@@ -4,9 +4,9 @@
         <section class="min-h-screen flex items-stretch  ">
             <div class="lg:flex w-1/2 hidden bg-green-400 bg-no-repeat bg-cover relative items-center">
                 <div class="w-full px-24 z-10 text-white">
-                    <h1 class="text-5xl font-bold text-left tracking-wide">SOCIAL LOGIN </h1><br><br>
+                    <h1 class="text-5xl font-bold text-left tracking-wide">CASH BACK</h1><br><br>
                     <h1 class="text-3xl font-bold text-left tracking-wide">Let’s Trade something amazing today.</h1>
-                    <p class="text-2xl my-4">Social login is a form of single sign-on using existing information from a social networking service such as Facebook, or Google, to sign </p>
+                    <p class="text-2xl my-4">Maybe some text here will help me see it better. Oh God. Oke, let’s do it then. </p>
                     <div>
                     </div>
                 </div>
@@ -24,7 +24,6 @@
                         <p>
                             Be a part of us by subscribing.
                         </p><br>
-                        
                         <div>
                             <div v-if="error.email">
                                 <v-alert dense outlined text v-for="(message, i) in error.email" :key="i" type="error" :value="true">
@@ -142,7 +141,7 @@ export default {
                 await this.generateKyc(user.id);
                 await this.generatePoint(user.id)
                 await Web.switchLoad(false);
-                await Web.alert(`OK`, `success`, `Register is success`);
+                //await Web.alert(`OK`, `success`, `Register is success`);
                 await this.$router.replace(`/auth/verify`);
             } else {
                 this.error = user;
@@ -217,7 +216,7 @@ export default {
             this.form.other_referral_code = ""
             this.refCode = ""
           }
-        },
+        }
     },
 };
 </script>
