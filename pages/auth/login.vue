@@ -116,6 +116,7 @@ export default {
                 login: '',
                 password: ''
             },
+          form2:{},
             error: {},
             errorRegister: {},
             userCheckError:false,
@@ -131,8 +132,10 @@ export default {
         async login(alert = true) {
             let user = await Core.postHttp(`/api/auth/v2/check/`, this.form)
             if (user.username && user.is_active != false) {
-                this.form.username = user.username
-                let signin = await Auth.login(this.form)
+               // this.form.username = user.username
+              this.form2.username = user.username
+              this.form2.password = this.form.password
+              let signin = await Auth.login(this.form2)
                 if (signin.key) {
                     await Auth.storeToken(signin.key)
                     await Auth.storeTokenToStorage(signin.key)
