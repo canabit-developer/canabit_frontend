@@ -28,9 +28,10 @@
                     </h2>
                 </template>
         <v-card-title>
-
+            
         </v-card-title>
-        
+        <v-alert class="ml-12 mr-12" outlined dense  type="info" prominent border="left" >
+                                Please fill out the information completely.</v-alert>
         <v-card-text class="-mt-9">
             <div class=" block md:flex">
                 <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-8 bg-white ">
@@ -42,8 +43,7 @@
 
                     <form @submit.prevent="cashout()">
                         <v-row>
-                            <v-alert class="" outlined dense shaped type="info" prominent border="left" >
-                                Please fill out the information completely.</v-alert>
+                            
                             <v-col cols="12" md="12">
                                 <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> More than the points </v-alert>
                                 <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-bitcoin" outlined dense id="firstname" hide-details></v-text-field>

@@ -111,7 +111,8 @@ export default {
                     "point_use": product.point_use,
                     "status": 0,
                     "remark": "*Customers can cancel the transaction. can be traded",
-                    "product": product.id
+                    "product": product.id,
+                    "user": Auth.user.id,
                 })
                 await Auth.cutPoint(product.point_use)
               await Auth.logPoint(`Redeem ${code}`,product.point_use,1)
