@@ -119,7 +119,7 @@ export default {
               await Auth.logPoint(`Redeem ${code}`,product.point_use,1)
                 await this.$router.push('/transaction')
             }else{
-                await Core.alert(`More than point`,`error`)
+                await Web.alert(`More than point`,`error`)
               }
 
             }
