@@ -11,8 +11,8 @@
                             </v-avatar>
                             <div class="m-5">
                                 <div class="pb-2 font-bold text-3xl">{{ea.name}}</div>
-                                <div class="text-xs text-green-400 text-2xl leading-6 mt-2">Price : {{ea.price}} $</div>
-                                <div class="text-xs text-gray-400  text-1xl leading-6 mt-2">{{ea.sub_title}} </div>
+                                <h1 class=" text-green-400 text-2xl mt-2">Price : {{ea.price}} $</h1>
+                                <h1 class=" text-gray-400  text-1xl leading-6 mt-2">{{ea.sub_title}} </h1>
                             </div>
                         </div>
                         <div class="text-right text-sm leading-7">

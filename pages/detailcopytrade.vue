@@ -38,13 +38,13 @@
                 </svg>
             </div>
 
-            <div class="max-w-4xl mx-auto bg-white shadow-lg relative z-20 hidden md:block" style="margin-top: -320px; border-radius: 20px;">
+            <div class="max-w-4xl mx-auto bg-white shadow-lg relative hidden md:block" style="margin-top: -320px; border-radius: 20px;">
                 <div class="h-20 w-20 rounded-full bg-green-500 absolute top-0 left-0 -ml-10 -mt-16" style="z-index: -1;"></div>
                 <div class="h-5 w-5 rounded-full bg-green-500 absolute top-0 left-0 -ml-32 mt-12" style="z-index: -1;"></div>
 
             </div>
         </div>
-         <div class="max-w-7xl mx-auto bg-white  relative z-20 rounded-xl lg:mt-5 md:-mt-24" v-if="response">
+         <div class="max-w-7xl mx-auto bg-white  relative  rounded-xl lg:mt-5 md:-mt-24" v-if="response">
                <CopyTrade-DetailCopyTrade :cpt="cpt"></CopyTrade-DetailCopyTrade>
             </div>
     </div>
