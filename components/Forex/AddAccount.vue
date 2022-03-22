@@ -17,9 +17,9 @@
                 <div class="con-form">
                     <v-container>
                         <form @submit.prevent="store()">
-                            <v-alert outlined dense shaped type="info" prominent border="left" >
+                            <v-alert outlined dense   type="info" prominent border="left" >
                                 The account number must be the number registered with the IB only.</v-alert>
-                            <v-text-field required label="Account No" v-model="form.account_no" prepend-inner-icon="em em-1234" hint="For example, 222 444" outlined></v-text-field>
+                            <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Account No" v-model="form.account_no" prepend-inner-icon="em em-1234" hint="For example, 222 444" outlined></v-text-field>
                             <v-select @change="checkAccount()" item-text="name" item-value="id" persistent-hint  v-model="form.broker" prepend-inner-icon="em em-chart" :items="broker"   outlined label="Brokers" required></v-select>
                             <v-select item-text="name" item-value="id" persistent-hint  v-model="form.account_type" prepend-inner-icon="em em-moneybag" :items="accounttype"  outlined label="Account Type"></v-select>
 
