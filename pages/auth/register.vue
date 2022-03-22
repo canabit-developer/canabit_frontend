@@ -43,7 +43,7 @@
                                 </v-alert>
                             </div>
                         </div>
-                        <v-alert outlined dense shaped type="info" prominent border="left" >
+                        <v-alert outlined dense  type="info" prominent border="left" >
                                 Please fill out the information completely.</v-alert>
                         <!-- <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field> -->
                         <v-text-field required v-model="form.email" class="mt-2" hint="* fill in fill E-mail" persistent-hint prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>

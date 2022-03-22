@@ -33,39 +33,38 @@
                     <form @submit.prevent="updateCardId()">
                         <v-checkbox v-if="!kyc.user_verified" label="Use Passport Number" v-model="isPassport"></v-checkbox>
                         <v-text-field v-if="!isPassport " :disabled="kyc.user_verified" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
-                      <v-text-field v-else required   class="mt-5" v-model="id"   hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
+                        <v-text-field v-else required class="mt-5" v-model="id" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
 
-                      <div class="flex">
+                        <div class="flex">
                             <v-spacer></v-spacer>
-                            <vs-button v-if="!isPassport && !kyc.user_verified" :disabled="!checkId"   type="submit" floating color="#4ade80">Update</vs-button>
-                        <vs-button v-else-if="!kyc.user_verified"   type="submit" floating color="#4ade80">Update</vs-button>
+                            <vs-button v-if="!isPassport && !kyc.user_verified" :disabled="!checkId" type="submit" floating color="#4ade80">Update</vs-button>
+                            <vs-button v-else-if="!kyc.user_verified" type="submit" floating color="#4ade80">Update</vs-button>
                         </div>
                     </form>
                 </v-col><br>
                 <v-container>
                     <v-row justify="space-between">
-                        <v-col cols="12" md="4">
+                        <v-col cols="12" md="6">
                             <h2> 2. Verification of identity by uploading a picture of an ID card </h2><br>
                             <!-- <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""> -->
-                            <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
-                            <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
+                            <img class="h-1/2 w-3/4" v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
+                            <img  v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
                             <br><br>
-                            <input v-if="!kyc.user_verified"  @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
+                            <input class="mt-3" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
                         <v-col cols="12" md="6">
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>
                             <!-- <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt=""> -->
-                            <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
-                            <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
+                            <img class="h-1/2 w-3/4 mt-5" v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
+                            <img v-else class="h-1/2 w-3/4 mt-5" src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
                             <br> <br>
-                            <input v-if="!kyc.user_verified"  @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" />
+                            <input class="mt-4" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" />
                         </v-col>
                     </v-row>
                 </v-container>
 
                 <!-- <v-col cols="12" sm="4" md="6" class="d-none d-sm-flex justify-center position-relative md-8">
                     <v-img contain height="250" max-width="300" :src="require(`@/assets/misc/pose-m-1.png`)"></v-img>
-
                 </v-col> -->
 
             </v-row>
@@ -130,7 +129,7 @@ export default {
             active: false,
             id: '',
             checkId: false,
-            isPassport:false,
+            isPassport: false,
         };
     },
     async created() {
@@ -177,7 +176,7 @@ export default {
             if (!this.IsNumeric(id)) return false;
             if (id.substring(0, 1) == 0) return false;
             if (id.length != 13) {
-                    this.checkId = false
+                this.checkId = false
                 console.log(false);
                 return false
             }
