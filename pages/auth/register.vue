@@ -9,9 +9,6 @@
                     <p class="text-2xl my-4">Social login is a form of single sign-on using existing information from a social networking service such as Facebook, or Google, to sign </p>
                     <div>
                     </div>
-                    <div class="m-12">
-                        <Auth-SocialLogin @callback="callback"></Auth-SocialLogin>
-                    </div>
                 </div>
                 
             </div>
@@ -220,7 +217,7 @@ export default {
             this.form.other_referral_code = ""
             this.refCode = ""
           }
-        }
+        },
     },
 };
 </script>
