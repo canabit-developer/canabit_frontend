@@ -55,11 +55,11 @@
                         </div>
                          <v-alert class="" outlined dense  type="info" prominent border="left" >
                                 Password must contain at least 8 uppercase letters, lowercase letters and numbers.</v-alert>
-                      <v-alert v-if="(form.password != form.password_confirm) && (form.password && form.password_confirm)" type="error">Password and Password Confirm not match!</v-alert>
+<!--                      <v-alert v-if="(form.password != form.password_confirm) && (form.password != '' && form.password_confirm != '')" type="error">Password and Password Confirm not match!</v-alert>-->
                         <v-text-field  :type="isPasswordVisible ? 'text' : 'password'" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Password" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"  class="mb-3"></v-text-field>
-                        <v-text-field :type="isPasswordVisible ? 'text' : 'password'" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password_confirm" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Confirm Password" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"  class="mb-3"></v-text-field>
+                        <v-text-field :type="isPasswordVisible2 ? 'text' : 'password'" prepend-inner-icon="em em-closed_lock_with_key" v-model="form.password_confirm" required color="primary" outlined hint="* Password must contain at least 8 uppercase letters, lowercase letters and numbers." label="Confirm Password" :append-icon="isPasswordVisible2 ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible2 = !isPasswordVisible2"  class="mb-3"></v-text-field>
 
-                        <v-btn type="submit" x-large dark block class="bg-primary-g mt-4" v-if="(form.password == form.password_confirm) && (form.password && form.password_confirm)">
+                        <v-btn type="submit" x-large dark block class="bg-primary-g mt-4"  >
                             Forgot Password
                         </v-btn>
                         <div class="d-flex align-center justify-space-between flex-wrap mt-4">
@@ -100,6 +100,7 @@ export default {
     data: () => {
         return ({
             isPasswordVisible: false,
+          isPasswordVisible2:false,
             form: {},
             error: {},
             errorRegister: {},
@@ -112,6 +113,7 @@ export default {
     },
     methods: {
         async forgot() {
+          if(this.form.password == this.form.password_confirm){
             this.form.user_id = this.$route.query.user_id
             this.form.timestamp = this.$route.query.timestamp
             this.form.signature = this.$route.query.signature
@@ -127,7 +129,10 @@ export default {
             } else {
                 this.errorRegister = user
                 await Web.alerterror(user.detail , 'error');
-            }
+            }}else{
+            this.errorRegister = {password_confirm : ["Password is not math."]}
+            await Web.alerterror("Password is not match" , 'error');
+          }
 
         },
 
