@@ -18,45 +18,25 @@
                     </h4>
                 </template>
                 <v-card-title>
-                    <v-alert v-if="usePoint > 0" type="success"> Use Point {{usePoint}}</v-alert>
-                    <v-alert class="ml-3" type="error" v-if="usePoint > point.current">More Than Point</v-alert>
+
                     <v-spacer></v-spacer>
 
                 </v-card-title>
                 <v-card-text class="p-6">
                     <h2 v-if="oldPrice" class="line-through ">{{oldPrice}}</h2>
+                  <v-alert dense outlined type="error" v-if="error != ''">{{error}}</v-alert>
+
                     <form @submit.prevent="store()">
-                        <v-row>
-                            <v-col cols="12" md="6">
-                                <v-autocomplete oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" v-model="form.account_type" label="Account No" outlined :items="accLists" item-text="account_no" item-value="id"></v-autocomplete>
-                            </v-col>
-                            <v-col cols="12" md="4">
-                                <v-text-field :disabled="runUsePoint" v-model="usePoint" label="Point"  outlined></v-text-field>
-                            </v-col>
-                            <div class="mt-3">
-                                <vs-button floating color="#4ade80" v-if="(!runUsePoint) && (usePoint != '' && usePoint > '' ) && (usePoint <= point.current)" @click="usePointFeed()">
-                                    Use Point
-                                </vs-button>
-                            </div>
-                            <v-alert type="success" v-if="myDiscount.id">
-                                Use Promotion {{myDiscount.name}}
-                            </v-alert>
-                            <v-col cols="12" md="6">
-                                <v-text-field :disabled="discountActive" label="Discount" v-model="discount"   outlined></v-text-field>
-                            </v-col>
-                            <!-- <v-btn v-if="  (discount != '')" @click="getDiscount()">Use</v-btn> -->
-                            <div class="mt-3">
-                                <vs-button floating color="#4ade80" v-if="(discount != '')" @click="getDiscount()">
-                                    Use Discount
-                                </vs-button>
-                            </div>
-                            <v-col cols="6" md="6">
-                                <div class="text-green-400 text-4xl	 mt-1">
-                                    <h1>Total Price: {{ea.price}}</h1>
-                                </div>
-                            </v-col>
-                        </v-row>
-                        <vs-button block color="#4ade80" floating type="submit" class="mt-5"> Submit  Purchases </vs-button>
+                     <div class="bg-yellow-100 p-3 rounded-xl">
+                       <h2><b>EA Price</b> : {{ea.price}}</h2>
+                       <h1><b>Discount Point</b>  : {{moneyPoint}} </h1>
+                       <h2><b>Discount Code {{myDiscount.name}} </b> : {{discountPrice}}  </h2>
+                       <h1 class="text-base"><b>Total Price: {{totalPrice}} </b></h1>
+                     </div><br>
+                      <v-autocomplete @change="prepareStore()"  v-model="form.account_type" label="Account No" outlined :items="accLists" item-text="account_no" item-value="id"></v-autocomplete>
+                      <v-text-field type="number" min="0" max="999" @input="prepareStore()"   v-model="usePoint" label="Point"  outlined></v-text-field>
+                      <v-text-field @input="prepareStore()"    label="Discount" v-model="discount"   outlined></v-text-field>
+                      <vs-button v-if="isStore" block color="#4ade80" floating type="submit" class="mt-5"> Purchase  </vs-button>
                     </form>
                 </v-card-text>
             </vs-dialog>
@@ -91,9 +71,14 @@ export default {
         oldPrice: 0,
         usePoint: 0,
         runUsePoint: false,
-        error: {},
-        tmpPrice: 0,
 
+        error: "",
+        tmpPrice: 0,
+        canUsePoint:false,
+      moneyPoint:0,
+      discountPrice:0,
+      totalPrice:0,
+      isStore:false
     }),
     async created() {
         await this.startup()
@@ -125,27 +110,74 @@ export default {
             }
         },
 
-        async usePointFeed() {
-            if (this.usePoint <= this.point.current) {
-                this.ea.price = this.ea.price - (this.usePoint * this.setting.point_to_us)
-                console.log((this.usePoint * this.setting.point_to_us));
-                this.runUsePoint = true
-                this.error.point = null
-            } else if (this.ea.price < 0) {
-                if (this.oldPrice > 0) {
-                    this.ea.price = this.oldPrice
-                } else {
-                    this.ea.price = this.tmpPrice
-                }
-            } else {
-                if (this.oldPrice > 0) {
-                    this.ea.price = this.oldPrice
-                } else {
-                    this.ea.price = this.tmpPrice
-                }
-                this.error.point = 'More than Point'
+      async checkPoint(){
+          let moneyPoint = this.usePoint * this.setting.point_to_us
+          let calulatePrice = this.ea.price - moneyPoint
+          if(this.usePoint  > 0){
+            if(calulatePrice >= 0){
+              this.moneyPoint = moneyPoint
+              this.totalPrice= calulatePrice
+              return true;
+            }else{
+              this.moneyPoint = 0
+              this.totalPrice= this.ea.price
+              return false
             }
-        },
+          }else{
+            this.moneyPoint = 0
+            this.totalPrice= this.ea.price
+            return true
+          }
+
+      },
+      async checkDiscount(){
+        let dis = await Core.getHttp(`/api/webconfig/promotion/?code=${this.discount}&is_active=true`)
+          dis = await _.filter(dis,{code:this.discount})
+        if (dis.length > 0) {
+          this.myDiscount = dis[0]
+          this.discountPrice = Number(this.myDiscount.discount)
+          let useDiscount = this.totalPrice - this.discountPrice
+         // console.log(useDiscount, this.totalPrice, this.discountPrice);
+          if(useDiscount >=0){
+            this.discountPrice = this.myDiscount.discount
+            this.totalPrice = this.totalPrice - this.discountPrice
+          //  console.log('[A]',useDiscount, this.totalPrice, this.discountPrice);
+            return true;
+          }else{
+            this.discountPrice = this.myDiscount.discount
+            this.totalPrice = 0
+            return true;
+          }
+        } else {
+          this.myDiscount = {}
+          this.totalPrice = this.ea.price - this.moneyPoint
+          this.error = (this.discount != '')?'Code is not use':''
+          this.discountPrice = 0
+          this.discountActive = false
+          return true
+        }
+      },
+
+      async prepareStore(){
+        this.error = ''
+        this.isStore = true
+          if(!this.form.account_type){
+            this.error = "Must Select Account No"
+            this.isStore = false
+          }else if(!await this.checkPoint()){
+            this.usePoint = 0
+            this.error = "More than the actual price"
+            this.isStore = false
+          }else if(!await this.checkDiscount()){
+            this.isStore = false
+          }
+          else{
+            this.isStore = true
+            this.error = ""
+          }
+
+
+      },
 
         async store() {
             let ac_type = _.find(this.accLists, {
@@ -204,7 +236,12 @@ export default {
             return Auth.setting
         },
 
-    }
+    },
+  watch:{
+      active(val){
+        this.form = {}
+      }
+  }
 }
 </script>
 
