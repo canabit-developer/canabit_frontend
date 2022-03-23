@@ -1,7 +1,7 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-class-modules";
 import axios from '@/plugins/axios'
 import { Core } from "@/vuexes/core";
- 
+
 import _ from 'lodash'
 @Module({ generateMutationSetters: true })
 class CityClass extends VuexModule {
@@ -37,7 +37,7 @@ class CityClass extends VuexModule {
         let geo: any = this.currentGeo ? this.currentGeo.name : "-"
         let amphur: any = this.currentAmphur ? this.currentAmphur.name : "-"
         let district: any = this.currentDistrict ? this.currentDistrict.name : "-"
-        this.showName = `${geo}  จ.${province} อ.${amphur} ต.${district}`
+        this.showName = `${(geo)?geo:'No Address City'}  ${(province)?`จ.`+province:''} ${(amphur)?'อ.'+amphur:''}  ${(district)?'ต.'+district:''}`
     }
 
     public async getFullCity() {
