@@ -132,7 +132,7 @@ export default {
     methods: {
       async createRefCode(){
           let refcode = btoa(this.user.email)
-        let create = await Core.putHttpAlert(`/api/account/kyc/${this.kyc.id}/`,{
+        let create = await Core.putHttp(`/api/account/kyc/${this.kyc.id}/`,{
           refferal_code:refcode
         })
         await this.initial();
@@ -155,6 +155,9 @@ export default {
             delete this.form.image_profile
             await this.setCity();
             await this.getMyKyc();
+            if(this.kyc.user_verified == true && this.kyc.refferal_code == null){
+              await this.createRefCode()
+            }
         },
 
         async updateProfile() {
