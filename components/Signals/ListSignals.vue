@@ -103,7 +103,7 @@ export default {
             }
             let data = await Core.postHttpAlert(`/api/indicator/order/`, form)
             if (data.id) {
-                this.$router.push('/accountstatus')
+                this.$router.push('/accountstatus?tab=1')
             }
         }
     },
