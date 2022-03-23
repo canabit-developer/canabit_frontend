@@ -46,7 +46,7 @@
 
                             <v-col cols="12" md="12">
                                 <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> More than the points </v-alert>
-                                <v-text-field type="number" min="1" max="9999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-bitcoin" outlined dense id="firstname" hide-details></v-text-field>
+                                <v-text-field type="number" min="100" max="9999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-bitcoin" outlined dense id="firstname" hide-details></v-text-field>
                             </v-col>
                             <v-col cols="12" md="12">
                                 <v-text-field required label="Name" v-model="form.name" prepend-inner-icon="em em-male-technologist" outlined dense id="Name" placeholder="Name" hide-details></v-text-field>
