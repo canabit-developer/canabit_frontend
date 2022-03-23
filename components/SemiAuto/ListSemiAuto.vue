@@ -55,11 +55,23 @@
                                 </p>
                             </div>
 
+                            <div class="flex">
+                                <div class="ml-2" v-for="broker,index_b in eaproduct.broker_full" :key="index_b">
+
+                                    <v-chip>
+                                        <img style="height:20px; " :src="$url+broker.image" alt="">
+                                        &nbsp;{{broker.name}}
+                                    </v-chip>
+
+                                </div>
+
+                            </div>
+
                             <div class="flex flex-wrap justify-center mt-2">
 
                                 <SemiAuto-FromPurchase :ea="eaproduct"></SemiAuto-FromPurchase>
 
-                                <SemiAuto-FromRequestTest  :ea="eaproduct"></SemiAuto-FromRequestTest>
+                                <SemiAuto-FromRequestTest :ea="eaproduct"></SemiAuto-FromRequestTest>
 
                                 <vs-button class="btn-chat" color="#5EDA9F" @click="$router.push(`/detailea?id=${eaproduct.id}`)">
                                     <span class="span">
@@ -71,8 +83,8 @@
 
                         </template>
                         <template #interactions>
-                            <vs-button class="btn-chat" success  >
-                               Price:{{eaproduct.price}}
+                            <vs-button class="btn-chat" success>
+                                Price:{{eaproduct.price}}
                             </vs-button>
                         </template>
                     </vs-card>
