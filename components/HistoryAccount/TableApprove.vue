@@ -1,7 +1,6 @@
 <template>
 <div class="p-4" v-if="response">
     <div class="p-8 ">
-        <div class="p-8 "><span class="text-6xl"></span>
              <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
                 <template v-slot:item.products="{ item }">
                     <div class="flex">
@@ -18,7 +17,6 @@
                     <Core-Status :status="item.status" />
                 </template>
             </v-data-table>
-        </div>
     </div>
 </div>
 </template>

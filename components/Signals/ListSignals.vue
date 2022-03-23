@@ -36,17 +36,24 @@
         </div>
         <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
 
-        <vs-row w="12" class="-mt-4" justify="center">
-            <div v-for="indicator,index in indicator" :key="index" class="p-5" w="3">
+        <vs-row w="12" class="lg:-mt-6 md:-mt-36" justify="center">
+            <div v-for="indicator,index in indicator" :key="index" class="p-5" w="1">
                 <vs-card>
                     <template #title>
-                        <h3>{{indicator.name}}</h3>
+                        <div class="flex flex-nowrap mt-1">
+                            <h3>{{indicator.name}}</h3>
+                            <div class="flex justify-end">
+                                <h3 class="text-green-400">
+                                     Price : Free
+                                </h3>
+                            </div>
+                        </div>
                     </template>
                     <template #img>
                         <img :src="$url+indicator.image" alt="">
                     </template>
                     <template #text>
-                        <div class="h-16 mt-2">
+                        <div class="h-16 mt-3">
                             <p class="textellipsis">
                                 {{indicator.detail}}
                             </p>
@@ -60,11 +67,7 @@
                         </vs-button>
                     </template>
                     <template #interactions>
-                        <div>
-                            <vs-button success>
-                                Price : Free
-                            </vs-button>
-                        </div>
+
                     </template>
                 </vs-card>
             </div>
