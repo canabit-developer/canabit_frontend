@@ -1,5 +1,5 @@
 <template>
-<div class="bg-main">
+<div class="bg-main" v-if="response">
     <v-app-bar app flat absolute color="transparent">
         <div class="boxed-container w-full">
             <div class="d-flex align-center mx-6">
@@ -114,6 +114,7 @@ export default {
             isDrawerOpen: true,
             kyc: {},
             form: {},
+          response:false,
         }
     },
     methods: {
@@ -149,6 +150,7 @@ export default {
     async created() {
         await this.initial()
         await this.getMyKyc();
+        this.response = true;
     }
 }
 </script>
