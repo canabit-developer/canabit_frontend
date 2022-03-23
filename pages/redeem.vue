@@ -16,7 +16,7 @@
         <v-col cols="12" md="4" >
       <Profilebrand-CardBrand></Profilebrand-CardBrand>
       </v-col>
-      <v-col cols="12" md="8" class="mt-1" >
+      <v-col cols="12" md="8"  >
       <Profilebrand-CardCondition></Profilebrand-CardCondition>
       </v-col>
       

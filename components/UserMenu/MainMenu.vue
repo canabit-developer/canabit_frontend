@@ -17,16 +17,16 @@
                     Point : {{point.current}}
                 </vs-button>
                 <div>
-                    <div class="flex gap-3 items-center font-semibold text-gray-800 p-3 rounded-md hover:cursor-pointer">
-                        <vs-avatar history success>
+                    <div class="flex  gap-3 items-center font-semibold text-gray-800 p-3 rounded-md hover:cursor-pointer ">
+                        <vs-avatar history success class="hidden md:block sm:block xs:block" >
                             <img v-if="!imageProfile" src="~/static/images/avatars/1.png">
                             <img v-else class="w-10 h-10 rounded-full" :src="$url+imageProfile" alt="Rebecca Burke">
                         </vs-avatar>
                         <div class="flex flex-col">
-                            <div class="text-green-400">
+                            <div class="text-green-400 hidden md:block sm:block xs:block ">
                                 {{user.display_name}}
                             </div>
-                            <div class="text-gray-400 text-sm font-normal">
+                            <div class="text-gray-400 text-sm font-normal hidden md:block sm:block xs:block">
                                 {{user.first_name}} {{user.last_name}}
                             </div>
                         </div>
@@ -59,7 +59,7 @@
             <h2>{{user.email}}</h2> -->
         </div>
 
-        <v-list expand shaped class="vertical-nav-menu-items pr-5">
+        <v-list expand shaped class="vertical-nav-menu-items pr-5 -mt-16">
 
             <UserMenu-NavbarLink path="/" title="Home" icon="em em-house"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/transaction" title="Transaction" icon="em em-clipboard"></UserMenu-NavbarLink>

@@ -10,7 +10,6 @@
                     <Core-Status :status="item.status" />
                 </template>
         </v-data-table>
-      <pre>{{items}}</pre>
     </div>
 </div>
 </template>

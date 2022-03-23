@@ -37,6 +37,7 @@
       </v-col>
     </v-row>
   </v-card>
+  
 </template>
 
 <style lang="scss" scoped>

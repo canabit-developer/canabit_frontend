@@ -1,9 +1,8 @@
 <template>
 <div class="flex flex-col items-center justify-center">
-
     <v-card class="auth-card">
         <!-- logo -->
-        <v-card-title class="d-flex align-center justify-center  ">
+        <v-card-title class="d-flex align-center justify-center ">
             <router-link to="/" class="d-flex align-center">
                 <img class="h-14" src="~/static/images/logos/canabit_vector.svg" alt="">
             </router-link>
@@ -27,7 +26,7 @@
         <div v-else>
             <v-card-text class="mt-4">
                 <center> <span class="em em-raised_hands text-6xl animate__animated  animate__pulse animate__infinite	infinite"></span></center>
-                <p class="text-2xl font-weight-semibold mb-2 text-center text-green-600">
+                <p class="text-2xl font-weight-semibold mb-2 text-center text-green-500">
                     Activate Success
                 </p>
                 <center>
