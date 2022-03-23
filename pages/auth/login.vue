@@ -130,8 +130,7 @@ export default {
     },
     methods: {
         async login(alert = true) {
-            this.error = {};
-            this.errorRegister = {}
+
             let user = await Core.postHttp(`/api/auth/v2/check/`, this.form)
             if (user.username && user.is_active != false) {
                // this.form.username = user.username

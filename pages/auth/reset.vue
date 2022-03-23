@@ -128,10 +128,10 @@ export default {
 
             } else {
                 this.errorRegister = user
-                await Web.alerterror(user.detail , 'error');
+             //   await Web.alerterror(user.detail , 'error');
             }}else{
             this.errorRegister = {password_confirm : ["Password is not math."]}
-            await Web.alerterror("Password is not match" , 'error');
+            //await Web.alerterror("Password is not match" , 'error');
           }
 
         },
