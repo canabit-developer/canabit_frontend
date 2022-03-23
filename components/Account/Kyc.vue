@@ -150,17 +150,20 @@ export default {
         async storeKycCard(typeImage) {
 
             let image = this.$refs[typeImage];
-            let cover = await Core.setWaterMark(image.files[0]);
-            let file = await Core.dataURLtoFile(cover.src);
-            let formData = new FormData();
-            formData.append(typeImage, file);
-            let update = await Core.putImageHttpAlert(
+            if(image.files.length > 0){
+              let cover = await Core.setWaterMark(image.files[0]);
+              let file = await Core.dataURLtoFile(cover.src);
+              let formData = new FormData();
+              formData.append(typeImage, file);
+              let update = await Core.putImageHttpAlert(
                 `/api/account/kyc/${this.kyc.id}/`,
                 formData
-            );
-            await Web.switchLoad(true);
-            await this.getMyKyc();
-            await Web.switchLoad(false);
+              );
+              await Web.switchLoad(true);
+              await this.getMyKyc();
+              await Web.switchLoad(false);
+            }
+
         },
         async updateCardId() {
 
