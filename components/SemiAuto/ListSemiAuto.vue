@@ -41,8 +41,13 @@
                 <div v-for="eaproduct,index in eaproduct" :key="index" class="p-2 mt-2">
                     <vs-card>
                         <template #title>
-                            <div class="">
-                                <h3> {{eaproduct.name}} </h3>
+                            <div class="flex flex-wrap mt-2">
+                                <div class="">
+                                    <h3> {{eaproduct.name}} </h3>
+                                </div>
+                                <div class="flex justify-end">
+                                        <h3 class="text-green-400">Price:{{eaproduct.price}}</h3>
+                                </div>
                             </div>
                         </template>
                         <template #img>
@@ -54,19 +59,6 @@
                                     {{eaproduct.sub_title}}
                                 </p>
                             </div>
-
-                            <div class="flex">
-                                <div class="ml-2" v-for="broker,index_b in eaproduct.broker_full" :key="index_b">
-
-                                    <v-chip>
-                                        <img style="height:20px; " :src="$url+broker.image" alt="">
-                                        &nbsp;{{broker.name}}
-                                    </v-chip>
-
-                                </div>
-
-                            </div>
-
                             <div class="flex flex-wrap justify-center mt-2">
 
                                 <SemiAuto-FromPurchase :ea="eaproduct"></SemiAuto-FromPurchase>
@@ -83,9 +75,17 @@
 
                         </template>
                         <template #interactions>
-                            <vs-button class="btn-chat" success>
-                                Price:{{eaproduct.price}}
-                            </vs-button>
+                            <div class="flex">
+                                <div class="ml-2" v-for="broker,index_b in eaproduct.broker_full" :key="index_b">
+
+                                    <vs-button color="#FFFFFF">
+                                        <img style="height:20px; " :src="$url+broker.image" alt="">
+                                        &nbsp;<span class="ml-1 text-gray-500">{{broker.name}}</span>
+                                    </vs-button>
+
+                                </div>
+
+                            </div>
                         </template>
                     </vs-card>
                 </div>
