@@ -28,7 +28,7 @@
                     </h2>
                 </template>
         <v-card-title>
-            
+
         </v-card-title>
         <v-alert class="ml-12 mr-12" outlined dense  type="info" prominent border="left" >
                                 Please fill out the information completely.</v-alert>
@@ -43,7 +43,7 @@
 
                     <form @submit.prevent="cashout()">
                         <v-row>
-                            
+
                             <v-col cols="12" md="12">
                                 <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> More than the points </v-alert>
                                 <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-bitcoin" outlined dense id="firstname" hide-details></v-text-field>
@@ -55,7 +55,7 @@
                                 <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Bank Account Number" v-model="form.bank_code" prepend-inner-icon="em em-lock" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
                             </v-col>
                             <v-col cols="12" md="12">
-                                <v-autocomplete required label="Name Bank"  item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="em em-bank" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
+                                <v-autocomplete required label="Name Bank" item-text="value"  item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="em em-bank" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
                             </v-col>
 
                             <vs-button v-if="(Number(form.point) <= Number(point.current)) && (form.bank_name != null) " @click="active=false" type="submit" floating color="#4ade80" class="w-full py-3 mt-6 font-medium">
@@ -131,7 +131,6 @@ export default {
         tiers: () => {
             return Auth.tiers
         },
-
     }
 }
 </script>
