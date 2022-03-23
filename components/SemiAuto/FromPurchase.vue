@@ -101,10 +101,14 @@ export default {
     methods: {
         async startup() {
             this.broker = await Core.getHttp(`/api/finance/broker/?is_active=true`)
-            this.accLists = await Core.getHttp(`/api/finance/brokeraccount/?user=${this.user.id}&status=1`)
-            this.accLists = _.reject(this.accLists, (item) => _.find(this.ea.broker, (r) => {
-                return r == item.broker
-            }));
+            let all  = await Core.getHttp(`/api/finance/brokeraccount/?user=${this.user.id}&status=1`)
+            let filter = _.filter( all,  (o)=> {
+              _.map(this.ea.broker,  (p)=> {
+                if (o.broker == p) {
+                  this.accLists.push(o);
+                }
+              });
+            });
             this.tmpPrice = this.ea.price
 
         },
