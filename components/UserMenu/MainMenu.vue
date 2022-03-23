@@ -27,7 +27,7 @@
                                 {{user.display_name}}
                             </div>
                             <div class="text-gray-400 text-sm font-normal">
-                                {{userfirst_name}} {{user.last_name}}
+                                {{user.first_name}} {{user.last_name}}
                             </div>
                         </div>
                     </div>
