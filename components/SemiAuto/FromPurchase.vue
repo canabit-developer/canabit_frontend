@@ -22,11 +22,11 @@
                     <v-spacer></v-spacer>
 
                 </v-card-title>
-                <v-card-text class="p-6">
+                <v-card-text class="p-6" >
                     <h2 v-if="oldPrice" class="line-through ">{{oldPrice}}</h2>
                   <v-alert dense outlined type="error" v-if="error != ''">{{error}}</v-alert>
 
-                    <form @submit.prevent="store()">
+                    <form ref="eaForm" @submit.prevent="store()" >
                      <div class="bg-yellow-100 p-3 rounded-xl">
                        <h2><b>EA Price</b> : {{ea.price}}</h2>
                        <h1><b>Discount Point</b>  : {{moneyPoint}} </h1>
@@ -95,6 +95,7 @@ export default {
               });
             });
             this.tmpPrice = this.ea.price
+          this.error = ''
 
         },
         async getDiscount() {
@@ -240,6 +241,7 @@ export default {
   watch:{
       active(val){
         this.form = {}
+        this.error = ""
       }
   }
 }
