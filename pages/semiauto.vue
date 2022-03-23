@@ -3,7 +3,6 @@
     <h2 class="text-xl font-semibold"><v-icon class="mr-2" size="20">em em-chart</v-icon> EA PRODUCT</h2>
     <ul class="breadcrumb mt-3">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
-        <li>Product</li>
         <li>EA</li>
     </ul>
     <div class="mt-3">
