@@ -45,8 +45,8 @@
                     <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" prepend-inner-icon="em em-bust_in_silhouette" label="Display Name" dense outlined></v-text-field>
                     <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" prepend-inner-icon="em em-email" label="E-mail" dense outlined></v-text-field>
                     <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field> -->
-                    <v-text-field :disabled="kyc.user_verified" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.first_name" prepend-inner-icon="em em-man-frowning" label="First Name" dense outlined></v-text-field>
-                    <v-text-field  :disabled="kyc.user_verified"   class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" prepend-inner-icon="em em-man-frowning" label="Last name" dense outlined></v-text-field>
+                    <v-text-field required :disabled="kyc.user_verified" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.first_name" prepend-inner-icon="em em-man-frowning" label="First Name" dense outlined></v-text-field>
+                    <v-text-field required :disabled="kyc.user_verified"   class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" prepend-inner-icon="em em-man-frowning" label="Last name" dense outlined></v-text-field>
 
                     <br><br>
                     <h2 class="w-full text-2xl" ><v-icon class="mr-2">em em-house</v-icon> Address</h2>
@@ -102,7 +102,10 @@ export default {
             src: 'http://img1.vued.vanthink.cn/vued0a233185b6027244f9d43e653227439a.png',
             foreigner: false,
             nonName:true,
-            kyc:{}
+            kyc:{},
+            rules: {
+              required: value => !!value || 'Required.',
+            },
         })
     },
     computed: {
