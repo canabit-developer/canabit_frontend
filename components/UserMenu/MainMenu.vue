@@ -8,7 +8,6 @@
 
                 <v-spacer></v-spacer>
 
-                <pre>{{account}}</pre>
 
                 <vs-button v-if="!kyc.user_verified" @click="$router.push('/account')" color="#FF0000" floating class="my-point">
                     <v-icon style="color:white;" class="mr-2">mdi-account-alert</v-icon> ยังไม่ได้ยืนยันตัวตน KYC
@@ -25,10 +24,10 @@
                         </vs-avatar>
                         <div class="flex flex-col">
                             <div class="text-green-400">
-                                {{form.display_name}}
+                                {{user.display_name}}
                             </div>
                             <div class="text-gray-400 text-sm font-normal">
-                                {{form.first_name}} {{form.last_name}}
+                                {{userfirst_name}} {{user.last_name}}
                             </div>
                         </div>
                     </div>

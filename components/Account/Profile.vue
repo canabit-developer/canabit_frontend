@@ -163,6 +163,7 @@ export default {
             this.form.amphur = City.currentAmphur.id;
             this.form.district = City.currentDistrict.id;
             let update = await Core.putHttpAlert(`/api/account/userprofile/${this.user.id}/`, this.form)
+            await Auth.setUser();
 
         },
         async getFileImage(file) {
