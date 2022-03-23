@@ -94,11 +94,11 @@ private async updateMyTier(currentTier:any){
     return user
   }
 
-  public async logPoint(received_from:string,point:string,status:number) {
+  public async logPoint(received_from:string,point:string,types:number) {
     let form = {
       "received_from":received_from,
       "point": point,
-      "type": status,
+      "type": types,
       "status": 0,
       "user": this.user.id
     }

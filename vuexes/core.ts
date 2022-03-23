@@ -57,10 +57,10 @@ class CoreModule extends VuexModule {
     if (check) {
       return await axios.delete(url).then((r) => {
         Web.alert('Successfully deleted')
-        return r.data
+        return true
       }).catch((e) => {
         Web.alert('Failed to delete data', 'error')
-        return e.response.data
+        return false
       })
     }
   }
