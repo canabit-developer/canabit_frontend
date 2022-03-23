@@ -68,12 +68,16 @@ export default {
             this.listAccountType = await Forex.getAccountType()
             this.broker = await Forex.getBroker()
         },
+
         async store() {
-            this.form.user = Auth.user.id
-            this.form.broker_no = moment().format('DDMMYYhhmmss')
-            let add = await Core.postHttpAlert(`/api/finance/brokeraccount/`, this.form)
-            this.active = false;
-            location.reload();
+          this.form.user = Auth.user.id
+          this.form.broker_no = moment().format('DDMMYYhhmmss')
+          let add = await Core.postHttpAlert(`/api/finance/brokeraccount/`, this.form)
+          this.active = false;
+          if(add.id){
+            await location.reload();
+          }
+
         },
       async checkAccount(){
           let brokerAccounts = await Core.getHttp(`/api/finance/accounttype/`)
@@ -87,6 +91,11 @@ export default {
     computed: {
 
     },
+    watch:{
+      active(val){
+        this.form = {}
+      }
+    }
 
 }
 </script>
