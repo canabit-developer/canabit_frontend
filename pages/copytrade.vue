@@ -1,7 +1,7 @@
 <template>
 
   <div>
-     <h2 class="text-xl font-semibold">COPY TRADE</h2>
+     <h2 class="text-xl font-semibold"> <v-icon>em em-bookmark_tabs</v-icon> COPY TRADE</h2>
      <ul class="breadcrumb mt-3">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
         <li>CopyTrade</li>

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <h2 class="text-xl font-semibold">TRANSACTION</h2>
+    <h2 class="text-xl font-semibold"><v-icon class="mr-2" >em em-clipboard</v-icon> TRANSACTION</h2>
     <ul class="breadcrumb mt-3">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
         <li>Transaction</li>

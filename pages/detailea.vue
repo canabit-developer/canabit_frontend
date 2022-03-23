@@ -1,10 +1,10 @@
 <template>
 <div>
     <div class="font-sans bg-white flex flex-col min-h-screen w-full">
-        <h2 class="text-xl font-semibold">Detail EA</h2>
+        <h2 class="text-xl font-semibold"><v-icon class="mr-2">em em-chart</v-icon>  Detail EA</h2>
      <ul class="breadcrumb mt-3">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
-        <li><a @click="$router.push('/semiauto')"> EA </a></li> 
+        <li><a @click="$router.push('/semiauto')">  EA </a></li> 
         <li>Detail EA</li>
     </ul>
         <div>
