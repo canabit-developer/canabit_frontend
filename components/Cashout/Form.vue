@@ -131,6 +131,11 @@ export default {
         tiers: () => {
             return Auth.tiers
         },
+    },
+  watch:{
+    active(val){
+      this.form = {}
     }
+  }
 }
 </script>
