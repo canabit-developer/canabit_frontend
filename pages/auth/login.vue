@@ -173,6 +173,7 @@ export default {
                     await this.$router.replace(`/auth/verify`)
                     console.log(registerUser)
                 } else {
+                    this.form = {}
                     this.errorRegister = registerUser
                     await Web.switchLoad(false)
                 }

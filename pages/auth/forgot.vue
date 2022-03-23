@@ -50,6 +50,7 @@
                     </div>
                         <v-text-field prepend-inner-icon="mdi-card-account-details" v-model="form.login" required color="primary" outlined label="Email" placeholder="Insert Your Email" hide-details class="mb-3"></v-text-field>
 
+
                         <v-btn type="submit" x-large dark block class="bg-primary-g mt-4">
                             Forgot Password
                         </v-btn>
