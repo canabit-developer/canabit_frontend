@@ -68,12 +68,17 @@
 export default {
     data() {
         return {
-            tab: null,
+            tab: 0,
             items: [
                 'STATUS POINT', 'STATUS REWARD',
             ],
         }
-    }
+    },
+  async created(){
+      if(this.$route.query.tab){
+        this.tab = Number(this.$route.query.tab)
+      }
+  }
 }
 </script>
 

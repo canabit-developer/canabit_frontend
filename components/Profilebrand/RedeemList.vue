@@ -117,7 +117,7 @@ export default {
                 })
                 await Auth.cutPoint(product.point_use)
               await Auth.logPoint(`Redeem ${code}`,product.point_use,1)
-                await this.$router.push('/transaction')
+                await this.$router.push('/transaction?tab=1')
             }else{
                 await Web.alert(`More than point`,`error`)
               }
