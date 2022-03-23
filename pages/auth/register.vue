@@ -142,21 +142,30 @@ export default {
             this.error = {};
             await Web.switchLoad(true);
             this.form.username = this.form.email
-            let user = await Auth.register(this.form);
+            if(this.form.phone_number.length == '10'){
+              let user = await Auth.register(this.form);
 
-            if (user.id) {
+              if (user.id) {
                 await this.generateKyc(user.id);
                 await this.generatePoint(user.id)
                 await Web.switchLoad(false);
                 //await Web.alert(`OK`, `success`, `Register is success`);
                 await this.$router.replace(`/auth/verify`);
-            } else {
+              } else {
                 this.error = user;
-              this.success = false
-              this.successBtn = false
+                this.success = false
+                this.successBtn = false
                 await this.reCaptcha();
                 await Web.switchLoad(false);
+              }
+            }else{
+              this.error.phone_number = ['Phone Number must 10 characters']
+              this.success = false
+              this.successBtn = false
+              await this.reCaptcha();
+              await Web.switchLoad(false);
             }
+
         },
         async generateKyc(userId) {
             let kyc = await Core.postHttp(`/api/account/kyc/`, {
