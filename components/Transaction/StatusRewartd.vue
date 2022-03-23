@@ -9,11 +9,14 @@
             </template>
             <template v-slot:item.point_use="{ item }">
                 <span class="text-red-600">- {{item.point_use}}</span>
-
             </template>
             <template v-slot:item.status="{ item }">
                 <Core-Status :status="item.status" />
             </template>
+        <template v-slot:item.action="{ item }">
+          <v-btn v-if="item.status == 0"  text x-small @click="removeRedeem(item)" color="error" ><v-icon>mdi-delete</v-icon> Cancel</v-btn>
+
+        </template>
         </v-data-table>
     </div>
 </div>
@@ -64,7 +67,7 @@ export default {
                 value: "status",
             }, {
                 text: 'Action',
-                value: " ",
+                value: "action",
             }, {
                 text: 'Remark',
                 value: "remark",
@@ -114,10 +117,38 @@ export default {
             })
         },
 
-    },
-    computed: {
+        async removeRedeem(item){
+            let remove = await Core.putHttpAlert(`/api/store/rewardhistory/${item.id}/`,{
+              status:2,
+              remark:"Cancle By User"
+            })
+            if(remove.id){
+              await Auth.addPoint(item.point_use)
+              await Auth.logPoint(`Redeem ${item.code}`, item.point_use, 0)
+              let call = await Core.getHttp(`/api/account/userpointhistory/?user=${this.user.id}&received_from=Redeem ${item.code}`)
+              if(call.length > 0){
+                let callData = call[0]
+                await Core.putHttp(`/api/account/userpointhistory/${callData.id}/`,{status:2,remark:"Cancle By User"})
+              }
+            }
+            await this.startup();
 
+        }
     },
+  computed: {
+    user: () => {
+      return Auth.user
+    },
+    point: () => {
+      return Auth.point
+    },
+    tier: () => {
+      return Auth.tier
+    },
+    tiers: () => {
+      return Auth.tiers
+    },
+  },
     watch: {
         async page(oldVal, newVal) {
             await this.startup();

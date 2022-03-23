@@ -1,16 +1,16 @@
 <template>
 <div class="p-4" v-if="response">
     <div class="p-8 "><span class="text-6xl"></span>
-          <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
+          <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
                   <template v-slot:item.point="{ item }">
-                    <span class="text-red-600" v-if="item.type == 1">- {{item.point}}</span> 
-                    <span class="text-green-600" v-if="item.type == 0">+ {{item.point}}</span> 
+                    <span class="text-red-600" v-if="item.type == 1">- {{item.point}}</span>
+                    <span class="text-green-600" v-if="item.type == 0">+ {{item.point}}</span>
                 </template>
             <template v-slot:item.status="{ item }">
                     <Core-Status :status="item.status" />
                 </template>
         </v-data-table>
-        <pre>{{items}}</pre>
+      <pre>{{items}}</pre>
     </div>
 </div>
 </template>
@@ -55,6 +55,11 @@ export default {
                 value: "status",
 
             },
+          {
+            text: 'Remark',
+            value: "remark",
+
+          },
         ],
 
     }),
@@ -81,7 +86,7 @@ export default {
 
     },
     computed: {
-        
+
     },
     watch: {
         async page(oldVal, newVal) {
