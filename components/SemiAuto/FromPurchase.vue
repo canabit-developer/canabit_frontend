@@ -242,6 +242,8 @@ export default {
       active(val){
         this.form = {}
         this.error = ""
+        this.usePoint = ''
+        this.discount = ''
       }
   }
 }
