@@ -152,7 +152,7 @@ export default {
                 }
             }else if(user.is_active == false){
               await Web.switchLoad(false)
-              await Web.alert(`You not verify your email. Please Check your email.`,'info')
+              await Web.alert(`Please check your email for activate to login.`,'info')
               await this.$router.replace(`/auth/verify`)
             }
 
