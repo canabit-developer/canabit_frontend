@@ -101,12 +101,12 @@ export default {
     methods: {
         async startup() {
             this.broker = await Core.getHttp(`/api/finance/broker/?is_active=true`)
-            this.accLists = await Core.getHttp(`/api/finance/brokeraccount/?user=${this.user.id}`)
+            this.accLists = await Core.getHttp(`/api/finance/brokeraccount/?user=${this.user.id}&status=1`)
             this.accLists = _.reject(this.accLists, (item) => _.find(this.ea.broker, (r) => {
                 return r == item.broker
             }));
             this.tmpPrice = this.ea.price
-            
+
         },
         async getDiscount() {
             let dis = await Core.getHttp(`/api/webconfig/promotion/?code=${this.discount}&is_active=true`)
@@ -171,7 +171,7 @@ export default {
                 this.$router.push('/accountstatus?tab=0')
               }else{
                 this.active = false
-             
+
               }
             } else {
 
