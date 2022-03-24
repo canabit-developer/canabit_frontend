@@ -3,8 +3,8 @@
     <div class="px-3">
         <v-card-text class="pt-5" v-if="(user.register_by=='Register')|| (user.register_by == null)|| (user.register_by == 'Web')">
             <v-row>
-                <v-alert class="mt-3" outlined dense type="info" prominent border="left">
-                    Password must contain at least 8 uppercase letters, lowercase letters and numbers.
+                <v-alert class="mt-3" outlined dense type="info" prominent border="left">          
+                    Password must contain at At least 8 letters or numbers are recommended.
                 </v-alert>
                 <v-col cols="12" sm="8" md="8" class="-mt-3">
                     <div v-if="error.old_password">
@@ -27,8 +27,8 @@
                     <form @submit.prevent="changePassword()" ref="formResetPassword">
                         <h2 class="text-xl mt-4 mb-4">Change Password</h2>
                         <v-text-field :type="isPasswordVisible ? 'text' : 'password'" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" required class="w-full md:w-1/2 m-1" hint="*  Please Enter Old Password " v-model="form.old_password" prepend-inner-icon="em em-lock" label="Old Password" dense outlined></v-text-field>
-                        <v-text-field :type="isPasswordVisible ? 'text' : 'password'" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" required class="w-full md:w-1/2 m-1" hint="*  Please Enter New Password " v-model="form.password" prepend-inner-icon="em em-closed_lock_with_key" label="New Password" dense outlined></v-text-field>
-                        <v-text-field :type="isPasswordVisible ? 'text' : 'password'" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" required class="w-full md:w-1/2 m-1" hint="*  Please Enter New Password " v-model="form.password_confirm" prepend-inner-icon="em em-closed_lock_with_key" label="New Password Confirm" dense outlined></v-text-field>
+                        <v-text-field :type="isPasswordVisible1 ? 'text' : 'password'" :append-icon="isPasswordVisible1 ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible1 = !isPasswordVisible1" required class="w-full md:w-1/2 m-1" hint="*  Please Enter New Password " v-model="form.password" prepend-inner-icon="em em-closed_lock_with_key" label="New Password" dense outlined></v-text-field>
+                        <v-text-field :type="isPasswordVisible2 ? 'text' : 'password'" :append-icon="isPasswordVisible2 ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible2= !isPasswordVisible2" required class="w-full md:w-1/2 m-1" hint="*  Please Enter New Password " v-model="form.password_confirm" prepend-inner-icon="em em-closed_lock_with_key" label="New Password Confirm" dense outlined></v-text-field>
                         <vs-button floating type="submit" color="success">Update Password</vs-button>
                     </form>
                 </v-col>
@@ -68,6 +68,8 @@ export default {
             error: {},
             user: Auth.user,
             isPasswordVisible: false,
+            isPasswordVisible1: false,
+            isPasswordVisible2: false,
         })
     },
     methods: {
