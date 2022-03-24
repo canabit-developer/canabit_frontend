@@ -9,7 +9,7 @@
             <div class="md:py-20 py-12">
                 <div class="md:pb-20 pb-12 max-w-3xl mx-auto text-center ">
                     <h2 class="md:text-6xl text-4xl text-white dark:text-white font-bold mb-4">Reward Voting</h2>
-                    <p class="text-xl text-white dark:text-gray-400">Customers can bring their points to win prizes with us.where a minimum of 50 points will be counted as a vote 1 time which customers can vote Products can be slowed until their own points are exhausted.</p>
+                    <p class="text-xl text-white dark:text-white">Customers can bring their points to win prizes with us.where a minimum of 50 points will be counted as a vote 1 time which customers can vote Products can be slowed until their own points are exhausted.</p>
                 </div>
                 <div class="text-center mb-10">
                     <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
