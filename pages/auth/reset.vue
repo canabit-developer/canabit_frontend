@@ -128,7 +128,7 @@ export default {
                 this.errorRegister = user
              //   await Web.alerterror(user.detail , 'error');
             }}else{
-            this.errorRegister = {password_confirm : ["Password is not match."]}
+            this.errorRegister = {password_confirm : ["Passwords don't match"]}
             //await Web.alerterror("Password is not match" , 'error');
           }
 
