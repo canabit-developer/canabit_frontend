@@ -3,9 +3,6 @@
     <div class="px-3">
         <v-card-text class="pt-5" v-if="(user.register_by=='Register')|| (user.register_by == null)|| (user.register_by == 'Web')">
             <v-row>
-                <v-alert class="mt-3" outlined dense type="info" prominent border="left">          
-                    Password must contain at At least 8 letters or numbers are recommended.
-                </v-alert>
                 <v-col cols="12" sm="8" md="8" class="-mt-3">
                     <div v-if="error.old_password">
                         <v-alert dense outlined text v-for="(message,i) in error.old_password" :key="i" type="error" :value="true">
@@ -61,7 +58,6 @@ import {
     Web
 } from '~/vuexes/web';
 export default {
-    name: '',
     data: () => {
         return ({
             form: {},
