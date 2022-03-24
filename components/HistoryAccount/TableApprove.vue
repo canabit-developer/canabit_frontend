@@ -5,12 +5,12 @@
                 <template v-slot:item.products="{ item }">
                     <div class="flex">
 
-                        <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.products}}</span>
+                        <img class="h-6" :src="$url+item.product_image" alt=""> <span class="ml-2">{{item.products}}</span>
                     </div>
                 </template>
                 <template v-slot:item.account_no="{ item }">
                     <div class="flex">
-                        <img class="h-6" :src="item.account_type_image" alt=""> <span class="ml-2">{{item.account_no}}</span>
+                        <img class="h-6" :src="$url+item.account_type_image" alt=""> <span class="ml-2">{{item.account_no}}</span>
                     </div>
                 </template>
                 <template v-slot:item.status="{ item }">
@@ -18,6 +18,7 @@
                 </template>
             </v-data-table>
     </div>
+    <pre>{{items}}</pre>
 </div>
 </template>
 
@@ -102,10 +103,9 @@ export default {
             let no = 1
             this.items = await Core.getHttp(`/api/ea/order/?user=${Auth.user.id}${this.filterProduct}${this.filterBroker}${this.filterAccountType}`)
             this.items =   _.map(this.items,   (r) => {
-
                 let obj = r
                 obj.on = no++
-              obj.pr = this.getProduct(obj.product)
+                obj.pr = this.getProduct(obj.product)
                 obj.product_image = this.$url+this.getProduct(obj.product).image
                 obj.product_id = r.product
                 obj.product = this.getProduct(obj.product).name
@@ -141,7 +141,7 @@ export default {
             this.listsFilterBroker = _.map(this.brokers, (r) => {
                 return {
                     id: `&broker=` + r.id,
-                    name: r.name
+                    name: r.name,
                 }
             })
             this.listsFilterBroker.push({

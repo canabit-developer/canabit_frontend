@@ -8,7 +8,7 @@
                 </div>
             </template>
             <template v-slot:item.point_use="{ item }">
-                <span class="text-red-600">- {{item.point_use}}</span>
+                <span class="text-red-600 -m-1">- {{item.point_use}}</span>
             </template>
             <template v-slot:item.status="{ item }">
                 <Core-Status :status="item.status" />
@@ -92,8 +92,6 @@ export default {
                 obj.no = no++
                 obj.product_id = r.product
                 obj.product = this.getProduct(obj.product).name
-                obj.created_at = Core.convertDate(obj.created_at)
-                obj.updated_at = Core.convertDate(obj.updated_at)
                 return obj
             })
         },
