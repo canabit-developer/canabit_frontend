@@ -56,11 +56,11 @@
                             </v-alert>
                         </div>
                     </div>
-                        <v-text-field prepend-inner-icon="em em-bust_in_silhouette" :rules="[rules.required]" v-model="form.username" required color="primary" outlined label="E-mail or Phone Number" placeholder="E-mail,Phone Number" hide-details class="mb-3"></v-text-field>
+                        <v-text-field id="user" prepend-inner-icon="em em-bust_in_silhouette" :rules="[rules.required]" v-model="form.username" required color="primary" outlined label="E-mail or Phone Number" placeholder="E-mail,Phone Number" hide-details class="mb-3"></v-text-field>
                         <br>
-                        <v-text-field prepend-inner-icon="em em-lock"  :rules="[rules.required]" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <v-text-field id="password" prepend-inner-icon="em em-lock"  :rules="[rules.required]" v-model="form.password" required color="primary" outlined :type="isPasswordVisible ? 'text' : 'password'" label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" hide-details @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
 
-                        <v-btn type="submit" x-large dark block class="bg-primary-g mt-6">
+                        <v-btn id="login_submit" type="submit" x-large dark block class="bg-primary-g mt-6">
                             Login
                         </v-btn>
                         <div class="d-flex align-center justify-space-between flex-wrap mt-4">
@@ -140,7 +140,7 @@ export default {
                 if (signin.key) {
                     await Auth.storeToken(signin.key)
                     await Auth.storeTokenToStorage(signin.key)
-                    await this.$router.replace(`/`)
+                    await this.$router.replace(`/account`)
                     this.userCheckError = false
                     return true
                 } else {

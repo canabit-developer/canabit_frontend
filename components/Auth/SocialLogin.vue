@@ -1,10 +1,10 @@
 <template>
 <div class="flex flex-col md:flex-row justify-space-around items-around w-full">
-    <v-btn @click="loginFacebook()" class="capitalize "   large dark color="blue">
+    <v-btn id="facebook_login"  @click="loginFacebook()" class="capitalize "   large dark color="blue">
         <v-icon class="mr-2">mdi-facebook</v-icon>
         <span class="capitalize ">Contuine with Facebook</span>
     </v-btn><br>
-    <v-btn @click="loginGoogle()"   large color="white"><img class="h-4 w-auto mr-2" src="~/static/images/logos/google.png" alt="">
+    <v-btn id="google_login" @click="loginGoogle()"   large color="white"><img class="h-4 w-auto mr-2" src="~/static/images/logos/google.png" alt="">
         <span class="capitalize ">Contuine with Google</span>
     </v-btn>
 </div>
@@ -36,7 +36,7 @@ export default {
             const auth = Firebase.Auth
             let user = await Firebase.getRedirectResult(auth)
                 .then(async (result) => {
-                    
+
                     console.log(result.providerId);
                     if (result.providerId == 'facebook.com') {
                         const credential = Firebase.FacebookAuthProvider.credentialFromResult(result);

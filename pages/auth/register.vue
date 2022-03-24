@@ -58,20 +58,20 @@
                         <v-alert outlined dense  type="info" prominent border="left" >
                                 Please fill out the information completely.</v-alert>
                         <!-- <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field> -->
-                        <v-text-field required v-model="form.email" class="mt-2" hint="* Please enter E-mail" persistent-hint prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
+                        <v-text-field id="reg_email" required v-model="form.email" class="mt-2" hint="* Please enter E-mail" persistent-hint prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
 
-                        <v-text-field v-model="form.first_name" required hint="* Please enter Frist Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
-                        <v-text-field v-model="form.last_name"  required hint="* Please enter Last Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
-                        <v-text-field v-model="form.phone_number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" item-text="value"  hint="* fill in fill Number Phone" persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
-                        <v-text-field v-model="form.password"   hint="* fill in  Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
+                        <v-text-field id="reg_first_name"  v-model="form.first_name" required hint="* Please enter Frist Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
+                        <v-text-field id="reg_last_name"  v-model="form.last_name"  required hint="* Please enter Last Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
+                        <v-text-field id="reg_phone_number"  v-model="form.phone_number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" item-text="value"  hint="* fill in fill Number Phone" persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
+                        <v-text-field  id="reg_password" v-model="form.password"   hint="* fill in  Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
-                        <v-text-field v-model="form.password_confirm" hint="* Password must contain at At least 8 letters or numbers are recommended." persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+                        <v-text-field  id="reg_password_confirm"  v-model="form.password_confirm" hint="* Password must contain at At least 8 letters or numbers are recommended." persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
                         <br>
-                        <v-text-field @change="checkRefCode()" v-model="refCode" prepend-inner-icon="em em-woman-raising-hand" type="text" persistent-hint outlined label="Referral Code" ></v-text-field>
+                        <v-text-field id="reg_ref" @change="checkRefCode()" v-model="refCode" prepend-inner-icon="em em-woman-raising-hand" type="text" persistent-hint outlined label="Referral Code" ></v-text-field>
 
                       <br>
                         <Auth-Captcha v-if="!successBtn" :reload="openCaptcha" @cap="getSuccess"></Auth-Captcha>
-                        <v-btn v-if="successBtn" type="submit" x-large dark block class="bg-primary-g mt-6">
+                        <v-btn id="reg_btn" v-if="successBtn" type="submit" x-large dark block class="bg-primary-g mt-6">
                             Sign Up
                         </v-btn>
                         <div class="d-flex align-center justify-space-between flex-wrap mt-4">
