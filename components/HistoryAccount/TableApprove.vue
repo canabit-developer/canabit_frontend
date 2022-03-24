@@ -70,6 +70,11 @@ export default {
 
             },
             {
+                text: 'Date',
+                value: "created_at",
+
+            },
+            {
                 text: 'Status',
                 value: "status",
 
