@@ -66,8 +66,7 @@ export default {
                 obj.Requesttest_image = this.$url+this.getRequesttest(obj.product).image
                 obj.product_id = r.product
                 obj.product = this.getRequesttest(obj.product).name
-                obj.created_at = Core.convertDate(obj.created_at)
-                obj.updated_at = Core.convertDate(obj.updated_at)
+              
                 return obj
             })
             console.log('mapData',this.items)

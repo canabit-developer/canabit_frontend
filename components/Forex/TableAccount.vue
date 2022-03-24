@@ -159,6 +159,7 @@ export default {
                 obj.act = this.getAccountType(obj.account_type)
                 obj.account_type = obj.act.name
                 obj.account_type_image = obj.act.image
+               
                 delete obj.user
                 return obj
             })
