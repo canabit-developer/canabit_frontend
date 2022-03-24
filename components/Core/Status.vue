@@ -8,7 +8,7 @@
         Success
     </v-chip>
     <v-chip small v-if="status == 2" class="ma-2"   color="red" text-color="white" >
-        Reject
+        Cancel
     </v-chip>
 </div>
 </template>
