@@ -1,12 +1,14 @@
 <template>
 <div>
-    <div class="font-sans bg-white flex flex-col min-h-screen w-full">
-        <h2 class="text-xl font-semibold"><v-icon class="mr-2">em em-chart</v-icon>  Detail EA</h2>
+    <div class="font-sans bg-white flex flex-col min-h-screen w-full" >     
+             <h2 class="text-xl font-semibold"><v-icon class="mr-2">em em-chart</v-icon> Detail EA</h2>
      <ul class="breadcrumb mt-3">
         <li><a @click="$router.push('/')" href="#">Home</a></li>
         <li><a @click="$router.push('/semiauto')">  EA </a></li> 
-        <li>Detail EA</li>
+        <li> {{ea.name}}</li>
+        
     </ul>
+
         <div>
             <div class="bg-green-400 rounded-xl md:overflow-hidden mt-3">
                 <div class="px-4 py-16">
@@ -43,6 +45,7 @@
             </div>
         </div>
     </div>
+    <pre>{{ea}}</pre>
 </div>
 </template>
 
