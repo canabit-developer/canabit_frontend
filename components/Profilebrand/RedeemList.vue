@@ -77,11 +77,12 @@ export default {
         form: {},
         sortBy: 'asc',
         sorts: [{
-                'text': 'Descending',
+                'text': 'Ascending',
                 value: 'asc'
             },
             {
-                'text': 'Ascending',
+                
+                'text': 'Descending',
                 value: 'desc'
             },
         ]
