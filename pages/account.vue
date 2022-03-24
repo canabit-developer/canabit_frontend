@@ -12,9 +12,9 @@
             <div class="bg-green-400 rounded-xl md:overflow-hidden">
                 <div class="px-4 py-16">
                     <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
-                        <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
-                            EDIT ACCOUT , SECURITY , KYC
-                        </h1>
+                        <p class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight md-6">
+                            EDIT ACCOUNT , PASSWORD AND KYC
+                        </p>
 
                         <p class="text-white md:text-xl md:px-18">
                             Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in
