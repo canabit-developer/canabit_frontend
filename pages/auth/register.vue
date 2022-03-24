@@ -65,7 +65,11 @@
                         <v-text-field id="reg_phone_number"  v-model="form.phone_number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" item-text="value"  hint="* fill in fill Number Phone" persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
                         <v-text-field  id="reg_password" v-model="form.password"   hint="* fill in  Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
+<<<<<<< Updated upstream
                         <v-text-field  id="reg_password_confirm"  v-model="form.password_confirm" hint="* Password must contain at At least 8 letters or numbers are recommended." persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+=======
+                        <v-text-field v-model="form.password_confirm" hint="* fill in Confirm Password" persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible"></v-text-field>
+>>>>>>> Stashed changes
                         <br>
                         <v-text-field id="reg_ref" @change="checkRefCode()" v-model="refCode" prepend-inner-icon="em em-woman-raising-hand" type="text" persistent-hint outlined label="Referral Code" ></v-text-field>
 
