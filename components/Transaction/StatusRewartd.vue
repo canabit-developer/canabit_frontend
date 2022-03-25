@@ -8,7 +8,7 @@
                 </div>
             </template>
             <template v-slot:item.point_use="{ item }">
-                <span class="text-red-600 -m-1">- {{item.point_use}}</span>
+                <span class="text-red-600 -m-3">- {{item.point_use}}</span>
             </template>
             <template v-slot:item.status="{ item }">
                 <Core-Status :status="item.status" />
@@ -122,7 +122,7 @@ export default {
             })
             if(remove.id){
               await Auth.addPoint(item.point_use)
-              await Auth.logPoint(`Redeem ${item.code}`, item.point_use, 0)
+              await Auth.logPoint(`Redeem ${item.code}`, item.point_use, 0,1)
               let call = await Core.getHttp(`/api/account/userpointhistory/?user=${this.user.id}&received_from=Redeem ${item.code}`)
               if(call.length > 0){
                 let callData = call[0]

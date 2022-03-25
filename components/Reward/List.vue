@@ -23,9 +23,7 @@
                             Vote
                         </vs-button>
                     </v-col>
-
                 </v-row>
-
             </v-container>
 
         </v-card>
@@ -96,11 +94,11 @@ export default {
           "user": this.user.id,
           "votemode": this.vote.id,
         }
-        let data = await Core.postHttpAlert(`/api/vote/voteuse/`,form)
+        let data = await Core.postHttpAlert(`/api/vote/voteuse/`,form )
         if (data.id) {
           if (this.point.current >=  this.vote.point_use) {
             await Auth.cutPoint(this.vote.point_use)
-            await Auth.logPoint(`Reward Voting ${choice}`, this.vote.point_use, 1)
+            await Auth.logPoint(`Reward Voting ${choice}`, this.vote.point_use, 1,1)
           }else{
             await Web.alert(`More than point`,`error`)
           }

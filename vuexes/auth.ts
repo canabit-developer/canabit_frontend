@@ -94,12 +94,12 @@ private async updateMyTier(currentTier:any){
     return user
   }
 
-  public async logPoint(received_from:string,point:string,types:number) {
+  public async logPoint(received_from:string,point:string,types:number,status:number=0) {
     let form = {
       "received_from":received_from,
       "point": point,
       "type": types,
-      "status": 0,
+      "status": status,
       "user": this.user.id
     }
     let out = await Core.postHttp(`/api/account/userpointhistory/`,form)
