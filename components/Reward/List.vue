@@ -88,7 +88,9 @@ export default {
         this.productB= this.vote.store_b
       },
     async votting(choice){
-        let form = {
+      let check = await Web.confirm('Do you want to Voting?')
+       if(check){
+         let form = {
           "choicereward": choice,
           "point_use": this.vote.point_use,
           "user": this.user.id,
@@ -103,6 +105,8 @@ export default {
             await Web.alert(`More than point`,`error`)
           }
         }
+       }
+        
     }
   },
   props:{
