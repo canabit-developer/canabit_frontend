@@ -14,7 +14,7 @@
                 </vs-button>
                 <vs-button color="#4ade80" floating class="my-point">
                     <v-icon style="color:white;" class="mr-2">mdi-bitcoin</v-icon>
-                    Point : {{point.current}}
+                    Point : {{$comma(point.current)}}
                 </vs-button>
                 <div>
                     <div class="flex  gap-3 items-center font-semibold text-gray-800 p-3 rounded-md hover:cursor-pointer ">

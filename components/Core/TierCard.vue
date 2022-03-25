@@ -31,10 +31,9 @@
                     Point
                 </p>
                 <p class="font-medium tracking-more-wider">
-                    {{point.current}}
+                    {{$comma(point.current)}}
                 </p>
             </div>
-
             <div class="flex justify-between mt-4">
                 <div class="">
                     <p class="font-light text-xs">
@@ -53,7 +52,6 @@
                         <p class="ml-8 font-medium tracking-wider text-sm">
                             {{nextTier.name}}
                         </p>
-
                 </div>
             </div>
         </div>
