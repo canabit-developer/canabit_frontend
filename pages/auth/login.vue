@@ -140,7 +140,7 @@ export default {
                 if (signin.key) {
                     await Auth.storeToken(signin.key)
                     await Auth.storeTokenToStorage(signin.key)
-                    await this.$router.replace(`/account`)
+                    await this.$router.replace(`/`)
                     this.userCheckError = false
                     return true
                 } else {
