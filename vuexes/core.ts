@@ -27,6 +27,17 @@ class CoreModule extends VuexModule {
     })
 
   }
+  async postHttpAlertAccount(url: string, form: object): Promise<any> {
+    return await axios.post(url, form).then((r) => {
+      Web.alert('Successfully Saved')
+      return r.data
+    }).catch((e) => {
+      Web.alert('Can not : save due to the same Account Number in the system', 'error')
+      console.log(e)
+      return e.response.data
+    })
+
+  }
   async postHttp(url: string, form: object): Promise<any> {
     return await axios.post(url, form).then((r) => { return r.data }).catch((e) => {
 

@@ -72,7 +72,7 @@ export default {
         async store() {
           this.form.user = Auth.user.id
           this.form.broker_no = moment().format('DDMMYYhhmmss')
-          let add = await Core.postHttpAlert(`/api/finance/brokeraccount/`, this.form)
+          let add = await Core.postHttpAlertAccount(`/api/finance/brokeraccount/`, this.form)
           this.active = false;
           if(add.id){
             await location.reload();
