@@ -45,7 +45,6 @@
             </div>
         </div>
     </div>
-    <pre>{{ea}}</pre>
 </div>
 </template>
 
