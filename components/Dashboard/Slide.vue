@@ -1,5 +1,5 @@
 <template>
-<v-carousel cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl" v-if="response">
+<v-carousel  cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl cursor-pointer" v-if="response">
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
         <!-- <v-img :src="$url+slide.image"></v-img> -->
         <v-img :src="$url+slide.image" @click="openLink(slide.url)"></v-img>
