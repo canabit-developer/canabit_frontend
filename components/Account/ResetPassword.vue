@@ -4,11 +4,13 @@
         <v-card-text class="pt-5" v-if="(user.register_by=='Register')|| (user.register_by == null)|| (user.register_by == 'Web')">
             <v-row>
                 <v-col cols="12" sm="8" md="8" class="-mt-3">
+                    <v-col cols="12" md="6">
                     <div v-if="error.old_password">
                         <v-alert dense outlined text v-for="(message,i) in error.old_password" :key="i" type="error" :value="true">
                             {{message}}
                         </v-alert>
                     </div>
+                    </v-col>
                     <v-col cols="12" md="6">
                         <div v-if="error.password">
                             <v-alert dense outlined text v-for="(message,i) in error.password" :key="i" type="error" :value="true">
@@ -29,7 +31,6 @@
                         <vs-button floating type="submit" color="success">Update Password</vs-button>
                     </form>
                 </v-col>
-
                 <v-col cols="12" sm="2" md="4" class="d-none d-sm-flex justify-center position-relative">
                     <img contain style="width:170px; height:260px;" src="~/static/images/3d-characters/pose-m-1.png" class="security-character" />
                 </v-col>
