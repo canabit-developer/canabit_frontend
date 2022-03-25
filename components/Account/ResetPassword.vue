@@ -31,9 +31,7 @@
                         <vs-button floating type="submit" color="success">Update Password</vs-button>
                     </form>
                 </v-col>
-                <v-col cols="12" sm="2" md="4" class="d-none d-sm-flex justify-center position-relative">
-                    <img contain style="width:170px; height:260px;" src="~/static/images/3d-characters/pose-m-1.png" class="security-character" />
-                </v-col>
+                    <img contain style="width:180px; height:260px;" src="~/static/images/3d-characters/pose-m-1.png" class="security-character m-3 mt-8" />
             </v-row>
         </v-card-text>
         <v-card-text v-else>
