@@ -44,7 +44,7 @@
                             <h3>{{indicator.name}}</h3>
                             <div class="flex justify-end">
                                 <h3 class="text-green-400">
-                                     Price : Free
+                                    Price : Free
                                 </h3>
                             </div>
                         </div>
@@ -86,6 +86,9 @@ import {
 import {
     Product
 } from '~/vuexes/product'
+import {
+    Web
+} from '~/vuexes/web'
 export default {
     data: () => ({
         indicator: [],
@@ -98,15 +101,18 @@ export default {
             this.indicator = await Product.getIndicatorProduct()
         },
         async order(indicator) {
-            window.open(indicator.link);
             let form = {
                 "code": 'IN' + Date.now(),
                 "user": this.user.id,
                 "product": indicator.id
             }
-            let data = await Core.postHttpAlert(`/api/indicator/order/`, form)
-            if (data.id) {
-                this.$router.push('/accountstatus?tab=1')
+            let check = await Web.confirm('Do you want to Download Indicators')
+            if (check) {
+                window.open(indicator.link);
+                let data = await Core.postHttp(`/api/indicator/order/`, form)
+                if (data.id) {
+                    this.$router.push('/accountstatus?tab=1')
+                }
             }
         }
     },
