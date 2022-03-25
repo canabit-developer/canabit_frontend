@@ -60,8 +60,6 @@
                           ></v-rating>
                         </div>
                         <v-spacer></v-spacer>
-
-
                         <span class="text-green-400 text-sm font-bold">{{review.created_at}}</span>
                       </v-toolbar >
                       <v-divider></v-divider>
