@@ -18,7 +18,6 @@
                 </template>
             </v-data-table>
     </div>
-    <pre>{{items}}</pre>
 </div>
 </template>
 
@@ -164,6 +163,8 @@ export default {
                 id: ``,
                 name: 'All'
             })
+             console.log(this.listsFilterAccount);
+            
         },
 
         getProduct(id) {
