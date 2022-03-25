@@ -48,7 +48,7 @@ class CoreModule extends VuexModule {
     return await axios.put(url, form).then((r) => { return r.data }).catch((e) => { return e.response.data })
   }
   async putHttpAlert(url: string, form: object): Promise<any> {
-    let check = await Web.confirm("Are you sure you want to edit the information?")
+    let check = await Web.confirm("Are you sure you want to cancle? ")
     if (check) {
       return await axios.put(url, form).then((r) => {
         Web.alert('Successfully edited')
@@ -64,7 +64,7 @@ class CoreModule extends VuexModule {
   }
 
   async deleteHttpAlert(url: string): Promise<any> {
-    let check = await Web.confirm("Are you sure you want to delete the data?")
+    let check = await Web.confirm("Are ")
     if (check) {
       return await axios.delete(url).then((r) => {
         Web.alert('Successfully deleted')
