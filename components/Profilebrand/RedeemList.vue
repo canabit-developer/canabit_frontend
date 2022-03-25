@@ -20,7 +20,7 @@
                             <div class="flex justify-between ">
                                 <h3 class=" text-2xl mt-1">{{storeproduct.name}}</h3>
                                 <h3 class="text-green-400">
-                                    {{storeproduct.point_use}} Point
+                                    {{$comma(storeproduct.point_use)}} Point
                                 </h3>
                             </div>
 
@@ -117,7 +117,7 @@ export default {
                     "user": Auth.user.id,
                 })
                 await Auth.cutPoint(product.point_use)
-              await Auth.logPoint(`Redeem ${code}`,product.point_use,1)
+                await Auth.logPoint(`Redeem ${code}`,product.point_use,1)
                 await this.$router.push('/transaction?tab=1')
             }else{
                 await Web.alert(`More than point`,`error`)
