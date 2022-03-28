@@ -17,7 +17,6 @@
                 <v-btn v-if="item.status == 0" text x-small @click="removeRedeem(item)" color="error">
                     <v-icon>mdi-delete</v-icon> Cancel
                 </v-btn>
-
             </template>
         </v-data-table>
     </div>
@@ -35,6 +34,9 @@ import _ from 'lodash'
 import {
     Auth
 } from '@/vuexes/auth'
+import {
+    Web
+} from '@/vuexes/web'
 export default {
     data: () => ({
         historyaccountindicator: [],
@@ -117,26 +119,27 @@ export default {
         },
 
         async removeRedeem(item) {
-            let remove = await Core.putHttpAlert(`/api/store/rewardhistory/${item.id}/`, {
-                status: 2,
-                remark: "Cancle By User"
-            })
-            if (remove.id) {
-                await Auth.addPoint(item.point_use)
-                await Auth.logPoint(`Redeem ${item.code}`, item.point_use, 0, 1)
-                let call = await Core.getHttp(`/api/account/userpointhistory/?user=${this.user.id}&received_from=Redeem ${item.code}`)
-                if (call.length > 0) {
-                    let callData = call[0]
-                    await Core.putHttp(`/api/account/userpointhistory/${callData.id}/`, {
-                        status: 2,
-                        remark: "Cancle By User"
-                    })
+            let check = await Web.confirm("Are you sure you want to Cancel Reward")
+            if (check) {
+                let remove = await Core.putHttp(`/api/store/rewardhistory/${item.id}/`, {
+                    status: 2,
+                    remark: "Cancle By User",
+                })
+                if (remove.id) {
+                    await Auth.addPoint(item.point_use)
+                    await Auth.logPoint(`Redeem ${item.code}`, item.point_use, 0, 1)
+                    let call = await Core.getHttp(`/api/account/userpointhistory/?user=${this.user.id}&received_from=Redeem ${item.code}`)
+                    if (call.length > 0) {
+                        let callData = call[0]
+                        await Core.putHttp(`/api/account/userpointhistory/${callData.id}/`, {
+                            status: 2,
+                            remark: "Cancle By User"
+                        })
+                    }
                 }
+                 await location.reload();
             }
-            await location.reload();
             await this.startup();
-
-
         }
     },
     computed: {
