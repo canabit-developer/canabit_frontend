@@ -48,13 +48,13 @@ class CoreModule extends VuexModule {
     return await axios.put(url, form).then((r) => { return r.data }).catch((e) => { return e.response.data })
   }
   async putHttpAlert(url: string, form: object): Promise<any> {
-    let check = await Web.confirm("Are you sure you want to cancle? ")
+    let check = await Web.confirm("Do you want to continue? ")
     if (check) {
       return await axios.put(url, form).then((r) => {
-        Web.alert('Successfully canceled the redemption.')
+        Web.alert('Successfully executed')
         return r.data
       }).catch((e) => {
-        Web.alert('Failed to cancle ', 'error')
+        Web.alert('Failed to complete ', 'error')
         return e.response.data
       })
     }
