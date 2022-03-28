@@ -2,22 +2,31 @@
 <div class="p-4" v-if="response">
     <div class="p-8 ">
              <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
-                <template v-slot:item.products="{ item }">
+                <template v-slot:item.product="{ item }">
                     <div class="flex">
-
-                        <img class="h-6" :src="$url+item.product_image" alt=""> <span class="ml-2">{{item.products}}</span>
+                        <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.product}}</span>
                     </div>
+                </template>
+                <template v-slot:item.broker="{ item }">
+                    <div class="flex">
+              
+                        <img class="h-6" :src="item.broker_image" alt=""> <span class="ml-2">{{item.broker}}</span>
+                        {{item.broker}} 
+                        </div>
                 </template>
                 <template v-slot:item.account_no="{ item }">
                     <div class="flex">
-                        <img class="h-6" :src="$url+item.account_type_image" alt=""> <span class="ml-2">{{item.account_no}}</span>
+                        {{item.account_type_image}}
+                        <img class="h-6" :src="item.account_type_image" alt=""> <span class="ml-2">{{item.account_no}}</span>
                     </div>
                 </template>
+
                 <template v-slot:item.status="{ item }">
                     <Core-Status :status="item.status" />
                 </template>
             </v-data-table>
     </div>
+    <pre>{{items}}</pre>
 </div>
 </template>
 
