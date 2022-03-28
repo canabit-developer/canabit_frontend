@@ -26,7 +26,6 @@
                 </template>
             </v-data-table>
     </div>
-
 </div>
 </template>
 
