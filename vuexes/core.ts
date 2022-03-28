@@ -51,10 +51,10 @@ class CoreModule extends VuexModule {
     let check = await Web.confirm("Are you sure you want to cancle? ")
     if (check) {
       return await axios.put(url, form).then((r) => {
-        Web.alert('Successfully edited')
+        Web.alert('Successfully canceled the redemption.')
         return r.data
       }).catch((e) => {
-        Web.alert('Failed to edit data', 'error')
+        Web.alert('Failed to cancle ', 'error')
         return e.response.data
       })
     }
