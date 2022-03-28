@@ -13,10 +13,12 @@
             <template v-slot:item.status="{ item }">
                 <Core-Status :status="item.status" />
             </template>
-        <template v-slot:item.action="{ item }">
-          <v-btn v-if="item.status == 0"  text x-small @click="removeRedeem(item)" color="error" ><v-icon>mdi-delete</v-icon> Cancel</v-btn>
+            <template v-slot:item.action="{ item }">
+                <v-btn v-if="item.status == 0" text x-small @click="removeRedeem(item)" color="error">
+                    <v-icon>mdi-delete</v-icon> Cancel
+                </v-btn>
 
-        </template>
+            </template>
         </v-data-table>
     </div>
 </div>
@@ -43,8 +45,7 @@ export default {
         products: [],
         listProduct: [],
         filterProduct: '',
-        headers: [
-            {
+        headers: [{
                 text: 'No',
                 value: "no",
             },
@@ -95,9 +96,9 @@ export default {
                 return obj
             })
         },
-        async getStoreProduct(){
+        async getStoreProduct() {
             this.products = await Core.getHttp(`/api/store/product/`)
-             this.listFilerProduct = _.map(this.products, (r) => {
+            this.listFilerProduct = _.map(this.products, (r) => {
                 return {
                     id: `&product=` + r.id,
                     name: r.name,
@@ -115,38 +116,43 @@ export default {
             })
         },
 
-        async removeRedeem(item){
-            let remove = await Core.putHttpAlert(`/api/store/rewardhistory/${item.id}/`,{
-              status:2,
-              remark:"Cancle By User"
+        async removeRedeem(item) {
+            let remove = await Core.putHttpAlert(`/api/store/rewardhistory/${item.id}/`, {
+                status: 2,
+                remark: "Cancle By User"
             })
-            if(remove.id){
-              await Auth.addPoint(item.point_use)
-              await Auth.logPoint(`Redeem ${item.code}`, item.point_use, 0,1)
-              let call = await Core.getHttp(`/api/account/userpointhistory/?user=${this.user.id}&received_from=Redeem ${item.code}`)
-              if(call.length > 0){
-                let callData = call[0]
-                await Core.putHttp(`/api/account/userpointhistory/${callData.id}/`,{status:2,remark:"Cancle By User"})
-              }
+            if (remove.id) {
+                await Auth.addPoint(item.point_use)
+                await Auth.logPoint(`Redeem ${item.code}`, item.point_use, 0, 1)
+                let call = await Core.getHttp(`/api/account/userpointhistory/?user=${this.user.id}&received_from=Redeem ${item.code}`)
+                if (call.length > 0) {
+                    let callData = call[0]
+                    await Core.putHttp(`/api/account/userpointhistory/${callData.id}/`, {
+                        status: 2,
+                        remark: "Cancle By User"
+                    })
+                }
             }
+            await location.reload();
             await this.startup();
+
 
         }
     },
-  computed: {
-    user: () => {
-      return Auth.user
+    computed: {
+        user: () => {
+            return Auth.user
+        },
+        point: () => {
+            return Auth.point
+        },
+        tier: () => {
+            return Auth.tier
+        },
+        tiers: () => {
+            return Auth.tiers
+        },
     },
-    point: () => {
-      return Auth.point
-    },
-    tier: () => {
-      return Auth.tier
-    },
-    tiers: () => {
-      return Auth.tiers
-    },
-  },
     watch: {
         async page(oldVal, newVal) {
             await this.startup();
