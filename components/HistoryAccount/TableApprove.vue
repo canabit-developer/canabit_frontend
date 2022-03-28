@@ -26,7 +26,7 @@
                 </template>
             </v-data-table>
     </div>
-    <pre>{{items}}</pre>
+
 </div>
 </template>
 
