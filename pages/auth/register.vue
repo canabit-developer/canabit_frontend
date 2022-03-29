@@ -229,7 +229,7 @@ export default {
             this.form.other_referral_code = this.refCode
             await Web.alert(`Your Referral Code can use.`,'success')
           }else{
-            await Web.alert(`Referral Code Not Found.`,'error')
+            await Web.alerterror(`Referral Code Not Found.`,'error')
             this.form.other_referral_code = ""
             this.refCode = ""
           }
