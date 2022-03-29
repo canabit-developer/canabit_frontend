@@ -47,13 +47,22 @@ class WebModule extends VuexModule {
       confirmButtonColor: "#00E96A",
     })
   }
+  public async alertnotfound(title: any = 'OK', type: any = 'error',  text: any = '') {
+    await Swal.fire({
+      icon: type,
+      title: title,
+      text: text,
+      confirmButtonText: `OK`,
+      confirmButtonColor: "#ef4444",
+    })
+  }
   public async alerterror(title: any = 'Please click the link from the email again.', type: any = 'error',  text: any = '') {
     await Swal.fire({
       icon: type,
       title: title,
       text: text,
       confirmButtonText: `OK`,
-      confirmButtonColor: "#00E96A",
+      confirmButtonColor: "#ef4444",
     })
   }
 
@@ -67,7 +76,6 @@ class WebModule extends VuexModule {
     }).then((result) => {
        return result.isConfirmed
     })
-
     return check
   }
 
