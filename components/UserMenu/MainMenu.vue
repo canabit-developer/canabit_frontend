@@ -59,7 +59,7 @@
             <h2>{{user.email}}</h2> -->
         </div>
 
-        <v-list expand shaped class="vertical-nav-menu-items pr-5 -mt-16">
+        <v-list expand shaped class="vertical-nav-menu-items pr-5 -mt-10">
 
             <UserMenu-NavbarLink path="/" title="Home" icon="em em-house"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/transaction" title="Transaction" icon="em em-clipboard"></UserMenu-NavbarLink>
