@@ -26,7 +26,9 @@
             <form @submit.prevent="updateProfile" class="multi-col-validation mt-6">
                 <div class="flex flex-col md:flex-row md:flex-wrap">
                     <div class="w-full flex">
-                        <h2 class="w-full md:w-9/12 text-2xl mb-4"><v-icon class="mr-2 ">em em-female-technologist</v-icon> General Profile</h2>
+                        <h2 class="w-full md:w-9/12 text-2xl mb-4">
+                            <v-icon class="mr-2 ">em em-female-technologist</v-icon> General Profile
+                        </h2>
                         <v-chip v-if="form.register_by == 'Facebook'" class="ma-2 w-full md:w-3/12 " color="blue" dark small>
                             <v-icon>mdi-facebook</v-icon> Register By Facebook
                         </v-chip>
@@ -38,7 +40,7 @@
                         </v-chip>
                     </div>
                     <div class="w-full">
-                        <v-alert v-if="!nonName" type="error" outlined >
+                        <v-alert v-if="!nonName" type="error" outlined>
                             ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน โปรดแก้ไขข้อมูล
                         </v-alert>
                     </div>
@@ -46,31 +48,33 @@
                     <v-text-field readonly class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" prepend-inner-icon="em em-email" label="E-mail" dense outlined></v-text-field>
                     <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field> -->
                     <v-text-field required :readonly="kyc.user_verified" class="w-full  md:w-1/2 mt-2 pl-2" v-model="form.first_name" prepend-inner-icon="em em-man-frowning" label="First Name" dense outlined></v-text-field>
-                    <v-text-field required :readonly="kyc.user_verified"   class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" prepend-inner-icon="em em-man-frowning" label="Last name" dense outlined></v-text-field>
+                    <v-text-field required :readonly="kyc.user_verified" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" prepend-inner-icon="em em-man-frowning" label="Last name" dense outlined></v-text-field>
 
                     <br><br>
-                    <h2 class="w-full text-2xl" ><v-icon class="mr-2">em em-house</v-icon> Address</h2>
+                    <h2 class="w-full text-2xl">
+                        <v-icon class="mr-2">em em-house</v-icon> Address
+                    </h2>
                     <v-checkbox label="Foreigner" v-model="form.foreigner"></v-checkbox>
                     <v-text-field class="w-full  pl-2" v-model="form.address" prepend-inner-icon="em em-house" label="Address" dense outlined></v-text-field>
                     <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="Province District" prepend-inner-icon="em em-house_buildings" />
-                    <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" prepend-inner-icon="em em-postbox" maxlength="5" label="zip code" dense outlined></v-text-field>
+                    <v-text-field  required counter="5"   v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" prepend-inner-icon="em em-postbox" hint="Please enter a 5 digit postal code." maxlength="5" label="Postal code" dense outlined></v-text-field>
                 </div>
                 <br>
-              <div v-if="kyc.user_verified">
-                <div v-if="!kyc.refferal_code">
-                  <v-alert outlined type="info">
-                    <h2>You not have refferal code please click to create your refferal code for your partner use. </h2>
-                    <br>
-                    <vs-button floating @click="createRefCode()">Create My Refferal Code</vs-button>
-                  </v-alert>
-                </div>
-                <div v-else>
-                  <v-alert outlined type="success">
-                    My Refferal Code
-                    <h2 class="text-3xl">{{kyc.refferal_code}}</h2>
-                  </v-alert>
-                </div>
-              </div><br>
+                <div v-if="kyc.user_verified">
+                    <div v-if="!kyc.refferal_code">
+                        <v-alert outlined type="info">
+                            <h2>You not have refferal code please click to create your refferal code for your partner use. </h2>
+                            <br>
+                            <vs-button floating @click="createRefCode()">Create My Refferal Code</vs-button>
+                        </v-alert>
+                    </div>
+                    <div v-else>
+                        <v-alert outlined type="success">
+                            My Refferal Code
+                            <h2 class="text-3xl">{{kyc.refferal_code}}</h2>
+                        </v-alert>
+                    </div>
+                </div><br>
                 <vs-button type="submit" floating block color="success" @click="updateProfile">Save Changes</vs-button>
             </form><br><br><br>
         </v-card-text>
@@ -89,6 +93,7 @@ import watermark from 'watermarkjs'
 import {
     City
 } from '~/vuexes/city'
+import { values } from 'lodash'
 export default {
     components: {
 
@@ -98,14 +103,12 @@ export default {
             form: {},
             user: Auth.user,
             showCropper: true,
-            data: {},
+            data: {}, 
             src: 'http://img1.vued.vanthink.cn/vued0a233185b6027244f9d43e653227439a.png',
             foreigner: false,
-            nonName:true,
-            kyc:{},
-            rules: {
-              required: value => !!value || 'Required.',
-            },
+            nonName: true,
+            kyc: {},
+            
         })
     },
     computed: {
@@ -116,35 +119,35 @@ export default {
             return City.showName;
         },
 
-      point: () => {
-        return Auth.point
-      },
-      tier: () => {
-        return Auth.tier
-      },
-      tiers: () => {
-        return Auth.tiers
-      },
-      setting: () => {
-        return Auth.setting
-      },
+        point: () => {
+            return Auth.point
+        },
+        tier: () => {
+            return Auth.tier
+        },
+        tiers: () => {
+            return Auth.tiers
+        },
+        setting: () => {
+            return Auth.setting
+        },
     },
     async created() {
         await this.initial()
     },
     methods: {
-      async createRefCode(){
-          let refcode = btoa(this.user.email)
-        let create = await Core.putHttp(`/api/account/kyc/${this.kyc.id}/`,{
-          refferal_code:refcode
-        })
-        await this.initial();
-      },
-          async getMyKyc() {
+        async createRefCode() {
+            let refcode = btoa(this.user.email)
+            let create = await Core.putHttp(`/api/account/kyc/${this.kyc.id}/`, {
+                refferal_code: refcode
+            })
+            await this.initial();
+        },
+        async getMyKyc() {
             let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
             if (kyc.length > 0) {
                 this.kyc = kyc[kyc.length - 1];
-                if(this.kyc.user_verified_name_error == true){
+                if (this.kyc.user_verified_name_error == true) {
                     this.nonName = false
                 }
             }
@@ -158,8 +161,8 @@ export default {
             delete this.form.image_profile
             await this.setCity();
             await this.getMyKyc();
-            if(this.kyc.user_verified == true && this.kyc.refferal_code == null){
-              await this.createRefCode()
+            if (this.kyc.user_verified == true && this.kyc.refferal_code == null) {
+                await this.createRefCode()
             }
         },
 
@@ -168,7 +171,9 @@ export default {
             this.form.province = City.currentProvince.id;
             this.form.amphur = City.currentAmphur.id;
             this.form.district = City.currentDistrict.id;
-            let update = await Core.putHttpAlert(`/api/account/userprofile/${this.user.id}/`, this.form)
+            if (this.form.zipcode.length == '5') {
+                let update = await Core.putHttpAlert(`/api/account/userprofile/${this.user.id}/`, this.form)
+            }
             await Auth.setUser();
 
         },
