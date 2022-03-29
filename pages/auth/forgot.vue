@@ -107,10 +107,10 @@ export default {
              await Web.switchLoad(false)
             console.log(user)
             if(user.detail!= 'User not found'){
-              Web.alert(user.detail);
+              Web.alerterror(user.detail);
               this.form = {}
             }else{
-              Web.alert(user.detail,'error');
+              Web.alerterror(user.detail,'error');
               this.form = {}
             }
 

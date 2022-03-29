@@ -21,7 +21,7 @@ class CoreModule extends VuexModule {
       Web.alert('Successfully Saved')
       return r.data
     }).catch((e) => {
-      Web.alert('Failed to save data', 'error')
+      Web.alerterror('Failed to save data', 'error')
       console.log(e)
       return e.response.data
     })
