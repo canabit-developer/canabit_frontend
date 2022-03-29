@@ -47,14 +47,14 @@
                         <v-col cols="12" md="6">
                             <h2> 2. Verification of identity by uploading a picture of an ID card </h2><br>
                             <!-- <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""> -->
-                            <img class="h-1/2 w-4/5" v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
+                            <img class="h-1/2 w-4/5 mt-5 ml-5" v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
                             <br><br>
                             <!-- <input class="mt-3" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" /> -->
                             <div class="input_field flex flex-col w-max mx-auto text-center">
                                 <label>
                                     <input class="text-sm cursor-pointer w-36 hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF">
-                                    <div v-if="!kyc.user_verified" class="mr-36 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Choose File</div>
+                                    <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Choose File</div>
                                 </label>
                             </div>
                         </v-col>
@@ -62,14 +62,14 @@
                         <v-col cols="12" md="6">
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>
                             <!-- <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt=""> -->
-                            <img class="h-1/2 w-3/4 mt-5" v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
-                            <img v-else class="h-1/2 w-3/5 mt-7" src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
+                            <img class="h-1/2 w-3/4 mt-5 ml-8 " v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
+                            <img v-else class="h-1/2 w-3/5 mt-5" src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
                             <br> <br>
                             <!-- <input class="mt-3" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" /> -->
                             <div class="input_field flex flex-col w-max mx-auto text-center">
                                 <label>
                                     <input class="text-sm cursor-pointer w-36 hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF">
-                                    <div v-if="!kyc.user_verified" class="mr-36 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Choose File</div>
+                                    <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Choose File</div>
                                 </label>
                             </div>
                         

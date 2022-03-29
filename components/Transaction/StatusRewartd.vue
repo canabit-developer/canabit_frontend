@@ -119,7 +119,7 @@ export default {
         },
 
         async removeRedeem(item) {
-            let check = await Web.confirm("Are you sure you want to Cancel Reward")
+            let check = await Web.confirm("Cancel Are you sure you want to Reward")
             if (check) {
                 let remove = await Core.putHttp(`/api/store/rewardhistory/${item.id}/`, {
                     status: 2,
