@@ -76,6 +76,7 @@ export default {
                 this.error = {}
                 this.$refs.formResetPassword.reset()
                 await Web.alert(`Update Password Success`)
+                this.form = {}
             }
         }
     }
