@@ -100,6 +100,7 @@ export default {
             this.bankList = await Core.getChoice('bank')
         },
         async cashout() {
+            this.active = false
             let check = await Web.confirm(`Are You Sure ?`)
             if (check) {
                 this.form.user = Auth.user.id
@@ -108,12 +109,11 @@ export default {
                     await Auth.cutPoint(this.form.point)
                     await Auth.logPoint(`Cash Out`, this.form.point, 1)
                 }
-
                 this.form = {}
                 this.$emit('reload', false)
                 this.$router.push('/transaction')
             } else {
-                this.form = {}
+                //this.form = {}
             }
 
         }
@@ -134,7 +134,7 @@ export default {
     },
   watch:{
     active(val){
-      this.form = {}
+        
     }
   }
 }
