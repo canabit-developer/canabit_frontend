@@ -44,11 +44,11 @@
                             ชื่อ-สกุล ไม่ตรงกับบัตรประจำตัวประชาชน โปรดแก้ไขข้อมูล
                         </v-alert>
                     </div>
-                    <v-text-field class="w-full md:w-1/2 mt-2 pl-2" v-model="form.display_name" prepend-inner-icon="em em-bust_in_silhouette" label="Display Name" dense outlined></v-text-field>
+                    <v-text-field class="w-full md:w-1/2 mt-2 pl-2" maxlength="20" v-model="form.display_name" prepend-inner-icon="em em-bust_in_silhouette" label="Display Name" dense outlined></v-text-field>
                     <v-text-field readonly class="w-full md:w-1/2 mt-2 pl-2" v-model="form.email" prepend-inner-icon="em em-email" label="E-mail" dense outlined></v-text-field>
                     <!-- <v-text-field disabled class="w-full md:w-1/2 mt-2 pl-2 " v-model="form.username" label="username" dense outlined></v-text-field> -->
-                    <v-text-field required :readonly="kyc.user_verified" class="w-full  md:w-1/2 mt-2 pl-2" v-model="form.first_name" prepend-inner-icon="em em-man-frowning" label="First Name" dense outlined></v-text-field>
-                    <v-text-field required :readonly="kyc.user_verified" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" prepend-inner-icon="em em-man-frowning" label="Last name" dense outlined></v-text-field>
+                    <v-text-field required :readonly="kyc.user_verified" maxlength="30" class="w-full  md:w-1/2 mt-2 pl-2" v-model="form.first_name" prepend-inner-icon="em em-man-frowning" label="First Name" dense outlined></v-text-field>
+                    <v-text-field required :readonly="kyc.user_verified" maxlength="30" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.last_name" prepend-inner-icon="em em-man-frowning" label="Last name" dense outlined></v-text-field>
 
                     <br><br>
                     <h2 class="w-full text-2xl">
@@ -93,6 +93,9 @@ import watermark from 'watermarkjs'
 import {
     City
 } from '~/vuexes/city'
+import {
+    Web
+} from '~/vuexes/web'
 import { values } from 'lodash'
 export default {
     components: {
@@ -165,7 +168,6 @@ export default {
                 await this.createRefCode()
             }
         },
-
         async updateProfile() {
             this.form.geo = City.currentGeo.id;
             this.form.province = City.currentProvince.id;
