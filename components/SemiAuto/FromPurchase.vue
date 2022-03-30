@@ -200,7 +200,7 @@ export default {
             if (data.id) {
               if (this.usePoint > 0) {
                 await Auth.cutPoint(this.usePoint)
-                await Auth.logPoint(`EA ${this.ea.name} Use Point `, this.form.point, 1)
+                await Auth.logPoint(`EA ${this.ea.name} Use Point `, this.usePoint , 1)
                 this.active = false
                 this.$router.push('/accountstatus?tab=0')
               }else{
