@@ -97,6 +97,7 @@ import {
     Web
 } from '~/vuexes/web'
 import { values } from 'lodash'
+import moment from 'moment'
 export default {
     components: {
 
@@ -140,7 +141,7 @@ export default {
     },
     methods: {
         async createRefCode() {
-            let refcode = btoa(this.user.email)
+            let refcode = new moment().format('MMmmDDssYYYhh')
             let create = await Core.putHttp(`/api/account/kyc/${this.kyc.id}/`, {
                 refferal_code: refcode
             })
