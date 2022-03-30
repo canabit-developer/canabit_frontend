@@ -47,6 +47,17 @@ class WebModule extends VuexModule {
       confirmButtonColor: "#00E96A",
     })
   }
+
+  public async alertAuto(title: any = 'OK',timer:any = 2000, type: any = 'success',  text: any = '') {
+    await Swal.fire({
+      showConfirmButton: false,
+      icon: type,
+      title: title,
+      text: text,
+      timer: timer,
+     
+    })
+  }
   public async alertnotfound(title: any = 'OK', type: any = 'error',  text: any = '') {
     await Swal.fire({
       icon: type,

@@ -57,7 +57,7 @@
                     <v-checkbox label="Foreigner" v-model="form.foreigner"></v-checkbox>
                     <v-text-field class="w-full  pl-2" v-model="form.address" prepend-inner-icon="em em-house" label="Address" dense outlined></v-text-field>
                     <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="Province District" prepend-inner-icon="em em-house_buildings" />
-                    <v-text-field  required counter="5"   v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" prepend-inner-icon="em em-postbox" hint="Please enter a 5 digit postal code." maxlength="5" label="Postal code" dense outlined></v-text-field>
+                    <v-text-field required counter="5" v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" prepend-inner-icon="em em-postbox" hint="Please enter a 5 digit postal code." maxlength="5" label="Postal code" dense outlined></v-text-field>
                 </div>
                 <br>
                 <div v-if="kyc.user_verified">
@@ -70,12 +70,21 @@
                     </div>
                     <div v-else>
                         <v-alert outlined type="success">
-                            My Refferal Code
-                            <h2 class="text-3xl">{{kyc.refferal_code}}</h2>
+                            <div class="flex">
+                                <div>
+                                    My Refferal Code
+                                    <h2 class="text-3xl">{{kyc.refferal_code}}</h2>
+                                </div>
+                                <v-spacer></v-spacer>
+                                <v-btn text small @click="copyURL(kyc.refferal_code)" color="primary">
+                                    <v-icon>mdi-clipboard</v-icon> Copy Refferal Code
+                                </v-btn>
+                            </div>
+
                         </v-alert>
                     </div>
                 </div><br>
-                <vs-button type="submit" floating block color="success" >Save Changes</vs-button>
+                <vs-button type="submit" floating block color="success">Save Changes</vs-button>
             </form><br><br><br>
         </v-card-text>
     </v-card>
@@ -96,7 +105,9 @@ import {
 import {
     Web
 } from '~/vuexes/web'
-import { values } from 'lodash'
+import {
+    values
+} from 'lodash'
 import moment from 'moment'
 export default {
     components: {
@@ -107,12 +118,12 @@ export default {
             form: {},
             user: Auth.user,
             showCropper: true,
-            data: {}, 
+            data: {},
             src: 'http://img1.vued.vanthink.cn/vued0a233185b6027244f9d43e653227439a.png',
             foreigner: false,
             nonName: true,
             kyc: {},
-            
+
         })
     },
     computed: {
@@ -140,6 +151,15 @@ export default {
         await this.initial()
     },
     methods: {
+        async copyURL(mytext) { 
+            try {  
+                await navigator.clipboard.writeText(mytext);
+                await Web.alertAuto(`Your refferal code is copied`,1000)
+                            
+            } catch (e) {
+                  await Web.alertAuto(`Your refferal code is not copied`,1000,'error')
+            }
+        },
         async createRefCode() {
             let refcode = new moment().format('MMmmDDssYYYhh')
             let create = await Core.putHttp(`/api/account/kyc/${this.kyc.id}/`, {
