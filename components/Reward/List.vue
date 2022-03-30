@@ -19,7 +19,7 @@
             <v-container>
                 <v-row justify="center">
                    <v-col cols="12">
-                        <vs-button @click="votting('A')"  block floating color="#4FE54C" size="large">
+                        <vs-button @click="votting('A',$url+productA.image)"  block floating color="#4FE54C" size="large">
                             Vote
                         </vs-button>
                     </v-col>
@@ -46,7 +46,7 @@
             <v-container>
                 <v-row justify="center">
                     <v-col cols="12">
-                        <vs-button @click="votting('B')" block floating color="#4FE54C" size="large">
+                        <vs-button @click="votting('B',$url+productB.image)" block floating color="#4FE54C" size="large">
                             Vote
                         </vs-button>
                     </v-col>
@@ -85,7 +85,7 @@ export default {
         this.productA = this.vote.store_a
         this.productB= this.vote.store_b
       },
-    async votting(choice){
+    async votting(choice,img=""){
       let check = await Web.confirm('Do you want to Voting?')
        if(check){
          let form = {
@@ -98,7 +98,7 @@ export default {
         if (data.id) {
           if (this.point.current >=  this.vote.point_use) {
             await Auth.cutPoint(this.vote.point_use)
-            await Auth.logPoint(`Reward Voting ${choice}`, this.vote.point_use, 1,1)
+            await Auth.logPoint(`<img src="${img}" style="height:48px; width:48px;" > Reward Voting ${choice}`, this.vote.point_use, 1,1)
           }else{
             await Web.alert(`More than point`,`error`)
           }
