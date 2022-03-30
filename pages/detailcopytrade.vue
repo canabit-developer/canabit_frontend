@@ -45,6 +45,7 @@
             </div>
         </div>
          <div class="max-w-7xl mx-auto bg-white  relative  rounded-xl lg:mt-5 md:-mt-24" v-if="response">
+     
                <CopyTrade-DetailCopyTrade :cpt="cpt"></CopyTrade-DetailCopyTrade>
             </div>
     </div>
@@ -70,7 +71,7 @@ export default {
   },
   methods:{
     async startup(){
-      this.cpt = await Core.getHttp(`/api/copytrade/product/${this.$route.query.id}/`)
+      this.cpt = await Core.getHttp(`/api/copytrade/productdetail/${this.$route.query.id}/`)
     }
   },
   computed:{
