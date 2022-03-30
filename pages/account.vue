@@ -57,6 +57,12 @@
                         <v-tab-item>
                             <Account-Kyc></Account-Kyc>
                         </v-tab-item>
+                         <v-tab>
+                            <v-icon size="20" class="me-3"></v-icon> Partner
+                        </v-tab>
+                         <v-tab-item>
+                            <Account-Partner></Account-Partner>
+                        </v-tab-item>
                     </v-tabs>
 
                 </div>
