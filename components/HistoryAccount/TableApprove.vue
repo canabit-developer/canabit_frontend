@@ -1,5 +1,5 @@
 <template>
-<div class="p-4" v-if="response">
+<div class="" v-if="response">
     <div class="p-8 ">
              <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
                 <template v-slot:item.product="{ item }">
@@ -16,8 +16,7 @@
                 </template>
                 <template v-slot:item.account_no="{ item }">
                     <div class="flex">
-                        {{item.account_type_image}}
-                        <img class="h-6" :src="item.account_type_image" alt=""> <span class="ml-2">{{item.account_no}}</span>
+                        <img class="h-6" :src="item.account_type_image" alt=""> <span class="ml-1">{{item.account_no}}</span>
                     </div>
                 </template>
 
@@ -68,10 +67,16 @@ export default {
 
             },
             {
+                text: 'Account No',
+                value: "account_no",
+
+            },
+            {
                 text: 'Account Type',
                 value: "account_type",
 
             },
+            
             {
                 text: 'Price',
                 value: "price",
@@ -109,7 +114,7 @@ export default {
         async getTableEA() {
             let no = 1
             this.items = await Core.getHttp(`/api/ea/order/?user=${Auth.user.id}${this.filterProduct}${this.filterBroker}${this.filterAccountType}`)
-            this.items =   _.map(this.items,   (r) => {
+            this.items =   _.map(this.items, (r) => {
                 let obj = r
                 obj.on = no++
                 obj.pr = this.getProduct(obj.product)
@@ -122,6 +127,7 @@ export default {
                 obj.act =  this.getAccountType(obj.account_type)
                 obj.account_type = this.getAccountTypeList(obj.act.account_type)
                 obj.account_type_image = obj.act.image
+                obj.account_no = obj.act.account_no
                 obj.price = obj.pr.price
               obj.remark = r.remark
                 return obj
@@ -136,6 +142,7 @@ export default {
                 return {
                     id: `&product=` + r.id,
                     name: r.name,
+                    
                 }
             })
             this.listFilerProduct.push({
