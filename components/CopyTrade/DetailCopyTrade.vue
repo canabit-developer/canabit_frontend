@@ -18,13 +18,11 @@
                             <div class="flex flex-wrap justify-center m-5">
                                 <CopyTrade-DialogSelectBrok :brokers="brokers"></CopyTrade-DialogSelectBrok>
                             </div>
-                            <v-rating readonly  color="orange" class="mr-5"   length="5" size="20"
-                                    v-model="rate"
-                          ></v-rating>
+                            <v-rating readonly color="orange" class="mr-5" length="5" size="20" v-model="rate"></v-rating>
                         </div>
-                        
+
                     </div>
-                        
+
                     <h2 class="font-bold text-3xl  ml-10 mt-8">
                         Details
                     </h2>
@@ -99,12 +97,16 @@ export default {
     methods: {
         async startup() {
             this.reviews = await Core.getHttp(`/api/copytrade/review/?product=${this.$route.query.id}`)
-            this.rate = _.mean(_.map(this.reviews, 'star'))
+
+            let reviews = _.filter(this.reviews, (r) => {
+                return r.star > 0
+            })
+            this.rate = _.mean(_.map(reviews, 'star'))
         },
         async genBrokers() {
-      
-          this.brokers = this.cpt.broker_full
-           
+
+            this.brokers = this.cpt.broker_full
+
         },
         async storeComment() {
             this.form.product = this.$route.query.id

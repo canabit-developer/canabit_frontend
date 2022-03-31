@@ -95,7 +95,8 @@ export default {
   methods:{
       async startup(){
         this.reviews = await Core.getHttp(`/api/ea/review/?product=${this.$route.query.id}`)
-        this.rate = _.mean(_.map(this.reviews,'star'))
+        let reviews = _.filter(this.reviews,(r)=>{return r.star > 0})
+        this.rate = _.mean(_.map(reviews,'star'))
 
       },
     async storeComment(){
