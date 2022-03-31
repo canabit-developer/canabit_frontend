@@ -72,19 +72,19 @@
                         <v-alert outlined type="success">
                             <div class="flex">
                                 <div>
-                                    My Refferal Code
+                                    My Referal Code
                                     <h2 class="text-3xl">{{kyc.refferal_code}}</h2>
                                 </div>
                                 <v-spacer></v-spacer>
                                 <v-btn text small @click="copyURL(kyc.refferal_code)" color="primary">
-                                    <v-icon>mdi-clipboard</v-icon> Copy Refferal Code
+                                    <v-icon>mdi-clipboard</v-icon> Copy Referal Code
                                 </v-btn>
                             </div>
 
                         </v-alert>
                     </div>
                 </div><br>
-                <vs-button type="submit" floating block color="success">Save Changes</vs-button>
+                <vs-button type="submit" floating block color="success">Save Change</vs-button>
             </form><br><br><br>
         </v-card-text>
     </v-card>
