@@ -66,12 +66,9 @@
                       <p style="width: 90%" class="text-gray-600 text-lg  p-6 md:text-left ">{{review.comment}} </p><br>
                     </div>
                   </div>
-
                 </div>
             </div>
-
         </v-col>
-
     </div>
 </div>
 </template>
