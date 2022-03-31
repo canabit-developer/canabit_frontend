@@ -3,9 +3,10 @@
     <div class="p-8 "><span class="text-6xl"></span>
           <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
             <template v-slot:item.product="{ item }">
-                <div class="flex">
-                    <img class="h-6" :src="item.product_image" alt=""> <span class="ml-2">{{item.product}}</span>
-                </div>
+                <div class="flex p-4 items-center">
+                    <img class="h-20 w-20" :src="$url+item.product_image" alt="">
+                    <span class="ml-2">{{item.product_name}}</span>
+                 </div>
             </template>
             <template v-slot:item.point_use="{ item }">
                 <span class="text-red-600 -m-3">- {{item.point_use}}</span>
@@ -84,40 +85,19 @@ export default {
     },
     methods: {
         async startup() {
-            await this.getStoreProduct()
+    
             await this.getTableIndicator()
         },
         async getTableIndicator() {
             let no = 1
-            this.items = await Core.getHttp(`/api/store/rewardhistory/?user=${Auth.user.id}${this.filterProduct}`)
+            this.items = await Core.getHttp(`/api/store/rewardhistory/?user=${Auth.user.id}`)
             this.items = _.map(this.items, (r) => {
-                let obj = r
-                obj.no = no++
-                obj.product_id = r.product
-                obj.product = this.getProduct(obj.product).name
-                return obj
+                let obj = r 
+                 obj.no = no++ 
+                 return obj
             })
         },
-        async getStoreProduct() {
-            this.products = await Core.getHttp(`/api/store/product/`)
-            this.listFilerProduct = _.map(this.products, (r) => {
-                return {
-                    id: `&product=` + r.id,
-                    name: r.name,
-                }
-            })
-            this.listFilerProduct.push({
-                id: ``,
-                name: 'All'
-            })
-            console.log(this.listFilerProduct);
-        },
-        getProduct(id) {
-            return _.find(this.products, {
-                id: id
-            })
-        },
-
+   
         async removeRedeem(item) {
             let check = await Web.confirm("Do you want to cancle?")
             if (check) {
@@ -137,7 +117,7 @@ export default {
                         })
                     }
                 }
-                 await location.reload();
+                await location.reload();
             }
             await this.startup();
         }
