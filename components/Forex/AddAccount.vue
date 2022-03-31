@@ -17,11 +17,11 @@
                 <div class="con-form">
                     <v-container>
                         <form @submit.prevent="store()">
-                            <v-alert outlined dense   type="info" prominent border="left" >
+                            <v-alert outlined dense type="info" prominent border="left">
                                 The account number must be the number registered with the IB only.</v-alert>
                             <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Account No" v-model="form.account_no" prepend-inner-icon="em em-1234" hint="For example, 222 444" outlined></v-text-field>
-                            <v-select @change="checkAccount()" item-text="name" item-value="id" persistent-hint  v-model="form.broker" prepend-inner-icon="em em-chart" :items="broker"   outlined label="Brokers" required></v-select>
-                            <v-select item-text="name" item-value="id" persistent-hint  v-model="form.account_type" prepend-inner-icon="em em-moneybag" :items="accounttype"  outlined label="Account Type"></v-select>
+                            <v-select @change="checkAccount()" item-text="name" item-value="id" persistent-hint v-model="form.broker" prepend-inner-icon="em em-chart" :items="broker" outlined label="Brokers" required></v-select>
+                            <v-select item-text="name" item-value="id" persistent-hint v-model="form.account_type" prepend-inner-icon="em em-moneybag" :items="accounttype" outlined label="Account Type"></v-select>
 
                             <vs-button v-if="form.broker && form.account_type" type="submit" block floating color="#4ade80">
                                 + Add  Account
@@ -50,51 +50,72 @@ import {
 } from '~/vuexes/auth'
 import moment from 'moment'
 import _ from "lodash";
+import {
+    Web
+} from '~/vuexes/web'
 export default {
     data: () => ({
         accounttype: [],
         broker: [],
         active: false,
-        listAccountType : [],
+        listAccountType: [],
         form: {},
-      response:false,
+        myBrokers: [],
+        response: false,
     }),
     async created() {
-      await  this.startup()
-      this.response = true;
+        await this.startup()
+        this.response = true;
     },
     methods: {
         async startup() {
             this.listAccountType = await Forex.getAccountType()
             this.broker = await Forex.getBroker()
+            // this.myBrokers = await Core.getHttp(`/api/finance/brokeraccount/?user=${Auth.user.id}${this.filterAccountType}${this.filterBroker}`)
+
+        },
+        async handleAccountType() {
+            let data = await Core.getHttp(`/api/finance/brokeraccount/?broker=${this.form.broker}&account_type=${this.form.account_type}&status=1&user=${Auth.user.id}`)
+            
+            return (data.length > 0) ? false : true
         },
 
         async store() {
-          this.form.user = Auth.user.id
-          this.form.broker_no = moment().format('DDMMYYhhmmss')
-          let add = await Core.postHttpAlertAccount(`/api/finance/brokeraccount/`, this.form)
-          this.active = false;
-          if(add.id){
-            await location.reload();
-          }
+            let check = await this.handleAccountType()
+            let form  = this.form
+            this.active = false 
+            if (check) {
+                form.user = Auth.user.id
+                form.broker_no = moment().format('DDMMYYhhmmss')
+                let add = await Core.postHttpAlertAccount(`/api/finance/brokeraccount/`,form)
+                this.active = false;
+                if (add.id) {
+                   await location.reload();
+                }
+            }else{
+                await Web.alert(`Account No is exist.`,'error')
+                this.active = true;
+            }
 
         },
-      async checkAccount(){
-          let brokerAccounts = await Core.getHttp(`/api/finance/accounttype/`)
-          let inBroker = _.find(this.broker,{id:this.form.broker})
-        this.accounttype =   _.reject(brokerAccounts, (item) => _.find(inBroker.types, (r) => {
-          return r == item.id
-        }));
-      }
+        async checkAccount() {
+            let brokerAccounts = await Core.getHttp(`/api/finance/accounttype/`)
+            let inBroker = _.find(this.broker, {
+                id: this.form.broker
+            })
+            this.accounttype = _.reject(brokerAccounts, (item) => _.find(inBroker.types, (r) => {
+                return r == item.id
+            }));
+        }
 
     },
     computed: {
 
     },
-    watch:{
-      active(val){
-        this.form = {}
-      }
+    watch: {
+        active(val) {
+            this.form = {}
+        }
     }
 
 }
