@@ -115,6 +115,7 @@ export default {
                 value: "account_no",
 
             },
+            
             {
                 text: 'Date Create',
                 value: "created_at",
