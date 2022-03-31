@@ -122,6 +122,13 @@ private async updateMyTier(currentTier:any){
   }
 
 
+  public async addPointWithoutTotal(point:number){
+    let form = this.point
+    form.current = form.current  + point 
+    await Core.putHttp(`/api/account/userpoint/${form.id}/`,form)
+  }
+
+
   public async reToken(){
     axios.defaults.headers.common['Authorization'] = '';
   }

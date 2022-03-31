@@ -106,7 +106,7 @@ export default {
                     remark: "Cancle By User",
                 })
                 if (remove.id) {
-                    await Auth.addPoint(item.point_use)
+                    await Auth.addPointWithoutTotal(item.point_use)
                     await Auth.logPoint(`Redeem ${item.code}`, item.point_use, 0, 1)
                     let call = await Core.getHttp(`/api/account/userpointhistory/?user=${this.user.id}&received_from=Redeem ${item.code}`)
                     if (call.length > 0) {
