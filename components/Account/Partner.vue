@@ -8,8 +8,8 @@
             <v-timeline dense>
                 <v-timeline-item v-for="(partner, i) in partners" :key="i" small>
                     <v-toolbar flat>
-                        <vs-avatar v-if="$url+partner.image">
-                            <img :src="$url+partner.image" alt="">
+                        <vs-avatar v-if="$url+partner.image_profile">
+                            <img :src="$url+partner.image_profile" alt="">
                         </vs-avatar>
                         <vs-avatar primary v-else>
                             <template #text>
