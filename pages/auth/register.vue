@@ -56,13 +56,13 @@
                             </div>
                         </div>
                         <v-alert outlined dense  type="info" prominent border="left" >
-                                Please fill out the information completely.</v-alert>
+                                Please complete the information.</v-alert>
                         <!-- <v-text-field v-model="form.username" class="mt-4" prepend-inner-icon="mdi-card-account-details" outlined label="Username" hide-details></v-text-field> -->
-                        <v-text-field id="reg_email" required v-model="form.email" class="mt-2" hint="* Please enter E-mail" persistent-hint prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
+                        <v-text-field id="reg_email" required v-model="form.email" class="mt-2" hint="* Please enter your E-mail." persistent-hint prepend-inner-icon="em em-email" outlined  label="E-mail"></v-text-field>
 
-                        <v-text-field id="reg_first_name"  v-model="form.first_name" required hint="* Please enter Frist Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
-                        <v-text-field id="reg_last_name"  v-model="form.last_name"  required hint="* Please enter Last Name" persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
-                        <v-text-field id="reg_phone_number"  v-model="form.phone_number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" item-text="value"  hint="* fill in  Number Phone" persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
+                        <v-text-field id="reg_first_name"  v-model="form.first_name" required hint="* Please enter your frist name." persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Frist Name" ></v-text-field>
+                        <v-text-field id="reg_last_name"  v-model="form.last_name"  required hint="* Please enter your last name." persistent-hint prepend-inner-icon="em em-man-frowning" outlined label=" Last Name" ></v-text-field>
+                        <v-text-field id="reg_phone_number"  v-model="form.phone_number" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" item-text="value"  hint="* Please enter your phone number." persistent-hint maxlength="10" type="text" outlined prepend-inner-icon="em em-iphone" label="Phone Number" ></v-text-field>
                         <v-text-field  id="reg_password" v-model="form.password"   persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible ? 'text' : 'password'" outlined label="Password" placeholder="············" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" ></v-text-field>
 
                         <v-text-field  v-model="form.password_confirm"  persistent-hint prepend-inner-icon="em em-lock" :type="isPasswordVisible1 ? 'text' : 'password' " outlined label="Confirm Password" placeholder="············" :append-icon="isPasswordVisible1 ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible1 = !isPasswordVisible1"></v-text-field>
