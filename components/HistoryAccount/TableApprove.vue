@@ -16,6 +16,7 @@
                 </template>
                 <template v-slot:item.account_no="{ item }">
                     <div class="flex">
+                        
                         <img class="h-6" :src="item.account_type_image" alt=""> <span class="ml-1">{{item.account_no}}</span>
                     </div>
                 </template>
@@ -125,8 +126,8 @@ export default {
                 obj.broker_id = r.broker
                 obj.broker = this.getBroker(obj.broker).name
                 obj.act =  this.getAccountType(obj.account_type)
-                obj.account_type = this.getAccountTypeList(obj.act.account_type)
-                obj.account_type_image = obj.act.image
+                obj.account_type = this.getAccountTypeList(obj.act.account_type) 
+                obj.account_type_image = this.$url+this.getAccountTypeListImg(obj.act.account_type)
                 obj.account_no = obj.act.account_no
                 obj.price = obj.pr.price
               obj.remark = r.remark
@@ -206,6 +207,12 @@ export default {
           return    _.find(this.accountTypes, {
             id: id
           }).name
+      },
+
+      getAccountTypeListImg(id){
+          return    _.find(this.accountTypes, {
+            id: id
+          }).image
       }
     },
 
