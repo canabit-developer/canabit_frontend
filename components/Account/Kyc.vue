@@ -32,7 +32,7 @@
                     </v-alert>
                     <form @submit.prevent="updateCardId()">
                         <v-checkbox v-if="!kyc.user_verified" label="Use Passport Number" v-model="isPassport"></v-checkbox>
-                        <v-text-field v-if="!isPassport " :disabled="kyc.user_verified" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Fill in your ID card number" outlined></v-text-field>
+                        <v-text-field v-if="!isPassport " :disabled="kyc.user_verified" required oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="13" @input="checkIdData()" class="mt-5" v-model="id" counter="13" hint="Please check the correctness ID Number" label="Your ID card number." outlined></v-text-field>
                         <v-text-field v-else required class="mt-5" v-model="id" label="Fill in your ID card number" outlined></v-text-field>
 
                         <div class="flex">
