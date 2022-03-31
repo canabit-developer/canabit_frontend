@@ -153,7 +153,7 @@ export default {
     methods: {
         async copyURL(mytext) { 
             try {  
-                await navigator.clipboard.writeText(mytext);
+                await navigator.clipboard.writeText(`${this.$furl}auth/register?ref=${mytext}`);
                 await Web.alertAuto(`Your refferal code is copied`,1000)
                             
             } catch (e) {
