@@ -111,6 +111,7 @@ export default {
     layout: 'root',
     data: () => {
         return ({
+           
             isPasswordVisible: false,
             form: {
                 login: '',
@@ -162,9 +163,10 @@ export default {
         },
         async callback(user) {
             await Web.switchLoad(true)
-            this.form = user.login
+            this.form = user.login 
             let logined = await this.login(false)
             if (!logined) {
+                 this.userCheckError = false
                 let registerUser = await Auth.register(user.register)
                 if (registerUser.id) {
                     await Web.switchLoad(false)
