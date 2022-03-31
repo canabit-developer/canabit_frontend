@@ -18,10 +18,13 @@
                             <div class="flex flex-wrap justify-center m-5">
                                 <CopyTrade-DialogSelectBrok :brokers="brokers"></CopyTrade-DialogSelectBrok>
                             </div>
+                            <v-rating readonly  color="orange" class="mr-5"   length="5" size="20"
+                                    v-model="rate"
+                          ></v-rating>
                         </div>
-
+                        
                     </div>
-
+                        
                     <h2 class="font-bold text-3xl  ml-10 mt-8">
                         Details
                     </h2>
