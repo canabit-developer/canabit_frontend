@@ -24,15 +24,15 @@
 
                 <template #footer>
                     <div class="footer-dialog">
-                        <vs-button @click="store()" block color="#17c964" >
+                        <vs-button @click="store()" block color="#17c964">
                             Submit Request Test
                         </vs-button>
                     </div>
                 </template>
             </vs-dialog>
-            
+
         </div>
-       
+
     </template>
 </div>
 </template>
@@ -48,36 +48,58 @@ import {
     Core
 } from '~/vuexes/core'
 export default {
-  props:{
-    ea:{default:{}}
-  },
+    props: {
+        ea: {
+            default: {}
+        }
+    },
     data: () => ({
         active: false,
     }),
 
     methods: {
-      async store(){
-        let form =  {
-          "code": 'RT' + Date.now(),
-          "link": "",
-          "user": this.user.id,
-          "product": this.ea.id
-        }
-        let data = await Core.postHttpAlert(`/api/ea/requesttest/`,form)
-        if(data.id){
-          this.active = false;
-          await this.$router.push('/accountstatus?tab=2')
-        }
-      }
-    },
-  computed:{
-    user:()=>{return Auth.user},
-    point:()=>{return Auth.point},
-    tier:()=>{return Auth.tier},
-    tiers:()=>{return Auth.tiers},
-    setting:()=>{return Auth.setting},
+        async store() {
+            this.active = false
+            if (await Web.confirm(`Do you want to use request test?`)) {
+                let check = await Core.getHttp(`/api/ea/requesttest/?user=${this.user.id}&product=${this.ea.id}`)
+                if (check.length == 0) {
+                    let form = {
+                        "code": 'RT' + Date.now(),
+                        "link": "",
+                        "user": this.user.id,
+                        "product": this.ea.id
+                    }
+                    let data = await Core.postHttpAlert(`/api/ea/requesttest/`, form)
+                    if (data.id) {
+                        this.active = false;
+                        await this.$router.push('/accountstatus?tab=2')
+                    }
+                } else {
+                  await Web.alert(`This Product you 're used.`,'error')
+                 
+                }
 
-  }
+            }  
+        }
+    },
+    computed: {
+        user: () => {
+            return Auth.user
+        },
+        point: () => {
+            return Auth.point
+        },
+        tier: () => {
+            return Auth.tier
+        },
+        tiers: () => {
+            return Auth.tiers
+        },
+        setting: () => {
+            return Auth.setting
+        },
+
+    }
 }
 </script>
 
