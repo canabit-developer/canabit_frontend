@@ -1,17 +1,17 @@
 <template>
 <div class="p-4" v-if="response">
     <div class="p-8 "><span class="text-6xl"></span>
-          <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
-                   <template v-slot:item.received_from="{ item }">
-                       <div class="flex items-center" v-html="item.received_from"></div>
-                </template>
-                  <template v-slot:item.point="{ item }">
-                    <span class="text-red-600" v-if="item.type == 1">- {{item.point}}</span>
-                    <span class="text-green-600" v-if="item.type == 0">+ {{item.point}}</span>
-                </template>
+        <v-data-table :search="search" :headers="headers" :items="items" class="elevation-1">
+            <template v-slot:item.received_from="{ item }">
+                <div class="flex items-center" v-html="item.received_from"></div>
+            </template>
+            <template v-slot:item.point="{ item }">
+                <span class="text-red-600" v-if="item.type == 1">- {{item.point}}</span>
+                <span class="text-green-600" v-if="item.type == 0">+ {{item.point}}</span>
+            </template>
             <template v-slot:item.status="{ item }">
-                    <Core-Status :status="item.status" />
-                </template>
+                <Core-Status :status="item.status" />
+            </template>
         </v-data-table>
     </div>
 </div>
@@ -57,11 +57,11 @@ export default {
                 value: "status",
 
             },
-          {
-            text: 'Remark',
-            value: "remark",
+            {
+                text: 'Remark',
+                value: "remark",
 
-          },
+            },
         ],
 
     }),
@@ -83,7 +83,6 @@ export default {
                 return obj
             })
         },
-
     },
     computed: {
 
