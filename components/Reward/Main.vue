@@ -31,6 +31,9 @@
         <div class="w-20 h-40 absolute bg-green-300 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
         </div>
     </div>
+    <div v-else>
+        <img src="https://scontent.fcnx3-1.fna.fbcdn.net/v/t39.30808-6/273214837_395383259019790_558937949465519379_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=e3f864&_nc_eui2=AeEi2X_-ZhHBPD8rY_U8Op0hdexDfCqWOrt17EN8KpY6u2X9PR0aNmOKe5p66EE_AZLUVUvaHC2gnb97qnGHWbwi&_nc_ohc=RV5jsCNLH7QAX-RWMk8&_nc_ht=scontent.fcnx3-1.fna&oh=00_AT8bjj1cfmXB6mzzaZ2woaPgNgICvcVWChdsnOp-B_jsZw&oe=624B4179" alt="">
+    </div>
 </div>
 </template>
 
