@@ -47,7 +47,7 @@
                         <v-col cols="12" md="6">
                             <h2> 2. Verification of identity by uploading a picture of an ID card </h2><br>
                             <!-- <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""> -->
-                            <img class="h-1/2 w-4/5 mt-5 ml-5" v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
+                            <img class="h-1/2 w-4/5 ml-5" v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
                             <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
                             <br><br>
                             <!-- <input class="mt-3" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" /> -->
