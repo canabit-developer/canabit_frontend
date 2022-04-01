@@ -54,7 +54,7 @@
                             <div class="input_field flex flex-col w-max mx-auto text-center">
                                 <label>
                                     <input class="text-sm cursor-pointer w-36 hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF">
-                                    <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Choose File</div>
+                                    <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Upload picture</div>
                                 </label>
                             </div>
                         </v-col>
@@ -69,7 +69,7 @@
                             <div class="input_field flex flex-col w-max mx-auto text-center">
                                 <label>
                                     <input class="text-sm cursor-pointer w-36 hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF">
-                                    <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Choose File</div>
+                                    <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Upload picture</div>
                                 </label>
                             </div>
                         

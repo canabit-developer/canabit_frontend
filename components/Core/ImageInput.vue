@@ -4,7 +4,7 @@
 
     <v-dialog v-if="dialogFile" v-model="dialogFile" persistent scrollable max-width="500px" transition="dialog-transition">
         <v-card>
-            <v-card-title primary-title> Setting Image
+            <v-card-title primary-title> Upload Picture
                 <v-spacer></v-spacer>
                 <v-btn @click="closeDialog()" icon  color="error"><v-icon>mdi-close</v-icon></v-btn>
             </v-card-title>
@@ -21,7 +21,7 @@
             }" @change="ready"></cropper>
                     <br>
                     <center>
-                        <vs-button floating @click="callbackImage()" color="success">Upload Image</vs-button>
+                        <vs-button floating @click="callbackImage()" color="success">Upload Picture</vs-button>
                     </center>
                 </div>
             </v-card-text>

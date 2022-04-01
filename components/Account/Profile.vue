@@ -84,7 +84,7 @@
                         </v-alert>
                     </div>
                 </div><br>
-                <vs-button type="submit" floating block color="success">Save Change</vs-button>
+                <vs-button type="submit" floating block color="success">Update Profile</vs-button>
             </form><br><br><br>
         </v-card-text>
     </v-card>
