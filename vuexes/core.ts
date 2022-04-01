@@ -85,7 +85,7 @@ class CoreModule extends VuexModule {
           'Content-Type': 'multipart/form-data'
         }
       }).then((r) => {
-        Web.alert('Successfully edited')
+        Web.alert('Successfully executed')
         return r.data
       }).catch((e) => {
         Web.alert('Failed to edit data', 'error')
