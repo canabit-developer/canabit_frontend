@@ -1,6 +1,7 @@
 <template>
-<div class="bg-main" v-if="response">
-    <v-app-bar app flat absolute color="transparent">
+<div class="bg-main " v-if="response">
+  
+    <v-app-bar color="transparent" flat fixed  absolute class="w-full">
         <div class="boxed-container w-full">
             <div class="d-flex align-center mx-6">
                 <!-- Left Content -->
