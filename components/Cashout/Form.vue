@@ -6,7 +6,8 @@
                 <div class="flex items-center">
                     <div class="flex flex-col">
                         <div class="w-full flex-none text-lg text-white font-bold leading-none">
-                            <v-icon class="mr-2" size="20">em em-money_with_wings</v-icon>Cash out</div>
+                            <v-icon class="mr-2" size="20">em em-money_with_wings</v-icon>Cash out
+                        </div>
                         <div class="flex flex-row items-center justify-end">
                             <div class="flex-auto text-white my-1">
                                 <span class="mr-3 ">Customers can exchange points for cash.</span>
@@ -22,28 +23,25 @@
     </div>
     <vs-dialog prevent-close v-model="active">
         <template #header>
-                    <h2 class="not-margin mt-6 text-xl">
-                        <v-icon size="30" class="me-3">em em-money_with_wings</v-icon>
-                        <b>CASH OUT</b>
-                    </h2>
-                </template>
+            <h2 class="not-margin mt-6 text-xl">
+                <v-icon size="30" class="me-3">em em-money_with_wings</v-icon>
+                <b>CASH OUT</b>
+            </h2>
+        </template>
         <v-card-title>
 
         </v-card-title>
-        <v-alert class="ml-12 mr-12" outlined dense  type="info" prominent border="left" >
-                                Please fill out the information completely.</v-alert>
-        <v-card-text class="-mt-9">
-            <div class=" block md:flex">
-                <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-8 bg-white ">
+        <v-alert class="ml-12 mr-12" outlined dense type="info" prominent border="left">
+            Please fill out the information completely.</v-alert>
+        <v-card-text  >
 
+            <div class="flex">
+                <div class="w-3/5">
                     <Core-TierCard></Core-TierCard>
                 </div>
-
-                <div class="w-full  md:w-3/5 p-8 bg-white lg:ml-16 ">
-
-                    <form @submit.prevent="cashout()">
-                        <v-row>
-
+                <div class="w-2/5">
+                    <form @submit.prevent="cashout()" class="p-6">
+                        <v-row> 
                             <v-col cols="12" md="12">
                                 <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> More than the points </v-alert>
                                 <v-text-field type="number" min="100" max="9999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-bitcoin" outlined dense id="firstname" hide-details></v-text-field>
@@ -55,16 +53,17 @@
                                 <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Bank Account Number" v-model="form.bank_code" prepend-inner-icon="em em-lock" outlined dense id="firstname" placeholder="Bank Account Number" hide-details></v-text-field>
                             </v-col>
                             <v-col cols="12" md="12">
-                                <v-autocomplete required label="Name Bank" item-text="value"  item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="em em-bank" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
+                                <v-autocomplete required label="Name Bank" item-text="value" item-value="value" :items="bankList" v-model="form.bank_name" prepend-inner-icon="em em-bank" outlined dense id="Name" placeholder="Name Bank" hide-details></v-autocomplete>
                             </v-col>
 
-                            <vs-button v-if="(Number(form.point) <= Number(point.current)) && (form.bank_name != null) "   type="submit" floating color="#4ade80" class="w-full py-3 mt-6 font-medium">
+                            <vs-button v-if="(Number(form.point) <= Number(point.current)) && (form.bank_name != null) " type="submit" floating color="#4ade80" class="w-full py-3 mt-6 font-medium">
                                 Cashout
                             </vs-button>
                         </v-row>
                     </form>
                 </div>
             </div>
+ 
 
         </v-card-text>
 
@@ -132,10 +131,10 @@ export default {
             return Auth.tiers
         },
     },
-  watch:{
-    active(val){
-        
+    watch: {
+        active(val) {
+
+        }
     }
-  }
 }
 </script>

@@ -1,21 +1,19 @@
 <template>
 <div class="bg-gray-100">
     <Core-BgIndex></Core-BgIndex>
-      <section class="relative m-6 mt-20"> 
+      <section class="relative md:m-24 mt-20"> 
         <div class="p-3">
             <Dashboard-Slide></Dashboard-Slide>
         </div>
         <div class="flex flex-col md:flex-row md:h-60 mt-4 bg-gray-100">
-            <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-0  ">
+            <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-4  ">
                 <Core-TierCard ></Core-TierCard>
             </div>
-            <div class="w-full md:w-1/2 p-3">
+            <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-4 ">
                 <div class="w-full h-1/2">
                     <div class="max-w-3xl w-full mx-auto z-10">
                         <div class="flex flex-col">
-                            <Cashout-Form></Cashout-Form>
-
-                           
+                            <Cashout-Form></Cashout-Form> 
                         </div>
                     </div>
                 </div>

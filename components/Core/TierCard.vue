@@ -1,5 +1,5 @@
 <template>
-<div class=" mt-2 bg-gray-100">
+<div class=" mt-2 ">
 
     <div class="bg-white rounded-xl shadow-xl">
         <div class="p-6">
