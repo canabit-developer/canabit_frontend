@@ -1,12 +1,13 @@
 <template>
-<div class="bg-gray-100">
+<div>
     <Core-BgIndex></Core-BgIndex>
-      <section class="relative m-6 mt-20"> 
+
+    <section class="relative m-6 mt-20"> 
         <div class="p-3">
             <Dashboard-Slide></Dashboard-Slide>
         </div>
-        <div class="flex flex-col md:flex-row md:h-60 mt-4 bg-gray-100">
-            <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-0  ">
+        <div class="flex flex-col md:flex-row md:h-60 mt-4">
+            <div class="w-full md:w-1/2 p-4 sm:p-6 lg:p-0 bg-white ">
                 <Core-TierCard ></Core-TierCard>
             </div>
             <div class="w-full md:w-1/2 p-3">
@@ -19,7 +20,6 @@
                         </div>
                     </div>
                 </div>
-              
                 <div class="pt-3 w-full h-1/2">
                     <div class="max-w-3xl w-full mt-1 mx-auto z-10">
                         <div class="flex flex-col">
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-        </div>  <br><br><br> <br><br><br> <br><br><br>
+        </div>
         <div class="mt-36 md:block">
             <div class="md: mt-14">
                 <Reward-Main></Reward-Main>
