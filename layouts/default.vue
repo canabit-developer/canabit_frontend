@@ -1,9 +1,9 @@
 <template>
-<v-app   class="bg-main" v-if="response">
+<v-app   v-if="response">
     <Core-Loading></Core-Loading>
     <UserMenu-MainMenu></UserMenu-MainMenu>
  
-    <v-main>
+    <v-main class="bg-gray-100">
         <Core-Notification />
         <!--class=" md:ml-28 md:mr-28"-->
         <div >

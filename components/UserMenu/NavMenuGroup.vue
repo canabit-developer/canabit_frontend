@@ -4,9 +4,7 @@
     class="vertical-nav-menu-group text--primary"
   >
    <template #prependIcon>
-      <v-icon :class="{'alternate-icon-small': !icon}">
-        {{ icon }}
-      </v-icon>
+      <img style=" width:48px!important; height: auto!important;" :src="icon" alt="">
     </template>
     <template #activator>
       <v-list-item-title class="text-gray-400 ">

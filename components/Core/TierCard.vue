@@ -5,14 +5,14 @@
         <div class="p-6">
             <div class="flex flex-col space-y-6 md:h-full md:justify-between">
                 <div class="flex justify-between">
-                    <span :style="`color:${tier.color}`" class="text-xs text-gray-500 font-semibold uppercase tracking-wider rounded-full p-1" >
+                    <span :style="`color:${tier.color}`" class="text-xs text-gray-500 font-semibold uppercase tracking-wider rounded-full p-1">
                         <v-icon v-if="tier.name == 'Vip'" style="font-size:16px;">em em-crown</v-icon>
                         {{tier.name}} Tier
                     </span>
-                    <span v-if="tier.name!= 'Vip'" class="text-xs text-gray-500 font-semibold uppercase tracking-wider"> 
-                      Next {{nextTier.name}}  
+                    <span v-if="tier.name!= 'Vip'" class="text-xs text-gray-500 font-semibold uppercase tracking-wider">
+                        Next {{nextTier.name}}
                     </span>
-                    
+
                 </div>
                 <div class="flex flex-col md:flex-row gap-2 md:gap-4 justify-between items-center">
                     <div class="flex flex-col space-y-4">
@@ -26,11 +26,18 @@
                     </div>
 
                     <div>
+                        <!-- <v-btn block text x-large><img class="w-6" src="~/static/png/3213595.png" alt="">  <span class="text-3xl text-gray-700 font-black tracking-wider">{{$comma(point.current)}}</span> </v-btn>  -->
+                        <div class="flex">
+                            <div class="flex items-end">
+                                <img class="w-8" src="~/static/png/3213595.png" alt="">
+                            </div>
 
-                        <h2 class="text-3xl text-gray-700 font-black tracking-wider">
-                            <v-icon size="25" :color="tier.color">mdi-bitcoin</v-icon> {{$comma(point.current)}}
-                        </h2>
-                        <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider">
+                            <h2 class="text-3xl text-gray-700 font-black tracking-wider ml-1">
+                                {{$comma(point.current)}}
+                            </h2>
+                        </div>
+
+                        <span class="text-xs text-gray-500 font-semibold uppercase tracking-wider md:ml-4">
                             Available Point
                         </span>
                     </div>

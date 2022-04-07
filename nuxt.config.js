@@ -35,10 +35,12 @@ export default {
             { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css' },
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap' },
             { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap' },
+            { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css' },
+
 
         ],
         script: [
-            { src: 'https://cdn.tailwindcss.com' }
+            { src: 'https://cdn.tailwindcss.com' },
         ]
     },
 

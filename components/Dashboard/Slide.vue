@@ -1,10 +1,12 @@
 <template>
-<v-carousel  cycle height="300" hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl cursor-pointer" v-if="response">
-    <v-carousel-item v-for="(slide, i) in slides" :key="i">
+<v-carousel cycle hide-delimiter-background show-arrows-on-hover class="rounded-2xl shadow-xl cursor-pointer" v-if="response">
+    <v-carousel-item v-for="(slide, i) in slides" :key="i"> 
         <!-- <v-img :src="$url+slide.image"></v-img> -->
-        <v-img :src="$url+slide.image" @click="openLink(slide.url)"></v-img>
+        <v-img class="w-full h-full box" :src="$url+slide.image" @click="openLink(slide.url)">
+            <div class="ribbon ribbon-top-left"><span>Promotion</span></div>
+        </v-img>
     </v-carousel-item>
-<pre>{{slide}}</pre>
+    <pre>{{slide}}</pre>
 </v-carousel>
 </template>
 

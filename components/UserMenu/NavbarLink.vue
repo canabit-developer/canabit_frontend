@@ -1,9 +1,8 @@
 <template>
 <v-list-item   :class="activateBg" :dark="activate" @click="$router.push(`${path}`)">
     <v-list-item-icon >
-        <v-icon   >
-            {{ icon || alternateIcon }}
-        </v-icon>
+     
+     <img style=" width:54px!important; height: auto!important;" :src="icon" alt="">
     </v-list-item-icon> 
     <v-list-item-title :class="activateTxt" >
         {{ title }}
@@ -15,13 +14,17 @@
 export default {
   
     props: {
+         xx: {
+            type: String,
+            default: '/static/png/011-house.png',
+        },
         title: {
             type: String,
             default:'text'
         },
         icon: {
             type: String,
-            default: undefined,
+            default: '@/static/png/011-house.png',
         },
         path:{
             type:String,
@@ -33,11 +36,11 @@ export default {
             return (this.$route.path == this.path)
         },
         activateBg(){ 
-            return (this.$route.path == this.path)?`navbar-active shadow-2xl text-white box-shadows`:``
+            return (this.$route.path == this.path)?`navbar-active shadow-2xl text-gray-600  box-shadows`:``
         },
        
        activateTxt(){ 
-            return (this.$route.path == this.path)?`text-white `:`light-text `
+            return (this.$route.path == this.path)?`text-gray-600 font-semibold `:`text-gray-400  `
        }
        
     }
