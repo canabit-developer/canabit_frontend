@@ -1,5 +1,19 @@
 <template>
 <v-card flat class="mt-5" v-if="response">
+    <div class="px-3  mb-5">
+        <div class="flex flex-col md:flex-row">
+            <div class="w-full md:w-1/3">
+                <AccountKYC-IDCard :kyc="kyc"></AccountKYC-IDCard>
+            </div>
+            <div class="w-full md:w-1/3">
+            
+            </div>
+            <div class="w-full md:w-1/3">
+               
+            </div>
+        </div>
+
+    </div>
 
     <div class="px-3  mb-5">
         <v-card-text class="">
@@ -58,7 +72,7 @@
                                 </label>
                             </div>
                         </v-col>
-                        
+
                         <v-col cols="12" md="6">
                             <h2>3. Verify your identity by uploading a picture of your account number </h2>
                             <!-- <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt=""> -->
@@ -72,7 +86,7 @@
                                     <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Upload picture</div>
                                 </label>
                             </div>
-                        
+
                         </v-col>
                     </v-row>
                 </v-container>

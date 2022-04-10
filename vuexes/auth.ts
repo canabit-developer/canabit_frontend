@@ -17,11 +17,11 @@ class AuthModule extends VuexModule {
     let user = await Core.getHttp(`/api/auth/v2/profile/`)
     try {
       let initData = await Core.getHttp(`/api/auth/v2/initprofile/`)
-      this.user = (initData.user_profile) ? initData.user_profile : null
-      this.kyc = (initData.kyc) ? initData.kyc : null
-      this.point = (initData.point_use) ? initData.point_use : null
-      this.tier = (initData.mytier) ? initData.mytier : null
-      this.setting = (initData.setting) ? initData.setting : null
+      this.user = (initData.user_profile) ? initData.user_profile : {}
+      this.kyc = (initData.kyc) ? initData.kyc : {}
+      this.point = (initData.point_use) ? initData.point_use : {}
+      this.tier = (initData.mytier) ? initData.mytier : {}
+      this.setting = (initData.setting) ? initData.setting : {}
 
       if (this.user.id) {
         await this.checkTier();

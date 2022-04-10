@@ -3,23 +3,37 @@ import axios from '@/plugins/axios'
 import _ from "lodash"
 import moment from 'moment'
 import Swal from 'sweetalert2'
+import Vue from 'vue';
 
 @Module({ generateMutationSetters: true })
 class WebModule extends VuexModule {
   public loading: boolean = false;
   public loadTxt: any = 'Loading..'
 
-  public snackTxt:any = ''
+  public snackTxt: any = ''
   public snacking: boolean = false;
   public snackColor: any = 'success';
+  public vs:any = null;
+  
+  public async setVuesax(vs:any){
+    this.vs = vs
+  }
+  public async noti(color:string = 'success',title:string = 'Notification',text:string = "Notification Detail") {
+    this.vs.notification({
+      color,
+      title: title,
+      text: text
+    })
 
-  public async onSnack(txt:string,color:string = 'success'){
+  }
+
+  public async onSnack(txt: string, color: string = 'success') {
     await this.offSnack()
     this.snacking = true
     this.snackTxt = txt
     this.snackColor = color
   }
-  public async offSnack(){
+  public async offSnack() {
     this.snacking = false
   }
 
@@ -38,7 +52,7 @@ class WebModule extends VuexModule {
     this.loading = false
   }
 
-  public async alert(title: any = 'OK', type: any = 'success',  text: any = '') {
+  public async alert(title: any = 'OK', type: any = 'success', text: any = '') {
     await Swal.fire({
       icon: type,
       title: title,
@@ -48,17 +62,17 @@ class WebModule extends VuexModule {
     })
   }
 
-  public async alertAuto(title: any = 'OK',timer:any = 2000, type: any = 'success',  text: any = '') {
+  public async alertAuto(title: any = 'OK', timer: any = 2000, type: any = 'success', text: any = '') {
     await Swal.fire({
       showConfirmButton: false,
       icon: type,
       title: title,
       text: text,
       timer: timer,
-     
+
     })
   }
-  public async alertnotfound(title: any = 'OK', type: any = 'error',  text: any = '') {
+  public async alertnotfound(title: any = 'OK', type: any = 'error', text: any = '') {
     await Swal.fire({
       icon: type,
       title: title,
@@ -67,7 +81,7 @@ class WebModule extends VuexModule {
       confirmButtonColor: "#ef4444",
     })
   }
-  public async alerterror(title: any = 'Please click the link from the email again.', type: any = 'error',  text: any = '') {
+  public async alerterror(title: any = 'Please click the link from the email again.', type: any = 'error', text: any = '') {
     await Swal.fire({
       icon: type,
       title: title,
@@ -78,14 +92,14 @@ class WebModule extends VuexModule {
   }
 
   public async confirm(title: any = 'Are you sure ?') {
-   let check =  await Swal.fire({
-      title:title,
+    let check = await Swal.fire({
+      title: title,
       showCancelButton: true,
       confirmButtonText: `OK`,
       cancelButtonText: `Cancel`,
-     confirmButtonColor: "#00E96A",
+      confirmButtonColor: "#00E96A",
     }).then((result) => {
-       return result.isConfirmed
+      return result.isConfirmed
     })
     return check
   }

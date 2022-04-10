@@ -20,6 +20,9 @@
 import {
     Auth
 } from '@/vuexes/auth'
+import {
+    Web
+} from "~/vuexes/web";
 export default {
     name: 'DefaultLayout',
     data() {
@@ -30,7 +33,7 @@ export default {
         }
     },
     async created() {
-
+        await Web.setVuesax(this.$vs)
         await this.initial()
         await Auth.checkUser();
     },
