@@ -1,15 +1,22 @@
 <template>
 <div>
-    <h2>ID Number</h2>
+    <h2>1.ID Number</h2>
     <h2> Verify your identity by entering your ID card number or passport number.</h2>
     <img src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
-    <v-btn color="success">เพิ่มข้อมูล</v-btn>
-    <pre>{{kyc}}</pre>
+
+    <div v-if="kyc.card_id">
+        Your <span v-if="kyc.use_passport">Passport Number </span> <span v-else>ID Card number</span> : {{kyc.card_id}}
+
+    </div>
+    <v-btn v-if="!kyc.user_verified" @click="dialog=true" color="success">Update Data</v-btn>
     <v-dialog v-model="dialog" scrollable persistent :overlay="false" max-width="500px" transition="dialog-transition">
         <v-card>
+            <v-card-title primary-title>
+                Update your ID Card Number <v-spacer></v-spacer>
+                <v-icon @click="closeDialog()">mdi-close</v-icon>
+            </v-card-title>
             <v-card-text>
                 <form @submit.prevent="verify()">
-                    <pre>{{form}}</pre>
                     <v-checkbox label="Use Passport Number" v-model="form.use_passport"></v-checkbox>
                     <v-text-field required class="mt-5" v-model="form.card_id" hint="Please check the correctness ID Number" label="Your ID card number." outlined></v-text-field>
 
@@ -30,6 +37,9 @@
 import {
     Web
 } from "~/vuexes/web";
+import {
+    Core
+} from "~/vuexes/core";
 export default {
     props: {
         kyc: {
@@ -38,17 +48,20 @@ export default {
     },
     data() {
         return ({
-            dialog: true,
+            dialog: false,
             form: {}
         })
     },
     async created() {
-        this.form = this.kyc
+        await this.init();
     },
     methods: {
+        async init() {
+            this.form = this.kyc
+        },
         async verify() {
             if (this.form.use_passport) {
-                 await this.saveData();
+                await this.saveData();
             } else {
                 let check = await this.checkIdData();
                 if (check) {
@@ -58,8 +71,20 @@ export default {
                 }
             }
         },
-        async saveData(){
-
+        async saveData() {
+            let store = await Core.putHttpAlert(`/api/account/kyc/${this.kyc.id}/`, {
+                'card_id': this.form.card_id,
+                'use_passport': this.form.use_passport
+            })
+            if (store.id) {
+                this.dialog = false
+                await this.$emit('reload', store)
+            }
+        },
+        async closeDialog() {
+            this.dialog = false
+            await this.init();
+            await this.$emit('reload')
         },
         async checkIdData() {
             let id = this.form.card_id;
@@ -84,7 +109,7 @@ export default {
             }
 
         },
-           IsNumeric(input) {
+        IsNumeric(input) {
             var RE = /^-?(0|INF|(0[1-7][0-7]*)|(0x[0-9a-fA-F]+)|((0|[1-9][0-9]*|(?=[\.,]))([\.,][0-9]+)?([eE]-?\d+)?))$/;
             return (RE.test(input));
         }
