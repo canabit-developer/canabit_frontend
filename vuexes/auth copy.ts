@@ -14,23 +14,18 @@ class AuthModule extends VuexModule {
   public setting: any = []
 
   public async setUser() {
-    let user = await Core.getHttp(`/api/auth/v2/profile/`)
-    try {
-      let initData = await Core.getHttp(`/api/auth/v2/initprofile/`)
-      this.user = (initData.user_profile) ? initData.user_profile : null
-      this.kyc = (initData.kyc) ? initData.kyc : null
-      this.point = (initData.point_use) ? initData.point_use : null
-      this.tier = (initData.mytier) ? initData.mytier : null
-      this.setting = (initData.setting) ? initData.setting : null
+    let initData = await Core.getHttp(`/api/auth/v2/initprofile/`)
+    this.user = (initData.user_profile)?initData.user_profile:null
+    this.kyc = (initData.kyc)?initData.kyc:null
+    this.point = (initData.point_use)?initData.point_use:null
+    this.tier = (initData.mytier)?initData.mytier:null
+    this.setting =(initData.setting)?initData.setting:null
 
-      if (this.user.id) {
-        await this.checkTier();
-      }
-    } catch (error: any) {
-
+    if (this.user.id) { 
+      await this.checkTier(); 
     }
 
-    return user
+    return this.user
   }
 
   // async getMyKyc() {
@@ -67,7 +62,7 @@ class AuthModule extends VuexModule {
     this.tiers = listTier
     let tier = await _.filter(listTier, (r) => {
       return this.point.total >= r.length
-    })
+    }) 
     let currentTier: any = (tier.length > 0) ? tier[tier.length - 1] : this.tier
     if (this.tier.id == currentTier.id) {
       // alert("Point not update")

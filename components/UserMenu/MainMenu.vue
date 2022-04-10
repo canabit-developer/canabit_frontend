@@ -74,13 +74,13 @@
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/transaction" title="Transaction" :icon="require('~/static/png/5260274.png')"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/forex" title="Forex Broker" :icon="require('~/static/png/5180646.png')"></UserMenu-NavbarLink>
             <UserMenu-NavMenuSectionTitle v-if="kyc.user_verified" title="Product"></UserMenu-NavMenuSectionTitle>
-            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/semiauto" title="EA" :icon="require('~/static/png/023-app-store.png')"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/signals" title="Indicator" :icon="require('~/static/png/speedometer.png')"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/ea" title="EA" :icon="require('~/static/png/023-app-store.png')"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/indicator" title="Indicator" :icon="require('~/static/png/speedometer.png')"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/copytrade" title=" Copy Trade" :icon="require('~/static/png/016-cp.png')"></UserMenu-NavbarLink>
             <UserMenu-NavMenuSectionTitle title="User Setting"></UserMenu-NavMenuSectionTitle>
 
             <UserMenu-NavbarLink path="/account" title="Account Setting" :icon="require('~/static/png/034-designthinking.png')"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/accountstatus" title="History Account" :icon="require('~/static/png/010-workinghours.png')"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/history" title="History Account" :icon="require('~/static/png/010-workinghours.png')"></UserMenu-NavbarLink>
               <div @click="logout()">
                     <UserMenu-NavbarLink path="/logout" title="Logout" :icon="require('~/static/png/1828490.png')"></UserMenu-NavbarLink>
                 </div>
