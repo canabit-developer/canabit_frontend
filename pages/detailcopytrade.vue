@@ -1,87 +1,61 @@
 <template>
-<div>
-    <div class="font-sans bg-white flex flex-col min-h-screen w-full">
-      <h2 class="text-xl font-semibold"> <v-icon>em em-bookmark_tabs</v-icon> Detail CopyTrade</h2>
-     <ul class="breadcrumb mt-3">
-        <li><a @click="$router.push('/')" href="#">Home</a></li>
-        <li><a @click="$router.push('/copytrade')"> CopyTrade </a></li> 
-        <li>Detail CopyTrade</li>
-    </ul>
-        <div>
-            <div class="bg-green-400 rounded-xl md:overflow-hidden mt-3">
-                <div class="px-4 py-16">
-                    <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
-                        <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
-                            Master Trade
-                        </h1>
-
-                        <p class="text-white md:text-xl md:px-18">
-                            Invest with automation Full-featured and making it easy to enter the world of finance, allows you to follow and connect Professional Traders, Leaders
-                        </p>
-
-                        <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
-
-                        <div class="hidden md:block h-5 w-5 rounded-full bg-green-500 absolute top-0 right-0 -mr-40 mt-32"></div>
-                        <div class="text-center mb-10 mt-10">
-                            <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
-                            <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
-                            <span class="inline-block w-40 h-1 rounded-full bg-white ml-1"></span>
-                            <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
-                            <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
-                        </div>
-                    </div>
-
-                </div>
-
-                <svg class="fill-current bg-green-400 text-white hidden md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                    <path fill-opacity="1" d="M0,64L120,85.3C240,107,480,149,720,149.3C960,149,1200,107,1320,85.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-                </svg>
-            </div>
-
-            <div class="max-w-4xl mx-auto bg-white shadow-lg relative hidden md:block" style="margin-top: -320px; border-radius: 20px;">
-                <div class="h-20 w-20 rounded-full bg-green-500 absolute top-0 left-0 -ml-10 -mt-16" style="z-index: -1;"></div>
-                <div class="h-5 w-5 rounded-full bg-green-500 absolute top-0 left-0 -ml-32 mt-12" style="z-index: -1;"></div>
-
-            </div>
-        </div>
-         <div class="max-w-7xl mx-auto bg-white  relative  rounded-xl lg:mt-5 md:-mt-24" v-if="response">
-     
-               <CopyTrade-DetailCopyTrade :cpt="cpt"></CopyTrade-DetailCopyTrade>
-            </div>
+<div class="bg-gray-100">
+    <Core-BgProfile></Core-BgProfile> 
+    <div class="relative  md:m-24 mt-20">
+        <v-toolbar color="transparent" flat>
+            <v-btn @click="$router.go(-1)" fab color="primary">
+                <v-icon>mdi-arrow-left-bold</v-icon>
+            </v-btn>
+        </v-toolbar><br>
+        <br><br><br><br>
+        
+         <CopyTrade-DetailCopyTrade :cpt="cpt"></CopyTrade-DetailCopyTrade>
     </div>
 </div>
 </template>
 
 <script>
 import {
-  Core
+    Core
 } from '@/vuexes/core'
 import _ from 'lodash'
 import {
-  Auth
+    Auth
 } from '@/vuexes/auth'
 export default {
-  data () {return ({
-    cpt:{},
-    response:false,
-  })},
-  async created(){
-    await this.startup();
-    this.response = true;
-  },
-  methods:{
-    async startup(){
-      this.cpt = await Core.getHttp(`/api/copytrade/productdetail/${this.$route.query.id}/`)
-    }
-  },
-  computed:{
-    user:()=>{return Auth.user},
-    point:()=>{return Auth.point},
-    tier:()=>{return Auth.tier},
-    tiers:()=>{return Auth.tiers},
-    setting:()=>{return Auth.setting},
+    data() {
+        return ({
+            cpt: {},
+            response: false,
+        })
+    },
+    async created() {
+        await this.startup();
+        this.response = true;
+    },
+    methods: {
+        async startup() {
+            this.cpt = await Core.getHttp(`/api/copytrade/productdetail/${this.$route.query.id}/`)
+        }
+    },
+    computed: {
+        user: () => {
+            return Auth.user
+        },
+        point: () => {
+            return Auth.point
+        },
+        tier: () => {
+            return Auth.tier
+        },
+        tiers: () => {
+            return Auth.tiers
+        },
+        setting: () => {
+            return Auth.setting
+        },
 
-  }
+    }
 }
 </script>
 

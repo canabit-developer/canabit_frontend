@@ -111,7 +111,7 @@ export default {
                 window.open(indicator.link);
                 let data = await Core.postHttp(`/api/indicator/order/`, form)
                 if (data.id) {
-                    this.$router.push('/accountstatus?tab=1')
+                    this.$router.push('/history?tab=1')
                 }
             }
         }

@@ -1,14 +1,17 @@
 <template>
 <div>
-    <h2>1.ID Number</h2>
-    <h2> Verify your identity by entering your ID card number or passport number.</h2>
-    <img src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
 
     <div v-if="kyc.card_id">
-        Your <span v-if="kyc.use_passport">Passport Number </span> <span v-else>ID Card number</span> : {{kyc.card_id}}
 
+        <h2 class="text-green-500 font-semibold text-base"> Your <span v-if="kyc.use_passport">Passport Number </span> <span v-else>ID Card number</span> : {{kyc.card_id}} </h2>
+
+    </div><br>
+  
+    <div class="flex justify-center mt-4">
+        <v-spacer class="hidden md:block"></v-spacer>
+        <v-btn v-if="!kyc.user_verified" @click="dialog=true" color="success">Update Data</v-btn>
     </div>
-    <v-btn v-if="!kyc.user_verified" @click="dialog=true" color="success">Update Data</v-btn>
+
     <v-dialog v-model="dialog" scrollable persistent :overlay="false" max-width="500px" transition="dialog-transition">
         <v-card>
             <v-card-title primary-title>

@@ -19,52 +19,75 @@
 
     <vs-dialog width="550px" not-center v-model="dialog" class="bg-gray-100">
         <template #header>
-            <center v-if="vote.id"> <img class="w-10 md:w-40 mtimg" src="~/static/png/trophy.png" alt="">
+            <center> <img class="w-10 md:w-40 mtimg" src="~/static/png/trophy.png" alt="">
                 <h2 class="ref font-semibold text-4xl mt-2 text-green-500">Reward Volting</h2>
             </center>
-            <hr v-if="vote.id" class="m-4">
+            <hr class="m-4">
         </template>
 
         <div class="con-content">
-
             <div v-if="response && vote.id">
                 <div v-if="vote">
-                    <div v-if="!vote.is_ending">
-                        <Reward-Countdown :vote="vote"></Reward-Countdown>
-                        <hr class="m-4">
-                        <div class="mt-5">
-                            <Reward-ListDialog @reload="reload" :vote="vote"></Reward-ListDialog>
-                        </div>
+                    <Reward-Countdown :vote="vote"></Reward-Countdown>
+                    <hr class="m-4">
+                    <div class="mt-5">
+                        <Reward-ListDialog :vote="vote"></Reward-ListDialog>
                     </div>
-                    <div v-else>
-                          
-                         <center> <h2 class="ref font-semibold text-3xl mt-2 text-yellow-500">Win Product</h2></center><br>
-                        <div class="border-gray-100 border-2 shadow-xl rounded-xl w-full py-7 px-5">
-                            <div class="grid grid-cols-6 gap-3">
-                                <!-- Image -->
-                                <div class="col-span-2">
-                                    <img height="350" :src="$url+result.image">
-                                </div>
-                                <!-- Description -->
-                                <div class="col-span-4">
-                                    <p class="text-gray-700 font-bold text-xl">{{result.name}}</p>
-                                    <p class="text-gray-500 mt-4">{{result.detail}}</p>
-                                
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-            <div v-else>
-                <img src="https://scontent.fcnx3-1.fna.fbcdn.net/v/t39.30808-6/273112697_1357001761412987_8215691963314062827_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=e3f864&_nc_eui2=AeEA4Oej5IrVvMahCFLjbWmoQDMFlX4gzp5AMwWVfiDOnj8YfpZdK0BjisxixGBpBCpXK1d1JO1bBWnjdxmL42Rf&_nc_ohc=0OwUkz874jsAX9AcKhG&_nc_ht=scontent.fcnx3-1.fna&oh=00_AT8H33vwZxNkgNnacvZnJEg8P6PCTuKjW5HAYyFDbRbBbg&oe=62583FC7" alt="">
             </div>
         </div>
 
     </vs-dialog>
 
+    <div>
+        <div v-if="response && vote.id">
+            <div v-if="vote">
+
+                <Reward-Countdown :vote="vote"></Reward-Countdown>
+                <div class="mt-5">
+                    <Reward-List :vote="vote"></Reward-List>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <img src="https://scontent.fcnx3-1.fna.fbcdn.net/v/t39.30808-6/273214837_395383259019790_558937949465519379_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=e3f864&_nc_eui2=AeEi2X_-ZhHBPD8rY_U8Op0hdexDfCqWOrt17EN8KpY6u2X9PR0aNmOKe5p66EE_AZLUVUvaHC2gnb97qnGHWbwi&_nc_ohc=RV5jsCNLH7QAX-RWMk8&_nc_ht=scontent.fcnx3-1.fna&oh=00_AT8bjj1cfmXB6mzzaZ2woaPgNgICvcVWChdsnOp-B_jsZw&oe=624B4179" alt="">
+        </div>
+    </div>
+
+    <div class=" bg-green-400 flex justify-center items-center " v-if="response && vote.id">
+        <div class="absolute w-60 h-60 rounded-xl bg-green-300 top-1/3 mt-16  -left-16 z-0 transform rotate-45 hidden md:block">
+        </div>
+        <div class="absolute w-48 h-48 rounded-xl bg-green-300  -bottom-6 -right-10 transform rotate-12 hidden md:block">
+        </div>
+        <div class="max-w-6xl mx-auto md:px-6 px-4">
+            <div class="md:py-20 py-12">
+                <div class="md:pb-20 pb-12 max-w-3xl mx-auto text-center ">
+                    <h2 class="md:text-6xl text-4xl text-white dark:text-white font-bold mb-4">Reward Voting</h2>
+                    <p class="text-xl text-white dark:text-white">Customers can bring their points to win prizes with us.where a minimum of 50 points will be counted as a vote 1 time which customers can vote Products can be slowed until their own points are exhausted.</p>
+                </div>
+                <div class="text-center mb-10">
+                    <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
+                    <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
+                    <span class="inline-block w-40 h-1 rounded-full bg-white ml-1"></span>
+                    <span class="inline-block w-3 h-1 rounded-full bg-white ml-1"></span>
+                    <span class="inline-block w-1 h-1 rounded-full bg-white ml-1"></span>
+                </div>
+            </div>
+            <div v-if="vote">
+
+                <!-- <Reward-Countdown :vote="vote"></Reward-Countdown> -->
+                <div class="mt-5">
+                    <Reward-List :vote="vote"></Reward-List>
+                </div>
+            </div>
+        </div>
+        <div class="w-40 h-40 absolute bg-green-300 rounded-full top-1/3 mt-24  right-12 hidden md:block"></div>
+        <div class="w-20 h-40 absolute bg-green-300 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
+        </div>
+    </div>
+    <div v-else>
+        <img src="https://scontent.fcnx3-1.fna.fbcdn.net/v/t39.30808-6/273214837_395383259019790_558937949465519379_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=e3f864&_nc_eui2=AeEi2X_-ZhHBPD8rY_U8Op0hdexDfCqWOrt17EN8KpY6u2X9PR0aNmOKe5p66EE_AZLUVUvaHC2gnb97qnGHWbwi&_nc_ohc=RV5jsCNLH7QAX-RWMk8&_nc_ht=scontent.fcnx3-1.fna&oh=00_AT8bjj1cfmXB6mzzaZ2woaPgNgICvcVWChdsnOp-B_jsZw&oe=624B4179" alt="">
+    </div>
 </div>
 </template>
 
@@ -81,7 +104,6 @@ export default {
         return ({
             vote: {},
             response: false,
-            result: {},
             dialog: true
         })
     },
@@ -90,36 +112,13 @@ export default {
             let votes = await Core.getHttp(`/api/vote/votemode/?is_active=true`)
             if (votes.length > 0) {
                 this.vote = votes[votes.length - 1];
-                await this.checkVolt();
             }
 
-        },
-        async reload(val) {
-            this.dialog = val
-        },
-        async checkVolt() {
-            let results = await Core.getHttp(`/api/vote/voteuse/?votemode=${this.vote.id}`)
-            let a = _.sumBy(results, {
-                choicereward: "A"
-            })
-            let b = _.sumBy(results, {
-                choicereward: "B"
-            })
-            let result = null
-            if (a > b) {
-                result = this.vote.store_a
-            } else {
-                result = this.vote.store_b
-            }
-            this.result = result
-            console.log(a, b, result, this.vote);
         }
     },
     async created() {
         await this.startup();
-        this.dialog = true
         this.response = true
-
     },
     computed: {
         user: () => {

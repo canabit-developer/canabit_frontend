@@ -1,26 +1,37 @@
 <template>
-<section class="mt-6">
+<section>
     <v-toolbar color="transparent" flat>
-        <h2 class="text-2xl font-semibold">Special for you</h2>
+        <h2 class="text-2xl font-semibold text-white">Brokers</h2>
+        <v-spacer></v-spacer>
+        <v-btn  @click="$router.push('/forex')"   ><span class="capitalize font-semibold">View All</span></v-btn>
     </v-toolbar>
-    <div>
-        <vs-card-group v-if="response">
-            <vs-card v-for="list,index in lists" :key="index" @click="$router.push(`/profilebrand?id=${list.id}`)">
-                <template #title>
-                    <h3 class="font-semibold">{{list.name}}</h3>
-                </template>
-                <template #img>
-                    <v-img contain class="h-48 w-auto mx-auto" :src="`${$url}${list.image}`" ></v-img>
-              
-                </template>
-                <template #text>
-                    <p class="text-orange-500 font-semibold">
-                       เงินคืนสูงสุด {{list.point_back}} %
-                    </p>
-                </template>
-            
-            </vs-card>
-        </vs-card-group>
+    <div class="flex items-center justify-center w-full">
+        <v-slide-group multiple show-arrows>
+            <v-slide-item v-for="list,i in lists" :key="i" v-slot="{ active, toggle }">
+                <div class="overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-5 hover:shadow-2xl rounded-lg h-90 w-60 md:w-80 cursor-pointer  m-4">
+                    <div class="w-full block h-full">
+                        <img alt="blog photo" :src="$url+list.image" class="max-h-40 w-full object-cover" />
+                        <div class="bg-white w-full p-4">
+                            <div class="grid grid-cols-6">
+                                <div class="col-span-3 px-3 font-semibold flex flex-col">
+                                    <div class=""> {{list.name}} </div>
+                                    <div class="text-sm text-gray-400 font-light"> @Broker Partner </div>
+                                </div>
+                                <div class="col-span-3 py-2 ml-8 justify-self-end">
+                                    <v-chip color="success" label>
+                                        <v-icon left>
+                                            mdi-account-circle-outline
+                                        </v-icon>
+                                        1 Account
+                                    </v-chip>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </v-slide-item>
+        </v-slide-group>
     </div>
 </section>
 </template>
@@ -47,9 +58,9 @@ export default {
     },
     methods: {
         async initial() {
-            this.lists = await Core.getHttp(`/api/connection/brand/`)
+            this.lists = await Core.getHttp(`/api/finance/broker/`)
             console.log(this.lists)
-            this.response = true 
+            this.response = true
         }
     }
 }

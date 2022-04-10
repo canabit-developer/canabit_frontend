@@ -1,8 +1,6 @@
 <template>
 <v-card flat class="mt-5" v-if="response">
 
- 
-
     <div class="px-3  mb-5">
         <v-card-text class="">
             <v-alert v-if="kyc.user_verified" type="success" :value="true">
@@ -26,52 +24,69 @@
             <v-alert v-if="kyc.phone_verified == false && kyc.user_verified == false" type="error" :value="true">
                 ยังไม่ได้ยืนยันตัวตนผ่าน มือถือ (OTP)
             </v-alert>
-            <v-row>
-                <v-col cols="12" sm="8" md="6">
-                    
-                  <AccountKYC-IDCard :kyc="kyc" @reload="getMyKyc" ></AccountKYC-IDCard>
-                </v-col><br>
-                <v-container>
-                    <v-row justify="space-between">
-                        <v-col cols="12" md="6">
-                            <h2> 2. Verification of identity by uploading a picture of an ID card </h2><br>
-                            <!-- <img v-if="kyc.image_card" :src="$url+kyc.image_card" alt=""> -->
-                            <img class="h-1/2 w-4/5 ml-5" v-if="kyc.image_card" :src="$url+kyc.image_card" alt="">
-                            <img v-else src="https://sv1.picz.in.th/images/2022/03/11/rrz9yI.png" alt="">
-                            <br><br>
-                            <!-- <input class="mt-3" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF" /> -->
-                            <div class="input_field flex flex-col w-max mx-auto text-center">
-                                <label>
-                                    <input class="text-sm cursor-pointer w-36 hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF">
-                                    <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Upload picture</div>
-                                </label>
-                            </div>
-                        </v-col>
 
-                        <v-col cols="12" md="6">
-                            <h2>3. Verify your identity by uploading a picture of your account number </h2>
-                            <!-- <img v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt=""> -->
-                            <img class="h-1/2 w-3/4 mt-5 ml-8 " v-if="kyc.image_selfie" :src="$url+kyc.image_selfie" alt="">
-                            <img v-else class="h-1/2 w-3/5 mt-5" src="https://sv1.picz.in.th/images/2022/03/11/rrzQ2V.png" alt="">
-                            <br> <br>
-                            <!-- <input class="mt-3" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF" /> -->
-                            <div class="input_field flex flex-col w-max mx-auto text-center">
-                                <label>
-                                    <input class="text-sm cursor-pointer w-36 hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF">
-                                    <div v-if="!kyc.user_verified" class="mr-8 text bg-green-500 text-white border border-green-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Upload picture</div>
-                                </label>
-                            </div>
+            <div class="py-10 bg-white">
+                <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+                    <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12 justify-center items-center">
+                        <div class="md:5/12 lg:w-5/12">
+                            <img class="w-56" src="~/static/png/4040329.png" alt="">
+                        </div>
+                        <div class="md:7/12 lg:w-6/12">
+                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">1.Verify Identity Card Number.</h2>
+                            <p class="mt-6 text-gray-600">Verify your identity by entering your ID card number or passport number.</p>
+                            <AccountKYC-IDCard :kyc="kyc" @reload="getMyKyc"></AccountKYC-IDCard>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        </v-col>
-                    </v-row>
-                </v-container>
+            <div class="py-10 bg-white">
+                <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+                    <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12 justify-center items-center">
+                        <div class="md:5/12 lg:w-5/12">
+                            <img class="w-56" src="~/static/png/4736559.png" alt="">
+                        </div>
+                        <div class="md:7/12 lg:w-6/12">
+                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">2.Upload your card.</h2>
+                            <p class="mt-6 text-gray-600">Verification of identity by uploading a picture of an ID card.</p>
+                                <v-btn v-if="kyc.image_card" @click="openImage(kyc.image_card)"  text color="success"><v-icon class=" text-green-500 mr-2">mdi-eye</v-icon><span class="capitalize text-green-500 font-semibold text-base" >View Your Image</span> </v-btn>
+                              <input class="text-sm cursor-pointer w-36  hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF">
+                               
+                                <div class="flex justify-center mt-4">
+                                    <v-spacer class="hidden md:block"></v-spacer>
+                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_card.click()" color="success">Upload Image</v-btn>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <!-- <v-col cols="12" sm="4" md="6" class="d-none d-sm-flex justify-center position-relative md-8">
-                    <v-img contain height="250" max-width="300" :src="require(`@/assets/misc/pose-m-1.png`)"></v-img>
-                </v-col> -->
+            <div class="py-10 bg-white">
+                <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6">
+                    <div class="space-y-6 md:space-y-0 md:flex md:gap-6 lg:items-center lg:gap-12 justify-center items-center">
+                        <div class="md:5/12 lg:w-5/12">
+                            <img class="w-56" src="~/static/png/4187234.png" alt="">
+                        </div>
+                        <div class="md:7/12 lg:w-6/12">
+                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">3.Upload selfie with your card.</h2>
+                            <p class="mt-6 text-gray-600">Verify your identity by uploading a picture of your account number.</p>
+                                <v-btn v-if="kyc.image_selfie" @click="openImage(kyc.image_selfie)"  text color="success"><v-icon class=" text-green-500 mr-2">mdi-eye</v-icon><span class="capitalize text-green-500 font-semibold text-base" >View Your Image</span> </v-btn>
+                              <input class="text-sm cursor-pointer w-36  hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF">
+                   
 
-            </v-row>
-            <v-col cols="12" md="4" class="mt-10" v-if="false">
+                                 <div class="flex justify-center mt-4">
+                                    <v-spacer class="hidden md:block"></v-spacer>
+                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_selfie.click()" color="success">Upload Image</v-btn>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+ 
+       
+        </v-card-text>
+     <!-- <v-col cols="12" md="4" class="mt-10" v-if="false">
                 <h2> 4. Phone number OTP (one-time-password)</h2>
                 <div class="center">
                     <vs-button floating @click="active=!active" color="#4ade80" class="mt-6">
@@ -102,10 +117,19 @@
                         </v-container>
                     </vs-dialog>
                 </div>
-            </v-col>
-        </v-card-text>
-
+            </v-col> -->
     </div>
+    <v-dialog
+        v-model="dialog"
+        scrollable   
+          :overlay="false"
+        max-width="500px"
+        transition="dialog-transition"
+    >
+        <v-card>
+            <img :src="$url+image" alt="">
+        </v-card>
+    </v-dialog>
 
     <!-- action buttons -->
 </v-card>
@@ -133,6 +157,8 @@ export default {
             id: '',
             checkId: false,
             isPassport: false,
+            image:'',
+            dialog:false,
         };
     },
     async created() {
@@ -141,6 +167,10 @@ export default {
         await Web.switchLoad(false);
     },
     methods: {
+        async openImage(image){
+            this.image = image
+            this.dialog = true;
+        },
         async getMyKyc() {
             let kyc = await Core.getHttp(`/api/account/kyc/?user=${this.user.id}`);
             if (kyc.length > 0) {
@@ -151,20 +181,30 @@ export default {
             }
         },
         async storeKycCard(typeImage) {
+            try {
+                let image = this.$refs[typeImage];
+                if (image.files.length > 0) {
+                    let cover = await Core.setWaterMark(image.files[0]);
+                    let file = await Core.dataURLtoFile(cover.src);
 
-            let image = this.$refs[typeImage];
-            if (image.files.length > 0) {
-                let cover = await Core.setWaterMark(image.files[0]);
-                let file = await Core.dataURLtoFile(cover.src);
-                let formData = new FormData();
-                formData.append(typeImage, file);
-                let update = await Core.putImageHttpAlert(
-                    `/api/account/kyc/${this.kyc.id}/`,
-                    formData
-                );
-                await Web.switchLoad(true);
-                await this.getMyKyc();
-                await Web.switchLoad(false);
+                    let formData = new FormData();
+                    formData.append(typeImage, file);
+                    let update = await Core.putImageHttpAlert(
+                        `/api/account/kyc/${this.kyc.id}/`,
+                        formData
+                    );
+                    if (update.id) {
+                        let waterMark = await Core.postHttp(`/api/auth/v2/watermark/`, {
+                            image: update[typeImage]
+                        })
+                        console.log('[dsdsd]', update.image_card);
+                    }
+                    await Web.switchLoad(true);
+                    await this.getMyKyc();
+                    await Web.switchLoad(false);
+                }
+            } catch (error) {
+                this.$refs[typeImage].value = '';
             }
 
         },

@@ -1,18 +1,29 @@
 <template>
 <div>
-    <vs-button floating @click="dialogFile = true" color="success">Upload Picture</vs-button>
+
+    <v-btn small text @click="dialogFile = true" color="success">
+        <v-icon>mdi-file-image-plus-outline</v-icon><span class="ml-1 capitalize font-semibold text-sm">Upload Picture</span>
+    </v-btn>
 
     <v-dialog v-if="dialogFile" v-model="dialogFile" persistent scrollable max-width="500px" transition="dialog-transition">
         <v-card>
             <v-card-title primary-title> Upload Picture
                 <v-spacer></v-spacer>
-                <v-btn @click="closeDialog()" icon  color="error"><v-icon>mdi-close</v-icon></v-btn>
+                <v-btn @click="closeDialog()" icon color="error">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
             </v-card-title>
             <v-card-text>
                 <div v-if="step == 1">
-                    <input ref="pictureInput2" accept="image/jpeg,image/png" @change="changeImage2" type="file" name="" id="">
+                    <div class="p-20">
+                        <center>
+                            <img src="~/static/png/2659360.png" alt="">
+                            <input class="hidden" ref="pictureInput2" accept="image/jpeg,image/png" @change="changeImage2" type="file" name="" id="">
+                            <br>
+                            <v-btn @click="$refs.pictureInput2.click()" color="success">Select Image</v-btn>
+                        </center>
+                    </div> 
                 </div>
-          
 
                 <div v-if="step == 2">
                     <!-- <div v-html="canvas"></div> -->
@@ -21,7 +32,10 @@
             }" @change="ready"></cropper>
                     <br>
                     <center>
-                        <vs-button floating @click="callbackImage()" color="success">Upload Picture</vs-button>
+                        <v-btn large block @click="callbackImage()" color="success">
+                            <v-icon>mdi-content-save</v-icon><span class="capitalize font-semibold text-base">Upload Picture</span>
+                        </v-btn>
+
                     </center>
                 </div>
             </v-card-text>
@@ -87,10 +101,10 @@ export default {
             this.dialogFile = false;
             await this.$emit('profileImage', this.file)
         },
-        async closeDialog(){
+        async closeDialog() {
             this.step = 1
-          this.dialogFile = false;
-        
+            this.dialogFile = false;
+
         }
     },
 };

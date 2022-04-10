@@ -1,5 +1,6 @@
 <template>
 <div class="bg-gray-100">
+    <Core-BgProfile></Core-BgProfile>
     <div class="relative  md:m-24 mt-20">
         <Core-Title :image="require('~/static/png/010-workinghours.png')" title="History Account" :paths="[{name:'History Account',link:null}]"></Core-Title>
  

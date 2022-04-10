@@ -55,6 +55,7 @@ export default {
     plugins: [
         '~/plugins/varibles.ts',
         '~/plugins/vuesax.js',
+        '~/plugins/city.js',
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

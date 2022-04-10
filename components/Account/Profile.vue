@@ -13,8 +13,8 @@
 
             <img src="" ref="imgs" alt="">
             <!-- upload photo -->
-            <div class="ml-4">
-                <h3 class="text-3xl">{{form.display_name}}</h3>
+            <div class="ml-4 mt-4">
+                <h3 class="text-3xl font-semibold ml-2">{{form.display_name}}</h3>
                 <div class="mt-2">
                     <Core-ImageInput @profileImage="getFileImage"></Core-ImageInput>
                 </div>
@@ -22,7 +22,7 @@
 
         </v-card-text>
         <v-card-text>
-
+          
             <form @submit.prevent="updateProfile" class="multi-col-validation mt-6">
                 <div class="flex flex-col md:flex-row md:flex-wrap">
                     <div class="w-full flex">
@@ -56,65 +56,67 @@
                     </h2>
                     <v-checkbox label="Foreigner" v-model="form.foreigner"></v-checkbox>
                     <v-text-field class="w-full  pl-2" v-model="form.address" prepend-inner-icon="em em-house" label="Address" dense outlined></v-text-field>
-                    <v-text-field v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="CityFrom" @click="openCityDialog" @focus="openCityDialog" type="text" label="Province District" prepend-inner-icon="em em-house_buildings" />
-                    <v-text-field required counter="5" v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" v-model="form.zipcode" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" prepend-inner-icon="em em-postbox" hint="Please enter a 5 digit postal code." maxlength="5" label="Postal code" dense outlined></v-text-field>
-                </div>
+                    <v-text-field readonly v-if="!form.foreigner" class="w-full md:w-1/2 mt-2 pl-2" dense outlined :value="`${form.province} ${form.amphur} ${form.district} ${form.zipcode}`" @click="dialog=true"   type="text" label="Province District" prepend-inner-icon="em em-house_buildings" />
+                 </div>
                 <br>
-                <div v-if="kyc.user_verified">
-                    <div v-if="!kyc.refferal_code">
-                        <v-alert outlined type="info">
-                            <h2>You not have refferal code please click to create your refferal code for your partner use. </h2>
-                            <br>
-                            <vs-button floating @click="createRefCode()">Create My Refferal Code</vs-button>
-                        </v-alert>
-                    </div>
-                    <div v-else>
-                        <v-alert outlined type="success">
-                            <div class="flex">
-                                <div>
-                                    My Referal Code
-                                    <h2 class="text-3xl">{{kyc.refferal_code}}</h2>
-                                </div>
-                                <v-spacer></v-spacer>
-                                <v-btn text small @click="copyURL(kyc.refferal_code)" color="primary">
-                                    <v-icon>mdi-clipboard</v-icon> Copy Referal Code
-                                </v-btn>
-                            </div>
+                
+                <v-btn large block type="submit" color="success">
+                    <v-icon>mdi-content-save</v-icon><span class="capitalize font-semibold text-base">Update Profile</span>
+                </v-btn>
 
-                        </v-alert>
-                    </div>
-                </div><br>
-                <vs-button type="submit" floating block color="success">Update Profile</vs-button>
             </form><br><br><br>
         </v-card-text>
     </v-card>
+
+    <v-dialog
+        v-model="dialog"
+        scrollable   
+        persistent :overlay="false"
+        max-width="500px"
+        transition="dialog-transition"
+    >
+        <v-card>
+            <v-card-title primary-title>
+                ที่อยู่ <v-spacer></v-spacer>
+                <v-btn  @click="closeDialog()" color="error" text fab><v-icon>mdi-close</v-icon></v-btn>
+            </v-card-title>
+          <v-card-text>
+      
+            <addressinput-subdistrict v-model="form.district" /> <!-- อำเภอ/เขต -->
+            <addressinput-district v-model="form.amphur" /> <!-- จังหวัด -->
+            <addressinput-province v-model="form.province" /> <!-- รหัสไปรษณีย์ -->
+            <addressinput-zipcode v-model="form.zipcode" />
+            <br>
+             <v-btn @click="chooseCity()" block color="success">เลือกที่อยู่</v-btn>
+          </v-card-text>
+        </v-card>
+    </v-dialog>
 </div>
 </template>
 
 <script>
+ 
 import {
     Auth
 } from '~/vuexes/auth'
 import {
     Core
-} from '~/vuexes/core'
-import watermark from 'watermarkjs'
+} from '~/vuexes/core' 
 import {
     City
 } from '~/vuexes/city'
 import {
     Web
 } from '~/vuexes/web'
-import {
-    values
-} from 'lodash'
+ 
 import moment from 'moment'
 export default {
     components: {
-
+      
     },
     data: () => {
         return ({
+       
             form: {},
             user: Auth.user,
             showCropper: true,
@@ -123,7 +125,7 @@ export default {
             foreigner: false,
             nonName: true,
             kyc: {},
-
+            dialog:false,
         })
     },
     computed: {
@@ -151,13 +153,13 @@ export default {
         await this.initial()
     },
     methods: {
-        async copyURL(mytext) { 
-            try {  
+        async copyURL(mytext) {
+            try {
                 await navigator.clipboard.writeText(`${this.$furl}auth/register?ref=${mytext}`);
-                await Web.alertAuto(`Your refferal code is copied`,1000)
-                            
+                await Web.alertAuto(`Your refferal code is copied`, 1000)
+
             } catch (e) {
-                  await Web.alertAuto(`Your refferal code is not copied`,1000,'error')
+                await Web.alertAuto(`Your refferal code is not copied`, 1000, 'error')
             }
         },
         async createRefCode() {
@@ -183,20 +185,14 @@ export default {
         async initial() {
             this.form = await Core.getHttp(`/api/account/userprofile/${this.user.id}/`)
             delete this.form.image_profile
-            await this.setCity();
+          
             await this.getMyKyc();
             if (this.kyc.user_verified == true && this.kyc.refferal_code == null) {
                 await this.createRefCode()
             }
         },
-        async updateProfile() {
-            this.form.geo = City.currentGeo.id;
-            this.form.province = City.currentProvince.id;
-            this.form.amphur = City.currentAmphur.id;
-            this.form.district = City.currentDistrict.id;
-            if (this.form.zipcode.length == '5') {
-                let update = await Core.putHttpAlert(`/api/account/userprofile/${this.user.id}/`, this.form)
-            }
+        async updateProfile() { 
+             let update = await Core.putHttpAlert(`/api/account/userprofile/${this.user.id}/`, this.form)
             await Auth.setUser();
 
         },
@@ -212,23 +208,16 @@ export default {
             // this.$refs.ximg.src = cover.src
 
         },
-        async openCityDialog() {
-            City.dialogCityState = true;
+        async chooseCity(){
+            if(this.form.province && this.form.amphur && this.form.district && this.form.zipcode){
+                this.dialog = false
+            }else{
+                await Web.noti('danger','You city form is required','please select your city.')
+            }
         },
-        async setCity() {
-            City.currentGeo = await Core.getHttp(
-                `/api/location/geography/${this.form.geo}/`
-            );
-            City.currentProvince = await Core.getHttp(
-                `/api/location/province/${this.form.province}/`
-            );
-            City.currentAmphur = await Core.getHttp(
-                `/api/location/amphur/${this.form.amphur}/`
-            );
-            City.currentDistrict = await Core.getHttp(
-                `/api/location/district/${this.form.district}/`
-            );
-            await City.setShowName();
+        async closeDialog(){
+               await this.initial()
+            this.dialog = false
         }
     }
 }

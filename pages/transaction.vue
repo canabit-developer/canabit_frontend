@@ -1,5 +1,6 @@
 <template>
 <div class="bg-gray-100">
+    <Core-BgProfile></Core-BgProfile>
     <div class="relative  md:m-24 mt-20">
         <Core-Title :image="require('~/static/png/5260274.png')" title="Transaction" :paths="[{name:'Transaction',link:null}]"></Core-Title>
         <div class="font-sans bg-white flex flex-col min-h-screen w-full mt-3">

@@ -1,11 +1,14 @@
 <template>
 <div>
     <template>
-        <div class="inline-flex " v-if="response">
-            <vs-button floating color="#22c55e" @click="active=!active">
+        <div class="  " v-if="response">
+            <v-toolbar color="transparent" flat>
+                <v-spacer></v-spacer>
+                <vs-button floating color="#22c55e" @click="active=!active">
                 <v-icon class="mr-2 " size="15">em em-memo</v-icon>
                 Add Account
             </vs-button>
+            </v-toolbar>
             <vs-dialog prevent-close v-model="active">
                 <template #header>
                     <h3 class="not-margin mt-6">

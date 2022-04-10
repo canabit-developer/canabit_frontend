@@ -1,5 +1,6 @@
 <template>
 <div class="bg-gray-100">
+    <Core-BgProfile></Core-BgProfile>
     <div class="relative  md:m-24 mt-20">
         <Core-Title :image="require('~/static/png/016-cp.png')" title="Copy Trade" :paths="[{name:'Copy Trade',link:null}]"></Core-Title>
 

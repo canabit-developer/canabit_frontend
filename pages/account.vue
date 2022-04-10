@@ -9,25 +9,27 @@
                 <div class="p-2 rounded-xl shadow-md bg-white   ">
                     <v-tabs v-model="tab" show-arrows grow>
                         <v-tab>
-                            <v-icon size="20" class="me-3">em em-bust_in_silhouette</v-icon> Account
+                             <img class="h-10 mr-1" src="~/static/png/2885635.png" alt=""> <span class="capitalize font-semibold text-base" >Account</span>
+                      
                         </v-tab>
                         <v-tab-item>
                             <Account-Profile></Account-Profile>
                         </v-tab-item>
                         <v-tab>
-                            <v-icon size="20" class="me-3">em em-lock</v-icon> Password
+                            <img class="h-8 mr-1" src="~/static/png/2885647.png" alt=""> <span class="capitalize font-semibold text-base" >Password</span>
+                      
                         </v-tab>
                         <v-tab-item>
                             <Account-ResetPassword></Account-ResetPassword>
                         </v-tab-item>
-                        <v-tab>
-                            <v-icon size="20" class="me-3">em em-exclamation </v-icon> KYC
+                        <v-tab> 
+                            <img class="h-10 mr-1" src="~/static/png/2885550.png" alt=""> <span class="capitalize font-semibold text-base" >KYC</span>
                         </v-tab>
                         <v-tab-item>
                             <Account-Kyc></Account-Kyc>
                         </v-tab-item>
                         <v-tab>
-                            <v-icon size="20" class="me-3"></v-icon> Partner
+                            <img class="h-10 mr-1" src="~/static/png/2885417.png" alt=""> <span class="capitalize font-semibold text-base" >Partner</span>
                         </v-tab>
                         <v-tab-item>
                             <Account-Partner></Account-Partner>
@@ -45,7 +47,7 @@
 export default {
     data: () => {
         return ({
-            tab: 2
+            tab: 0
         })
     }
 }
