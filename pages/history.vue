@@ -4,7 +4,7 @@
     <div class="relative  md:m-24 mt-20">
         <Core-Title :image="require('~/static/png/010-workinghours.png')" title="History Account" :paths="[{name:'History Account',link:null}]"></Core-Title>
  
-        <div class="font-sans bg-white flex flex-col min-h-screen w-full mt-3">
+        <div class="font-sans flex flex-col min-h-screen w-full mt-3">
             <div>
                 <div class="bg-green-400 rounded-xl md:overflow-hidden">
                     <div class="px-4 py-16">
@@ -29,7 +29,7 @@
 
                     </div>
 
-                    <svg class="fill-current bg-green-400 text-white hidden md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <svg class="fill-current bg-green-400 text-gray-100  hidden md:block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                         <path fill-opacity="1" d="M0,64L120,85.3C240,107,480,149,720,149.3C960,149,1200,107,1320,85.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
                     </svg>
                 </div>
