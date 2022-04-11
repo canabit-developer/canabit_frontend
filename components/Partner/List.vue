@@ -1,98 +1,57 @@
 <template>
-<div class="m-6">
- 
-
-    <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Finance </h2>
-
-    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-6 xl:gap-x-8">
-        <div class="  group relative" v-for="(brand,index) in brands" :key="index">
-            <v-item v-slot="{ }">
-                <v-hover v-slot="{ hover }">
-                    <v-card>
-                        <v-img :aspect-ratio="18/9" contain :src="brand.image" alt="Front of men&#039;s Basic Tee in black." class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            <v-expand-transition>
-                                <div v-if="hover" class="d-flex   primary  text-h6   v-card--reveal text-center white--text" style="height:100%;">
-                                    <v-card-text class="my-4 text-center text-h6">
-                                        Hover over me!
-                                    </v-card-text>
-                                </div>
-                            </v-expand-transition>
-                        </v-img>
-                        <v-card-text class="pt-6" style="position: relative;">
-                            <v-btn absolute color="primary" class="white--text" fab small right top>
-                                <v-icon dark>
-                                    mdi-arrow-right
-                                </v-icon>
-                            </v-btn>
-                            <div class="font-weight-light grey--text text-h6 mb-2 text-center">
-                                {{brand.name}}
-                            </div>
-                        </v-card-text>
-                    </v-card>
-                </v-hover>
-            </v-item>
+  <div class="m-24">
+      <v-timeline>
+    <v-timeline-item
+      v-for="(year, i) in years"
+      :key="i"
+      :color="year.color"
+      small
+    >
+      <template v-slot:opposite>
+        <span
+          :class="`headline font-weight-bold ${year.color}--text`"
+          v-text="year.year"
+        ></span>
+      </template>
+      <div class="py-4">
+        <h2 :class="`headline font-weight-light mb-4 ${year.color}--text`">
+          Lorem ipsum
+        </h2>
+        <div>
+          Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.
         </div>
-
-    </div>
-
-    <br> <br>
-    <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">E-commerce </h2>
-    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-6 xl:gap-x-8">
-        <div class="  group relative" v-for="(brand,index) in brands" :key="index">
-            <v-item v-slot="{ }">
-                <v-hover v-slot="{ hover }">
-                    <v-card>
-                        <v-img :aspect-ratio="18/9" contain :src="brand.image" alt="Front of men&#039;s Basic Tee in black." class="w-full h-full object-center object-cover lg:w-full lg:h-full">
-                            <v-expand-transition>
-                                <div v-if="hover" class="d-flex   primary  text-h6   v-card--reveal text-center white--text" style="height:100%;">
-                                    <v-card-text class="my-4 text-center text-h6">
-                                        Hover over me!
-                                    </v-card-text>
-                                </div>
-                            </v-expand-transition>
-                        </v-img>
-                        <v-card-text class="pt-6" style="position: relative;">
-                            <v-btn absolute color="primary" class="white--text" fab small right top>
-                                <v-icon dark>
-                                    mdi-arrow-right
-                                </v-icon>
-                            </v-btn>
-                            <div class="font-weight-light grey--text text-h6 mb-2 text-center">
-                                {{brand.name}}
-                            </div>
-                        </v-card-text>
-                    </v-card>
-                </v-hover>
-            </v-item>
-        </div>
-
-    </div>
-
-</div>
+      </div>
+    </v-timeline-item>
+  </v-timeline>
+  </div>
 </template>
 
 <script>
-import {
-    Auth
-} from '~/vuexes/auth'
-import {
-    Core
-} from '~/vuexes/core'
-import _ from 'lodash'
 export default {
-    data: () => {
-        return ({
-            brands: []
-        })
-    },
-    async created() {
-        await this.loadList()
-    },
-    methods: {
-        async loadList() {
-            this.brands = await Core.getHttp(`/api/connection/brand/`)
-        }
-    }
+     data: () => ({
+      years: [
+        {
+          color: 'cyan',
+          year: '1960',
+        },
+        {
+          color: 'green',
+          year: '1970',
+        },
+        {
+          color: 'pink',
+          year: '1980',
+        },
+        {
+          color: 'amber',
+          year: '1990',
+        },
+        {
+          color: 'orange',
+          year: '2000',
+        },
+      ],
+    }),
 }
 </script>
 
