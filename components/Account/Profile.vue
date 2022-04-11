@@ -22,6 +22,8 @@
 
         </v-card-text>
         <v-card-text>
+
+         
           
             <form @submit.prevent="updateProfile" class="multi-col-validation mt-6">
                 <div class="flex flex-col md:flex-row md:flex-wrap">
@@ -81,11 +83,11 @@
                 <v-btn  @click="closeDialog()" color="error" text fab><v-icon>mdi-close</v-icon></v-btn>
             </v-card-title>
           <v-card-text>
-      
+      <addressinput-zipcode v-model="form.zipcode" />
             <addressinput-subdistrict v-model="form.district" /> <!-- อำเภอ/เขต -->
             <addressinput-district v-model="form.amphur" /> <!-- จังหวัด -->
             <addressinput-province v-model="form.province" /> <!-- รหัสไปรษณีย์ -->
-            <addressinput-zipcode v-model="form.zipcode" />
+            
             <br>
              <v-btn @click="chooseCity()" block color="success">เลือกที่อยู่</v-btn>
           </v-card-text>

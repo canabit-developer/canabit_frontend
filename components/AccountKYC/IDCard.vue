@@ -75,18 +75,24 @@ export default {
             }
         },
         async saveData() {
-            let store = await Core.putHttpAlert(`/api/account/kyc/${this.kyc.id}/`, {
+            try {
+                 let store = await Core.putHttpAlert(`/api/account/kyc/${this.kyc.id}/`, {
                 'card_id': this.form.card_id,
                 'use_passport': this.form.use_passport
-            })
-            if (store.id) {
-                this.dialog = false
-                await this.$emit('reload', store)
+                })
+                if (store.id) {
+                    this.dialog = false
+                    await this.$emit('reload', store)
+                }
+            } catch (error) {
+                await Web.noti(`danger`,'Cannot Save','Your ID Card is not format. or Server is error')
             }
+           
         },
         async closeDialog() {
-            this.dialog = false
+            this.dialog = false 
             await this.init();
+            this.form = {}
             await this.$emit('reload')
         },
         async checkIdData() {

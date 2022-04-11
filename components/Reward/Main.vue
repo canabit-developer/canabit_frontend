@@ -19,7 +19,7 @@
 
     <vs-dialog width="550px" not-center v-model="dialog" class="bg-gray-100">
         <template #header>
-            <center v-if="vote.id"> <img class="w-10 md:w-40 mtimg" src="~/static/png/trophy.png" alt="">
+            <center v-if="vote.id"> <img class="w-10 md:w-36  " src="~/static/png/trophy.png" alt="" style="margin-top:-60px;">
                 <h2 class="ref font-semibold text-4xl mt-2 text-green-500">Reward Volting</h2>
             </center>
             <hr v-if="vote.id" class="m-4">
@@ -158,7 +158,7 @@ export default {
 }
 
 .mtimg {
-    margin-top: -100px !important;
+    margin-top: -10px !important;
 }
 
 @media only screen and (max-width: 600px) {
