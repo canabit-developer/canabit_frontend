@@ -125,6 +125,7 @@ export default {
         async checkPoint() {
             let moneyPoint = this.usePoint * this.setting.point_to_us
             let calulatePrice = this.ea.price - moneyPoint
+           
             if (this.usePoint > 0) {
                 if (calulatePrice >= 0) {
                     this.moneyPoint = moneyPoint
@@ -140,7 +141,6 @@ export default {
                 this.totalPrice = this.ea.price
                 return true
             }
-
         },
         async checkDiscount() {
             let dis = await Core.getHttp(`/api/webconfig/promotion/?code=${this.discount}&is_active=true`)
