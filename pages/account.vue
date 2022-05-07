@@ -4,7 +4,11 @@
     <div class="relative  md:m-24 mt-20">
         <div>
             <Core-Title :image="require('~/static/png/034-designthinking.png')" title="Account Setting" :paths="[{name:'Account Setting',link:null}]" ></Core-Title>
-        
+
+ 
+
+           
+
             <div class=" bg-white     rounded-xl  ">
                 <div class="p-2 rounded-xl shadow-md bg-white   ">
                     <v-tabs v-model="tab" show-arrows grow>
@@ -49,6 +53,9 @@ export default {
         return ({
             tab: 0
         })
+    },
+    async created(){
+        console.log(this.$route);
     }
 }
 </script>

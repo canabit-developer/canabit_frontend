@@ -1,16 +1,22 @@
 <template>
-<v-app   v-if="response">
+<v-app v-if="response">
     <Core-Loading></Core-Loading>
     <UserMenu-MainMenu></UserMenu-MainMenu>
- 
+
     <v-main class="bg-gray-100">
         <Core-Notification />
         <!--class=" md:ml-28 md:mr-28"-->
-        <div >
-            
+        <div>
+
             <Nuxt />
         </div>
-
+        <v-footer padless >
+            <v-toolbar color="white" flat>
+                <strong>Cashback</strong> &nbsp; ©{{ new Date().getFullYear() }}
+                <v-spacer></v-spacer>
+                <Core-LanguageSwitch></Core-LanguageSwitch>
+            </v-toolbar>
+        </v-footer>
     </v-main>
 
 </v-app>
@@ -51,8 +57,8 @@ export default {
             }
         }
     },
-    computed:{
-        tier(){
+    computed: {
+        tier() {
             return Auth.tier
         }
     }

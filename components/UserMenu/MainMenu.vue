@@ -70,9 +70,9 @@
         </div>
 
         <v-list expand shaped class="  ">
-            <UserMenu-NavbarLink path="/" title="Home" :icon="require('~/static/png/018-pantone.png')"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/transaction" title="Transaction" :icon="require('~/static/png/5260274.png')"></UserMenu-NavbarLink>
-            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/forex" title="Forex Broker" :icon="require('~/static/png/5180646.png')"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink path="/" :title="$t('menu').home" :icon="require('~/static/png/018-pantone.png')"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/transaction" :title="$t('menu').transection" :icon="require('~/static/png/5260274.png')"></UserMenu-NavbarLink>
+            <UserMenu-NavbarLink v-if="kyc.user_verified" path="/forex" :title="$t('menu').fx" :icon="require('~/static/png/5180646.png')"></UserMenu-NavbarLink>
             <UserMenu-NavMenuSectionTitle v-if="kyc.user_verified" title="Product"></UserMenu-NavMenuSectionTitle>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/ea" title="EA" :icon="require('~/static/png/023-app-store.png')"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/indicator" title="Indicator" :icon="require('~/static/png/speedometer.png')"></UserMenu-NavbarLink>

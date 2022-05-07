@@ -5,7 +5,7 @@
      <img style=" width:54px!important; height: auto!important;" :src="icon" alt="">
     </v-list-item-icon> 
     <v-list-item-title :class="activateTxt" >
-        {{ title }}
+        {{ title }}  
     </v-list-item-title>
 </v-list-item>
 </template>
@@ -33,14 +33,15 @@ export default {
     },
     computed:{
         activate(){
-            return (this.$route.path == this.path)
+            
+            return (this.$route.path == this.path) || (this.$route.path == '/en'+this.path) 
         },
         activateBg(){ 
-            return (this.$route.path == this.path)?`navbar-active shadow-2xl text-gray-600  box-shadows`:``
+            return (this.$route.path == this.path)|| (this.$route.path == '/en'+this.path) ?`navbar-active shadow-2xl text-gray-600  box-shadows`:``
         },
        
        activateTxt(){ 
-            return (this.$route.path == this.path)?`text-gray-600 font-semibold `:`text-gray-400  `
+            return (this.$route.path == this.path)|| (this.$route.path == '/en'+this.path) ?`text-gray-600 font-semibold `:`text-gray-400  `
        }
        
     }

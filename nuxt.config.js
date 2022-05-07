@@ -73,8 +73,38 @@ export default {
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         // https://go.nuxtjs.dev/axios
-        '@nuxtjs/axios',
+        '@nuxtjs/axios', ['nuxt-i18n',
+            {
+                parsePages: false,
+                encodePaths: false
+            }
+        ]
     ],
+
+
+    i18n: {
+        locales: [{
+                code: 'en',
+                iso: 'en-US',
+                name: 'English'
+            },
+            {
+                code: 'th',
+                iso: 'th-TH',
+                name: 'ไทย'
+            }
+        ],
+        defaultLocale: 'th',
+        vueI18n: {
+            messages: {
+                // eslint-disable-next-line global-require
+                th: require('./languages/th.json'),
+                // eslint-disable-next-line global-require
+                en: require('./languages/en.json')
+            }
+        }
+    },
+
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
