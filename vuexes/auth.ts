@@ -21,7 +21,7 @@ class AuthModule extends VuexModule {
       this.kyc = (initData.kyc) ? initData.kyc : {}
       this.point = (initData.point_use) ? initData.point_use : {}
       this.tier = (initData.mytier) ? initData.mytier : {}
-      this.setting = (initData.setting) ? initData.setting : {}
+      this.setting = (initData.setting) ? initData.setting.value : {}
 
       if (this.user.id) {
         await this.checkTier();
