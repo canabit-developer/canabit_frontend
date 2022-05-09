@@ -58,8 +58,8 @@
 
                 </div>
             </div>
-            <div v-else>
-                <img src="https://scontent.fcnx3-1.fna.fbcdn.net/v/t39.30808-6/273112697_1357001761412987_8215691963314062827_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=e3f864&_nc_eui2=AeEA4Oej5IrVvMahCFLjbWmoQDMFlX4gzp5AMwWVfiDOnj8YfpZdK0BjisxixGBpBCpXK1d1JO1bBWnjdxmL42Rf&_nc_ohc=0OwUkz874jsAX9AcKhG&_nc_ht=scontent.fcnx3-1.fna&oh=00_AT8H33vwZxNkgNnacvZnJEg8P6PCTuKjW5HAYyFDbRbBbg&oe=62583FC7" alt="">
+            <div v-else> 
+                <img :src="$url+slide" alt="">
             </div>
         </div>
 
@@ -82,7 +82,9 @@ export default {
             vote: {},
             response: false,
             result: {},
-            dialog: true
+            dialog: true,
+            slides:[],
+            slide:''
         })
     },
     methods: {
@@ -92,7 +94,10 @@ export default {
                 this.vote = votes[votes.length - 1];
                 await this.checkVolt();
             }
-
+        this.slides = await Core.getHttp(`/api/webconfig/slide/?is_active=true`)
+        if(this.slides.length > 0){
+            this.slide = this.slides[0].image
+        }
         },
         async reload(val) {
             this.dialog = val
