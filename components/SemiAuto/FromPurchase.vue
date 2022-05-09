@@ -4,14 +4,14 @@
         <div class="inline-flex ">
             <vs-button class="btn-chat" color="#0052F9" @click="active=!active">
                 <span class="span">
-                    Purchase
+                    {{$t('ea').purchase}}
                 </span>
             </vs-button>
             <vs-dialog prevent-close max-width="500px" persistent v-model="active">
                 <template #header>
                     <h4 class="not-margin mt-6">
                         <v-icon size="20" class="me-3">em em-chart_with_upwards_trend</v-icon>
-                        <b> Purchase to {{ea.name}}</b>
+                        <b> {{$t('ea').purchase}} {{ea.name}}</b>
                     </h4>
                 </template>
                 <v-card-title>
@@ -25,10 +25,10 @@
 
                     <form ref="eaForm" @submit.prevent="checkPayment()">
                         <div class="bg-yellow-100 p-3 rounded-xl">
-                            <h2><b>EA Price</b> : {{ea.price}}</h2>
-                            <h1><b>Discount Point</b> : {{moneyPoint}} </h1>
-                            <h2><b>Discount Code {{myDiscount.name}} </b> : {{discountPrice}} </h2>
-                            <h1 class="text-base"><b>Total Price: {{totalPrice}} </b></h1>
+                            <h2><b>{{$t('ea').price}}</b> : {{ea.price}}</h2>
+                            <h1><b>{{$t('ea').discountpoint}}</b> : {{moneyPoint}} </h1>
+                            <h2><b>{{$t('ea').discountcode}} {{myDiscount.name}} </b> : {{discountPrice}} </h2>
+                            <h1 class="text-base"><b>{{$t('ea').totalprice}}: {{totalPrice}} </b></h1>
                         </div><br>
                         <v-autocomplete @change="prepareStore()" v-model="form.account_type" label="Account No" outlined :items="accLists" item-text="account_no" item-value="id"></v-autocomplete>
                         <v-text-field type="number" min="0" max="999" @input="prepareStore()" v-model="usePoint" label="Point" outlined></v-text-field>
@@ -42,13 +42,13 @@
                 <template #header>
                     <h4 class="not-margin mt-6">
                         <v-icon size="20" class="me-3">em em-chart_with_upwards_trend</v-icon>
-                        <b> Purchase to {{ea.name}}</b>
+                        <b>{{$t('ea').purchase}} {{ea.name}}</b>
                     </h4>
                 </template>
                 <v-card-text>
-  <center>                    <img class="w-40" src="https://th.qr-code-generator.com/wp-content/themes/qr/new_structure/markets/basic_market/generator/dist/generator/assets/images/websiteQRCode_noFrame.png" alt="">
-</center>
-                  </v-card-text>
+                    <center> <img class="w-40" src="https://th.qr-code-generator.com/wp-content/themes/qr/new_structure/markets/basic_market/generator/dist/generator/assets/images/websiteQRCode_noFrame.png" alt="">
+                    </center>
+                </v-card-text>
             </vs-dialog>
         </div>
     </template>
@@ -125,7 +125,7 @@ export default {
         async checkPoint() {
             let moneyPoint = this.usePoint * this.setting.point_to_us
             let calulatePrice = this.ea.price - moneyPoint
-           
+
             if (this.usePoint > 0) {
                 if (calulatePrice >= 0) {
                     this.moneyPoint = moneyPoint
