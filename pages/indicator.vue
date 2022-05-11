@@ -2,7 +2,7 @@
 <div class="bg-gray-100">
     <Core-BgProfile></Core-BgProfile>
     <div class="relative  md:m-24 mt-20">
-        <Core-Title :image="require('~/static/png/speedometer.png')" title="Indicator Product" :paths="[{name:'Indicator Product',link:null}]"></Core-Title>
+        <Core-Title :image="require('~/static/png/speedometer.png')" :title="$t('headerpage').indicator" :paths="[{name:'Indicator Product',link:null}]"></Core-Title>
       
         <div class="mt-3">
             <Signals-ListSignals></Signals-ListSignals>

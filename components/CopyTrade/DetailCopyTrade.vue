@@ -24,7 +24,7 @@
                     </div>
 
                     <h2 class="font-bold text-3xl  ml-10 mt-8">
-                        Details
+                        {{$t('copytrade').details}}
                     </h2>
                     <div class="  ml-10 mt-6">
                         <div v-html="cpt.detail">
@@ -32,9 +32,8 @@
                     </div>
                     <CopyTrade-Chart :data="cpt.chart"></CopyTrade-Chart>
                 </div>
-
                 <h2 class="font-bold text-3xl  ml-10 mt-8">
-                    Reviews
+                    {{$t('copytrade').reviews}}
                 </h2>
                 <div class="ml-10 ">
 
@@ -43,7 +42,7 @@
                         <v-textarea v-model="form.comment" class="mt-3" required row="3" outlined></v-textarea>
                         <div class="flex">
                             <v-spacer></v-spacer>
-                            <vs-button type="submit" floating color="success">Comment</vs-button>
+                            <vs-button type="submit" floating color="success">{{$t('copytrade').buttoncomment}}</vs-button>
                         </div>
                     </form>
 

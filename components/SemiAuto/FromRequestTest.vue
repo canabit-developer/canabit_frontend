@@ -4,7 +4,7 @@
         <div class="inline-flex ">
             <vs-button class="btn-chat" color="#FF964A" @click="active=!active">
                 <span class="span">
-                    Request test
+                    {{$t('ea').requesttest}}
                 </span>
 
             </vs-button>
@@ -16,16 +16,16 @@
                 </template>
 
                 <div class="con-form">
-                    <h1 class="text-4xl font-semibold leading-9 text-green-400 text-center">Free for request test!</h1>
+                    <h1 class="text-4xl font-semibold leading-9 text-green-400 text-center">{{$t('ea').hearderqp}}</h1>
                     <p class="text-base leading-normal text-center text-green-400 mt-6">
-                        Please check the download link to the email. <br />
+                       {{$t('ea').requesttest}}  <br />
                     </p>
                 </div>
 
                 <template #footer>
                     <div class="footer-dialog">
                         <vs-button @click="store()" block color="#17c964">
-                            Submit Request Test
+                            {{$t('ea').submitrq}}
                         </vs-button>
                     </div>
                 </template>

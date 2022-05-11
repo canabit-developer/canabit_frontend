@@ -29,14 +29,14 @@
                                                 <div class="flex flex-col">
                                                     <div class="w-full flex-none text-lg text-white font-bold leading-none">
                                                         <v-icon class="mr-2" size="20">em em-trophy</v-icon>
-                                                        Reward
+                                                        {{$t('reward').header}}
                                                     </div> 
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="flex flex-row items-center justify-end ">
                                             <div class="flex-auto text-white my-1">
-                                                <span class="mr-3 ">customers can bring Points can be exchanged for rewards.</span>
+                                                <span class="mr-3 ">{{$t('reward').body}}</span>
                                             </div>
                                             <v-btn @click="$router.push(`/redeem`)" rounded fab>
                                                 <v-icon>mdi-arrow-right</v-icon>

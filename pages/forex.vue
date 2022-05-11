@@ -2,7 +2,7 @@
 <div class="bg-gray-100">
     <Core-BgProfile></Core-BgProfile>
     <div class="relative  md:m-24 mt-20">
-        <Core-Title :image="require('~/static/png/5180646.png')" title="Forex Broker" :paths="[{name:'Forex Broker',link:null}]"></Core-Title>
+        <Core-Title :image="require('~/static/png/5180646.png')" :title="$t('headerpage').fx" :paths="[{name:'Forex Broker',link:null}]"></Core-Title>
  
  
 

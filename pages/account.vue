@@ -3,7 +3,7 @@
     <Core-BgProfile></Core-BgProfile>
     <div class="relative  md:m-24 mt-20">
         <div>
-            <Core-Title :image="require('~/static/png/034-designthinking.png')" title="Account Setting" :paths="[{name:'Account Setting',link:null}]" ></Core-Title>
+            <Core-Title :image="require('~/static/png/034-designthinking.png')" :title="$t('headerpage').account" :paths="[{name:'Account Setting',link:null}]" ></Core-Title>
 
  
 
@@ -13,27 +13,27 @@
                 <div class="p-2 rounded-xl shadow-md bg-white   ">
                     <v-tabs v-model="tab" show-arrows grow>
                         <v-tab>
-                             <img class="h-10 mr-1" src="~/static/png/2885635.png" alt=""> <span class="capitalize font-semibold text-base" >Account</span>
+                             <img class="h-10 mr-1" src="~/static/png/2885635.png" alt=""> <span class="capitalize font-semibold text-base" > {{$t('accountsetting').account}}</span>
                       
                         </v-tab>
                         <v-tab-item>
                             <Account-Profile></Account-Profile>
                         </v-tab-item>
                         <v-tab>
-                            <img class="h-8 mr-1" src="~/static/png/2885647.png" alt=""> <span class="capitalize font-semibold text-base" >Password</span>
+                            <img class="h-8 mr-1" src="~/static/png/2885647.png" alt=""> <span class="capitalize font-semibold text-base" > {{$t('accountsetting').password}}</span>
                       
                         </v-tab>
                         <v-tab-item>
                             <Account-ResetPassword></Account-ResetPassword>
                         </v-tab-item>
                         <v-tab> 
-                            <img class="h-10 mr-1" src="~/static/png/2885550.png" alt=""> <span class="capitalize font-semibold text-base" >KYC</span>
+                            <img class="h-10 mr-1" src="~/static/png/2885550.png" alt=""> <span class="capitalize font-semibold text-base" > {{$t('accountsetting').kyc}}</span>
                         </v-tab>
                         <v-tab-item>
                             <Account-Kyc></Account-Kyc>
                         </v-tab-item>
                         <v-tab>
-                            <img class="h-10 mr-1" src="~/static/png/2885417.png" alt=""> <span class="capitalize font-semibold text-base" >Partner</span>
+                            <img class="h-10 mr-1" src="~/static/png/2885417.png" alt=""> <span class="capitalize font-semibold text-base" > {{$t('accountsetting').partner}}</span>
                         </v-tab>
                         <v-tab-item>
                             <Account-Partner></Account-Partner>

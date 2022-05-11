@@ -2,7 +2,7 @@
 <div class="bg-gray-100">
     <Core-BgProfile></Core-BgProfile>
     <div class="relative  md:m-24 mt-20">
-        <Core-Title :image="require('~/static/png/010-workinghours.png')" title="History Account" :paths="[{name:'History Account',link:null}]"></Core-Title>
+        <Core-Title :image="require('~/static/png/010-workinghours.png')" :title="$t('headerpage').history" :paths="[{name:'History Account',link:null}]"></Core-Title>
  
         <div class="font-sans flex flex-col min-h-screen w-full mt-3">
             <div>
@@ -10,12 +10,12 @@
                     <div class="px-4 py-16">
                         <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
                             <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
-                                A simple and smart tool that will help grow your business
+                               {{$t('historyaccount').header}}
                             </h1>
 
-                            <p class="text-white md:text-xl md:px-18">
+                            <!-- <p class="text-white md:text-xl md:px-18">
                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit hello.
-                            </p>
+                            </p> -->
 
                             <div class="hidden md:block h-5 w-5 rounded-full bg-green-500 absolute top-0 right-0 -mr-40 mt-32"></div>
                             <div class="text-center mb-10 mt-10">

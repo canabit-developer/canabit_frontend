@@ -24,11 +24,11 @@
                         </div>
                     </v-col>
                     <form @submit.prevent="changePassword()" ref="formResetPassword">
-                        <h2 class="text-xl mt-4 mb-4">Change Password</h2>
+                        <h2 class="text-xl mt-4 mb-4">{{$t('accountsetting').changepass}}</h2>
                         <v-text-field :type="isPasswordVisible ? 'text' : 'password'" :append-icon="isPasswordVisible ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible = !isPasswordVisible" required class="w-full md:w-1/2 m-1"  v-model="form.old_password" prepend-inner-icon="em em-lock" label="Old Password" dense outlined></v-text-field>
                         <v-text-field :type="isPasswordVisible1 ? 'text' : 'password'" :append-icon="isPasswordVisible1 ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible1 = !isPasswordVisible1" required class="w-full md:w-1/2 m-1" v-model="form.password" prepend-inner-icon="em em-closed_lock_with_key" label="New Password" dense outlined></v-text-field>
                         <v-text-field :type="isPasswordVisible2 ? 'text' : 'password'" :append-icon="isPasswordVisible2 ? `mdi-eye-off-outline` : `mdi-eye-outline`" @click:append="isPasswordVisible2= !isPasswordVisible2" required class="w-full md:w-1/2 m-1"  v-model="form.password_confirm" prepend-inner-icon="em em-closed_lock_with_key" label="Confirm New Password" dense outlined></v-text-field>
-                        <vs-button floating type="submit" color="success">Update Password</vs-button>
+                        <vs-button floating type="submit" color="success">{{$t('accountsetting').updatepass}}</vs-button>
                     </form>
                 </v-col>
                     <img contain style="width:180px; height:260px;" src="~/static/images/3d-characters/pose-m-1.png" class="security-character m-3 mt-8" />
@@ -37,7 +37,7 @@
         <v-card-text v-else>
             <div class="p-6">
                 <v-alert outlined text type="info" :value="true">
-                    You are logged in with a social network, you cannot change your password.
+                    {{$t('accountsetting').notiinfo}}
                 </v-alert>
             </div>
 

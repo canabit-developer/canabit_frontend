@@ -143,7 +143,7 @@ export default {
             }
         },
         async checkDiscount() {
-            let dis = await Core.getHttp(`/api/webconfig/promotion/?code=${this.discount}&is_active=true`)
+            let dis = await Core.getHttp(`/api/webconfig/promotion/?is_active=true&code=${this.discount}`)
             dis = await _.filter(dis, {
                 code: this.discount
             })

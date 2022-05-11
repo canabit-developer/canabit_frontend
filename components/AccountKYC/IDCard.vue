@@ -3,19 +3,19 @@
 
     <div v-if="kyc.card_id">
 
-        <h2 class="text-green-500 font-semibold text-base"> Your <span v-if="kyc.use_passport">Passport Number </span> <span v-else>ID Card number</span> : {{kyc.card_id}} </h2>
+        <h2 class="text-green-500 font-semibold text-base"> {{$t('kyc').txt}} <span v-if="kyc.use_passport">{{$t('kyc').passport}} </span> <span v-else>{{$t('kyc').cardnumber}} </span> : {{kyc.card_id}} </h2>
 
     </div><br>
   
     <div class="flex justify-center mt-4">
         <v-spacer class="hidden md:block"></v-spacer>
-        <v-btn v-if="!kyc.user_verified" @click="dialog=true" color="success">Update Data</v-btn>
+        <v-btn v-if="!kyc.user_verified" @click="dialog=true" color="success">{{$t('kyc').updatedata}}</v-btn>
     </div>
 
     <v-dialog v-model="dialog" scrollable persistent :overlay="false" max-width="500px" transition="dialog-transition">
         <v-card>
             <v-card-title primary-title>
-                Update your ID Card Number <v-spacer></v-spacer>
+                {{$t('kyc').updatedata}}<v-spacer></v-spacer>
                 <v-icon @click="closeDialog()">mdi-close</v-icon>
             </v-card-title>
             <v-card-text>

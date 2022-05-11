@@ -32,8 +32,8 @@
                             <img class="w-56" src="~/static/png/4040329.png" alt="">
                         </div>
                         <div class="md:7/12 lg:w-6/12">
-                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">1.Verify Identity Card Number.</h2>
-                            <p class="mt-6 text-gray-600">Verify your identity by entering your ID card number or passport number.</p>
+                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">1.{{$t('kyc').verify}}</h2>
+                            <p class="mt-6 text-gray-600">{{$t('kyc').bodyverify}}</p>
                             <AccountKYC-IDCard :kyc="kyc" @reload="getMyKyc"></AccountKYC-IDCard>
                         </div>
                     </div>
@@ -47,14 +47,14 @@
                             <img class="w-56" src="~/static/png/4736559.png" alt="">
                         </div>
                         <div class="md:7/12 lg:w-6/12">
-                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">2.Upload your card.</h2>
-                            <p class="mt-6 text-gray-600">Verification of identity by uploading a picture of an ID card.</p>
-                                <v-btn v-if="kyc.image_card" @click="openImage(kyc.image_card)"  text color="success"><v-icon class=" text-green-500 mr-2">mdi-eye</v-icon><span class="capitalize text-green-500 font-semibold text-base" >View Your Image</span> </v-btn>
+                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">2.{{$t('kyc').updatecard}}</h2>
+                            <p class="mt-6 text-gray-600">{{$t('kyc').bodycard}}</p>
+                                <v-btn v-if="kyc.image_card" @click="openImage(kyc.image_card)"  text color="success"><v-icon class=" text-green-500 mr-2">mdi-eye</v-icon><span class="capitalize text-green-500 font-semibold text-base" >{{$t('kyc').viewimg}}</span> </v-btn>
                               <input class="text-sm cursor-pointer w-36  hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_card')" ref="image_card" type="file" accept=".jpeg,.png,.jpg,GIF">
                                
                                 <div class="flex justify-center mt-4">
                                     <v-spacer class="hidden md:block"></v-spacer>
-                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_card.click()" color="success">Upload Image</v-btn>
+                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_card.click()" color="success">{{$t('kyc').uploadimg}}</v-btn>
                                 </div>
                         </div>
                     </div>
@@ -68,15 +68,15 @@
                             <img class="w-56" src="~/static/png/4187234.png" alt="">
                         </div>
                         <div class="md:7/12 lg:w-6/12">
-                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">3.Upload selfie with your card.</h2>
-                            <p class="mt-6 text-gray-600">Verify your identity by uploading a picture of your account number.</p>
-                                <v-btn v-if="kyc.image_selfie" @click="openImage(kyc.image_selfie)"  text color="success"><v-icon class=" text-green-500 mr-2">mdi-eye</v-icon><span class="capitalize text-green-500 font-semibold text-base" >View Your Image</span> </v-btn>
+                            <h2 class="text-xl text-gray-900 font-bold md:text-xl">3.{{$t('kyc').uploadselfie}}</h2>
+                            <p class="mt-6 text-gray-600">{{$t('kyc').bodyselfie}}</p>
+                                <v-btn v-if="kyc.image_selfie" @click="openImage(kyc.image_selfie)"  text color="success"><v-icon class=" text-green-500 mr-2">mdi-eye</v-icon><span class="capitalize text-green-500 font-semibold text-base" >{{$t('kyc').viewimg}}</span> </v-btn>
                               <input class="text-sm cursor-pointer w-36  hidden" v-if="!kyc.user_verified" @input="storeKycCard('image_selfie')" ref="image_selfie" type="file" accept=".jpeg,.png,.jpg,GIF">
                    
 
                                  <div class="flex justify-center mt-4">
                                     <v-spacer class="hidden md:block"></v-spacer>
-                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_selfie.click()" color="success">Upload Image</v-btn>
+                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_selfie.click()" color="success">{{$t('kyc').uploadimg}}</v-btn>
                                 </div>
                         </div>
                     </div>

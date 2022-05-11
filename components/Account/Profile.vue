@@ -19,7 +19,6 @@
                     <Core-ImageInput @profileImage="getFileImage"></Core-ImageInput>
                 </div>
             </div>
-
         </v-card-text>
         <v-card-text>
 
@@ -29,16 +28,16 @@
                 <div class="flex flex-col md:flex-row md:flex-wrap">
                     <div class="w-full flex">
                         <h2 class="w-full md:w-9/12 text-2xl mb-4">
-                            <v-icon class="mr-2 ">em em-female-technologist</v-icon> General Profile
+                            <v-icon class="mr-2 ">em em-female-technologist</v-icon>{{$t('accountsetting').profile}}
                         </h2>
                         <v-chip v-if="form.register_by == 'Facebook'" class="ma-2 w-full md:w-3/12 " color="blue" dark small>
-                            <v-icon>mdi-facebook</v-icon> Register By Facebook
+                            <v-icon>mdi-facebook</v-icon> {{$t('accountsetting').facebook}}
                         </v-chip>
                         <v-chip v-else-if="form.register_by == 'Google'" class="ma-2 w-full md:w-3/12 " color="grey" dark small>
-                            <v-icon>mdi-google</v-icon> Register By Google
+                            <v-icon>mdi-google</v-icon> {{$t('accountsetting').google}}
                         </v-chip>
                         <v-chip v-else class="ma-2 w-full md:w-3/12 " color="primary" small>
-                            <v-icon>mdi-login</v-icon> Register By Website
+                            <v-icon>mdi-login</v-icon> {{$t('accountsetting').website}}
                         </v-chip>
                     </div>
                     <div class="w-full">
@@ -54,7 +53,7 @@
 
                     <br><br>
                     <h2 class="w-full text-2xl">
-                        <v-icon class="mr-2">em em-house</v-icon> Address
+                        <v-icon class="mr-2">em em-house</v-icon> {{$t('accountsetting').address}}
                     </h2>
                     <v-checkbox label="Foreigner" v-model="form.foreigner"></v-checkbox>
                     <v-text-field class="w-full  pl-2" v-model="form.address" prepend-inner-icon="em em-house" label="Address" dense outlined></v-text-field>
@@ -63,7 +62,7 @@
                 <br>
                 
                 <v-btn large block type="submit" color="success">
-                    <v-icon>mdi-content-save</v-icon><span class="capitalize font-semibold text-base">Update Profile</span>
+                    <v-icon>mdi-content-save</v-icon><span class="capitalize font-semibold text-base"> {{$t('accountsetting').buttonupdate}}</span>
                 </v-btn>
 
             </form><br><br><br>
@@ -182,7 +181,6 @@ export default {
         },
         async imageuploaded(res) {
             console.log(res);
-
         },
         async initial() {
             this.form = await Core.getHttp(`/api/account/userprofile/${this.user.id}/`)
@@ -196,7 +194,6 @@ export default {
         async updateProfile() { 
              let update = await Core.putHttpAlert(`/api/account/userprofile/${this.user.id}/`, this.form)
             await Auth.setUser();
-
         },
         async getFileImage(file) {
             let image = file //this.$refs.imageProfile.files[0]
@@ -205,10 +202,8 @@ export default {
             let update = await Core.putImageHttpAlert(`/api/account/userprofile/${this.user.id}/`, formData)
             await Auth.setUser();
             await this.initial()
-
             // let cover = await Core.setWaterMark(image)
             // this.$refs.ximg.src = cover.src
-
         },
         async chooseCity(){
             if(this.form.province && this.form.amphur && this.form.district && this.form.zipcode){

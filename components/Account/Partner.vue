@@ -13,12 +13,12 @@
             <v-alert outlined type="success">
                 <div class="flex">
                     <div>
-                        My Referal Code
+                        {{$t('partner').referal}}
                         <h2 class="text-3xl">{{kyc.refferal_code}}</h2>
                     </div>
                     <v-spacer></v-spacer>
                     <v-btn text small @click="copyURL(kyc.refferal_code)" color="primary">
-                        <v-icon>mdi-clipboard</v-icon> Copy Referal Code
+                        <v-icon>mdi-clipboard</v-icon> {{$t('partner').copy}}
                     </v-btn>
                 </div>
 
@@ -29,7 +29,7 @@
     <div class="flex flex-wrap overflow-hidden lg:-mx-1 xl:-mx-1">
 
         <div class="w-full overflow-hidden lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1">
-            <h2 class="font-semibold">My Partners</h2>
+            <h2 class="font-semibold">{{$t('partner').partner}}</h2>
             <v-timeline dense>
                 <v-timeline-item v-for="(partner, i) in partners" :key="i" small>
 
@@ -51,7 +51,7 @@
             </v-timeline>
         </div>
         <div class="w-full overflow-hidden lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1">
-            <h2 class="font-semibold">My Master</h2>
+            <h2 class="font-semibold">{{$t('partner').master}}</h2>
             <v-timeline dense>
                 <v-timeline-item v-for="(master, i) in masters" :key="i" small>
                     <div class="flex flex-col md:flex-row">
