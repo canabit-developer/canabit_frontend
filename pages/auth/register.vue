@@ -20,11 +20,25 @@
                 </div>
 
             </div>
+ 
+            <v-dialog v-model="dialog" scrollable persistent :overlay="false" max-width="500px" transition="dialog-transition">
+                <v-card v-if="pdpa">
+                <v-card-title>เงื่อนไขการให้บริการ</v-card-title> 
+                    <v-card-text>
+                        {{pdpa.text}}
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn @click="dialog=false" color="error">ยกเลิก</v-btn>
+                        <v-btn @click="register()" color="success"><v-icon>mdi-check</v-icon>ยอมรับ</v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
 
             <div class="lg:w-1/2 w-full flex items-center justify-center   md:px-16 px-0 z-0">
                 <div class="w-full py-6 z-20">
 
-                    <form @submit.prevent="register()" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
+                    <form @submit.prevent="dialog=true" class="sm:w-2/3 w-full px-4 lg:px-0 mx-auto">
                         <h1 class=" font-bold text-2xl">
                             <v-icon class="mr-2">em em-writing_hand</v-icon>
                             Create your account
@@ -108,7 +122,7 @@ export default {
     layout: "root",
     data: () => {
         return {
-          blockRef:false,
+            blockRef: false,
             isPasswordVisible: false,
             isPasswordVisible1: false,
             successBtn: false,
@@ -129,19 +143,23 @@ export default {
             rules: {
                 required: value => !!value || 'Required.',
             },
-            refCode: ''
+            refCode: '',
+            pdpa: null,
+            dialog: false,
         };
     },
     async created() {
-  await this.checkRefUse()
+        await this.getPdpa()
+        await this.checkRefUse()
+
     },
     methods: {
-        async initial() {
-
-            await Web.switchLoad(true);
-          
+        async getPdpa() {
+            this.pdpa = await Core.getHttp(`/api/auth/v2/pdpa/`)
         },
-
+        async initial() { 
+            await Web.switchLoad(true); 
+        }, 
         async checkRefUse() {
             if (this.$route.query.ref) {
                 this.refCode = this.$route.query.ref
@@ -153,6 +171,9 @@ export default {
             this.error = {};
             await Web.switchLoad(true);
             this.form.username = this.form.email
+            if(this.pdpa.id){
+                this.form.pdpa = this.pdpa.id
+            } 
             if (this.form.phone_number.length == '10') {
                 let user = await Auth.register(this.form);
 
@@ -218,8 +239,7 @@ export default {
         async getSuccess(val) {
             this.successBtn = val
             this.success = val
-        },
-
+        }, 
         async reCaptcha() {
             this.successBtn = false;
             this.openCaptcha = true;

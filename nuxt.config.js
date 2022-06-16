@@ -18,7 +18,7 @@ export default {
 
     head: {
         titleTemplate: '%s - canabit_frontend',
-        title: 'canabit_frontend',
+        title: 'Cashback',
         htmlAttrs: {
             lang: 'en'
         },
