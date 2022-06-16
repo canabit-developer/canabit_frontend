@@ -169,6 +169,7 @@ export default {
         },
         async register() {
             this.error = {};
+            this.dialog  = false           
             await Web.switchLoad(true);
             this.form.username = this.form.email
             if(this.pdpa.id){
