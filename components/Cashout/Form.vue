@@ -6,11 +6,11 @@
                 <div class="flex items-center">
                     <div class="flex flex-col">
                         <div class="w-full flex-none text-lg text-white font-bold leading-none">
-                            <v-icon class="mr-2" size="20">em em-money_with_wings</v-icon>Cash out
+                            <v-icon class="mr-2" size="20">em em-money_with_wings</v-icon>{{$t('cashout').header}}
                         </div>
                         <div class="flex flex-row items-center justify-end">
                             <div class="flex-auto text-white my-1">
-                                <span class="mr-3 ">Customers can exchange points for cash.</span>
+                                <span class="mr-3 ">{{$t('cashout').body}}</span>
                             </div>
                             <v-btn @click="active=!active" rounded fab>
                                 <v-icon>mdi-arrow-right</v-icon>
@@ -25,14 +25,14 @@
         <template #header>
             <h2 class="not-margin mt-6 text-xl">
                 <v-icon size="30" class="me-3">em em-money_with_wings</v-icon>
-                <b>CASH OUT</b>
+                <b>{{$t('cashout').header}}</b>
             </h2>
         </template>
         <v-card-title>
 
         </v-card-title>
         <v-alert class="ml-12 mr-12" outlined dense type="info" prominent border="left">
-            Please fill out the information completely.</v-alert>
+            {{$t('cashout').notifill}}</v-alert>
         <v-card-text  >
 
             <div class="flex">
@@ -43,7 +43,7 @@
                     <form @submit.prevent="cashout()" class="p-6">
                         <v-row> 
                             <v-col cols="12" md="12">
-                                <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> More than the points </v-alert>
+                                <v-alert v-if="Number(form.point) > Number(point.current)" type="error"> {{$t('cashout').notierror}} </v-alert>
                                 <v-text-field type="number" min="100" max="9999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Point to Cashout" v-model="form.point" prepend-inner-icon="mdi-bitcoin" outlined dense id="firstname" hide-details></v-text-field>
                             </v-col>
                             <v-col cols="12" md="12">

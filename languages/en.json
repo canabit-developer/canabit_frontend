@@ -11,64 +11,64 @@
         "history": "History Account",
         "logout": "Logout"
     },
-    "headerpage":{
+    "headerpage": {
         "home": "Home",
         "transection": "Transection",
         "fx": "Forex",
-        "ea":"EA",
+        "ea": "EA",
         "indicator": "Indicator",
         "copytrade": "Copy Trade",
         "account": "Account Setting",
         "history": "History Account",
         "logout": "Logout"
     },
-    "index":{
-        "viewall":"View All",
-        "copytrade":"Copy Trade",
-        "brokers":"Brokers",
-        "title":"Partner Brokers"
+    "index": {
+        "viewall": "View All",
+        "copytrade": "Copy Trade",
+        "brokers": "Brokers",
+        "title": "Partner Brokers"
     },
     "ea": {
         "header": "intelligent innovation Make your trading easy",
         "body": "The EA service, an automated trading system from Cashback, is not for everyone. If you've researched it, consider whether this investment strategy and approach fits your expectations. If this approach goes together",
-        "price":"Price",
-        "purchase":"Price",
-        "discountpoint":"Discount Point",
-        "discountcode":"Discount Code",
-        "totalprice":"Total Price",
-        "promotion":"Promotion",
-        "discount":"Discount",
-        "submit ":"Submit",
-        "requesttest":"Request Test",
-        "hearderqp":"Request Test Free!",
-        "noti":"Please check the download link to the email.",
-        "submitrq":"Send Test Request",
-        "moredetails":"More Details",
-        "details":"Details",
-        "usepoint":"Use Point",
-        "morethanpoint":"morethan point",
-        "reviews":"Reviews"
+        "price": "Price",
+        "purchase": "Price",
+        "discountpoint": "Discount Point",
+        "discountcode": "Discount Code",
+        "totalprice": "Total Price",
+        "promotion": "Promotion",
+        "discount": "Discount",
+        "submit ": "Submit",
+        "requesttest": "Request Test",
+        "hearderqp": "Request Test Free!",
+        "noti": "Please check the download link to the email.",
+        "submitrq": "Send Test Request",
+        "moredetails": "More Details",
+        "details": "Details",
+        "usepoint": "Use Point",
+        "morethanpoint": "morethan point",
+        "reviews": "Reviews"
     },
-    "indicator":{
+    "indicator": {
         "header": "Free products! for cashback members",
         "body": "Signals are forex trading indicators that can give you information about your trades. including telling the trend where the candlestick is going Like some indicators, it can tell you where to open a buy order. Or can sell by order as well. The indicator is often referred to as indy.",
-        "price":"Price",
-        "card body":"Macd is an indicator that every trader knows and generally uses. It is also available for Mt4 and Mt5 but Macd.",
-        "button":"Download"
+        "price": "Price",
+        "card body": "Macd is an indicator that every trader knows and generally uses. It is also available for Mt4 and Mt5 but Macd.",
+        "button": "Download"
     },
-    "copytrade":{
+    "copytrade": {
         "header": "Copy trades Track profits from trading around the world.",
         "body": "Invest with automation Full features and makes it easy to enter the world of finance. It allows you to track and connect professional traders, leads and followers together to profit and follow the success of traders all over the world.",
-        "price":"Price",
-        "details":"Details",
-        "reviews":"Reviews",
-        "select":"Select Broker",
-        "buttoncopy":"Copy Trade",
-        "buttoncomment":"Comment",
-        "button":"Detail Copy Trade"
-        
+        "price": "Price",
+        "details": "Details",
+        "reviews": "Reviews",
+        "select": "Select Broker",
+        "buttoncopy": "Copy Trade",
+        "buttoncomment": "Comment",
+        "button": "Detail Copy Trade"
+
     },
-    "accountsetting":{
+    "accountsetting": {
         "profile": "Profile",
         "address": "Address ",
         "facebook": "register via facebook",
@@ -77,37 +77,57 @@
         "buttonupdate": "Update Profile",
         "changepass": "Change Password",
         "updatepass": "Update Password",
-        "notiinfo":"You are logged in with a social network. You cannot change your password.",
-        "account":"Account",
-        "password":"Password",
-        "kyc":"KYC",
-        "partner":"Partner",
+        "notiinfo": "You are logged in with a social network. You cannot change your password.",
+        "account": "Account",
+        "password": "Password",
+        "kyc": "KYC",
+        "partner": "Partner",
         "header": " "
     },
-    "kyc":{
+    "kyc": {
         "verify": "Check your ID card number",
-        "bodyverify":"Verify your identity by entering your ID card number or passport number.",
+        "bodyverify": "Verify your identity by entering your ID card number or passport number.",
         "updatecard": "Update Card",
-        "bodycard":"Identity verification by uploading a picture of your ID card",
+        "bodycard": "Identity verification by uploading a picture of your ID card",
         "uploadselfie": "Upload a selfie with your card.",
-        "bodyselfie":"Verify your identity by uploading a picture of your account number.",
-        "txt":"You",
+        "bodyselfie": "Verify your identity by uploading a picture of your account number.",
+        "txt": "You",
         "cardnumber": "ID card number",
         "passport": "Passport number",
         "viewimg": "View images",
         "updatedata": "Update Data"
 
     },
-    "partner":{
-        "referal":"Referal",
-        "copy":"Copy Referal",
-        "partner":"My Partner",
-        "master":"My Master"
+    "partner": {
+        "referal": "Referal",
+        "copy": "Copy Referal",
+        "partner": "My Partner",
+        "master": "My Master"
     },
-    "historyaccount":{
-        "header":"เครื่องมือที่เรียบง่ายและชาญฉลาดที่จะช่วยให้ธุรกิจของคุณเติบโต"
+    "historyaccount": {
+        "header": "เครื่องมือที่เรียบง่ายและชาญฉลาดที่จะช่วยให้ธุรกิจของคุณเติบโต"
     },
-    "logout":{
-        
+    "logout": {
+
+    },
+    "reward": {
+        "header": "reward",
+        "body": "Points can be redeemed for rewards"
+
+    },
+    "transection": {
+        "header": "Simple and smart tools to help your business grow"
+    },
+    "cashout": {
+        "header": "Cash Out ",
+        "body": "Customers can exchange points for cash",
+        "notifill": "Please fill out the information completely.",
+        "notierror": "More than the points"
+    },
+    "fx": {
+        "add": "Add Account",
+        "noti": "The account number must be the number registered with the IB only.",
+        "headerdialog": "Add Trading Account"
     }
+
 }

@@ -33,7 +33,7 @@
                         <div class="flex justify-between mt-4">
                             <div class="">
                                 <p class="font-light text-xs">
-                                    Valid
+                                    Valid</p>
 
                                     <p class="font-medium tracking-wider text-sm">
                                         11/15
@@ -41,7 +41,7 @@
                             </div>
                             <div class="">
                                 <p class="font-light text-xs text-xs">
-                                    Expiry
+                                    Expiry </p>
 
                                     <p class="font-medium tracking-wider text-sm">
                                         03/25

@@ -30,6 +30,7 @@
                                                     <div class="w-full flex-none text-lg text-white font-bold leading-none">
                                                         <v-icon class="mr-2" size="20">em em-trophy</v-icon>
                                                         {{$t('reward').header}}
+                                                        
                                                     </div> 
                                                 </div>
                                             </div>

@@ -1,9 +1,9 @@
 <template>
 <section class="mt-6">
     <v-toolbar color="transparent" flat>
-        <h2 class="text-2xl font-semibold">Copy Trade</h2>
+        <h2 class="text-2xl font-semibold">{{$t('menu').copytrade}}</h2>
          <v-spacer></v-spacer>
-        <v-btn  @click="$router.push('/copytrade')"   ><span class="capitalize font-semibold">View All</span></v-btn>
+        <v-btn  @click="$router.push('/copytrade')"   ><span class="capitalize font-semibold">{{$t('index').viewall}}</span></v-btn>
     </v-toolbar>
     <div>
         <v-slide-group multiple show-arrows>

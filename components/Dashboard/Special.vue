@@ -1,9 +1,9 @@
 <template>
 <section>
     <v-toolbar color="transparent" flat>
-        <h2 class="text-2xl font-semibold text-white">Brokers</h2>
+        <h2 class="text-2xl font-semibold text-white">{{$t('index').brokers}}</h2>
         <v-spacer></v-spacer>
-        <v-btn  @click="$router.push('/forex')"   ><span class="capitalize font-semibold">View All</span></v-btn>
+        <v-btn  @click="$router.push('/forex')"   ><span class="capitalize font-semibold">{{$t('index').viewall}}</span></v-btn>
     </v-toolbar>
     <div class="flex items-center justify-center w-full">
         <v-slide-group multiple show-arrows>

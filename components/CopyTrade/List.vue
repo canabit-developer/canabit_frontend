@@ -6,11 +6,11 @@
                 <div class="px-4 py-16">
                     <div class="relative w-full md:max-w-2xl md:mx-auto text-center">
                         <h1 class="font-bold text-white text-xl sm:text-2xl md:text-5xl leading-tight mb-6">
-                            Copy Leader Track profits From traders around the world.
+                            {{$t('copytrade').header}}
                         </h1>
 
                         <p class="text-white md:text-xl md:px-18">
-                            Invest with automation Full-featured and making it easy to enter the world of finance, allows you to follow and connect Professional Traders, Leaders, and Followers together to make profits and track success from traders all over the world
+                            {{$t('copytrade').body}}
                         </p>
 
                         <div class="hidden md:block h-40 w-40 rounded-full bg-green-500 absolute right-0 bottom-0 -mb-64 -mr-48 "></div>
@@ -51,7 +51,7 @@
 
                             <vs-button block floating color="#4ade80" class="btn-chat mt-5" @click="$router.push(`/detailcopytrade?id=${copytradeproduct.id}`)">
                                 <span class="span">
-                                    Detail Master
+                                    {{$t('copytrade').button}}
                                 </span>
                             </vs-button>
                         </template>

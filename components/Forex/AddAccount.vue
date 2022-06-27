@@ -6,14 +6,14 @@
                 <v-spacer></v-spacer>
                 <vs-button floating color="#22c55e" @click="active=!active">
                 <v-icon class="mr-2 " size="15">em em-memo</v-icon>
-                Add Account
+                {{$t('fx').add}}
             </vs-button>
             </v-toolbar>
             <vs-dialog prevent-close v-model="active">
                 <template #header>
                     <h3 class="not-margin mt-6">
                         <v-icon size="20" class="me-3">em em-chart_with_upwards_trend</v-icon>
-                        <b>Add Trading Account</b>
+                        <b>{{$t('fx').headerdialog}}</b>
                     </h3>
                 </template>
 
@@ -21,7 +21,7 @@
                     <v-container>
                         <form @submit.prevent="store()">
                             <v-alert outlined dense type="info" prominent border="left">
-                                The account number must be the number registered with the IB only.</v-alert>
+                                {{$t('fx').noti}}</v-alert>
                             <v-text-field oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required label="Account No" v-model="form.account_no" prepend-inner-icon="em em-1234" hint="For example, 222 444" outlined></v-text-field>
                             <v-select @change="checkAccount()" item-text="name" item-value="id" persistent-hint v-model="form.broker" prepend-inner-icon="em em-chart" :items="broker" outlined label="Brokers" required></v-select>
                             <v-select item-text="name" item-value="id" persistent-hint v-model="form.account_type" prepend-inner-icon="em em-moneybag" :items="accounttype" outlined label="Account Type"></v-select>

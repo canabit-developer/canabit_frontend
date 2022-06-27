@@ -54,7 +54,7 @@
                                
                                 <div class="flex justify-center mt-4">
                                     <v-spacer class="hidden md:block"></v-spacer>
-                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_card.click()" color="success">{{$t('kyc').uploadimg}}</v-btn>
+                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_card.click()" color="success">{{$t('kyc').updatedata}}</v-btn>
                                 </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
 
                                  <div class="flex justify-center mt-4">
                                     <v-spacer class="hidden md:block"></v-spacer>
-                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_selfie.click()" color="success">{{$t('kyc').uploadimg}}</v-btn>
+                                    <v-btn v-if="!kyc.user_verified" @click="$refs.image_selfie.click()" color="success">{{$t('kyc').updatedata}}</v-btn>
                                 </div>
                         </div>
                     </div>

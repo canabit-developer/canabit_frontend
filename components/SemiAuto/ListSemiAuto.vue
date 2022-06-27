@@ -67,7 +67,7 @@
 
                                 <vs-button class="btn-chat" color="#5EDA9F" @click="$router.push(`/detailea?id=${eaproduct.id}`)">
                                     <span class="span">
-                                        More Detail
+                                        {{$t('ea').moredetails}}
                                     </span>
                                 </vs-button>
 
