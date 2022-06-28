@@ -4,7 +4,7 @@
         <div class="inline-flex ">
             <vs-button block class="btn-chat" color="#0052F9" @click="active=!active">
                 <span class="span">
-                    Copy Master
+                    {{$t('copytrade').buttoncopy}}
                 </span>
             </vs-button>
             <vs-dialog prevent-close v-model="active" v-if="active">

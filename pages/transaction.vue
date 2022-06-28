@@ -66,7 +66,7 @@
 export default {
     data() {
         return {
-            tab: 1,
+            tab: 0,
             items: [
                 'STATUS POINT', 'STATUS REWARD',
             ],

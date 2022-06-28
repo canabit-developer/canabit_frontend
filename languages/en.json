@@ -5,6 +5,7 @@
         "transection": "Transection",
         "ea": "EA",
         "fx": "Forex",
+        "Product": "Product",
         "indicator": "Indicator",
         "copytrade": "Copy Trade",
         "account": "Account Setting",
@@ -105,7 +106,7 @@
         "master": "My Master"
     },
     "historyaccount": {
-        "header": "เครื่องมือที่เรียบง่ายและชาญฉลาดที่จะช่วยให้ธุรกิจของคุณเติบโต"
+        "header": "Simple and smart tools to help your business grow."
     },
     "logout": {
 

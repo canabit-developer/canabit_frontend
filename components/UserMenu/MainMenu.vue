@@ -73,7 +73,7 @@
             <UserMenu-NavbarLink path="/" :title="$t('menu').home" :icon="require('~/static/png/018-pantone.png')"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/transaction" :title="$t('menu').transection" :icon="require('~/static/png/5260274.png')"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/forex" :title="$t('menu').fx" :icon="require('~/static/png/5180646.png')"></UserMenu-NavbarLink>
-            <UserMenu-NavMenuSectionTitle v-if="kyc.user_verified" title="Product"></UserMenu-NavMenuSectionTitle>
+            <UserMenu-NavMenuSectionTitle v-if="kyc.user_verified" :title="$t('menu').Product"></UserMenu-NavMenuSectionTitle>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/ea" :title="$t('menu').ea" :icon="require('~/static/png/023-app-store.png')"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/indicator" :title="$t('menu').indicator" :icon="require('~/static/png/speedometer.png')"></UserMenu-NavbarLink>
             <UserMenu-NavbarLink v-if="kyc.user_verified" path="/copytrade" :title="$t('menu').copytrade" :icon="require('~/static/png/016-cp.png')"></UserMenu-NavbarLink>

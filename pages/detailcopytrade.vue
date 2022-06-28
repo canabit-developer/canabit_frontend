@@ -3,7 +3,7 @@
     <Core-BgProfile></Core-BgProfile> 
     <div class="relative  md:m-24 mt-20">
         <v-toolbar color="transparent" flat>
-            <v-btn @click="$router.go(-1)" fab color="primary">
+            <v-btn @click="$router.go(-1)" fab color="primary" >
                 <v-icon>mdi-arrow-left-bold</v-icon>
             </v-btn>
         </v-toolbar><br>
