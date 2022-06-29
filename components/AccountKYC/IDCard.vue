@@ -25,7 +25,7 @@
 
                     <div class="flex">
                         <v-spacer></v-spacer>
-                        <v-btn type="submit" color="success">บันทึกข้อมูล</v-btn>
+                        <v-btn type="submit" color="success">{{$t('kyc').update}}</v-btn>
                         <!-- <vs-button v-if="!isPassport && !kyc.user_verified" :disabled="!checkId" type="submit" floating color="#4ade80">Update</vs-button>
                     <vs-button v-else-if="!kyc.user_verified" type="submit" floating color="#4ade80">Update</vs-button> -->
                     </div>

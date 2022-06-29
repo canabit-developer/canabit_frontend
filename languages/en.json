@@ -96,8 +96,8 @@
         "cardnumber": "ID card number",
         "passport": "Passport number",
         "viewimg": "View images",
-        "updatedata": "Update Data"
-
+        "updatedata": "Update Data",
+        "update": "Update"
     },
     "partner": {
         "referal": "Referal",
